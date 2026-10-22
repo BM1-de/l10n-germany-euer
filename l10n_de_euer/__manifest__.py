@@ -7,7 +7,7 @@
     "version": "19.0.1.0.0",
     "development_status": "Alpha",
     "category": "Accounting/Localizations",
-    "website": "https://github.com/BM1-de/l10n-germany-euer",
+    "website": "https://github.com/BM1-de/odoo-l10n-germany-euer",
     "author": "Baumgärtner Marketing GmbH",
     "maintainers": ["bm1-phillip"],
     "license": "AGPL-3",

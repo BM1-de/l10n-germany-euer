@@ -55,13 +55,13 @@ repos:
       # update the NOT INSTALLABLE ADDONS section above
       - id: oca-update-pre-commit-excluded-addons
       - id: oca-fix-manifest-website
-        args: ["https://github.com/BM1-de/l10n-germany-euer"]
+        args: ["https://github.com/BM1-de/odoo-l10n-germany-euer"]
       - id: oca-gen-addon-readme
         args:
           - --addons-dir=.
           - --branch=19.0
           - --org-name=BM1-de
-          - --repo-name=l10n-germany-euer
+          - --repo-name=odoo-l10n-germany-euer
           - --if-source-changed
           - --keep-source-digest
           - --convert-fragments-to-markdown
