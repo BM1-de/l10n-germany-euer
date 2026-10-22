@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 # Copyright 2026 Baumgärtner Marketing GmbH
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-"""Banner and icon of l10n_de_euer (static/description).
+"""Banner and icon of l10n_de_euer (static/description), in English as the
+Odoo Apps Store requires.
 
 Runs inside the Odoo container, which has Pillow and the DejaVu fonts::
 
@@ -60,10 +61,10 @@ def banner():
     draw.rectangle((0, height - 120, width, height), fill=ACCENT)
     rows = (
         ("Anlage EÜR · AVEÜR", BOLD, 84, WHITE, 100),
-        ("Einnahmenüberschussrechnung nach § 4 Abs. 3 EStG", REGULAR, 38, LIGHT, 240),
-        ("nach Zahlung · bis zum Beleg nachvollziehbar", REGULAR, 38, LIGHT, 300),
+        ("German cash-basis profit statement (§ 4 (3) EStG)", REGULAR, 38, LIGHT, 240),
+        ("by payment date · traceable down to the document", REGULAR, 38, LIGHT, 300),
         (
-            "Odoo 19 · Kleinunternehmer und Regelbesteuerung · SKR03 und SKR04",
+            "Odoo 19 · small business and regular VAT · SKR03 and SKR04",
             REGULAR,
             30,
             WHITE,

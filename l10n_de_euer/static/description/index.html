@@ -1,1289 +1,147 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="Docutils: https://docutils.sourceforge.io/" />
-<title>Germany EÜR</title>
-<style type="text/css">
-
-/*
-:Author: David Goodger (goodger@python.org)
-:Id: $Id: html4css1.css 9511 2024-01-13 09:50:07Z milde $
-:Copyright: This stylesheet has been placed in the public domain.
-
-Default cascading style sheet for the HTML output of Docutils.
-Despite the name, some widely supported CSS2 features are used.
-
-See https://docutils.sourceforge.io/docs/howto/html-stylesheets.html for how to
-customize this style sheet.
-*/
-
-/* used to remove borders from tables and images */
-.borderless, table.borderless td, table.borderless th {
-  border: 0 }
-
-table.borderless td, table.borderless th {
-  /* Override padding for "table.docutils td" with "! important".
-     The right padding separates the table cells. */
-  padding: 0 0.5em 0 0 ! important }
-
-.first {
-  /* Override more specific margin styles with "! important". */
-  margin-top: 0 ! important }
-
-.last, .with-subtitle {
-  margin-bottom: 0 ! important }
-
-.hidden {
-  display: none }
-
-.subscript {
-  vertical-align: sub;
-  font-size: smaller }
-
-.superscript {
-  vertical-align: super;
-  font-size: smaller }
-
-a.toc-backref {
-  text-decoration: none ;
-  color: black }
-
-blockquote.epigraph {
-  margin: 2em 5em ; }
-
-dl.docutils dd {
-  margin-bottom: 0.5em }
-
-object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
-  overflow: hidden;
-}
-
-/* Uncomment (and remove this text!) to get bold-faced definition list terms
-dl.docutils dt {
-  font-weight: bold }
-*/
-
-div.abstract {
-  margin: 2em 5em }
-
-div.abstract p.topic-title {
-  font-weight: bold ;
-  text-align: center }
-
-div.admonition, div.attention, div.caution, div.danger, div.error,
-div.hint, div.important, div.note, div.tip, div.warning {
-  margin: 2em ;
-  border: medium outset ;
-  padding: 1em }
-
-div.admonition p.admonition-title, div.hint p.admonition-title,
-div.important p.admonition-title, div.note p.admonition-title,
-div.tip p.admonition-title {
-  font-weight: bold ;
-  font-family: sans-serif }
-
-div.attention p.admonition-title, div.caution p.admonition-title,
-div.danger p.admonition-title, div.error p.admonition-title,
-div.warning p.admonition-title, .code .error {
-  color: red ;
-  font-weight: bold ;
-  font-family: sans-serif }
-
-/* Uncomment (and remove this text!) to get reduced vertical space in
-   compound paragraphs.
-div.compound .compound-first, div.compound .compound-middle {
-  margin-bottom: 0.5em }
-
-div.compound .compound-last, div.compound .compound-middle {
-  margin-top: 0.5em }
-*/
-
-div.dedication {
-  margin: 2em 5em ;
-  text-align: center ;
-  font-style: italic }
-
-div.dedication p.topic-title {
-  font-weight: bold ;
-  font-style: normal }
-
-div.figure {
-  margin-left: 2em ;
-  margin-right: 2em }
-
-div.footer, div.header {
-  clear: both;
-  font-size: smaller }
-
-div.line-block {
-  display: block ;
-  margin-top: 1em ;
-  margin-bottom: 1em }
-
-div.line-block div.line-block {
-  margin-top: 0 ;
-  margin-bottom: 0 ;
-  margin-left: 1.5em }
-
-div.sidebar {
-  margin: 0 0 0.5em 1em ;
-  border: medium outset ;
-  padding: 1em ;
-  background-color: #ffffee ;
-  width: 40% ;
-  float: right ;
-  clear: right }
-
-div.sidebar p.rubric {
-  font-family: sans-serif ;
-  font-size: medium }
-
-div.system-messages {
-  margin: 5em }
-
-div.system-messages h1 {
-  color: red }
-
-div.system-message {
-  border: medium outset ;
-  padding: 1em }
-
-div.system-message p.system-message-title {
-  color: red ;
-  font-weight: bold }
-
-div.topic {
-  margin: 2em }
-
-h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
-h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
-  margin-top: 0.4em }
-
-h1.title {
-  text-align: center }
-
-h2.subtitle {
-  text-align: center }
-
-hr.docutils {
-  width: 75% }
-
-img.align-left, .figure.align-left, object.align-left, table.align-left {
-  clear: left ;
-  float: left ;
-  margin-right: 1em }
-
-img.align-right, .figure.align-right, object.align-right, table.align-right {
-  clear: right ;
-  float: right ;
-  margin-left: 1em }
-
-img.align-center, .figure.align-center, object.align-center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-table.align-center {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.align-left {
-  text-align: left }
-
-.align-center {
-  clear: both ;
-  text-align: center }
-
-.align-right {
-  text-align: right }
-
-/* reset inner alignment in figures */
-div.align-right {
-  text-align: inherit }
-
-/* div.align-center * { */
-/*   text-align: left } */
-
-.align-top    {
-  vertical-align: top }
-
-.align-middle {
-  vertical-align: middle }
-
-.align-bottom {
-  vertical-align: bottom }
-
-ol.simple, ul.simple {
-  margin-bottom: 1em }
-
-ol.arabic {
-  list-style: decimal }
-
-ol.loweralpha {
-  list-style: lower-alpha }
-
-ol.upperalpha {
-  list-style: upper-alpha }
-
-ol.lowerroman {
-  list-style: lower-roman }
-
-ol.upperroman {
-  list-style: upper-roman }
-
-p.attribution {
-  text-align: right ;
-  margin-left: 50% }
-
-p.caption {
-  font-style: italic }
-
-p.credits {
-  font-style: italic ;
-  font-size: smaller }
-
-p.label {
-  white-space: nowrap }
-
-p.rubric {
-  font-weight: bold ;
-  font-size: larger ;
-  color: maroon ;
-  text-align: center }
-
-p.sidebar-title {
-  font-family: sans-serif ;
-  font-weight: bold ;
-  font-size: larger }
-
-p.sidebar-subtitle {
-  font-family: sans-serif ;
-  font-weight: bold }
-
-p.topic-title {
-  font-weight: bold }
-
-pre.address {
-  margin-bottom: 0 ;
-  margin-top: 0 ;
-  font: inherit }
-
-pre.literal-block, pre.doctest-block, pre.math, pre.code {
-  margin-left: 2em ;
-  margin-right: 2em }
-
-pre.code .ln { color: gray; } /* line numbers */
-pre.code, code { background-color: #eeeeee }
-pre.code .comment, code .comment { color: #5C6576 }
-pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
-pre.code .literal.string, code .literal.string { color: #0C5404 }
-pre.code .name.builtin, code .name.builtin { color: #352B84 }
-pre.code .deleted, code .deleted { background-color: #DEB0A1}
-pre.code .inserted, code .inserted { background-color: #A3D289}
-
-span.classifier {
-  font-family: sans-serif ;
-  font-style: oblique }
-
-span.classifier-delimiter {
-  font-family: sans-serif ;
-  font-weight: bold }
-
-span.interpreted {
-  font-family: sans-serif }
-
-span.option {
-  white-space: nowrap }
-
-span.pre {
-  white-space: pre }
-
-span.problematic, pre.problematic {
-  color: red }
-
-span.section-subtitle {
-  /* font-size relative to parent (h1..h6 element) */
-  font-size: 80% }
-
-table.citation {
-  border-left: solid 1px gray;
-  margin-left: 1px }
-
-table.docinfo {
-  margin: 2em 4em }
-
-table.docutils {
-  margin-top: 0.5em ;
-  margin-bottom: 0.5em }
-
-table.footnote {
-  border-left: solid 1px black;
-  margin-left: 1px }
-
-table.docutils td, table.docutils th,
-table.docinfo td, table.docinfo th {
-  padding-left: 0.5em ;
-  padding-right: 0.5em ;
-  vertical-align: top }
-
-table.docutils th.field-name, table.docinfo th.docinfo-name {
-  font-weight: bold ;
-  text-align: left ;
-  white-space: nowrap ;
-  padding-left: 0 }
-
-/* "booktabs" style (no vertical lines) */
-table.docutils.booktabs {
-  border: 0px;
-  border-top: 2px solid;
-  border-bottom: 2px solid;
-  border-collapse: collapse;
-}
-table.docutils.booktabs * {
-  border: 0px;
-}
-table.docutils.booktabs th {
-  border-bottom: thin solid;
-  text-align: left;
-}
-
-h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
-h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
-  font-size: 100% }
-
-ul.auto-toc {
-  list-style-type: none }
-
-</style>
-</head>
-<body>
-<div class="document" id="germany-eur">
-<h1 class="title">Germany EÜR</h1>
-
-<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!! This file is generated by oca-gen-addon-readme !!
-!! changes will be overwritten.                   !!
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!! source digest: sha256:162ab8c13dda41dbb82d60dff0f86f4867bb407a8dd35afc72fa743e75e622c3
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Alpha" src="https://img.shields.io/badge/maturity-Alpha-red.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/license-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/BM1-de/odoo-l10n-germany-euer/tree/19.0/l10n_de_euer"><img alt="BM1-de/odoo-l10n-germany-euer" src="https://img.shields.io/badge/github-BM1--de%2Fodoo--l10n--germany--euer-lightgray.png?logo=github" /></a></p>
-<p>This module computes the German cash-basis profit statement
-(<em>Einnahmenüberschussrechnung</em>, § 4 (3) EStG) with the official forms
-<em>Anlage EÜR</em> and <em>Anlage AVEÜR</em>. Income and expenses count in the year
-the money comes in or goes out (§ 11 EStG), traced from the bank and
-cash lines in Odoo back to the original document.</p>
-<p>The module provides:</p>
-<ul class="simple">
-<li>the official forms 2024, 2025 and 2026 (<em>Anlage EÜR</em>, <em>AVEÜR</em> and
-<em>SZ</em>) as data, every line with a stable code <tt class="docutils literal">FORM.BOX.KZ</tt> (e.g.
-<tt class="docutils literal">EUER.20.111</tt>), its line number per year, the official wording, sign
-rules and formulas for all sums and transfers, and the rule parameters
-per year with their legal source;</li>
-<li>the EÜR categories with their form fields per year and the default
-account assignment for SKR03 and SKR04 (with proposals for accounts
-you create);</li>
-<li>the computation of a year: every receipt and payment is traced over
-the reconciliations to its document and split into slices with cash
-date, year and form field (§ 11 EStG, ten-day rule, VAT of small
-businesses and standard taxation, private withdrawals and
-contributions, gifts and entertainment);</li>
-<li>the asset register with depreciation, low-value assets, asset pools
-and <em>Anlage AVEÜR</em>;</li>
-<li>the statement of the year with the questionnaire on the program scope,
-profit corrections with own receipts, the bank reconciliation of 31
-December, more than 60 checks, the finalisation with a SHA-256 hash
-chain and corrections as new versions;</li>
-<li>the outputs: an accessible fill-in aid for <em>Mein ELSTER</em> (HTML and
-PDF), the evidence per Kennzahl down to the receipt, a workbook with
-the registers of § 4 (7) EStG, the list of the Kennzahlen as CSV, a
-machine readable data set (JSON), the data access package Z3 with
-<tt class="docutils literal">index.xml</tt> (§ 147 (6) AO), the check protocol and a template of the
-procedure documentation;</li>
-<li>the setup of a business and the takeover of open items from a previous
-system.</li>
-</ul>
-<p><strong>Important notice:</strong> This module is a tool for preparing the cash-basis
-profit statement according to § 4 (3) EStG and the form <em>Anlage EÜR</em>. It
-does not replace tax advice. The taxpayer alone is responsible for the
-correctness and completeness of the tax return and of the data
-transmitted to the tax office. Check all values before transmission, in
-particular for new form years. The module does not transmit any data to
-the tax authorities and does not change any journal entries. The program
-scope and the cases that are not supported are listed in the section
-“Known issues / Roadmap”.</p>
-<p>The software is provided without any warranty (sections 15 and 16 of the
-GNU AGPL-3.0). Mandatory statutory liability remains unaffected.</p>
-<p><strong>Development status Alpha, not independently checked:</strong> the
-calculation, the two reference cases and the data of the form years were
-created and checked by the maintainer only; an independent check by a
-tax expert is still pending. The form years are delivered as drafts: you
-can compute and compare a statement, but you can only finalize it after
-a qualified person who did not create the data has released the form
-year (see “Configuration”).</p>
-<div class="admonition important">
-<p class="first admonition-title">Important</p>
-<p class="last">This is an alpha version, the data model and design can change at any time without warning.
-Only for development or testing purpose, do not use in production.
-<a class="reference external" href="https://odoo-community.org/page/development-status">More details on development status</a></p>
-</div>
-<p><strong>Table of contents</strong></p>
-<div class="contents local topic" id="contents">
-<ul class="simple">
-<li><a class="reference internal" href="#use-cases-context" id="toc-entry-1">Use Cases / Context</a></li>
-<li><a class="reference internal" href="#configuration" id="toc-entry-2">Configuration</a></li>
-<li><a class="reference internal" href="#usage" id="toc-entry-3">Usage</a></li>
-<li><a class="reference internal" href="#known-issues-roadmap" id="toc-entry-4">Known issues / Roadmap</a></li>
-<li><a class="reference internal" href="#changelog" id="toc-entry-5">Changelog</a><ul>
-<li><a class="reference internal" href="#section-1" id="toc-entry-6">19.0.1.0.0</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#bug-tracker" id="toc-entry-7">Bug Tracker</a></li>
-<li><a class="reference internal" href="#credits" id="toc-entry-8">Credits</a><ul>
-<li><a class="reference internal" href="#authors" id="toc-entry-9">Authors</a></li>
-<li><a class="reference internal" href="#contributors" id="toc-entry-10">Contributors</a></li>
-<li><a class="reference internal" href="#maintainers" id="toc-entry-11">Maintainers</a></li>
-</ul>
-</li>
-</ul>
-</div>
-<div class="section" id="use-cases-context">
-<h1><a class="toc-backref" href="#toc-entry-1">Use Cases / Context</a></h1>
-<p>A sole proprietor who determines the profit under § 4 (3) EStG has to
-file the form <em>Anlage EÜR</em> electronically every year, together with
-<em>Anlage AVEÜR</em> for the fixed assets. Unlike a balance sheet, the
-cash-basis method follows the payments: an invoice counts when it is
-paid, not when it is issued or booked.</p>
-<p>Odoo’s standard reports and <tt class="docutils literal">l10n_de_mis_reports</tt> work with the
-posting date of the journal entries. This module instead follows every
-real money movement through the reconciliation graph to the original
-document, keeps the forms of every year as data and produces a fill-in
-aid for <em>Mein ELSTER</em>. It never transmits data itself.</p>
-</div>
-<div class="section" id="configuration">
-<h1><a class="toc-backref" href="#toc-entry-2">Configuration</a></h1>
-<p><strong>Setup of a business</strong> (<em>Accounting</em>, Community: <em>Invoicing</em>, <em>→
-Configuration → EÜR → EÜR Setup</em>, accounting managers). The wizard
-collects the settings in one place; it books nothing and never sets a
-lock date.</p>
-<ol class="arabic simple">
-<li>Enable the cash-basis profit statement for the company and enter the
-header values of the form: type of business, legal form, type of
-income and owner.</li>
-<li><em>VAT Status Periods</em>: small business (§ 19 UStG) or standard
-taxation, with the return period and the permanent extension
-(Dauerfristverlängerung). The treatment is never derived from the
-taxes of the bookings.</li>
-<li>Small businesses switch the default accounts and taxes to the
-accounts without VAT (SKR03 8195/3200, SKR04 4185/5200); otherwise
-every booking with VAT is reported (C-30).</li>
-<li>Private matters: the private share account of the purchase journals
-takes the private share of a bill (e.g. of a phone bill); the private
-accounts (SKR03 1800/1890, SKR04 2100/2180) give the withdrawals and
-contributions (Kz 122/123). Mark the money journal of a private
-account without a separate business account as <em>private account</em>
-(R-18): business income received there is a withdrawal, business
-expenses paid from it are a contribution.</li>
-<li>Payment providers and credit cards (PayPal, Stripe, card accounts):
-the booking decides when the money counts. With a bank journal of its
-own the money counts when it is credited to the provider or card
-account; booked on a reconcilable clearing account it counts with the
-payout to the bank account.</li>
-<li>Business entertainment: by default 70 % are booked on 4650 (SKR04
-6640) and 30 % on 4654 (6644). If you book the full amount on 4650,
-choose <em>Split 70/30 automatically</em> (also in <em>Accounting →
-Configuration → Settings → EÜR</em>).</li>
-<li>Lock date: set the global lock date (fiscal year lock date) to 31
-December of a year before its statement is finalised. Prefer it to
-the hard lock date, which allows no exception for December lines
-imported late (C-70).</li>
-<li><em>Takeover from a Previous System</em>: the open receivables and payables
-of the opening entries get their category, VAT treatment and rate
-(C-35); the turnover of the previous year goes into the chosen VAT
-status period, whose current input the dialog shows (an empty amount
-stores nothing, tick <em>No Turnover in the Previous Year</em> to confirm
-0); the asset register of the previous system is imported by CSV
-(<em>Take Over Asset Register</em>).</li>
-</ol>
-<p>Then check the account assignment of the business (<em>Check Account
-Assignment</em>, see <em>Usage</em>).</p>
-<p><strong>Form data.</strong> No configuration is needed for the form data.</p>
-<ul class="simple">
-<li>Form years, form fields and rule parameters are shared by all
-companies. They are listed under <em>Accounting</em> (Community: <em>Invoicing</em>)
-<em>→ Configuration → EÜR</em> and can only be changed by system
-administrators.</li>
-<li>A form year is delivered in state <em>Draft</em>. It is set to <em>Verified</em>
-only after the review by a person who did not create the data (tax
-advisor or second maintainer); name, role and date of the review are
-mandatory.</li>
-<li>Corrections of a delivered form year are added as a new version with
-its own records. The old version is marked as superseded and stays
-unchanged as soon as a finalised statement uses it.</li>
-<li>The form years are delivered with the module; you need no generator.
-The maintainers generate a new form year from the BMF letter with the
-official forms and instructions (PDF published by the Federal Ministry
-of Finance) and a table of its lines, Kennzahlen, labels and formulas
-prepared from it; that table and the notes are not part of the
-repository. The generator <tt class="docutils literal">_dev/werkzeuge/gen_forms.py</tt> (option
-<tt class="docutils literal"><span class="pre">--spec</span></tt>, folder of the table) checks every pair of line and
-Kennzahl, all sums and transfers and writes
-<tt class="docutils literal"><span class="pre">data/forms/euer_&lt;year&gt;.xml</span></tt>; <tt class="docutils literal">_dev/werkzeuge/check_forms.py</tt> then
-compares the delivered data with the text of the official PDF
-(<tt class="docutils literal">pdftotext</tt>) for the release of the form year.</li>
-</ul>
-<p><strong>Account assignment.</strong> Every account gets an EÜR category per business
-(main company with its branches) and period. The category says how the
-account is treated (money, open item, tax, income, expense, private,
-fixed asset, depreciation, opening balance, neutral) and, per form year,
-into which fields its amounts go.</p>
-<ul class="simple">
-<li>Companies with the chart template SKR03 or SKR04 get the default
-assignment of all template accounts when the module is installed, and
-new companies when their chart template is loaded. Bank, cash and
-credit card accounts, suspense and transfer accounts are assigned from
-the journals. Only missing assignments are created; corrections are
-never overwritten, also not by reloading the chart template.</li>
-<li>Accounts you create yourself get a proposal (from the code range of
-the chart template), never a silent assignment. Other charts of
-accounts have no defaults; the checks list every account that is
-missing.</li>
-<li>Assignments with low confidence (ambiguous cases A01–A34) must be
-confirmed once the account is used. A change of use gets a new period
-(<em>New Period</em>); a correction of an error changes the record. All
-changes are logged.</li>
-<li><em>Start of the Activity</em> (tab <em>EÜR</em> of the main company, <em>EÜR Setup</em>):
-in the year the activity starts the small business limit of the
-current year is 25,000 € instead of 100,000 € and there is no previous
-year (§ 19 (1) UStG from 2025, section 19.1 (3) UStAE). A turnover of
-the previous year entered on a VAT status period (takeover from
-another system) counts for the year entered next to it (<em>For the
-Year</em>, empty: the first year of the period) only; later years take the
-turnover from the data. A turnover of 0 counts only with its year (in
-the takeover: <em>No Turnover in the Previous Year</em>).</li>
-<li>Gifts: the category <em>Gifts (deductible)</em> allows collective entries
-without recipient for low-value promotional gifts (R 4.11 (2) EStR),
-booked on the gift accounts 4630 (SKR04 6610). The DATEV account
-<em>Streuartikel</em> 4605 (6605) stays an advertising account (Kz 224) and
-is not part of the gift check.</li>
-<li>Gifts per recipient: enter the recipient on the bill or the bank entry
-(tab <em>EÜR</em>, <em>Recipient of the Gifts</em>). The partner of a bill or a bank
-entry is the shop, never the recipient; without a recipient a gift is
-blocked (C-51). A bill with gifts for several recipients gets the
-recipients per line (<em>All EÜR Information → Recipients of the Gifts
-per Line</em>, with the number or share of the gifts of the line). The 50
-€ limit counts all gifts of the year to the recipient, paid or not, by
-the date the gift is handed over: enter <em>Date of the Gift</em> if it
-differs from the date of supply (bought in December, handed over in
-January). Gifts booked on the account for non-deductible gifts (4635,
-SKR04 6620) stay non-deductible without recipient.</li>
-<li>SKR03 4980: in DATEV it is <em>Sonstiger Betriebsbedarf</em> (work equipment,
-Kz 229, like SKR04 6850). The German name of the Odoo template wrongly
-says <em>Mietleasing … technische Anlagen</em>; the assignment must
-therefore be confirmed once the account is used.</li>
-<li>Categories and their fields per form year are delivered as data and
-can only be changed by system administrators. The maintainers generate
-the defaults with <tt class="docutils literal">_dev/werkzeuge/gen_mapping.py</tt> from a
-classification of every account of the SKR03 and SKR04 templates of
-Odoo (not part of the repository; option <tt class="docutils literal"><span class="pre">--spec</span></tt>) and the template
-files of <tt class="docutils literal">l10n_de</tt> (option <tt class="docutils literal"><span class="pre">--templates</span></tt>).</li>
-</ul>
-</div>
-<div class="section" id="usage">
-<h1><a class="toc-backref" href="#toc-entry-3">Usage</a></h1>
-<p><strong>Course of the year.</strong> Book as usual during the year; the module only
-reads the bookings. For the statement of a year:</p>
-<ol class="arabic simple">
-<li>Import the bank and cash statements up to 31 December, including the
-last December lines, before you set a lock date (Odoo moves the date
-of an entry in a locked period).</li>
-<li>Create the statement of the business and year (<em>Accounting →
-Reporting → EÜR → Statements</em>, Community: <em>Invoicing → Reporting →
-EÜR</em>) and answer the <em>Questionnaire</em>; an accounting manager confirms
-it.</li>
-<li><em>Compute</em> the statement.</li>
-<li><em>Classification of Rests</em>: classify every payment the computation
-cannot assign to a document (advance payment, refund, write-off,
-returned direct debit; C-20, C-36, C-37).</li>
-<li><em>Turn of the Year</em>: decide every item of the review list with a
-reason: regularly recurring payments within ten days around 31
-December, such as rent or VAT returns (C-26), and transfers ordered
-in December but debited in the first days of January (C-23); then
-compute again. <em>Apply</em> needs the economic year the payment belongs
-to (the year before for a payment in January, the year after for one
-in December): with the year of payment the decision moves nothing
-and is reported (C-26). For a direct debit of the tax office whose
-due date falls on a weekend (10 January 2026 and 2027) the module
-proposes the year of payment: it reads the period for the payment as
-ending on the next working day (§ 108 (3), § 224 (2) no. 3 AO, H 11
-EStH). <em>Apply</em> stays possible, but raises a warning (C-26) that must
-be acknowledged with a reason before the finalisation. The legal
-question is open (see <em>Known issues / Roadmap</em>).</li>
-<li><em>Bank Reconciliation 31 December</em>: enter the balance per statement
-of account of every money journal and attach the statement (C-38).</li>
-<li><em>Profit Corrections</em>: enter the values without bookings (private
-use, flat rates, home office) with a reason and an own receipt.</li>
-<li><em>Run Checks</em>: solve the blockers and acknowledge the warnings with a
-reason.</li>
-<li>Set the global lock date (fiscal year lock date) to 31 December and
-<em>Finalise</em> (accounting managers).</li>
-<li>Enter the values in <em>Mein ELSTER</em> with the <em>Fill-In Aid</em> and keep
-the outputs with the receipts.</li>
-<li>Enter the date and the transfer ticket of the submission on the tab
-<em>Finalisation</em>.</li>
-</ol>
-<p><strong>Booking rules.</strong> The computation follows the money through the
-reconciliations. Book so that every payment reaches its document:</p>
-<ul class="simple">
-<li>Book a returned direct debit as a statement line of its own and
-reconcile it with the receivable account of the customer: it creates a
-new open item. Do not undo the reconciliation of the original payment.
-Reconcile the next payment of the customer with this new item and book
-the fee on the costs of money transfer (SKR03 4970, SKR04 6855). Write
-off an amount the customer never pays only through the classification
-(C-36).</li>
-<li>Wages, advance payments received and other amounts booked on a balance
-account that counts at payment (payroll liabilities SKR03 1740–1742,
-advance payments 1710–1720 and the like) count when they are paid: the
-entry “4120 to 1740” is only documented (C-03), the payment “1740 to
-bank” is the expense. Non-cash benefits booked against revenue (e.g.
-“4120 to 8590”) count on the date of the entry.</li>
-<li>Do not book bills against a liability account that cannot be
-reconciled (e.g. “4930/1576 to 1700” and later “1700 to bank”): such
-an expense would get lost (blocker C-18, C-04). Enter the bill as a
-vendor bill on the payable account of the partner, or make the account
-reconcilable.</li>
-<li>Transfers between tax accounts (e.g. the VAT settlement “1776 to
-1789”) and between balance accounts (e.g. a loan “1700 to 0630”) count
-nothing: VAT counts when it is paid to or refunded by the tax office
-(Kz 186, 141).</li>
-<li>Reclassify an expense in the year it was paid: a transfer between
-expense accounts counts on its date (C-03 points out a different
-year).</li>
-<li>Do not book depreciation in the ledger: the asset register is the only
-source of depreciation, low-value assets and asset pools (C-68
-compares the ledger with it).</li>
-<li>Enter the recipient of gifts on the bill or the bank entry (C-51), and
-book a private share of a purchase with the private share account of
-the purchase journal (<em>EÜR Setup</em>).</li>
-</ul>
-<p><strong>Form data and account assignment</strong> (<em>Accounting</em>, Community:
-<em>Invoicing</em>, <em>→ Configuration → EÜR</em>):</p>
-<ol class="arabic simple">
-<li><em>Form Years</em> shows the official forms per assessment year with their
-source (BMF letter, form ids, checksum of the evaluated PDF).</li>
-<li>Open <em>Form Fields</em> to look up a line: the stable code, the Kennzahl,
-the line of the respective year, the official wording, the formula
-and the program scope (supported, manual input or not supported).</li>
-<li><em>Rule Parameters</em> lists the amounts and rates of the tax rules with
-their period of validity and legal source.</li>
-<li><em>Account Assignment</em> lists the EÜR category of every account with
-period, confidence and confirmation; the account form shows the
-current category.</li>
-<li><em>Check Account Assignment</em>: choose the business and year. <em>Show
-Accounts</em> lists every account with posted lines in the year with
-category, confidence, confirmation, proposal and amount; filter for
-accounts that are not assigned, with low confidence and unconfirmed,
-or not provided for in the EÜR. Apply the proposal or confirm the
-assignment from the list. <em>Run Checks</em> stores the checks C-01 to
-C-09, C-30, C-31 and C-50 under <em>EÜR Checks</em>; warnings are
-acknowledged with a reason.</li>
-</ol>
-<p><strong>Asset register</strong> (<em>Accounting → Asset Register (EÜR)</em>): the register
-is the only source of depreciation, low-value assets, asset pools and
-<em>Anlage AVEÜR</em>; depreciation booked in the ledger is compared with it,
-never counted twice.</p>
-<ol class="arabic simple">
-<li>Create an asset from the journal items of a purchase (list of journal
-items, action <em>Create EÜR Asset</em>): delivery date, net cost, input tax
-and AVEÜR group are proposed. Check the kind (depreciable, low-value
-asset, asset pool …), the method and the useful life, then <em>Enter in
-Register</em>.</li>
-<li>Additional costs, subsidies, special depreciation (§ 7g (5) and § 7b
-EStG), extraordinary depreciation and changes of the useful life or
-the business share are events of the asset. <em>Yearly Values</em> shows the
-calculation per year; a use withdrawal for private use is confirmed
-or rejected there. A building with linear depreciation keeps its
-percentage (§ 7 (4) sentence 1 EStG): later costs, subsidies and
-extraordinary depreciation change its basis; enter a remaining useful
-life with such an event only to spread the book value over it. A
-contributed asset is depreciated over its remaining useful life,
-which is proposed from the private acquisition.</li>
-<li>A sale, withdrawal or scrapping is entered on the asset and recorded
-with <em>Record Disposal</em>.</li>
-<li><em>Take Over Asset Register</em> (accounting managers) imports the register
-of a previous system by CSV with the book values at the takeover
-date; the years before are not calculated again. The preview tries
-every row and shows all errors before anything is imported. Special
-depreciation under § 7g EStG of the previous system belongs in the
-columns <em>Sonder-AfA § 7g</em> and <em>Jahr Sonder-AfA § 7g</em>: after its
-period the register spreads the book value over the remaining useful
-life (§ 7a (9) EStG); the preview points out book values below the
-linear depreciation. Enter the book values per group of the filed
-<em>Anlage AVEÜR</em> to have them checked in the following year.</li>
-<li><em>Check Asset Register</em> runs the checks C-30, C-40, C-42 and C-61 to
-C-69. <em>Compute Year</em> runs them as well, with the computed form
-values, so C-62 compares the transfers into <em>Anlage EÜR</em> as computed.</li>
-</ol>
-<p><strong>Computation of the year</strong> (<em>Accounting → Reporting → EÜR → Compute
-Year</em>, Community: <em>Invoicing → Reporting → EÜR</em>): choose the business
-and the year. The computation reads the bookings, assigns every inflow
-and outflow to its year (§ 11 EStG) and stores the result under <em>EÜR
-Calculations</em> with its slices and checks. The form values combine the
-payments with the amounts of the asset register of the same business
-(depreciation, low-value assets, asset pools, withdrawals and
-contributions of assets): the purchase of an asset is neutral, and
-depreciation booked in the ledger is not counted. A branch marked as
-separate business has its own computation and its own asset register.</p>
-<p><strong>Statement of the year</strong> in detail (<em>Accounting → Reporting → EÜR →
-Statements</em>, Community: <em>Invoicing → Reporting → EÜR</em>): one statement
-per business and year.</p>
-<ol class="arabic simple">
-<li><em>Questionnaire</em>: answer the questions on the program scope; an
-accounting manager confirms them (<em>Confirm Questionnaire</em>). The
-answers of the previous year are proposed, but count only after the
-confirmation. A case outside the program scope blocks the
-finalisation.</li>
-<li><em>Profit Corrections</em>: values without bookings, i.e. private use of
-vehicles (Kz 106), withdrawals of goods, use or services (Kz 108)
-and the VAT on them, business trips with a private vehicle (Kz 147),
-commuting allowance (Kz 176 and 142), daily home office allowance
-(Kz 163), home office (Kz 172 and 162), additional meal expenses (Kz
-171), flat rate of business expenses (Kz 195), tax-free income and §
-3c expenses (Kz 240 to 245), income in kind and barter (Kz 111, 112
-or 103). The amounts are computed with the rule parameters of the
-year; the yearly maximums hold for all corrections of the year
-together; withdrawals and contributions (Kz 122 and 123) follow
-automatically. A small business enters no VAT; a taxable free supply
-(input tax deducted on the good or its costs) needs its VAT base,
-which counts in the total turnover of the small business limit.
-Every correction needs a reason; attach the own receipt. Use
-withdrawals proposed by the asset register can be taken over as
-corrections; the register then leaves them out.</li>
-<li><em>Compute</em> runs the computation of the year with the corrections and
-fills <em>Anlage EÜR</em> and <em>AVEÜR</em> with line, Kz, previous year and
-source. From a value, <em>Show records</em> leads to its slices. A value
-can be overridden with a reason.</li>
-<li><em>Bank Reconciliation 31 December</em>: enter the balance per statement
-of account for every money journal and attach the statement.</li>
-<li><em>Run Checks</em> runs all checks (account assignment, computation, asset
-register, statement); blockers and warnings are listed on the
-statement. Set the global lock date of the year before the
-finalisation.</li>
-<li><em>Finalise</em> (accounting managers) runs all checks again and finalises
-the statement only without blockers, with all warnings acknowledged,
-with the questionnaire confirmed, the bank reconciled at 31
-December, a lock date that covers 31 December, released form years
-and a computation that matches the current bookings. The statement,
-its values, slices, profit corrections, answers and bank
-reconciliation, the asset years of the year and the form years it
-uses can then no longer be changed or deleted, also not by an
-administrator. The data of the statement is stored as canonical JSON
-(amounts in cent) with its SHA-256, chained to the previous
-finalisation of the business. Keep finalised statements with their
-receipts for at least 10 years (§ 147 (3) AO).</li>
-<li><em>Check Integrity</em> computes the hashes again, follows the chain and
-compares the finalised records and the content of their receipts
-with the stored data; the result is logged in the chatter. Changes
-made directly in the database cannot be prevented, but they become
-visible. Keep the payload SHA-256 and the chain hash of each
-finalisation also outside the database (e.g. the PDF of the fill-in
-aid): a consistent change of the latest finalisation with its hashes
-is visible only against them.</li>
-<li><em>Compare with Bookings</em> computes a finalised year again into a
-comparison run next to the finalised one (not while a correction of
-the year is in progress: compute the correction instead). Every
-deviation per field, per sum of slices and of the bank balance at 31
-December is the warning C-60; the finalised statement does not
-change. Every other computation of the year shows the deviations as
-well.</li>
-<li><em>Create Correction</em> (accounting managers) creates a new version with
-a reason. It starts with the values, overrides, profit corrections
-and the bank reconciliation of the finalised version; the
-questionnaire is confirmed again. The tab <em>Differences to the
-Previous Version</em> lists what changed. When the correction is
-finalised, the previous version is superseded and stays readable.</li>
-<li>Enter the date and the transfer ticket of the submission on the tab
-<em>Finalisation</em>; these two fields can be entered after the
-finalisation.</li>
-</ol>
-<p><strong>Drilldown to the receipt.</strong> From a value of the statement, <em>Show
-records</em> lists its slices (group them by account, partner or month). A
-slice opens its money entry, its document, the attached receipts and the
-partial reconciliations the money passed; a value of the asset register
-opens the assets with their yearly values and journal items (<em>Show
-assets</em>); a value of a profit correction opens the correction and its
-own receipt. Backwards, the smart button <em>EÜR Slices</em> of a journal entry
-lists its slices with year and Kz.</p>
-<p><strong>Outputs</strong> (tab <em>Outputs</em> of a computed statement, also in the <em>Print</em>
-menu). All outputs show the values of the statement and only the data of
-its business; auditors (read-only accounting) can print and download
-them.</p>
-<ul class="simple">
-<li><em>Fill-In Aid Mein ELSTER</em> (HTML, PDF): the fields with a value and the
-mandatory header fields in the order of the official form, with line,
-Kz, official wording, value and previous year; sums are control values
-to compare with Mein ELSTER and to enter where Mein ELSTER does not
-compute them itself (not confirmed); <em>Anlage AVEÜR</em> per group and per
-asset; state, hash and versions; Kz 15.120 only after the
-questionnaire is confirmed. Enter the values in Mein ELSTER yourself:
-the module transmits nothing, and the fill-in aid is no form for a
-paper filing. The HTML view is accessible (tables with caption and
-header cells, the minus as text).</li>
-<li><em>Evidence per Kennzahl</em> (PDF, XLSX): every slice of every field with
-cash date, year, document, money entry, partner, account, tax, share,
-amount and source; the sum per field is the value of the statement.</li>
-<li><em>Workbook</em> (XLSX): EÜR, AVEÜR, evidence, asset register, low-value
-assets, asset pools, withdrawals and contributions, gifts per
-recipient (give-aways separately), business entertainment, check
-protocol and profit corrections.</li>
-<li><em>List of the Kennzahlen for ELSTER</em> (CSV, UTF-8, semicolon): year,
-form, version, box, line, Kz, code, official wording, amount, ELSTER
-field id, XPath, verified, source; only fields with a value. The
-ELSTER field ids are marked as not verified until they are checked
-against the official documentation.</li>
-<li><em>Data Set</em> (JSON, schema <tt class="docutils literal">l10n_de_euer/1</tt>): year, form versions,
-business, fields, AVEÜR per group and per asset, state and the hash of
-the finalisation. Amounts are texts with a decimal point.</li>
-<li><em>Data Access Z3</em> (ZIP, § 147 (6) AO): slices, field values, account
-assignment and the registers as CSV with header line, semicolon,
-decimal comma and CRLF, an <tt class="docutils literal">index.xml</tt> after the description
-standard for the data transfer and the description of the fields as
-JSON.</li>
-<li><em>Check Protocol</em> (PDF, XLSX): all checks with their state and
-acknowledgement.</li>
-<li><em>Procedure Documentation</em> (HTML, PDF): a template from the data of the
-module (data flow, calculation rules, account assignment, settings,
-roles, lock concept, versions); complete it with the organisation of
-your business.</li>
-</ul>
-<p><strong>Setup and takeover</strong> (<em>Accounting → Configuration → EÜR</em>, accounting
-managers):</p>
-<ol class="arabic simple">
-<li><em>EÜR Setup</em>: enable cash basis accounting, enter the header values of
-the form, create the VAT status period (with the turnover of the
-previous year for the small business thresholds after a takeover),
-enter the start of the activity of a business founded recently, for
-small businesses switch the default accounts and taxes to the
-accounts without VAT (8195/3200, SKR04 4185/5200), set the private
-share account of the purchase journals, mark the money journals of a
-private account and choose the treatment of business entertainment.
-The wizard recommends the fiscal year lock date but never sets a lock
-date.</li>
-<li><em>Takeover from a Previous System</em>: <em>Read Opening Entries</em> lists the
-open receivables and payables of the opening entries (opening move or
-entries with an opening balance account). Enter the category, the VAT
-treatment and the VAT rate of each original invoice and <em>Take Over</em>;
-without them the payment of the item is blocked (C-35). The turnover
-of the previous year goes into the VAT status period with the year it
-is entered for; without an amount nothing is stored unless <em>No
-Turnover in the Previous Year</em> confirms 0 (C-32). <em>Take Over Asset
-Register</em> opens the CSV takeover of the asset register.</li>
-</ol>
-</div>
-<div class="section" id="known-issues-roadmap">
-<h1><a class="toc-backref" href="#toc-entry-4">Known issues / Roadmap</a></h1>
-<p><strong>Program scope (§ 87c (2) AO).</strong> Whatever is not supported is detected
-and blocks the finalisation of the statement; nothing is left out
-silently. Version 1 has this scope:</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="24%" />
-<col width="27%" />
-<col width="24%" />
-<col width="24%" />
-</colgroup>
-<thead valign="bottom">
-<tr><th class="head">Area</th>
-<th class="head">Computed
-automatically</th>
-<th class="head">Manual input
-with formula
-help</th>
-<th class="head">Detected and
-blocked</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr><td>Business</td>
-<td>sole
-proprietorship,
-fiscal year =
-calendar year,
-EUR</td>
-<td>header data
-(type of
-business,
-legal form,
-type of
-income, owner,
-real estate)</td>
-<td>partnerships
-and
-corporations,
-deviating
-fiscal year,
-agriculture
-and forestry
-(§ 24 UStG,
-<em>Anlage LuF</em>),
-sale or
-closure of the
-business</td>
-</tr>
-<tr><td>Timing</td>
-<td>inflow and
-outflow per
-payment, partial
-payments,
-discounts,
-credit notes,
-write-offs,
-set-off, foreign
-currency, credit
-card, payment
-providers, cash,
-money in transit</td>
-<td>deviating
-payment date
-with reason,
-decisions of
-the ten-day
-review, income
-in kind and
-barter</td>
-<td>crypto assets,
-valuation of
-foreign
-currency
-holdings,
-advance
-payments for a
-use of more
-than five
-years spread
-over the
-period (§ 11
-(1) sentence
-3, (2)
-sentence 3
-EStG;
-questionnaire)</td>
-</tr>
-<tr><td>VAT</td>
-<td>Kz
-140/141/185/186,
-reverse charge
-and intra-EU
-acquisitions,
-small businesses
-(gross), Kz
-111/119, status
-periods, limit
-monitoring</td>
-<td>VAT on free
-supplies with
-their VAT base
-(standard
-taxation
-only), § 15a
-UStG
-adjustment</td>
-<td>–</td>
-</tr>
-<tr><td>Fixed assets</td>
-<td>straight-line,
-declining
-balance,
-electric
-vehicles § 7
-(2a), digital
-assets,
-low-value
-assets, asset
-pools,
-disposals,
-contributions, §
-7g (5) and § 7b
-special
-depreciation</td>
-<td>manual
-depreciation
-method (e.g.
-buildings § 7
-(5a))</td>
-<td>investment
-deductions §
-7g (1)–(4),
-sale against
-instalments
-under § 4 (3)
-sentence 4 (R
-4.5 (5) EStR),
-subsidies
-before the
-acquisition (R
-6.5 (4) EStR),
-contributions
-after use for
-other income
-(§ 7 (1)
-sentence 5)</td>
-</tr>
-<tr><td>Limited
-expenses</td>
-<td>gifts per
-recipient,
-entertainment
-70/30,
-non-deductible
-expenses</td>
-<td>home office
-allowance,
-home office
-room, meal
-allowances,
-commuting,
-flat-rate
-expenses,
-tax-free
-income</td>
-<td>–</td>
-</tr>
-<tr><td>Withdrawals
-and
-contributions</td>
-<td>Kz 122/123 from
-private accounts
-and private
-shares</td>
-<td>withdrawals in
-kind, private
-use of
-vehicles and
-assets</td>
-<td><em>Anlage SZ</em>
-(required when
-other interest
-exceeds 2,050
-€)</td>
-</tr>
-<tr><td>Supplementary
-data</td>
-<td>questionnaire
-per statement</td>
-<td>Kz 15.120
-(real estate)</td>
-<td>reserves §
-6b/§ 6c/§ 4g
-(box 27),
-profit
-surcharge,
-investment
-funds and
-partial income
-method,
-partnership
-shares, change
-of profit
-method</td>
-</tr>
-<tr><td>Transmission</td>
-<td>–</td>
-<td>entering the
-values in
-<em>Mein ELSTER</em></td>
-<td>transmission
-via ERiC</td>
-</tr>
-</tbody>
-</table>
-<p>Each form field carries its scope (supported, manual input, not
-supported).</p>
-<p><strong>Supported form years:</strong> 2024, 2025 and 2026 (<em>Anlage EÜR</em>, <em>AVEÜR</em>,
-<em>SZ</em>), all still in state <em>Draft</em> until verified. Without the form year
-of the assessment year (e.g. 2027 before the BMF letter) the module
-computes provisionally with the previous form year and blocks the
-finalisation.</p>
-<p><strong>Known uncertainties:</strong></p>
-<ul class="simple">
-<li>The profit determination (“Ermittlung des Gewinns”) has no printed
-box; the module uses box <tt class="docutils literal">G</tt>. The assignment in the ELSTER data set
-is not confirmed.</li>
-<li>ELSTER field ids are not part of the public data yet; their
-publication is being clarified.</li>
-<li><em>Anlage SZ</em> is computed with all its formulas, but filled in only if
-the other interest on debt (Kz 25.234) exceeds 2,050 €. Then the
-finalisation is blocked (C-41) until the carry-forward values of
-earlier years are supported.</li>
-<li><em>Anlage LuF</em> is not delivered; its transfer lines in <em>Anlage EÜR</em> are
-not supported.</li>
-<li>A direct debit of the tax office collected on the working day after a
-due date on a weekend (10 January 2026 and 2027): the module proposes
-the year of payment (§ 108 (3), § 224 (2) no. 3 AO, H 11 EStH); the
-opposite decision (<em>Apply</em>, previous year) is possible with a warning
-(C-26) that must be acknowledged. The legal question is open with the
-tax advisor.</li>
-<li>Rule parameters cover the supported years; low-value assets and asset
-pools from acquisitions in 2010, declining balance from 2020. Earlier
-periods are added when needed: a takeover of a declining balance asset
-delivered before 2020 needs the year of the switch to linear
-depreciation (or the parameters of that time).</li>
-</ul>
-<p><strong>Account assignment:</strong> the defaults for SKR03 and SKR04 cover all
-template accounts. Ambiguous accounts (cases A01–A34, e.g. software
-subscriptions, DATEV collective accounts 4500/4670, reverse charge
-purchase accounts) have low confidence and must be confirmed when used.
-The DATEV small business revenue accounts 8192/4184 are not part of the
-Odoo chart templates; they get their default assignment when you create
-them. DATEV auxiliary accounts of the EÜR (e.g. 8580–8589, 1449/1609 or
-SKR04 4580–4589) are reported as not provided for. Corrections of the
-delivered categories, mappings and defaults reach existing databases
-only through migration scripts (the data is loaded once).</p>
-<p><strong>Fixed assets:</strong> a new asset is always depreciated in full (R 7.4 (3)
-EStR); only an asset taken over from another system may keep its memo
-value (warning C-63). The month of disposal counts for the depreciation
-by default (setting). The choice between low-value assets and an asset
-pool is derived from the assets of the year (C-66): in a pool year every
-movable asset above 250 € up to 1,000 € goes into the pool. The use
-withdrawal for private use and the § 15a UStG correction are proposals
-that you confirm; the VAT on a use withdrawal spreads a cost of at least
-500 € over the § 15a period. The private use of vehicles is not proposed
-by the register: it is the private use value of Kz 106 (profit
-corrections). § 7g (5) special depreciation needs a business use of at
-least 90 % in the year of delivery and the following year and the
-confirmation of the profit limit; § 7b special depreciation is limited
-to 5 % of the cost per year (the limits per square metre of § 7b (3) are
-your responsibility). Locked years keep their values: the form values of
-a locked year come from its stored yearly values, and what they depend
-on can no longer change.</p>
-<p>A finalised statement is protected against changes through the user
-interface and the ORM of Odoo, also for administrators; database
-administrators can still change the data with SQL. <em>Check Integrity</em>
-finds a changed record or receipt; a consistent change of the latest
-finalisation together with its hashes is visible only against the hashes
-kept outside the database (e.g. with the PDF of the fill-in aid). It
-does not prevent changes. Locked asset years stay locked also for a
-correction of the year: correct their effect with an override of the
-value and a reason.</p>
-<p><strong>Small business limit:</strong> the limits of § 19 UStG apply to the whole
-enterprise of the owner (§ 2 (1) sentence 2 UStG). The module knows the
-turnover of the Odoo business only: turnover of other businesses outside
-Odoo (e.g. a photovoltaic system feeding into the grid) is not added,
-and the start of the activity is the start of the entrepreneurial
-activity as a whole. An owner with another business checks both limits
-himself with the total turnover of all businesses; the warnings of the
-module cover the Odoo turnover only. The turnover of the previous year
-comes from the bookings; after a takeover from another system it is
-entered at the VAT status period for the first year in Odoo (warning
-C-32 while it is missing; an empty amount is no input, a turnover of 0
-is confirmed explicitly). Books that start with an opening entry during
-the previous year hold only part of it: the turnover of the whole year
-is entered the same way. A status period holds this input for one year;
-a second year that needs it gets a status period of its own from 1
-January. Without an opening entry the module takes the books as
-complete: books that start during the previous year without one (e.g.
-bank statements imported from July) need an opening entry on their first
-day, otherwise the module compares the turnover of the part of the year
-in Odoo. Until 2024 the turnover of the year of foundation is converted
-into a turnover of the full year (§ 19 (3) sentences 3 and 4 UStG in the
-version until 2024); the law from 2025 has no conversion. The total
-turnover counts free supplies (Kz 106/108) only when they are taxable,
-at their VAT base (enter it on the profit correction; the asset register
-proposes it from the input tax deducted), never at their value for
-income tax. Free supplies booked on accounts count under standard
-taxation only when booked with output VAT (the net amount is the base);
-booked by a small business they do not count (hint C-32): enter the VAT
-base of a taxable one on a profit correction and leave its value empty.
-Income in kind that is tax-free or not taxable (Kz 103) does not count,
-like booked revenue of Kz 103.</p>
-<p><strong>Profit corrections:</strong> the yearly maximums (daily home office
-allowance, yearly flat rate of a home office, flat rate of business
-expenses per group, commuting allowance without own vehicle) are shared
-by all corrections of a year, the earlier ones first.</p>
-<p><strong>Outputs:</strong> the data access package refers to the document type
-definition of the description standard (<tt class="docutils literal"><span class="pre">gdpdu-01-09-2004.dtd</span></tt>), which
-is not shipped: its source and licence are being clarified. Add it to
-the package if your auditor needs it. The fill-in aid shows sums as
-control values because it is not confirmed whether Mein ELSTER computes
-them itself.</p>
-<p><strong>Reference cases:</strong> <tt class="docutils literal">tests/data/pt01.json</tt> (small business) and
-<tt class="docutils literal">tests/data/rt01.json</tt> (standard taxation) are synthetic cases with
-expected values calculated by hand and the derivation of every field;
-the tests book them and compare every field of both years. The values of
-RT-01 are not yet confirmed by a tax advisor (<tt class="docutils literal">confirmation</tt> is
-empty). Open for that confirmation: flat rates without payment from the
-business (meals, daily home office allowance, home office, commuting
-allowance) count as contribution in Kz 123; a refund of income of a
-previous year reduces the income of its kind (Kz 112, 140) instead of
-being an expense (Kz 183).</p>
-<p><strong>Development status:</strong> Alpha. The module becomes Beta after a tax
-advisor has confirmed the expected values of the reference case RT-01
-and has checked the first real statement computed with the module
-against the receipts and the statements of account (RT-04). Until a form
-year is verified by a person who did not create its data, a statement on
-it cannot be finalised (C-72).</p>
-<p><strong>Planned:</strong> <em>Anlage SZ</em> with the carry-forward values of earlier years,
-investment deductions (§ 7g (1)–(4) EStG), the private use of vehicles
-with the 1 % method and the cost cap, reserves (box 27), the form year
-2027, draft entries for the depreciation of the asset register, a bridge
-to the asset management of the OCA, Odoo 20 and the contribution to
-OCA/l10n-germany; optionally the transmission via ERiC as a separate
-module. A blocked case is released only together with its tests.</p>
-</div>
-<div class="section" id="changelog">
-<h1><a class="toc-backref" href="#toc-entry-5">Changelog</a></h1>
-<div class="section" id="section-1">
-<h2><a class="toc-backref" href="#toc-entry-6">19.0.1.0.0</a></h2>
-<ul class="simple">
-<li>First version for Odoo 19: the forms 2024 to 2026 (<em>Anlage EÜR</em>,
-<em>AVEÜR</em>, <em>SZ</em>) as data with the account assignment for SKR03 and
-SKR04; the computation of a year by the payments, traced over the
-reconciliations to the documents; the asset register with
-depreciation, low-value assets, asset pools and <em>Anlage AVEÜR</em>; the
-statement of the year with questionnaire, profit corrections, bank
-reconciliation of 31 December, checks, finalisation with a hash chain
-and corrections as new versions; the fill-in aid for <em>Mein ELSTER</em>,
-the evidence per Kennzahl, the workbook, the list of the Kennzahlen,
-the data set, the data access package Z3, the check protocol and the
-template of the procedure documentation; the setup and takeover
-wizards; the synthetic reference cases PT-01 (small business) and
-RT-01 (standard taxation).</li>
-</ul>
-</div>
-</div>
-<div class="section" id="bug-tracker">
-<h1><a class="toc-backref" href="#toc-entry-7">Bug Tracker</a></h1>
-<p>Bugs are tracked on <a class="reference external" href="https://github.com/BM1-de/odoo-l10n-germany-euer/issues">GitHub Issues</a>.
-In case of trouble, please check there if your issue has already been reported.
-If you spotted it first, help us to smash it by providing a detailed and welcomed
-<a class="reference external" href="https://github.com/BM1-de/odoo-l10n-germany-euer/issues/new?body=module:%20l10n_de_euer%0Aversion:%2019.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
-<p>Do not contact contributors directly about support or help with technical issues.</p>
-</div>
-<div class="section" id="credits">
-<h1><a class="toc-backref" href="#toc-entry-8">Credits</a></h1>
-<div class="section" id="authors">
-<h2><a class="toc-backref" href="#toc-entry-9">Authors</a></h2>
-<ul class="simple">
-<li>Baumgärtner Marketing GmbH</li>
-</ul>
-</div>
-<div class="section" id="contributors">
-<h2><a class="toc-backref" href="#toc-entry-10">Contributors</a></h2>
-<ul class="simple">
-<li>Phillip Baumgärtner <a class="reference external" href="mailto:baumgaertner&#64;bm1.de">baumgaertner&#64;bm1.de</a></li>
-</ul>
-</div>
-<div class="section" id="maintainers">
-<h2><a class="toc-backref" href="#toc-entry-11">Maintainers</a></h2>
-<p>Current maintainer:</p>
-<p><a class="reference external image-reference" href="https://github.com/bm1-phillip"><img alt="bm1-phillip" src="https://github.com/bm1-phillip.png?size=40px" /></a></p>
-<p>This module is part of the <a class="reference external" href="https://github.com/BM1-de/odoo-l10n-germany-euer/tree/19.0/l10n_de_euer">BM1-de/odoo-l10n-germany-euer</a> project on GitHub.</p>
-<p>You are welcome to contribute.</p>
-</div>
-</div>
-</div>
-</body>
-</html>
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan" style="color:#1f3a60;">
+            The German cash-basis profit statement (EÜR) in Odoo
+        </h2>
+        <h3 class="oe_slogan">
+            Anlage EÜR, AVEÜR and SZ computed from the payments in Odoo, with a fill-in
+            aid for Mein ELSTER
+        </h3>
+        <div class="oe_demo oe_picture oe_screenshot">
+            <img
+                src="statement.png"
+                alt="EÜR 2025 of a sample business with the codes of the Anlage EÜR"
+            />
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan" style="color:#1f3a60;">What it does</h2>
+        <div class="oe_span6">
+            <ul>
+                <li>
+                    Inflow and outflow (§ 11 EStG) straight from the bank and cash lines in
+                    Odoo; every amount can be traced down to its document.
+                </li>
+                <li>
+                    The official forms 2024–2026 (Anlage EÜR, AVEÜR, SZ) as data: lines,
+                    codes, official wording, totals and transfers.
+                </li>
+                <li>
+                    Small business and regular VAT, private shares, gifts, entertainment,
+                    VAT payments and the 10-day rule with a checklist for the turn of the
+                    year.
+                </li>
+            </ul>
+        </div>
+        <div class="oe_span6">
+            <ul>
+                <li>
+                    Asset register with straight-line and declining-balance depreciation,
+                    low-value assets, asset pools and the Anlage AVEÜR.
+                </li>
+                <li>Checks before finalising, finalisation with a checksum, corrections.</li>
+                <li>
+                    Fill-in aid for Mein ELSTER (HTML and PDF), evidence per code down to
+                    the document, registers according to § 4 (7) EStG, codes as CSV and
+                    JSON, data package Z3 (§ 147 (6) AO) and an audit log.
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan" style="color:#1f3a60;">Ready to type into Mein ELSTER</h2>
+        <h3 class="oe_slogan">
+            Every value of the statement, notes on missing entries and the Anlage AVEÜR
+            per asset
+        </h3>
+        <div class="oe_demo oe_picture oe_screenshot">
+            <img src="fill_in_aid.png" alt="Fill-in aid for Mein ELSTER" />
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan" style="color:#1f3a60;">Every amount traceable</h2>
+        <h3 class="oe_slogan">
+            Each slice of the statement with its payment, document, partner and account
+        </h3>
+        <div class="oe_demo oe_picture oe_screenshot">
+            <img src="payments.png" alt="The payments behind the codes" />
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan" style="color:#1f3a60;">How it works</h2>
+        <div class="oe_span6">
+            <ol>
+                <li>
+                    Install it in a company with the German chart of accounts SKR03 or
+                    SKR04 (<code>l10n_de</code>).
+                </li>
+                <li>
+                    <i>Invoicing → Configuration → EÜR → EÜR Setup</i>: enable the EÜR,
+                    enter the type of business, legal form and type of income, and choose
+                    small business or regular VAT.
+                </li>
+                <li>
+                    <i>Invoicing → Reporting → EÜR → Check Account Assignment</i> shows which
+                    account goes into which line; confirm or change uncertain ones.
+                </li>
+                <li>Book as usual: invoices, vouchers and bank statements.</li>
+                <li>
+                    <i>Invoicing → Reporting → EÜR → Statements → New</i>, choose the year
+                    and click <i>Compute</i>.
+                </li>
+                <li>
+                    Answer the questionnaire, classify open rests, decide the checklist for
+                    the turn of the year, enter the bank balance of 31 December and click
+                    <i>Run Checks</i>.
+                </li>
+                <li>
+                    Have the form year released by a qualified person who did not create
+                    the data, then <i>Finalise</i> and open the <i>Fill-in Aid</i>.
+                </li>
+            </ol>
+        </div>
+        <div class="oe_span6">
+            <img
+                class="oe_picture oe_screenshot"
+                src="asset_register.png"
+                alt="An asset in the asset register"
+            />
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan" style="color:#1f3a60;">Good to know</h2>
+        <ul>
+            <li>
+                <b>Alpha, not independently checked:</b> the calculation, the reference
+                cases and the form data have been created and checked by the maintainer
+                only; a review by a tax professional is still pending. The form years ship
+                as drafts, and a statement can only be finalised after a qualified person
+                has released them.
+            </li>
+            <li>The module does not send anything to the tax office.</li>
+            <li>
+                It does not replace tax advice and is provided without any warranty under
+                the GNU AGPL-3.0.
+            </li>
+            <li>
+                Moving from Papierkram? The modules <b>Papierkram Import</b> and
+                <b>Papierkram EÜR Assets</b> take the data and the fixed assets over.
+            </li>
+        </ul>
+    </div>
+</section>
