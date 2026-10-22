@@ -26,7 +26,7 @@
 #                                   [-m MODULE,MODULE,...] [-k]
 #   -d  database to create (must not exist; default: protocol_<timestamp>)
 #   -o  output directory (default: build/test-protocol-<version>-<timestamp>)
-#   -m  modules to install and test (default: the four modules of the repo)
+#   -m  modules to install and test (default: the module of the repo)
 #   -k  keep the database after the run
 #
 # Exit status: 0 if all tests passed, 1 if a test failed or Odoo stopped
@@ -37,7 +37,7 @@ set -euo pipefail
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 STAMP="$(date +%Y%m%d-%H%M%S)"
 DB="protocol_${STAMP//-/_}"
-MODULES="l10n_de_euer,l10n_de_papierkram_import,l10n_de_papierkram_import_euer,l10n_de_papierkram_import_timesheet"
+MODULES="l10n_de_euer"
 OUT=""
 KEEP=0
 COVERAGE_VERSION="7.6.1"

@@ -35,8 +35,8 @@ In scope are the modules of this repository, in particular:
   through the outputs and downloads;
 - changes of a finalised statement, its values, receipts or hashes that _Check
   Integrity_ does not detect;
-- injection through imported files (Papierkram exports, CSV takeover of the asset
-  register) or through the generated files (CSV, XLSX, ZIP).
+- injection through imported files (CSV takeover of the asset register) or through the
+  generated files (CSV, XLSX, ZIP).
 
 Out of scope are vulnerabilities of Odoo itself or of other modules (please report them
 to their maintainers) and wrong tax results without a security impact (please open a

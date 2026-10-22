@@ -18,9 +18,8 @@ org_name: Baumgärtner Marketing GmbH
 org_slug: BM1-de
 postgres_image: ''
 rebel_module_groups: []
-repo_description: Einnahmenüberschussrechnung (Anlage EÜR) und Datenübernahme aus
-    Papierkram für Odoo
-repo_name: Deutsche EÜR für Odoo mit Papierkram-Import
+repo_description: Einnahmenüberschussrechnung (Anlage EÜR, AVEÜR) für Odoo
+repo_name: Deutsche EÜR für Odoo
 repo_slug: l10n-germany-euer
 repo_website: https://github.com/BM1-de/l10n-germany-euer
 use_pyproject_toml: true
