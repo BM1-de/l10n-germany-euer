@@ -1,0 +1,211 @@
+name: tests
+
+on:
+  pull_request:
+    branches:
+      - "19.0*"
+  push:
+    branches:
+      - "19.0"
+      - "19.0-ocabot-*"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  unreleased-deps:
+    runs-on: ubuntu-latest
+    name: Detect unreleased dependencies
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          for reqfile in requirements.txt test-requirements.txt ; do
+              if [ -f ${reqfile} ] ; then
+                  result=0
+                  # reject non-comment lines that contain a / (i.e. URLs, relative paths)
+                  grep "^[^#].*/" ${reqfile} || result=$?
+                  if [ $result -eq 0 ] ; then
+                      echo "Unreleased dependencies found in ${reqfile}."
+                      exit 1
+                  fi
+              fi
+          done
+  test:
+    runs-on: ubuntu-22.04
+    container: ${{ matrix.container }}
+    name: ${{ matrix.name }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - container: ghcr.io/oca/oca-ci/py3.10-odoo19.0:latest
+            name: test with Odoo
+          - container: ghcr.io/oca/oca-ci/py3.10-ocb19.0:latest
+            name: test with OCB
+            makepot: "false"
+    services:
+      postgres:
+        image: postgres:13
+        env:
+          POSTGRES_USER: odoo
+          POSTGRES_PASSWORD: odoo
+          POSTGRES_DB: odoo
+        ports:
+          - 5432:5432
+    env:
+      OCA_ENABLE_CHECKLOG_ODOO: "1"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Install addons and dependencies
+        run: oca_install_addons
+      - name: Check licenses
+        run: manifestoo -d . check-licenses
+      - name: Check development status
+        run: manifestoo -d . check-dev-status --default-dev-status=Beta
+      - name: Initialize test db
+        run: oca_init_test_database
+      - name: Run tests
+        run: oca_run_tests
+      # spec O-06 and 9.9: coverage of lines and branches, targets in
+      # codecov.yml (project 95 %, patch 100 %)
+      - uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+      - name: Upload screenshots from JS tests
+        uses: actions/upload-artifact@v4
+        if: ${{ failure() }}
+        with:
+          name: Screenshots of failed JS tests - ${{ matrix.name }}${{ join(matrix.include) }}
+          path: /tmp/odoo_tests/${{ env.PGDATABASE }}
+          if-no-files-found: ignore
+      - name: Update .pot files
+        run: oca_export_and_push_pot https://x-access-token:${{ secrets.GIT_PUSH_TOKEN }}@github.com/${{ github.repository }}
+        if: ${{ matrix.makepot == 'true' && github.event_name == 'push' && github.repository_owner == 'BM1-de' }}
+  test-oca:
+    # spec 9.9 "Matrix OCA-Abgleich": the reconciliation variants of the OCA
+    # modules (account_reconcile_oca edit/keep, account_in_payment,
+    # account_payment_order); without them these tests are skipped
+    runs-on: ubuntu-22.04
+    container: ghcr.io/oca/oca-ci/py3.10-odoo19.0:latest
+    name: test with OCA reconciliation modules
+    services:
+      postgres:
+        image: postgres:13
+        env:
+          POSTGRES_USER: odoo
+          POSTGRES_PASSWORD: odoo
+          POSTGRES_DB: odoo
+        ports:
+          - 5432:5432
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Install addons and dependencies
+        run: oca_install_addons
+      - name: Initialize test db
+        run: oca_init_test_database
+      - name: Install the OCA modules of the matrix
+        run: >-
+          odoo -d ${PGDATABASE} --stop-after-init
+          -i account_reconcile_oca,account_in_payment,account_payment_order
+      - name: Run tests
+        run: oca_run_tests
+  test-engine:
+    # spec 9.9: the unit tests of the calculation engine also run with pytest
+    # without Odoo and without a database (fast feedback). The engine is pure
+    # Python (spec 7.2); the setup is in conftest.py and pytest.ini
+    runs-on: ubuntu-24.04
+    name: engine unit tests (pytest, without Odoo)
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install pytest
+        run: pip install "pytest==8.3.3"
+      - name: Run the unit tests of the engine
+        run: pytest
+  test-perf:
+    # spec B-15 and 9.9: UT-PERF-1 on the reference runner (GitHub-hosted
+    # ubuntu-24.04, container py3.10-odoo19.0, PostgreSQL 13); the run times
+    # of the last five runs on 19.0 are kept as history for the relative
+    # limit (at most 150 % of their median)
+    runs-on: ubuntu-24.04
+    container: ghcr.io/oca/oca-ci/py3.10-odoo19.0:latest
+    name: performance UT-PERF-1
+    services:
+      postgres:
+        image: postgres:13
+        env:
+          POSTGRES_USER: odoo
+          POSTGRES_PASSWORD: odoo
+          POSTGRES_DB: odoo
+        ports:
+          - 5432:5432
+    env:
+      L10N_DE_EUER_PERF_FILE: /tmp/ut-perf-1.json
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Restore the history of the last runs
+        uses: actions/cache/restore@v4
+        with:
+          path: perf-history
+          key: ut-perf-1-${{ github.run_id }}
+          restore-keys: ut-perf-1-
+      - name: Install addons and dependencies
+        run: oca_install_addons
+      - name: Initialize test db
+        run: oca_init_test_database
+      # oca_init_test_database installs only the dependencies of the addons:
+      # -u would update nothing and run no test, so the module is installed
+      - name: Run UT-PERF-1
+        run: >-
+          odoo -d ${PGDATABASE} --stop-after-init -i l10n_de_euer
+          --test-tags l10n_de_euer_perf
+      - name: Compare with the last five runs
+        run: |
+          python3 - <<'EOF'
+          import json
+          import os
+          import pathlib
+          import statistics
+          import sys
+
+          result = pathlib.Path(os.environ["L10N_DE_EUER_PERF_FILE"])
+          if not result.exists():
+              sys.exit(f"UT-PERF-1 did not run: no result file {result}")
+          current = json.loads(result.read_text())
+          path = pathlib.Path("perf-history/history.json")
+          history = json.loads(path.read_text()) if path.exists() else []
+          seconds = [run["second"] for run in history[-5:]]
+          print("UT-PERF-1:", current, "last runs:", seconds)
+          if seconds and current["second"] > 1.5 * statistics.median(seconds):
+              sys.exit(
+                  "UT-PERF-1 is more than 50 % slower than the median of the "
+                  f"last runs: {current['second']} s, median "
+                  f"{statistics.median(seconds)} s"
+              )
+          if os.environ.get("GITHUB_REF") == "refs/heads/19.0":
+              path.parent.mkdir(exist_ok=True)
+              path.write_text(json.dumps((history + [current])[-5:], indent=1))
+          EOF
+      - name: Keep the history
+        if: ${{ github.ref == 'refs/heads/19.0' }}
+        uses: actions/cache/save@v4
+        with:
+          path: perf-history
+          key: ut-perf-1-${{ github.run_id }}
+      - name: Upload the history
+        uses: actions/upload-artifact@v4
+        with:
+          name: ut-perf-1-history
+          path: perf-history
+          if-no-files-found: ignore

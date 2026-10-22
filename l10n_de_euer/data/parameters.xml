@@ -1,0 +1,622 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Baumgärtner Marketing GmbH
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<!-- Rule parameters with period of validity (spec 3.2). The validity refers
+     to the fiscal year or, for depreciation rules, to the acquisition date. -->
+<odoo noupdate="1">
+    <record id="parameter_ku_limit_prev_20240101" model="l10n_de_euer.parameter">
+        <field name="code">ku_limit_prev</field>
+        <field name="name">Small business limit of the previous year</field>
+        <field name="name@de">Kleinunternehmergrenze Vorjahr</field>
+        <field name="date_basis">fiscal_year</field>
+        <field name="date_from">2024-01-01</field>
+        <field name="date_to">2024-12-31</field>
+        <field name="value">22000</field>
+        <field
+            name="source"
+        >§ 19 Abs. 1 Satz 1 UStG in der bis 31.12.2024 geltenden Fassung; Anleitung zur Anlage EÜR 2024, Zeile 12</field>
+    </record>
+    <record id="parameter_ku_limit_prev_20250101" model="l10n_de_euer.parameter">
+        <field name="code">ku_limit_prev</field>
+        <field name="name">Small business limit of the previous year</field>
+        <field name="name@de">Kleinunternehmergrenze Vorjahr</field>
+        <field name="date_basis">fiscal_year</field>
+        <field name="date_from">2025-01-01</field>
+        <field name="value">25000</field>
+        <field
+            name="source"
+        >§ 19 Abs. 1 Satz 1 UStG; Anleitung zur Anlage EÜR 2025 und 2026, Zeile 12</field>
+    </record>
+    <record id="parameter_ku_limit_cur_20240101" model="l10n_de_euer.parameter">
+        <field name="code">ku_limit_cur</field>
+        <field name="name">Small business limit of the current year</field>
+        <field name="name@de">Kleinunternehmergrenze laufendes Jahr</field>
+        <field name="date_basis">fiscal_year</field>
+        <field name="date_from">2024-01-01</field>
+        <field name="date_to">2024-12-31</field>
+        <field name="value">50000</field>
+        <field
+            name="source"
+        >§ 19 Abs. 1 Satz 1 UStG in der bis 31.12.2024 geltenden Fassung (voraussichtlicher Umsatz); Anleitung zur Anlage EÜR 2024, Zeile 12</field>
+    </record>
+    <record id="parameter_ku_limit_cur_20250101" model="l10n_de_euer.parameter">
+        <field name="code">ku_limit_cur</field>
+        <field name="name">Small business limit of the current year</field>
+        <field name="name@de">Kleinunternehmergrenze laufendes Jahr</field>
+        <field name="date_basis">fiscal_year</field>
+        <field name="date_from">2025-01-01</field>
+        <field name="value">100000</field>
+        <field
+            name="source"
+        >§ 19 Abs. 1 Satz 1 UStG; Anleitung zur Anlage EÜR 2025 und 2026, Zeile 12</field>
+    </record>
+    <record id="parameter_ku_limit_founding_20240101" model="l10n_de_euer.parameter">
+        <field name="code">ku_limit_founding</field>
+        <field name="name">Small business limit in the year of foundation</field>
+        <field name="name@de">Kleinunternehmergrenze Gründungsjahr</field>
+        <field name="date_basis">fiscal_year</field>
+        <field name="date_from">2024-01-01</field>
+        <field name="date_to">2024-12-31</field>
+        <field name="value">22000</field>
+        <field
+            name="source"
+        >§ 19 Abs. 1 Satz 1 UStG in der bis 31.12.2024 geltenden Fassung (voraussichtlicher Umsatz im Jahr der Aufnahme); BFH-Urteil vom 22.11.1984 - V R 170/83, Rn. 16</field>
+    </record>
+    <record id="parameter_ku_limit_founding_20250101" model="l10n_de_euer.parameter">
+        <field name="code">ku_limit_founding</field>
+        <field name="name">Small business limit in the year of foundation</field>
+        <field name="name@de">Kleinunternehmergrenze Gründungsjahr</field>
+        <field name="date_basis">fiscal_year</field>
+        <field name="date_from">2025-01-01</field>
+        <field name="value">25000</field>
+        <field
+            name="source"
+        >Anleitung zur Anlage EÜR 2025 und 2026, Zeile 12; Abschnitt 19.1 UStAE</field>
+    </record>
+    <record id="parameter_gwg_limit_20100101" model="l10n_de_euer.parameter">
+        <field name="code">gwg_limit</field>
+        <field name="name">Limit for low-value assets, net</field>
+        <field name="name@de">GWG-Grenze, netto</field>
+        <field name="date_basis">acquisition_date</field>
+        <field name="date_from">2010-01-01</field>
+        <field name="date_to">2017-12-31</field>
+        <field name="value">410</field>
+        <field
+            name="source"
+        >§ 6 Abs. 2 Satz 1 EStG in der bis 31.12.2017 geltenden Fassung; § 52 Abs. 12 Satz 11 EStG</field>
+    </record>
+    <record id="parameter_gwg_limit_20180101" model="l10n_de_euer.parameter">
+        <field name="code">gwg_limit</field>
+        <field name="name">Limit for low-value assets, net</field>
+        <field name="name@de">GWG-Grenze, netto</field>
+        <field name="date_basis">acquisition_date</field>
+        <field name="date_from">2018-01-01</field>
+        <field name="value">800</field>
+        <field
+            name="source"
+        >§ 6 Abs. 2 Satz 1 EStG; § 52 Abs. 12 Satz 11 EStG (Wirtschaftsgüter ab 01.01.2018)</field>
+    </record>
+    <record id="parameter_gwg_register_limit_20100101" model="l10n_de_euer.parameter">
+        <field name="code">gwg_register_limit</field>
+        <field name="name">Register limit for low-value assets, net</field>
+        <field name="name@de">GWG-Verzeichnisgrenze, netto</field>
+        <field name="date_basis">acquisition_date</field>
+        <field name="date_from">2010-01-01</field>
+        <field name="date_to">2017-12-31</field>
+        <field name="value">150</field>
+        <field
+            name="source"
+        >§ 6 Abs. 2 Satz 4 EStG in der bis 31.12.2017 geltenden Fassung; § 52 Abs. 12 Satz 10 EStG</field>
+    </record>
+    <record id="parameter_gwg_register_limit_20180101" model="l10n_de_euer.parameter">
+        <field name="code">gwg_register_limit</field>
+        <field name="name">Register limit for low-value assets, net</field>
+        <field name="name@de">GWG-Verzeichnisgrenze, netto</field>
+        <field name="date_basis">acquisition_date</field>
+        <field name="date_from">2018-01-01</field>
+        <field name="value">250</field>
+        <field
+            name="source"
+        >§ 6 Abs. 2 Satz 4 EStG; § 52 Abs. 12 Satz 10 EStG (Wirtschaftsgüter ab 01.01.2018)</field>
+    </record>
+    <record id="parameter_pool_min_20100101" model="l10n_de_euer.parameter">
+        <field name="code">pool_min</field>
+        <field name="name">Lower limit of the asset pool, net</field>
+        <field name="name@de">Untergrenze Sammelposten, netto</field>
+        <field name="date_basis">acquisition_date</field>
+        <field name="date_from">2010-01-01</field>
+        <field name="date_to">2017-12-31</field>
+        <field name="value">150</field>
+        <field
+            name="source"
+        >§ 6 Abs. 2a Satz 1 EStG in der bis 31.12.2017 geltenden Fassung; § 52 Abs. 12 Satz 13 EStG</field>
+    </record>
+    <record id="parameter_pool_min_20180101" model="l10n_de_euer.parameter">
+        <field name="code">pool_min</field>
+        <field name="name">Lower limit of the asset pool, net</field>
+        <field name="name@de">Untergrenze Sammelposten, netto</field>
+        <field name="date_basis">acquisition_date</field>
+        <field name="date_from">2018-01-01</field>
+        <field name="value">250</field>
+        <field
+            name="source"
+        >§ 6 Abs. 2a Satz 1 EStG; § 52 Abs. 12 Satz 13 EStG (Wirtschaftsgüter ab 01.01.2018)</field>
+    </record>
+    <record id="parameter_pool_max_20100101" model="l10n_de_euer.parameter">
+        <field name="code">pool_max</field>
+        <field name="name">Upper limit of the asset pool, net</field>
+        <field name="name@de">Obergrenze Sammelposten, netto</field>
+        <field name="date_basis">acquisition_date</field>
+        <field name="date_from">2010-01-01</field>
+        <field name="date_to">2017-12-31</field>
+        <field name="value">1000</field>
+        <field
+            name="source"
+        >§ 6 Abs. 2a Satz 1 EStG in der Fassung des Wachstumsbeschleunigungsgesetzes vom 22.12.2009</field>
+    </record>
+    <record id="parameter_pool_max_20180101" model="l10n_de_euer.parameter">
+        <field name="code">pool_max</field>
+        <field name="name">Upper limit of the asset pool, net</field>
+        <field name="name@de">Obergrenze Sammelposten, netto</field>
+        <field name="date_basis">acquisition_date</field>
+        <field name="date_from">2018-01-01</field>
+        <field name="value">1000</field>
+        <field name="source">§ 6 Abs. 2a Satz 1 EStG</field>
+    </record>
+    <record id="parameter_pool_years_20100101" model="l10n_de_euer.parameter">
+        <field name="code">pool_years</field>
+        <field name="name">Release years of the asset pool</field>
+        <field name="name@de">Auflösungsjahre Sammelposten</field>
+        <field name="date_basis">acquisition_date</field>
+        <field name="date_from">2010-01-01</field>
+        <field name="date_to">2017-12-31</field>
+        <field name="value">5</field>
+        <field
+            name="source"
+        >§ 6 Abs. 2a Satz 2 EStG in der Fassung des Wachstumsbeschleunigungsgesetzes vom 22.12.2009</field>
+    </record>
+    <record id="parameter_pool_years_20180101" model="l10n_de_euer.parameter">
+        <field name="code">pool_years</field>
+        <field name="name">Release years of the asset pool</field>
+        <field name="name@de">Auflösungsjahre Sammelposten</field>
+        <field name="date_basis">acquisition_date</field>
+        <field name="date_from">2018-01-01</field>
+        <field name="value">5</field>
+        <field name="source">§ 6 Abs. 2a Satz 2 EStG</field>
+    </record>
+    <record id="parameter_degressive_factor_20200101" model="l10n_de_euer.parameter">
+        <field name="code">degressive_factor</field>
+        <field name="name">Declining balance: factor of the straight-line rate</field>
+        <field name="name@de">Degressive AfA: Faktor der linearen AfA</field>
+        <field name="date_basis">acquisition_date</field>
+        <field name="date_from">2020-01-01</field>
+        <field name="date_to">2022-12-31</field>
+        <field name="value">2.5</field>
+        <field
+            name="source"
+        >§ 7 Abs. 2 EStG i. d. F. des Zweiten und Vierten Corona-Steuerhilfegesetzes; EStH 2025 Anhang 1 I 1</field>
+    </record>
+    <record id="parameter_degressive_factor_20230101" model="l10n_de_euer.parameter">
+        <field name="code">degressive_factor</field>
+        <field name="name">Declining balance: factor of the straight-line rate</field>
+        <field name="name@de">Degressive AfA: Faktor der linearen AfA</field>
+        <field name="date_basis">acquisition_date</field>
+        <field name="date_from">2023-01-01</field>
+        <field name="date_to">2024-03-31</field>
+        <field name="value">0</field>
+        <field name="source">keine degressive AfA; EStH 2025 Anhang 1 I 1</field>
+    </record>
+    <record id="parameter_degressive_factor_20240401" model="l10n_de_euer.parameter">
+        <field name="code">degressive_factor</field>
+        <field name="name">Declining balance: factor of the straight-line rate</field>
+        <field name="name@de">Degressive AfA: Faktor der linearen AfA</field>
+        <field name="date_basis">acquisition_date</field>
+        <field name="date_from">2024-04-01</field>
+        <field name="date_to">2024-12-31</field>
+        <field name="value">2</field>
+        <field
+            name="source"
+        >§ 7 Abs. 2 EStG i. d. F. des Wachstumschancengesetzes; EStH 2025 Anhang 1 I 1</field>
+    </record>
+    <record id="parameter_degressive_factor_20250101" model="l10n_de_euer.parameter">
+        <field name="code">degressive_factor</field>
+        <field name="name">Declining balance: factor of the straight-line rate</field>
+        <field name="name@de">Degressive AfA: Faktor der linearen AfA</field>
+        <field name="date_basis">acquisition_date</field>
+        <field name="date_from">2025-01-01</field>
+        <field name="date_to">2025-06-30</field>
+        <field name="value">0</field>
+        <field name="source">keine degressive AfA; EStH 2025 Anhang 1 I 1</field>
+    </record>
+    <record id="parameter_degressive_factor_20250701" model="l10n_de_euer.parameter">
+        <field name="code">degressive_factor</field>
+        <field name="name">Declining balance: factor of the straight-line rate</field>
+        <field name="name@de">Degressive AfA: Faktor der linearen AfA</field>
+        <field name="date_basis">acquisition_date</field>
+        <field name="date_from">2025-07-01</field>
+        <field name="date_to">2027-12-31</field>
+        <field name="value">3</field>
+        <field
+            name="source"
+        >§ 7 Abs. 2 EStG i. d. F. des Gesetzes für ein steuerliches Investitionssofortprogramm; EStH 2025 Anhang 1 I 1</field>
+    </record>
+    <record id="parameter_degressive_max_rate_20200101" model="l10n_de_euer.parameter">
+        <field name="code">degressive_max_rate</field>
+        <field name="name">Declining balance: maximum rate</field>
+        <field name="name@de">Degressive AfA: Höchstsatz</field>
+        <field name="date_basis">acquisition_date</field>
+        <field name="date_from">2020-01-01</field>
+        <field name="date_to">2022-12-31</field>
+        <field name="value">0.25</field>
+        <field
+            name="source"
+        >§ 7 Abs. 2 EStG i. d. F. des Zweiten und Vierten Corona-Steuerhilfegesetzes; EStH 2025 Anhang 1 I 1</field>
+    </record>
+    <record id="parameter_degressive_max_rate_20230101" model="l10n_de_euer.parameter">
+        <field name="code">degressive_max_rate</field>
+        <field name="name">Declining balance: maximum rate</field>
+        <field name="name@de">Degressive AfA: Höchstsatz</field>
+        <field name="date_basis">acquisition_date</field>
+        <field name="date_from">2023-01-01</field>
+        <field name="date_to">2024-03-31</field>
+        <field name="value">0</field>
+        <field name="source">keine degressive AfA; EStH 2025 Anhang 1 I 1</field>
+    </record>
+    <record id="parameter_degressive_max_rate_20240401" model="l10n_de_euer.parameter">
+        <field name="code">degressive_max_rate</field>
+        <field name="name">Declining balance: maximum rate</field>
+        <field name="name@de">Degressive AfA: Höchstsatz</field>
+        <field name="date_basis">acquisition_date</field>
+        <field name="date_from">2024-04-01</field>
+        <field name="date_to">2024-12-31</field>
+        <field name="value">0.2</field>
+        <field
+            name="source"
+        >§ 7 Abs. 2 EStG i. d. F. des Wachstumschancengesetzes; EStH 2025 Anhang 1 I 1</field>
+    </record>
+    <record id="parameter_degressive_max_rate_20250101" model="l10n_de_euer.parameter">
+        <field name="code">degressive_max_rate</field>
+        <field name="name">Declining balance: maximum rate</field>
+        <field name="name@de">Degressive AfA: Höchstsatz</field>
+        <field name="date_basis">acquisition_date</field>
+        <field name="date_from">2025-01-01</field>
+        <field name="date_to">2025-06-30</field>
+        <field name="value">0</field>
+        <field name="source">keine degressive AfA; EStH 2025 Anhang 1 I 1</field>
+    </record>
+    <record id="parameter_degressive_max_rate_20250701" model="l10n_de_euer.parameter">
+        <field name="code">degressive_max_rate</field>
+        <field name="name">Declining balance: maximum rate</field>
+        <field name="name@de">Degressive AfA: Höchstsatz</field>
+        <field name="date_basis">acquisition_date</field>
+        <field name="date_from">2025-07-01</field>
+        <field name="date_to">2027-12-31</field>
+        <field name="value">0.3</field>
+        <field
+            name="source"
+        >§ 7 Abs. 2 EStG i. d. F. des Gesetzes für ein steuerliches Investitionssofortprogramm; EStH 2025 Anhang 1 I 1</field>
+    </record>
+    <record id="parameter_ev_rates_20250701" model="l10n_de_euer.parameter">
+        <field name="code">ev_rates</field>
+        <field name="name">Depreciation rates of electric vehicles per year</field>
+        <field name="name@de">AfA-Sätze Elektrofahrzeuge je Jahr</field>
+        <field name="date_basis">acquisition_date</field>
+        <field name="date_from">2025-07-01</field>
+        <field name="date_to">2027-12-31</field>
+        <field name="value_json" eval="[0.75, 0.1, 0.05, 0.05, 0.03, 0.02]" />
+        <field name="source">§ 7 Abs. 2a EStG</field>
+    </record>
+    <record id="parameter_sec7g_special_rate_open" model="l10n_de_euer.parameter">
+        <field name="code">sec7g_special_rate</field>
+        <field name="name">Special depreciation (§ 7g (5) EStG), maximum</field>
+        <field name="name@de">Sonderabschreibung § 7g Abs. 5 EStG, Höchstsatz</field>
+        <field name="date_basis">acquisition_date</field>
+        <field name="date_to">2023-12-31</field>
+        <field name="value">0.2</field>
+        <field
+            name="source"
+        >§ 7g Abs. 5 EStG in der bis 31.12.2023 geltenden Fassung</field>
+    </record>
+    <record id="parameter_sec7g_special_rate_20240101" model="l10n_de_euer.parameter">
+        <field name="code">sec7g_special_rate</field>
+        <field name="name">Special depreciation (§ 7g (5) EStG), maximum</field>
+        <field name="name@de">Sonderabschreibung § 7g Abs. 5 EStG, Höchstsatz</field>
+        <field name="date_basis">acquisition_date</field>
+        <field name="date_from">2024-01-01</field>
+        <field name="value">0.4</field>
+        <field name="source">§ 7g Abs. 5 EStG; § 52 Abs. 16 Satz 6 EStG</field>
+    </record>
+    <record id="parameter_gift_limit_20240101" model="l10n_de_euer.parameter">
+        <field name="code">gift_limit</field>
+        <field name="name">Limit for gifts per recipient and year</field>
+        <field name="name@de">Freigrenze Geschenke je Empfänger und Jahr</field>
+        <field name="date_basis">fiscal_year</field>
+        <field name="date_from">2024-01-01</field>
+        <field name="value">50</field>
+        <field
+            name="source"
+        >§ 4 Abs. 5 Satz 1 Nr. 1 EStG; § 52 Abs. 6 Satz 10 EStG</field>
+    </record>
+    <record id="parameter_entertain_share_20240101" model="l10n_de_euer.parameter">
+        <field name="code">entertain_share</field>
+        <field name="name">Deductible share of entertainment expenses</field>
+        <field name="name@de">Abziehbarer Anteil der Bewirtungsaufwendungen</field>
+        <field name="date_basis">fiscal_year</field>
+        <field name="date_from">2024-01-01</field>
+        <field name="value">0.7</field>
+        <field name="source">§ 4 Abs. 5 Satz 1 Nr. 2 EStG</field>
+    </record>
+    <record id="parameter_meal_8h_20240101" model="l10n_de_euer.parameter">
+        <field name="code">meal_8h</field>
+        <field name="name">Meal allowance for more than 8 hours</field>
+        <field name="name@de">Verpflegungspauschale über 8 Stunden</field>
+        <field name="date_basis">fiscal_year</field>
+        <field name="date_from">2024-01-01</field>
+        <field name="value">14</field>
+        <field
+            name="source"
+        >§ 4 Abs. 5 Satz 1 Nr. 5 EStG i. V. m. § 9 Abs. 4a EStG; Anleitung zur Anlage EÜR 2026, Zeile 65</field>
+    </record>
+    <record id="parameter_meal_24h_20240101" model="l10n_de_euer.parameter">
+        <field name="code">meal_24h</field>
+        <field name="name">Meal allowance for 24 hours</field>
+        <field name="name@de">Verpflegungspauschale 24 Stunden</field>
+        <field name="date_basis">fiscal_year</field>
+        <field name="date_from">2024-01-01</field>
+        <field name="value">28</field>
+        <field
+            name="source"
+        >§ 4 Abs. 5 Satz 1 Nr. 5 EStG i. V. m. § 9 Abs. 4a EStG; Anleitung zur Anlage EÜR 2026, Zeile 65</field>
+    </record>
+    <record id="parameter_homeoffice_day_20240101" model="l10n_de_euer.parameter">
+        <field name="code">homeoffice_day</field>
+        <field name="name">Home office allowance per day</field>
+        <field name="name@de">Homeoffice-Pauschale je Tag</field>
+        <field name="date_basis">fiscal_year</field>
+        <field name="date_from">2024-01-01</field>
+        <field name="value">6</field>
+        <field name="source">§ 4 Abs. 5 Satz 1 Nr. 6c Satz 1 EStG</field>
+    </record>
+    <record id="parameter_homeoffice_max_20240101" model="l10n_de_euer.parameter">
+        <field name="code">homeoffice_max</field>
+        <field name="name">Home office allowance, maximum per year</field>
+        <field name="name@de">Homeoffice-Pauschale, Höchstbetrag je Jahr</field>
+        <field name="date_basis">fiscal_year</field>
+        <field name="date_from">2024-01-01</field>
+        <field name="value">1260</field>
+        <field name="source">§ 4 Abs. 5 Satz 1 Nr. 6c Satz 1 EStG</field>
+    </record>
+    <record id="parameter_study_flat_20240101" model="l10n_de_euer.parameter">
+        <field name="code">study_flat</field>
+        <field name="name">Annual flat rate for a home office room</field>
+        <field name="name@de">Jahrespauschale häusliches Arbeitszimmer</field>
+        <field name="date_basis">fiscal_year</field>
+        <field name="date_from">2024-01-01</field>
+        <field name="value">1260</field>
+        <field name="source">§ 4 Abs. 5 Satz 1 Nr. 6b EStG</field>
+    </record>
+    <record id="parameter_commute_rate_1_20_20240101" model="l10n_de_euer.parameter">
+        <field name="code">commute_rate_1_20</field>
+        <field name="name">Commuting allowance per km, km 1 to 20</field>
+        <field name="name@de">Entfernungspauschale je km, km 1 bis 20</field>
+        <field name="date_basis">fiscal_year</field>
+        <field name="date_from">2024-01-01</field>
+        <field name="date_to">2025-12-31</field>
+        <field name="value">0.3</field>
+        <field
+            name="source"
+        >§ 9 Abs. 1 Satz 3 Nr. 4 EStG in der bis 31.12.2025 geltenden Fassung; Anleitung zur Anlage EÜR 2025, Zeilen 72 bis 74</field>
+    </record>
+    <record id="parameter_commute_rate_1_20_20260101" model="l10n_de_euer.parameter">
+        <field name="code">commute_rate_1_20</field>
+        <field name="name">Commuting allowance per km, km 1 to 20</field>
+        <field name="name@de">Entfernungspauschale je km, km 1 bis 20</field>
+        <field name="date_basis">fiscal_year</field>
+        <field name="date_from">2026-01-01</field>
+        <field name="value">0.38</field>
+        <field
+            name="source"
+        >§ 9 Abs. 1 Satz 3 Nr. 4 EStG; Anleitung zur Anlage EÜR 2026, Zeilen 73 und 74</field>
+    </record>
+    <record id="parameter_commute_rate_21_20240101" model="l10n_de_euer.parameter">
+        <field name="code">commute_rate_21</field>
+        <field name="name">Commuting allowance per km, from km 21</field>
+        <field name="name@de">Entfernungspauschale je km, ab km 21</field>
+        <field name="date_basis">fiscal_year</field>
+        <field name="date_from">2024-01-01</field>
+        <field name="value">0.38</field>
+        <field
+            name="source"
+        >§ 9 Abs. 1 Satz 3 Nr. 4 EStG; Anleitung zur Anlage EÜR 2025, Zeilen 72 bis 74, und 2026, Zeilen 73 und 74</field>
+    </record>
+    <record id="parameter_commute_max_20240101" model="l10n_de_euer.parameter">
+        <field name="code">commute_max</field>
+        <field name="name">Commuting allowance, maximum without own vehicle</field>
+        <field
+            name="name@de"
+        >Entfernungspauschale, Höchstbetrag ohne eigenes Kfz</field>
+        <field name="date_basis">fiscal_year</field>
+        <field name="date_from">2024-01-01</field>
+        <field name="value">4500</field>
+        <field name="source">§ 9 Abs. 1 Satz 3 Nr. 4 EStG</field>
+    </record>
+    <record id="parameter_private_car_km_20240101" model="l10n_de_euer.parameter">
+        <field name="code">private_car_km</field>
+        <field name="name">Use of a private vehicle per km</field>
+        <field name="name@de">Nutzung eines privaten Fahrzeugs je km</field>
+        <field name="date_basis">fiscal_year</field>
+        <field name="date_from">2024-01-01</field>
+        <field name="value">0.3</field>
+        <field name="source">Anleitung zur Anlage EÜR 2026, Zeile 72</field>
+    </record>
+    <record id="parameter_debt_interest_base_20240101" model="l10n_de_euer.parameter">
+        <field name="code">debt_interest_base</field>
+        <field name="name">Deductible base of other interest</field>
+        <field name="name@de">Sockelbetrag übrige Schuldzinsen</field>
+        <field name="date_basis">fiscal_year</field>
+        <field name="date_from">2024-01-01</field>
+        <field name="value">2050</field>
+        <field name="source">§ 4 Abs. 4a Satz 4 EStG</field>
+    </record>
+    <record id="parameter_tax_free_trainer_20240101" model="l10n_de_euer.parameter">
+        <field name="code">tax_free_trainer</field>
+        <field name="name">Tax-free allowance for trainers</field>
+        <field name="name@de">Übungsleiterfreibetrag</field>
+        <field name="date_basis">fiscal_year</field>
+        <field name="date_from">2024-01-01</field>
+        <field name="date_to">2025-12-31</field>
+        <field name="value">3000</field>
+        <field
+            name="source"
+        >§ 3 Nr. 26 EStG; Anleitung zur Anlage EÜR 2025, Zeile 78</field>
+    </record>
+    <record id="parameter_tax_free_trainer_20260101" model="l10n_de_euer.parameter">
+        <field name="code">tax_free_trainer</field>
+        <field name="name">Tax-free allowance for trainers</field>
+        <field name="name@de">Übungsleiterfreibetrag</field>
+        <field name="date_basis">fiscal_year</field>
+        <field name="date_from">2026-01-01</field>
+        <field name="value">3300</field>
+        <field
+            name="source"
+        >§ 3 Nr. 26 EStG; Anleitung zur Anlage EÜR 2026, Zeile 79</field>
+    </record>
+    <record id="parameter_tax_free_volunteer_20240101" model="l10n_de_euer.parameter">
+        <field name="code">tax_free_volunteer</field>
+        <field name="name">Tax-free allowance for volunteers</field>
+        <field name="name@de">Ehrenamtspauschale</field>
+        <field name="date_basis">fiscal_year</field>
+        <field name="date_from">2024-01-01</field>
+        <field name="date_to">2025-12-31</field>
+        <field name="value">840</field>
+        <field
+            name="source"
+        >§ 3 Nr. 26a EStG; Anleitung zur Anlage EÜR 2025, Zeile 78</field>
+    </record>
+    <record id="parameter_tax_free_volunteer_20260101" model="l10n_de_euer.parameter">
+        <field name="code">tax_free_volunteer</field>
+        <field name="name">Tax-free allowance for volunteers</field>
+        <field name="name@de">Ehrenamtspauschale</field>
+        <field name="date_basis">fiscal_year</field>
+        <field name="date_from">2026-01-01</field>
+        <field name="value">960</field>
+        <field
+            name="source"
+        >§ 3 Nr. 26a EStG; Anleitung zur Anlage EÜR 2026, Zeile 79</field>
+    </record>
+    <record id="parameter_ten_day_from_20240101" model="l10n_de_euer.parameter">
+        <field name="code">ten_day_from</field>
+        <field name="name">Start of the ten-day window (month-day)</field>
+        <field name="name@de">Beginn des Zehn-Tage-Zeitraums (Monat-Tag)</field>
+        <field name="date_basis">fiscal_year</field>
+        <field name="date_from">2024-01-01</field>
+        <field name="value_json" eval="'12-22'" />
+        <field
+            name="source"
+        >§ 11 Abs. 1 Satz 2, Abs. 2 Satz 2 EStG; H 11 EStH „Allgemeines“ (BFH IV R 309/84)</field>
+    </record>
+    <record id="parameter_ten_day_to_20240101" model="l10n_de_euer.parameter">
+        <field name="code">ten_day_to</field>
+        <field name="name">End of the ten-day window (month-day)</field>
+        <field name="name@de">Ende des Zehn-Tage-Zeitraums (Monat-Tag)</field>
+        <field name="date_basis">fiscal_year</field>
+        <field name="date_from">2024-01-01</field>
+        <field name="value_json" eval="'01-10'" />
+        <field
+            name="source"
+        >§ 11 Abs. 1 Satz 2, Abs. 2 Satz 2 EStG; H 11 EStH „Allgemeines“ (BFH IV R 309/84)</field>
+    </record>
+    <record id="parameter_flat_writer_rate_20240101" model="l10n_de_euer.parameter">
+        <field name="code">flat_writer_rate</field>
+        <field
+            name="name"
+        >Flat rate of business expenses, writers and journalists (share of income)</field>
+        <field
+            name="name@de"
+        >Betriebsausgabenpauschale schriftstellerische oder journalistische Tätigkeit (Anteil der Einnahmen)</field>
+        <field name="date_basis">fiscal_year</field>
+        <field name="date_from">2024-01-01</field>
+        <field name="value">0.3</field>
+        <field
+            name="source"
+        >BMF-Schreiben vom 06.04.2023, BStBl I S. 671; Anleitung zur Anlage EÜR 2024 bis 2026, Zeile 24</field>
+    </record>
+    <record id="parameter_flat_writer_max_20240101" model="l10n_de_euer.parameter">
+        <field name="code">flat_writer_max</field>
+        <field
+            name="name"
+        >Flat rate of business expenses, writers and journalists, maximum per year</field>
+        <field
+            name="name@de"
+        >Betriebsausgabenpauschale schriftstellerische oder journalistische Tätigkeit, Höchstbetrag je Jahr</field>
+        <field name="date_basis">fiscal_year</field>
+        <field name="date_from">2024-01-01</field>
+        <field name="value">3600</field>
+        <field
+            name="source"
+        >BMF-Schreiben vom 06.04.2023, BStBl I S. 671; Anleitung zur Anlage EÜR 2024 bis 2026, Zeile 24</field>
+    </record>
+    <record id="parameter_flat_side_rate_20240101" model="l10n_de_euer.parameter">
+        <field name="code">flat_side_rate</field>
+        <field
+            name="name"
+        >Flat rate of business expenses, scientific, artistic or literary side activity (share of income)</field>
+        <field
+            name="name@de"
+        >Betriebsausgabenpauschale wissenschaftliche, künstlerische oder schriftstellerische Nebentätigkeit (Anteil der Einnahmen)</field>
+        <field name="date_basis">fiscal_year</field>
+        <field name="date_from">2024-01-01</field>
+        <field name="value">0.25</field>
+        <field
+            name="source"
+        >BMF-Schreiben vom 06.04.2023, BStBl I S. 671; Anleitung zur Anlage EÜR 2024 bis 2026, Zeile 24</field>
+    </record>
+    <record id="parameter_flat_side_max_20240101" model="l10n_de_euer.parameter">
+        <field name="code">flat_side_max</field>
+        <field
+            name="name"
+        >Flat rate of business expenses, side activity, maximum per year</field>
+        <field
+            name="name@de"
+        >Betriebsausgabenpauschale Nebentätigkeit, Höchstbetrag je Jahr</field>
+        <field name="date_basis">fiscal_year</field>
+        <field name="date_from">2024-01-01</field>
+        <field name="value">900</field>
+        <field
+            name="source"
+        >BMF-Schreiben vom 06.04.2023, BStBl I S. 671; Anleitung zur Anlage EÜR 2024 bis 2026, Zeile 24</field>
+    </record>
+    <record id="parameter_flat_childcare_month_20240101" model="l10n_de_euer.parameter">
+        <field name="code">flat_childcare_month</field>
+        <field
+            name="name"
+        >Flat rate of business expenses, child day care, per child and month (40 hours a week)</field>
+        <field
+            name="name@de"
+        >Betriebsausgabenpauschale Kindertagespflege je Kind und Monat (40 Wochenstunden)</field>
+        <field name="date_basis">fiscal_year</field>
+        <field name="date_from">2024-01-01</field>
+        <field name="value">400</field>
+        <field
+            name="source"
+        >BMF-Schreiben vom 06.04.2023, BStBl I S. 669; Anleitung zur Anlage EÜR 2024 bis 2026, Zeile 24</field>
+    </record>
+    <record
+        id="parameter_flat_childcare_free_place_20240101"
+        model="l10n_de_euer.parameter"
+    >
+        <field name="code">flat_childcare_free_place</field>
+        <field
+            name="name"
+        >Flat rate of business expenses, child day care, per reserved place and month</field>
+        <field
+            name="name@de"
+        >Betriebsausgabenpauschale Kindertagespflege je Freihalteplatz und Monat</field>
+        <field name="date_basis">fiscal_year</field>
+        <field name="date_from">2024-01-01</field>
+        <field name="value">50</field>
+        <field
+            name="source"
+        >BMF-Schreiben vom 06.04.2023, BStBl I S. 669; Anleitung zur Anlage EÜR 2024 bis 2026, Zeile 24</field>
+    </record>
+</odoo>

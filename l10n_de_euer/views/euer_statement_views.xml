@@ -1,0 +1,985 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Baumgärtner Marketing GmbH
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <!-- Statement of a business and year (spec 7.3, 7.4) -->
+    <record id="l10n_de_euer_statement_view_list" model="ir.ui.view">
+        <field name="name">l10n_de_euer.statement.list</field>
+        <field name="model">l10n_de_euer.statement</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="year" options="{'enable_formatting': false}" />
+                <field name="company_id" />
+                <field name="version" optional="show" />
+                <field
+                    name="state"
+                    widget="badge"
+                    decoration-info="state == 'draft'"
+                    decoration-warning="state == 'computed'"
+                    decoration-success="state == 'final'"
+                    decoration-muted="state == 'superseded'"
+                />
+                <field name="currency_id" column_invisible="True" />
+                <field name="total_income" optional="show" />
+                <field name="total_expense" optional="show" />
+                <field name="profit" />
+                <field name="provisional_form" optional="hide" />
+                <field name="computed_on" optional="show" />
+                <field name="checked_on" optional="hide" />
+                <field name="finalized_on" optional="hide" />
+                <field name="submitted_on" optional="hide" />
+                <field name="chain_hash" optional="hide" />
+            </list>
+        </field>
+    </record>
+
+    <record id="l10n_de_euer_statement_view_form" model="ir.ui.view">
+        <field name="name">l10n_de_euer.statement.form</field>
+        <field name="model">l10n_de_euer.statement</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button
+                        name="action_compute"
+                        type="object"
+                        string="Compute"
+                        class="btn-primary"
+                        invisible="state not in ('draft', 'computed')"
+                        groups="account.group_account_user,account.group_account_manager"
+                    />
+                    <button
+                        name="action_check"
+                        type="object"
+                        string="Run Checks"
+                        class="btn-primary"
+                        invisible="state != 'computed'"
+                        groups="account.group_account_user,account.group_account_manager"
+                    />
+                    <button
+                        name="action_finalize"
+                        type="object"
+                        string="Finalise"
+                        class="btn-secondary"
+                        invisible="state != 'computed'"
+                        groups="account.group_account_manager"
+                        confirm="Finalise the statement? It runs all checks again; afterwards the statement, its values and inputs can no longer be changed, only corrected by a new version."
+                    />
+                    <button
+                        name="action_compare"
+                        type="object"
+                        string="Compare with Bookings"
+                        class="btn-secondary"
+                        invisible="state != 'final'"
+                        groups="account.group_account_user,account.group_account_manager"
+                    />
+                    <button
+                        name="action_check_integrity"
+                        type="object"
+                        string="Check Integrity"
+                        class="btn-secondary"
+                        invisible="state not in ('final', 'superseded')"
+                    />
+                    <button
+                        name="action_open_correction_wizard"
+                        type="object"
+                        string="Create Correction"
+                        class="btn-secondary"
+                        invisible="state != 'final' or superseded_by_id"
+                        groups="account.group_account_manager"
+                    />
+                    <button
+                        name="action_view_fill_aid"
+                        type="object"
+                        string="Fill-In Aid"
+                        class="btn-secondary"
+                        invisible="state == 'draft'"
+                    />
+                    <field
+                        name="state"
+                        widget="statusbar"
+                        statusbar_visible="draft,computed,final"
+                    />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button
+                            name="action_open_slices"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-list"
+                            invisible="not run_id"
+                        >
+                            <field
+                                name="slice_count"
+                                widget="statinfo"
+                                string="Slices"
+                            />
+                        </button>
+                        <button
+                            name="action_open_checks"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-exclamation-triangle"
+                        >
+                            <field
+                                name="blocker_count"
+                                widget="statinfo"
+                                string="Blockers"
+                            />
+                        </button>
+                        <button
+                            name="action_open_comparison_run"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-balance-scale"
+                            string="Comparison Run"
+                            invisible="not comparison_run_id"
+                        />
+                        <button
+                            name="action_open_assets"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-cubes"
+                            string="Assets"
+                        />
+                        <button
+                            name="action_open_assignments"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-sitemap"
+                            string="Account Assignment"
+                        />
+                    </div>
+                    <div
+                        class="alert alert-warning"
+                        role="alert"
+                        invisible="not provisional_form"
+                    >
+                        There is no form data of the year yet: the statement is
+                        provisional on the forms of an earlier year and cannot be
+                        finalised (F-13).
+                    </div>
+                    <div
+                        class="alert alert-info"
+                        role="status"
+                        invisible="state not in ('final', 'superseded')"
+                    >
+                        <p class="mb-0">
+                            Finalised statements, their values, inputs and payload
+                            cannot be changed or deleted. Keep them with the receipts
+                            for at least 10 years (§ 147 (3) AO), longer while the
+                            assessment period is still open. Check Integrity
+                            computes the hashes again.
+                        </p>
+                    </div>
+                    <div
+                        class="alert alert-warning"
+                        role="status"
+                        invisible="state != 'superseded'"
+                    >
+                        This version is superseded by
+                        <field name="superseded_by_id" class="oe_inline" readonly="1" />
+                        and stays unchanged and readable.
+                    </div>
+                    <div
+                        class="alert alert-warning"
+                        role="status"
+                        invisible="state != 'final' or not superseded_by_id"
+                    >
+                        A correction of this statement is in progress; this version
+                        stays valid until the correction is finalised.
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Business">
+                            <field
+                                name="company_id"
+                                readonly="id"
+                                options="{'no_create': True}"
+                            />
+                            <field
+                                name="year"
+                                readonly="id"
+                                options="{'enable_formatting': false}"
+                            />
+                            <field name="version" />
+                            <field
+                                name="correction_of_id"
+                                invisible="not correction_of_id"
+                            />
+                            <field
+                                name="correction_reason"
+                                invisible="version == 1"
+                                readonly="state not in ('draft', 'computed')"
+                            />
+                            <field name="comparison_run_id" invisible="1" />
+                            <field name="run_id" invisible="not run_id" />
+                            <field name="form_ids" widget="many2many_tags" />
+                            <field name="provisional_form" invisible="1" />
+                        </group>
+                        <group string="Control Values">
+                            <field name="currency_id" invisible="1" />
+                            <field name="total_income" />
+                            <field name="total_expense" />
+                            <field name="profit" />
+                            <field name="computed_on" />
+                            <field name="checked_on" />
+                            <field name="open_warning_count" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Questionnaire" name="questionnaire">
+                            <p class="text-muted">
+                                Answer every question. A manager confirms the
+                                questionnaire; answers proposed from the previous
+                                year are no confirmation. A case outside the
+                                program scope blocks the finalisation (R-52).
+                            </p>
+                            <field
+                                name="scope_answer_ids"
+                                readonly="state not in ('draft', 'computed')"
+                            >
+                                <list create="0" delete="0" editable="bottom">
+                                    <field name="sequence" column_invisible="True" />
+                                    <field name="question" />
+                                    <field name="form_reference" optional="show" />
+                                    <field
+                                        name="answer"
+                                        widget="radio"
+                                        options="{'horizontal': true}"
+                                        decoration-danger="unsupported"
+                                    />
+                                    <field name="unsupported" column_invisible="True" />
+                                    <field name="value" optional="show" />
+                                    <field name="proposal_source" optional="show" />
+                                    <field name="note" optional="show" />
+                                    <field name="confirmed_by_id" optional="show" />
+                                    <field name="confirmed_on" optional="hide" />
+                                </list>
+                            </field>
+                            <group>
+                                <group>
+                                    <field name="scope_confirmed_by_id" />
+                                    <field name="scope_confirmed_on" />
+                                </group>
+                                <group>
+                                    <button
+                                        name="action_confirm_scope"
+                                        type="object"
+                                        string="Confirm Questionnaire"
+                                        class="btn-secondary"
+                                        invisible="state not in ('draft', 'computed')"
+                                        groups="account.group_account_manager"
+                                    />
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Anlage EÜR" name="euer">
+                            <field name="euer_line_ids" readonly="1">
+                                <list
+                                    create="0"
+                                    delete="0"
+                                    decoration-info="source == 'override'"
+                                >
+                                    <field name="sequence" column_invisible="True" />
+                                    <field name="line" width="50px" />
+                                    <field name="kz" width="50px" />
+                                    <field name="name" width="320px" />
+                                    <field name="official_label" optional="hide" />
+                                    <field name="code" optional="hide" />
+                                    <field name="currency_id" column_invisible="True" />
+                                    <field name="has_value" column_invisible="True" />
+                                    <field name="field_type" column_invisible="True" />
+                                    <field
+                                        name="value_text"
+                                        optional="show"
+                                        width="120px"
+                                    />
+                                    <field
+                                        name="amount"
+                                        invisible="not has_value or field_type in ('text', 'key', 'date')"
+                                    />
+                                    <field
+                                        name="amount_prev_year"
+                                        invisible="not amount_prev_year"
+                                        optional="show"
+                                    />
+                                    <field name="source" width="95px" />
+                                    <field
+                                        name="slice_count"
+                                        optional="hide"
+                                        width="90px"
+                                    />
+                                    <field
+                                        name="has_register_source"
+                                        column_invisible="True"
+                                    />
+                                    <button
+                                        name="action_open_slices"
+                                        type="object"
+                                        icon="fa-search"
+                                        title="Show records"
+                                        invisible="not slice_count"
+                                    />
+                                    <button
+                                        name="action_open_assets"
+                                        type="object"
+                                        icon="fa-cubes"
+                                        title="Show assets"
+                                        invisible="not has_register_source"
+                                    />
+                                    <button
+                                        name="action_override"
+                                        type="object"
+                                        icon="fa-pencil"
+                                        title="Override Value"
+                                        invisible="field_type in ('text', 'key', 'date')"
+                                        groups="account.group_account_user,account.group_account_manager"
+                                    />
+                                </list>
+                            </field>
+                        </page>
+                        <page string="AVEÜR" name="aveuer">
+                            <field name="aveuer_line_ids" readonly="1">
+                                <list create="0" delete="0">
+                                    <field name="sequence" column_invisible="True" />
+                                    <field name="line" width="50px" />
+                                    <field name="kz" width="50px" />
+                                    <field name="name" width="320px" />
+                                    <field name="currency_id" column_invisible="True" />
+                                    <field name="has_value" column_invisible="True" />
+                                    <field name="field_type" column_invisible="True" />
+                                    <field
+                                        name="value_text"
+                                        optional="hide"
+                                        width="120px"
+                                    />
+                                    <field
+                                        name="amount"
+                                        invisible="not has_value or field_type in ('text', 'key', 'date')"
+                                    />
+                                    <field
+                                        name="amount_prev_year"
+                                        invisible="not amount_prev_year"
+                                        optional="show"
+                                    />
+                                    <field name="source" width="95px" />
+                                    <field
+                                        name="slice_count"
+                                        optional="hide"
+                                        width="90px"
+                                    />
+                                    <field
+                                        name="has_register_source"
+                                        column_invisible="True"
+                                    />
+                                    <button
+                                        name="action_open_slices"
+                                        type="object"
+                                        icon="fa-search"
+                                        title="Show records"
+                                        invisible="not slice_count"
+                                    />
+                                    <button
+                                        name="action_open_assets"
+                                        type="object"
+                                        icon="fa-cubes"
+                                        title="Show assets"
+                                        invisible="not has_register_source"
+                                    />
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Checks" name="checks">
+                            <!-- the checks of this statement: business and
+                                 year are those of the statement, the message
+                                 gets the room -->
+                            <field name="check_ids" readonly="1">
+                                <list create="0">
+                                    <field name="code" />
+                                    <field
+                                        name="severity"
+                                        widget="badge"
+                                        decoration-danger="severity == 'blocker'"
+                                        decoration-warning="severity == 'warning'"
+                                        decoration-info="severity == 'info'"
+                                    />
+                                    <field name="message" />
+                                    <field
+                                        name="amount"
+                                        optional="show"
+                                        invisible="not amount"
+                                    />
+                                    <field name="currency_id" column_invisible="True" />
+                                    <field
+                                        name="record_count"
+                                        string="Records"
+                                        optional="hide"
+                                    />
+                                    <field name="acknowledged_on" optional="show" />
+                                    <field name="resolvable" column_invisible="True" />
+                                    <button
+                                        name="action_resolve"
+                                        type="object"
+                                        icon="fa-wrench"
+                                        title="Resolve"
+                                        invisible="not resolvable"
+                                        groups="account.group_account_user,account.group_account_manager"
+                                    />
+                                    <button
+                                        name="action_open_records"
+                                        type="object"
+                                        icon="fa-external-link"
+                                        title="Show records"
+                                        invisible="record_count == 0"
+                                    />
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Classification of Rests" name="classification">
+                            <field
+                                name="classification_ids"
+                                readonly="1"
+                                context="{'list_view_ref': 'l10n_de_euer.l10n_de_euer_residual_classification_view_list'}"
+                            />
+                        </page>
+                        <page string="Turn of the Year" name="ten_day">
+                            <field
+                                name="ten_day_ids"
+                                readonly="1"
+                                context="{'list_view_ref': 'l10n_de_euer.l10n_de_euer_ten_day_item_view_list'}"
+                            />
+                        </page>
+                        <page string="Bank Reconciliation 31 December" name="cash">
+                            <p class="text-muted">
+                                Enter the balance of the statement of account at 31
+                                December for every money journal and attach the
+                                statement. A missing or different balance blocks
+                                the finalisation (G-17).
+                            </p>
+                            <field
+                                name="cash_balance_ids"
+                                readonly="state not in ('draft', 'computed')"
+                            >
+                                <list create="0" editable="bottom">
+                                    <field name="journal_id" readonly="1" />
+                                    <field name="account_id" optional="show" />
+                                    <field name="currency_id" column_invisible="True" />
+                                    <field name="balance_statement" />
+                                    <field name="balance_odoo" />
+                                    <field
+                                        name="difference"
+                                        decoration-danger="difference != 0"
+                                    />
+                                    <field
+                                        name="attachment_ids"
+                                        widget="many2many_binary"
+                                        optional="show"
+                                    />
+                                    <field name="entered_by_id" optional="show" />
+                                    <field name="entered_on" optional="hide" />
+                                    <field name="note" optional="hide" />
+                                </list>
+                            </field>
+                            <button
+                                name="action_update_cash_balances"
+                                type="object"
+                                string="Add Money Journals"
+                                class="btn-secondary"
+                                invisible="state not in ('draft', 'computed')"
+                                groups="account.group_account_user,account.group_account_manager"
+                            />
+                        </page>
+                        <page string="Profit Corrections" name="adjustments">
+                            <field
+                                name="adjustment_ids"
+                                readonly="state not in ('draft', 'computed')"
+                                context="{'default_statement_id': id}"
+                            >
+                                <list>
+                                    <field name="kind" />
+                                    <field name="partner_id" optional="hide" />
+                                    <field name="asset_id" optional="hide" />
+                                    <field name="currency_id" column_invisible="True" />
+                                    <field name="result_amount" sum="Total" />
+                                    <field name="field_text" />
+                                    <field name="withdrawal_effect" optional="show" />
+                                    <field name="contribution_effect" optional="show" />
+                                    <field name="reason" optional="hide" />
+                                    <field
+                                        name="error"
+                                        decoration-danger="error"
+                                        optional="show"
+                                    />
+                                </list>
+                            </field>
+                            <separator string="Proposed Use Withdrawals (R-54)" />
+                            <field name="private_use_ids" readonly="1">
+                                <list create="0" delete="0">
+                                    <field name="asset_id" />
+                                    <field name="currency_id" column_invisible="True" />
+                                    <field name="business_share" widget="percentage" />
+                                    <field name="private_use_amount" />
+                                    <field name="private_use_vat" />
+                                    <field
+                                        name="private_use_vat_base"
+                                        optional="hide"
+                                    />
+                                    <field name="private_use_decision" />
+                                    <field name="locked" column_invisible="True" />
+                                    <button
+                                        name="action_confirm_private_use"
+                                        type="object"
+                                        string="Confirm"
+                                        invisible="locked or not private_use_amount"
+                                        groups="account.group_account_user,account.group_account_manager"
+                                    />
+                                </list>
+                            </field>
+                            <button
+                                name="action_take_over_private_use"
+                                type="object"
+                                string="Take Over as Profit Corrections"
+                                class="btn-secondary"
+                                invisible="state not in ('draft', 'computed') or not private_use_ids"
+                                groups="account.group_account_user,account.group_account_manager"
+                            />
+                        </page>
+                        <page string="Choices" name="choices">
+                            <group>
+                                <field name="use_pool" />
+                                <field name="choices_text" />
+                            </group>
+                        </page>
+                        <page
+                            string="Differences to the Previous Version"
+                            name="correction_diff"
+                            invisible="not correction_of_id"
+                        >
+                            <field name="correction_diff_count" invisible="1" />
+                            <field name="correction_diff_html" readonly="1" />
+                        </page>
+                        <page
+                            string="Outputs"
+                            name="outputs"
+                            invisible="state == 'draft'"
+                        >
+                            <p>
+                                All outputs show the values of this statement. The
+                                fill-in aid lists only fields with a value in the order
+                                of the official form; enter the values in Mein ELSTER
+                                yourself. It is no form for a paper filing.
+                            </p>
+                            <group>
+                                <group string="Fill-In Aid and Evidence">
+                                    <button
+                                        name="action_view_fill_aid"
+                                        type="object"
+                                        string="Fill-In Aid Mein ELSTER (HTML)"
+                                        icon="fa-eye"
+                                        class="btn-link"
+                                    />
+                                    <button
+                                        name="action_print_fill_aid"
+                                        type="object"
+                                        string="Fill-In Aid Mein ELSTER (PDF)"
+                                        icon="fa-file-pdf-o"
+                                        class="btn-link"
+                                    />
+                                    <button
+                                        name="action_print_evidence"
+                                        type="object"
+                                        string="Evidence per Kennzahl (PDF)"
+                                        icon="fa-file-pdf-o"
+                                        class="btn-link"
+                                    />
+                                    <button
+                                        name="action_export_evidence"
+                                        type="object"
+                                        string="Evidence per Kennzahl (XLSX)"
+                                        icon="fa-file-excel-o"
+                                        class="btn-link"
+                                    />
+                                    <button
+                                        name="action_export_workbook"
+                                        type="object"
+                                        string="Workbook (XLSX)"
+                                        icon="fa-file-excel-o"
+                                        class="btn-link"
+                                    />
+                                </group>
+                                <group string="Data and Documentation">
+                                    <button
+                                        name="action_export_elster"
+                                        type="object"
+                                        string="List of the Kennzahlen for ELSTER (CSV)"
+                                        icon="fa-file-text-o"
+                                        class="btn-link"
+                                    />
+                                    <button
+                                        name="action_export_json"
+                                        type="object"
+                                        string="Data Set (JSON)"
+                                        icon="fa-file-code-o"
+                                        class="btn-link"
+                                    />
+                                    <button
+                                        name="action_export_z3"
+                                        type="object"
+                                        string="Data Access Z3 (ZIP)"
+                                        icon="fa-file-archive-o"
+                                        class="btn-link"
+                                    />
+                                    <button
+                                        name="action_print_checks"
+                                        type="object"
+                                        string="Check Protocol (PDF)"
+                                        icon="fa-file-pdf-o"
+                                        class="btn-link"
+                                    />
+                                    <button
+                                        name="action_export_checks"
+                                        type="object"
+                                        string="Check Protocol (XLSX)"
+                                        icon="fa-file-excel-o"
+                                        class="btn-link"
+                                    />
+                                    <button
+                                        name="action_view_procedure"
+                                        type="object"
+                                        string="Procedure Documentation (HTML)"
+                                        icon="fa-eye"
+                                        class="btn-link"
+                                    />
+                                    <button
+                                        name="action_print_procedure"
+                                        type="object"
+                                        string="Procedure Documentation (PDF)"
+                                        icon="fa-file-pdf-o"
+                                        class="btn-link"
+                                    />
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Finalisation" name="finalisation">
+                            <group>
+                                <group string="Submission">
+                                    <field name="submitted_on" />
+                                    <field name="submission_reference" />
+                                </group>
+                                <group string="Finalisation">
+                                    <field name="finalized_by_id" />
+                                    <field name="finalized_on" />
+                                    <field name="chain_index" />
+                                    <field name="payload_attachment_id" />
+                                </group>
+                            </group>
+                            <group string="Hashes (SHA-256)">
+                                <field name="payload_sha256" />
+                                <field name="prev_hash" />
+                                <field name="chain_hash" />
+                            </group>
+                            <group string="Versions">
+                                <field name="module_version" />
+                                <field name="ruleset_version" />
+                                <field name="form_versions" />
+                            </group>
+                        </page>
+                        <page string="Log" name="log">
+                            <field name="log_text" />
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter />
+            </form>
+        </field>
+    </record>
+
+    <record id="l10n_de_euer_statement_view_search" model="ir.ui.view">
+        <field name="name">l10n_de_euer.statement.search</field>
+        <field name="model">l10n_de_euer.statement</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="year" />
+                <field name="company_id" />
+                <filter
+                    string="Valid"
+                    name="valid"
+                    domain="[('state', '!=', 'superseded')]"
+                />
+                <filter
+                    string="Draft"
+                    name="draft"
+                    domain="[('state', '=', 'draft')]"
+                />
+                <filter
+                    string="Finalised"
+                    name="final"
+                    domain="[('state', '=', 'final')]"
+                />
+                <group>
+                    <filter
+                        string="Year"
+                        name="group_year"
+                        context="{'group_by': 'year'}"
+                    />
+                    <filter
+                        string="Business"
+                        name="group_company"
+                        context="{'group_by': 'company_id'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_l10n_de_euer_statement" model="ir.actions.act_window">
+        <field name="name">Statements</field>
+        <field name="res_model">l10n_de_euer.statement</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_valid': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create the statement of a year</p>
+            <p>
+                Answer the questionnaire, compute the year, classify open rests,
+                decide the review of the turn of the year, reconcile the bank at
+                31 December, check and enter the values in Mein ELSTER.
+            </p>
+        </field>
+    </record>
+
+    <!-- Override of a value (G-15) -->
+    <record id="l10n_de_euer_statement_line_view_form" model="ir.ui.view">
+        <field name="name">l10n_de_euer.statement.line.form</field>
+        <field name="model">l10n_de_euer.statement.line</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="code" readonly="1" />
+                        <field name="line" readonly="1" />
+                        <field name="kz" readonly="1" />
+                        <field name="name" />
+                        <field name="official_label" />
+                    </group>
+                    <group>
+                        <field name="currency_id" invisible="1" />
+                        <field name="amount_computed" />
+                        <field name="amount" />
+                        <field name="source" readonly="1" />
+                    </group>
+                </group>
+                <group string="Override">
+                    <field name="override_amount" />
+                    <field
+                        name="override_reason"
+                        required="1"
+                        placeholder="Reason and calculation (own receipt)"
+                    />
+                </group>
+                <footer>
+                    <button
+                        name="action_apply_override"
+                        type="object"
+                        string="Apply Override"
+                        class="btn-primary"
+                    />
+                    <button
+                        name="action_reset"
+                        type="object"
+                        string="Back to Computed Value"
+                        invisible="source != 'override'"
+                    />
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Profit corrections (spec 5.8) -->
+    <record id="l10n_de_euer_adjustment_view_form" model="ir.ui.view">
+        <field name="name">l10n_de_euer.adjustment.form</field>
+        <field name="model">l10n_de_euer.adjustment</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button
+                            name="action_open_receipts"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-paperclip"
+                            string="Own Receipt"
+                            invisible="not attachment_ids"
+                        />
+                        <button
+                            name="action_open_slices"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-list"
+                            string="Slices"
+                            invisible="not id"
+                        />
+                    </div>
+                    <div class="alert alert-danger" role="alert" invisible="not error">
+                        <field name="error" />
+                    </div>
+                    <group>
+                        <group string="Correction">
+                            <field
+                                name="statement_id"
+                                invisible="context.get('default_statement_id')"
+                                readonly="id"
+                            />
+                            <field name="kind" />
+                            <field name="date" />
+                            <field name="partner_id" />
+                            <field
+                                name="asset_id"
+                                invisible="kind != 'withdrawal_in_kind'"
+                                domain="[('company_id', '=', company_id)]"
+                            />
+                            <field name="company_id" invisible="1" />
+                            <field name="year" invisible="1" />
+                            <field name="currency_id" invisible="1" />
+                        </group>
+                        <group string="Inputs">
+                            <field name="vat_allowed" invisible="1" />
+                            <field
+                                name="amount"
+                                invisible="kind not in ('car_private_use', 'withdrawal_in_kind', 'withdrawal_vat', 'tax_free', 'income_in_kind') and not (kind == 'use_contribution' and method == 'actual')"
+                            />
+                            <field
+                                name="revenue_field"
+                                invisible="kind != 'income_in_kind' or not vat_allowed"
+                            />
+                            <field
+                                name="vat_amount"
+                                invisible="kind not in ('car_private_use', 'withdrawal_in_kind', 'income_in_kind')"
+                                readonly="not vat_allowed"
+                            />
+                            <field
+                                name="vat_base"
+                                invisible="kind not in ('car_private_use', 'withdrawal_in_kind')"
+                            />
+                            <field
+                                name="method"
+                                invisible="kind not in ('use_contribution', 'home_office_room')"
+                            />
+                            <field
+                                name="km"
+                                invisible="kind != 'use_contribution' or method == 'actual'"
+                            />
+                            <field
+                                name="days"
+                                invisible="kind not in ('commuting', 'home_office_days')"
+                            />
+                            <field name="distance_km" invisible="kind != 'commuting'" />
+                            <field name="own_car" invisible="kind != 'commuting'" />
+                            <field
+                                name="no_other_workplace"
+                                invisible="kind != 'home_office_days'"
+                            />
+                            <field
+                                name="double_household"
+                                invisible="kind != 'home_office_days'"
+                            />
+                            <field
+                                name="center_of_activity"
+                                invisible="kind != 'home_office_room'"
+                            />
+                            <field
+                                name="months"
+                                invisible="kind != 'home_office_room'"
+                            />
+                            <field
+                                name="costs"
+                                invisible="kind not in ('home_office_room', 'commuting')"
+                            />
+                            <field name="days_8h" invisible="kind != 'meals'" />
+                            <field name="days_24h" invisible="kind != 'meals'" />
+                            <field name="reduction" invisible="kind != 'meals'" />
+                            <field
+                                name="other_amount"
+                                invisible="kind not in ('meals', 'home_office_days')"
+                            />
+                            <field name="flat_kind" invisible="kind != 'flat_rate'" />
+                            <field
+                                name="revenue"
+                                invisible="kind != 'flat_rate' or flat_kind == 'childcare'"
+                            />
+                            <field
+                                name="child_months"
+                                invisible="kind != 'flat_rate' or flat_kind != 'childcare'"
+                            />
+                            <field
+                                name="hours_per_week"
+                                invisible="kind != 'flat_rate' or flat_kind != 'childcare'"
+                            />
+                            <field
+                                name="free_place_months"
+                                invisible="kind != 'flat_rate' or flat_kind != 'childcare'"
+                            />
+                            <field
+                                name="tax_free_field"
+                                invisible="kind != 'tax_free'"
+                            />
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Result">
+                            <field name="result_amount" />
+                            <field name="field_text" />
+                            <field
+                                name="turnover_amount"
+                                invisible="not turnover_amount"
+                            />
+                            <field name="withdrawal_effect" />
+                            <field name="contribution_effect" />
+                            <field name="notes" invisible="not notes" />
+                        </group>
+                        <group string="Own Receipt">
+                            <field
+                                name="reason"
+                                required="1"
+                                placeholder="Reason and calculation"
+                            />
+                            <field name="attachment_ids" widget="many2many_binary" />
+                        </group>
+                    </group>
+                </sheet>
+                <chatter />
+            </form>
+        </field>
+    </record>
+
+    <record id="l10n_de_euer_adjustment_view_list" model="ir.ui.view">
+        <field name="name">l10n_de_euer.adjustment.list</field>
+        <field name="model">l10n_de_euer.adjustment</field>
+        <field name="arch" type="xml">
+            <list create="0">
+                <field name="company_id" groups="base.group_multi_company" />
+                <field name="year" options="{'enable_formatting': false}" />
+                <field name="statement_id" optional="hide" />
+                <field name="kind" />
+                <field name="partner_id" optional="hide" />
+                <field name="asset_id" optional="hide" />
+                <field name="currency_id" column_invisible="True" />
+                <field name="result_amount" sum="Total" />
+                <field name="field_text" />
+                <field name="withdrawal_effect" sum="Total" optional="show" />
+                <field name="contribution_effect" sum="Total" optional="show" />
+            </list>
+        </field>
+    </record>
+
+    <record id="action_l10n_de_euer_adjustment" model="ir.actions.act_window">
+        <field name="name">Profit Corrections</field>
+        <field name="res_model">l10n_de_euer.adjustment</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

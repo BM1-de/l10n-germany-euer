@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Baumgärtner Marketing GmbH
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <!-- Classification of unallocated rests (C-20, C-36, C-37) -->
+    <record id="l10n_de_euer_residual_classification_view_list" model="ir.ui.view">
+        <field name="name">l10n_de_euer.residual.classification.list</field>
+        <field name="model">l10n_de_euer.residual.classification</field>
+        <field name="arch" type="xml">
+            <list decoration-muted="obsolete">
+                <field name="date" />
+                <field name="source_line_name" optional="hide" />
+                <field name="obsolete" optional="show" />
+                <field name="move_id" />
+                <field name="partner_id" optional="show" />
+                <field name="account_id" optional="show" />
+                <field name="check_code" optional="show" />
+                <field name="kind" />
+                <field name="category_id" />
+                <field name="tax_rate" optional="show" />
+                <field name="vat_regime" optional="show" />
+                <field name="currency_id" column_invisible="True" />
+                <field name="amount_classified" optional="show" />
+                <field name="company_id" groups="base.group_multi_company" />
+            </list>
+        </field>
+    </record>
+
+    <record id="l10n_de_euer_residual_classification_view_form" model="ir.ui.view">
+        <field name="name">l10n_de_euer.residual.classification.form</field>
+        <field name="model">l10n_de_euer.residual.classification</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group name="line" string="Rest">
+                            <field name="company_id" invisible="1" />
+                            <field
+                                name="source_line_id"
+                                required="not obsolete"
+                                domain="[('company_id', 'child_of', company_id)]"
+                            />
+                            <field name="source_line_name" invisible="not obsolete" />
+                            <field name="obsolete" invisible="not obsolete" />
+                            <field name="move_id" />
+                            <field name="partner_id" />
+                            <field name="account_id" />
+                            <field name="date" />
+                            <field name="check_code" />
+                            <field name="amount_classified" />
+                            <field name="currency_id" invisible="1" />
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                            />
+                        </group>
+                        <group name="classification" string="Classification">
+                            <field name="kind" />
+                            <field
+                                name="category_id"
+                                invisible="kind in ('loan', 'deposit', 'refund_obligation')"
+                                required="kind in ('revenue', 'expense', 'expense_refund', 'negative_revenue')"
+                            />
+                            <field
+                                name="tax_rate"
+                                invisible="kind in ('loan', 'deposit', 'refund_obligation')"
+                            />
+                            <field
+                                name="vat_regime"
+                                invisible="kind in ('loan', 'deposit', 'refund_obligation')"
+                            />
+                            <field name="decided_by_id" />
+                            <field name="decided_on" />
+                        </group>
+                    </group>
+                    <field
+                        name="reason"
+                        placeholder="Reason (required for loans, deposits and repayment obligations)"
+                        required="kind in ('loan', 'deposit', 'refund_obligation')"
+                    />
+                </sheet>
+                <chatter />
+            </form>
+        </field>
+    </record>
+
+    <record
+        id="action_l10n_de_euer_residual_classification"
+        model="ir.actions.act_window"
+    >
+        <field name="name">Classification of Rests</field>
+        <field name="res_model">l10n_de_euer.residual.classification</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No classified rests</p>
+            <p>
+                Rests of payments the calculation cannot assign (advance payments,
+                returned direct debits) are classified from the check results
+                C-20, C-36 and C-37.
+            </p>
+        </field>
+    </record>
+
+    <!-- Open items taken over from opening entries (C-35) -->
+    <record id="l10n_de_euer_opening_item_view_list" model="ir.ui.view">
+        <field name="name">l10n_de_euer.opening.item.list</field>
+        <field name="model">l10n_de_euer.opening.item</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="move_id" />
+                <field name="move_line_id" />
+                <field name="partner_id" optional="show" />
+                <field name="account_id" optional="show" />
+                <field name="currency_id" column_invisible="True" />
+                <field name="balance" />
+                <field name="category_id" />
+                <field name="vat_regime" />
+                <field name="tax_rate" />
+                <field name="origin_reference" optional="show" />
+                <field name="company_id" groups="base.group_multi_company" />
+            </list>
+        </field>
+    </record>
+
+    <record id="l10n_de_euer_opening_item_view_form" model="ir.ui.view">
+        <field name="name">l10n_de_euer.opening.item.form</field>
+        <field name="model">l10n_de_euer.opening.item</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group name="item" string="Open Item">
+                            <field name="move_line_id" />
+                            <field name="move_id" />
+                            <field name="partner_id" />
+                            <field name="account_id" />
+                            <field name="balance" />
+                            <field name="currency_id" invisible="1" />
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                            />
+                        </group>
+                        <group name="origin" string="Original Invoice">
+                            <field name="category_id" />
+                            <field name="vat_regime" />
+                            <field
+                                name="tax_rate"
+                                invisible="vat_regime != 'regular'"
+                            />
+                            <field name="origin_reference" />
+                        </group>
+                    </group>
+                    <field name="reason" placeholder="Note" />
+                </sheet>
+                <chatter />
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_de_euer_opening_item" model="ir.actions.act_window">
+        <field name="name">Open Items Taken Over</field>
+        <field name="res_model">l10n_de_euer.opening.item</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No open items taken over</p>
+            <p>
+                Open receivables and payables of opening entries need the category
+                and VAT rate of the original invoice (check C-35).
+            </p>
+        </field>
+    </record>
+
+    <!-- Review list of the turn of the year (C-23, C-26) -->
+    <record id="l10n_de_euer_ten_day_item_view_list" model="ir.ui.view">
+        <field name="name">l10n_de_euer.ten_day.item.list</field>
+        <field name="model">l10n_de_euer.ten_day.item</field>
+        <field name="arch" type="xml">
+            <list create="0" decoration-danger="not decision">
+                <field name="year" options="{'enable_formatting': false}" />
+                <field name="kind" />
+                <field name="cash_date" />
+                <field name="source_move_id" />
+                <field name="origin_move_id" optional="show" />
+                <field name="partner_id" optional="show" />
+                <field name="currency_id" column_invisible="True" />
+                <field name="amount" />
+                <field name="candidate_reason" optional="show" />
+                <field name="proposal" optional="show" />
+                <field
+                    name="economic_year"
+                    options="{'enable_formatting': false}"
+                    optional="show"
+                />
+                <field name="due_date" optional="show" />
+                <field name="proposed_cash_date" optional="hide" />
+                <field name="decision" />
+                <field name="applied" optional="show" />
+            </list>
+        </field>
+    </record>
+
+    <record id="l10n_de_euer_ten_day_item_view_form" model="ir.ui.view">
+        <field name="name">l10n_de_euer.ten_day.item.form</field>
+        <field name="model">l10n_de_euer.ten_day.item</field>
+        <field name="arch" type="xml">
+            <form create="0">
+                <header>
+                    <button
+                        name="action_apply"
+                        type="object"
+                        string="Apply"
+                        class="btn-primary"
+                        invisible="decision in ('apply', 'auto') or kind == 'transfer_order'"
+                    />
+                    <button
+                        name="action_apply"
+                        type="object"
+                        string="Order Given in the New Year"
+                        class="btn-primary"
+                        invisible="decision == 'apply' or kind != 'transfer_order'"
+                    />
+                    <button
+                        name="action_use_proposed_date"
+                        type="object"
+                        string="Use Handover Date of the Payment Order"
+                        invisible="kind != 'transfer_order' or not proposed_cash_date"
+                    />
+                    <button
+                        name="action_reject"
+                        type="object"
+                        string="Do Not Apply"
+                        invisible="decision == 'reject' or kind == 'transfer_order'"
+                    />
+                    <field name="decision" widget="statusbar" />
+                </header>
+                <sheet>
+                    <group>
+                        <group name="payment" string="Payment">
+                            <field name="kind" />
+                            <field name="year" options="{'enable_formatting': false}" />
+                            <field name="source_move_id" />
+                            <field name="origin_move_id" />
+                            <field name="partner_id" />
+                            <field name="cash_date" />
+                            <field name="amount" />
+                            <field name="currency_id" invisible="1" />
+                            <field name="candidate_reason" />
+                            <field name="proposal" />
+                        </group>
+                        <group name="rule" string="Ten-Day Rule">
+                            <field
+                                name="economic_year"
+                                options="{'enable_formatting': false}"
+                            />
+                            <field name="due_date" />
+                            <field name="values_entered" />
+                            <field name="proposed_cash_date" />
+                            <field name="applied" />
+                            <field name="decided_by_id" />
+                            <field name="decided_on" />
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                                readonly="1"
+                            />
+                        </group>
+                    </group>
+                    <field name="reason" placeholder="Reason for the decision" />
+                </sheet>
+                <chatter />
+            </form>
+        </field>
+    </record>
+
+    <record id="l10n_de_euer_ten_day_item_view_search" model="ir.ui.view">
+        <field name="name">l10n_de_euer.ten_day.item.search</field>
+        <field name="model">l10n_de_euer.ten_day.item</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="source_move_id" />
+                <field name="year" />
+                <filter
+                    name="filter_open"
+                    string="Not Decided"
+                    domain="[('decision', '=', False)]"
+                />
+                <group>
+                    <filter
+                        name="group_year"
+                        string="Turn of the Year"
+                        context="{'group_by': 'year'}"
+                    />
+                    <filter
+                        name="group_kind"
+                        string="Kind"
+                        context="{'group_by': 'kind'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_l10n_de_euer_ten_day_item" model="ir.actions.act_window">
+        <field name="name">Review of the Turn of the Year</field>
+        <field name="res_model">l10n_de_euer.ten_day.item</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Nothing to review</p>
+            <p>
+                Regularly recurring payments around the turn of the year (ten-day
+                rule), direct debits of the tax office and transfers in the first
+                days of January are listed here by the calculation.
+            </p>
+        </field>
+    </record>
+
+    <!-- Partner, journal and company -->
+    <record id="view_partner_property_form_l10n_de_euer" model="ir.ui.view">
+        <field name="name">res.partner.form.l10n_de_euer</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account.view_partner_property_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//page[@name='accounting']//group[@name='general']"
+                position="inside"
+            >
+                <field
+                    name="l10n_de_euer_recurring"
+                    groups="account.group_account_user,account.group_account_manager"
+                />
+                <field
+                    name="l10n_de_euer_tax_office"
+                    groups="account.group_account_user,account.group_account_manager"
+                />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_account_journal_form_l10n_de_euer" model="ir.ui.view">
+        <field name="name">account.journal.form.l10n_de_euer</field>
+        <field name="model">account.journal</field>
+        <field name="inherit_id" ref="account.view_account_journal_form" />
+        <field name="arch" type="xml">
+            <group name="bank_account_number" position="after">
+                <group
+                    name="l10n_de_euer"
+                    string="EÜR"
+                    invisible="type not in ('bank', 'cash', 'credit')"
+                >
+                    <field name="l10n_de_euer_private_account" />
+                </group>
+            </group>
+        </field>
+    </record>
+
+    <record id="view_company_form_l10n_de_euer" model="ir.ui.view">
+        <field name="name">res.company.form.l10n_de_euer</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form" />
+        <field name="arch" type="xml">
+            <page name="branches" position="after">
+                <page
+                    name="l10n_de_euer"
+                    string="EÜR"
+                    groups="account.group_account_manager"
+                >
+                    <group>
+                        <group name="l10n_de_euer_business" string="Business">
+                            <field name="parent_id" invisible="1" />
+                            <field
+                                name="l10n_de_euer_separate_business"
+                                invisible="not parent_id"
+                            />
+                            <field name="l10n_de_euer_business_type" />
+                            <field name="l10n_de_euer_legal_form" />
+                            <field name="l10n_de_euer_income_type" />
+                            <field name="l10n_de_euer_owner" />
+                            <field
+                                name="l10n_de_euer_activity_start"
+                                invisible="parent_id"
+                            />
+                        </group>
+                    </group>
+                </page>
+            </page>
+        </field>
+    </record>
+</odoo>

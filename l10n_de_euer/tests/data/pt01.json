@@ -1,0 +1,1646 @@
+{
+  "case": "PT-01",
+  "title": "Synthetischer Kleinunternehmerfall (öffentlich)",
+  "synthetic": true,
+  "spec": "Spezifikation 9.8 PT-01; Entscheidung D6",
+  "confirmation": {
+    "by": null,
+    "on": null
+  },
+  "description": "Grafikdesignerin als Kleinunternehmerin (§ 19 UStG), SKR03, Wirtschaftsjahr = Kalenderjahr, ein Geschäftskonto. Erfundene Partner und Beträge. Rechnungen und Zahlungen über den Jahreswechsel 2025/2026, Sachkosten auf Einzelzeilen, zwei lineare Anlagegüter und ein aus dem Vorsystem übernommenes Altgut mit Erinnerungswert, Privatentnahmen und -einlagen (Kz 122/123). Keine Gewinnkorrekturen, keine regelmäßig wiederkehrenden Zahlungen im 10-Tage-Fenster.",
+  "chart": "de_skr03",
+  "company": {
+    "name": "Atelier Lindenblatt (synthetisch)",
+    "business_type": "Grafikdesign",
+    "legal_form": "Einzelunternehmen",
+    "income_type": "3",
+    "owner": "1",
+    "entertainment_mode": "separate",
+    "disposal_month": true,
+    "activity_start": "2021-03-01"
+  },
+  "vat_periods": [
+    {
+      "date_from": "2021-03-01",
+      "regime": "ku",
+      "vat_return_period": "annual",
+      "prev_year_turnover": "4180.00",
+      "prev_year_turnover_year": 2025
+    }
+  ],
+  "partners": {
+    "ahorn": {
+      "name": "Kunde Ahorn GmbH"
+    },
+    "birke": {
+      "name": "Kunde Birke KG"
+    },
+    "cedar": {
+      "name": "Studio Cedar"
+    },
+    "dorn": {
+      "name": "Verlag Dorn"
+    },
+    "esche": {
+      "name": "Bürobedarf Esche"
+    },
+    "gingko": {
+      "name": "Software Gingko"
+    },
+    "hasel": {
+      "name": "Kamerahandel Hasel"
+    },
+    "ilex": {
+      "name": "Steuerkanzlei Ilex"
+    },
+    "jasmin": {
+      "name": "Druckerei Jasmin"
+    },
+    "kiefer": {
+      "name": "Versicherung Kiefer"
+    },
+    "mirabelle": {
+      "name": "Assistenz Mirabelle"
+    },
+    "nessel": {
+      "name": "Buchhandlung Nessel"
+    }
+  },
+  "accounts": {
+    "0490": "Sonstige Betriebs- und Geschäftsausstattung",
+    "1800": "Privatentnahmen allgemein",
+    "1890": "Privateinlagen",
+    "2650": "Sonstige Zinsen und ähnliche Erträge",
+    "3100": "Fremdleistungen",
+    "4360": "Versicherungen",
+    "4600": "Werbekosten",
+    "4676": "Reisekosten Unternehmer Übernachtungsaufwand und Reisenebenkosten",
+    "4805": "Reparaturen und Instandhaltungen von anderen Anlagen und Betriebs- und Geschäftsausstattung",
+    "4806": "Wartungskosten für Hard- und Software",
+    "4910": "Porto",
+    "4920": "Telefon",
+    "4930": "Bürobedarf",
+    "4940": "Zeitschriften, Bücher (Fachliteratur)",
+    "4945": "Fortbildungskosten",
+    "4955": "Buchführungskosten",
+    "4970": "Nebenkosten des Geldverkehrs",
+    "8195": "Erlöse als Kleinunternehmer nach § 19 Abs. 1 UStG",
+    "9000": "Saldenvorträge, Sachkonten",
+    "bank": "Bankkonto des Geschäftskontos (Journal Bank)",
+    "payable": "Verbindlichkeiten aus Lieferungen und Leistungen des Partners",
+    "receivable": "Forderungen aus Lieferungen und Leistungen des Partners"
+  },
+  "tax_keys": {},
+  "events": [
+    {
+      "id": "EB-2025",
+      "type": "entry",
+      "date": "2025-01-01",
+      "text": "Eröffnung: Bankbestand aus dem Vorsystem",
+      "lines": [
+        {
+          "account": "bank",
+          "amount": "2500.00"
+        },
+        {
+          "account": "9000",
+          "amount": "-2500.00",
+          "category": "OPENING"
+        }
+      ]
+    },
+    {
+      "id": "AR-2025-01",
+      "type": "invoice",
+      "move_type": "out_invoice",
+      "date": "2025-02-10",
+      "partner": "ahorn",
+      "lines": [
+        {
+          "account": "8195",
+          "category": "REV_KU",
+          "amount": "1200.00",
+          "taxes": [],
+          "text": "Gestaltung Geschäftsbericht"
+        }
+      ],
+      "total": "1200.00"
+    },
+    {
+      "id": "BK-2025-01",
+      "type": "bank",
+      "date": "2025-02-20",
+      "amount": "1200.00",
+      "partner": "ahorn",
+      "matches": [
+        {
+          "event": "AR-2025-01",
+          "amount": "1200.00"
+        }
+      ]
+    },
+    {
+      "id": "AR-2025-02",
+      "type": "invoice",
+      "move_type": "out_invoice",
+      "date": "2025-06-05",
+      "partner": "birke",
+      "lines": [
+        {
+          "account": "8195",
+          "category": "REV_KU",
+          "amount": "1850.00",
+          "taxes": [],
+          "text": "Erscheinungsbild"
+        }
+      ],
+      "total": "1850.00"
+    },
+    {
+      "id": "BK-2025-02",
+      "type": "bank",
+      "date": "2025-06-30",
+      "amount": "1850.00",
+      "partner": "birke",
+      "matches": [
+        {
+          "event": "AR-2025-02",
+          "amount": "1850.00"
+        }
+      ]
+    },
+    {
+      "id": "AR-2025-03",
+      "type": "invoice",
+      "move_type": "out_invoice",
+      "date": "2025-12-15",
+      "partner": "cedar",
+      "lines": [
+        {
+          "account": "8195",
+          "category": "REV_KU",
+          "amount": "640.00",
+          "taxes": [],
+          "text": "Plakatserie"
+        }
+      ],
+      "total": "640.00"
+    },
+    {
+      "id": "AR-2025-04",
+      "type": "invoice",
+      "move_type": "out_invoice",
+      "date": "2025-11-20",
+      "partner": "ahorn",
+      "lines": [
+        {
+          "account": "8195",
+          "category": "REV_KU",
+          "amount": "500.00",
+          "taxes": [],
+          "text": "Broschüre"
+        }
+      ],
+      "total": "500.00"
+    },
+    {
+      "id": "BK-2025-03",
+      "type": "bank",
+      "date": "2025-12-22",
+      "amount": "200.00",
+      "partner": "ahorn",
+      "matches": [
+        {
+          "event": "AR-2025-04",
+          "amount": "200.00"
+        }
+      ]
+    },
+    {
+      "id": "BK-2025-04",
+      "type": "bank",
+      "date": "2025-12-31",
+      "amount": "3.20",
+      "lines": [
+        {
+          "account": "2650",
+          "amount": "-3.20",
+          "category": "REV_INTEREST"
+        }
+      ],
+      "text": "Guthabenzinsen 2025"
+    },
+    {
+      "id": "BK-2025-05",
+      "type": "bank",
+      "date": "2025-03-05",
+      "amount": "-89.90",
+      "lines": [
+        {
+          "account": "4930",
+          "amount": "89.90",
+          "category": "EXP_WORK_EQUIPMENT"
+        }
+      ],
+      "text": "Bürobedarf, Kartenzahlung"
+    },
+    {
+      "id": "BK-2025-06",
+      "type": "bank",
+      "date": "2025-04-15",
+      "amount": "-39.90",
+      "lines": [
+        {
+          "account": "4920",
+          "amount": "39.90",
+          "category": "EXP_TELECOM"
+        }
+      ],
+      "text": "Mobilfunk April"
+    },
+    {
+      "id": "BK-2025-07",
+      "type": "bank",
+      "date": "2025-10-15",
+      "amount": "-39.90",
+      "lines": [
+        {
+          "account": "4920",
+          "amount": "39.90",
+          "category": "EXP_TELECOM"
+        }
+      ],
+      "text": "Mobilfunk Oktober"
+    },
+    {
+      "id": "ER-2025-01",
+      "type": "invoice",
+      "move_type": "in_invoice",
+      "date": "2025-05-02",
+      "partner": "gingko",
+      "lines": [
+        {
+          "account": "4806",
+          "category": "EXP_IT",
+          "amount": "119.00",
+          "taxes": [],
+          "text": "Wartung Layoutprogramm"
+        }
+      ],
+      "total": "119.00"
+    },
+    {
+      "id": "BK-2025-08",
+      "type": "bank",
+      "date": "2025-05-06",
+      "amount": "-119.00",
+      "partner": "gingko",
+      "matches": [
+        {
+          "event": "ER-2025-01",
+          "amount": "119.00"
+        }
+      ]
+    },
+    {
+      "id": "BK-2025-09",
+      "type": "bank",
+      "date": "2025-09-10",
+      "amount": "-250.00",
+      "lines": [
+        {
+          "account": "4945",
+          "amount": "250.00",
+          "category": "EXP_TRAINING"
+        }
+      ],
+      "text": "Seminar Typografie"
+    },
+    {
+      "id": "ER-2025-02",
+      "type": "invoice",
+      "move_type": "in_invoice",
+      "date": "2025-04-20",
+      "partner": "ilex",
+      "lines": [
+        {
+          "account": "4955",
+          "category": "EXP_ADVICE",
+          "amount": "180.00",
+          "taxes": [],
+          "text": "Buchführung 2024"
+        }
+      ],
+      "total": "180.00"
+    },
+    {
+      "id": "BK-2025-10",
+      "type": "bank",
+      "date": "2025-04-28",
+      "amount": "-180.00",
+      "partner": "ilex",
+      "matches": [
+        {
+          "event": "ER-2025-02",
+          "amount": "180.00"
+        }
+      ]
+    },
+    {
+      "id": "ER-2025-03",
+      "type": "invoice",
+      "move_type": "in_invoice",
+      "date": "2025-08-01",
+      "partner": "jasmin",
+      "lines": [
+        {
+          "account": "4600",
+          "category": "EXP_ADVERTISING",
+          "amount": "150.00",
+          "taxes": [],
+          "text": "Werbeflyer"
+        }
+      ],
+      "total": "150.00"
+    },
+    {
+      "id": "BK-2025-11",
+      "type": "bank",
+      "date": "2025-08-11",
+      "amount": "-150.00",
+      "partner": "jasmin",
+      "matches": [
+        {
+          "event": "ER-2025-03",
+          "amount": "150.00"
+        }
+      ]
+    },
+    {
+      "id": "BK-2025-12",
+      "type": "bank",
+      "date": "2025-06-30",
+      "amount": "-29.40",
+      "lines": [
+        {
+          "account": "4970",
+          "amount": "29.40",
+          "category": "EXP_OTHER"
+        }
+      ],
+      "text": "Kontoführung 1. Halbjahr"
+    },
+    {
+      "id": "BK-2025-13",
+      "type": "bank",
+      "date": "2025-11-28",
+      "amount": "-29.40",
+      "lines": [
+        {
+          "account": "4970",
+          "amount": "29.40",
+          "category": "EXP_OTHER"
+        }
+      ],
+      "text": "Kontoführung 2. Halbjahr"
+    },
+    {
+      "id": "ER-2025-04",
+      "type": "invoice",
+      "move_type": "in_invoice",
+      "date": "2025-07-15",
+      "partner": "mirabelle",
+      "lines": [
+        {
+          "account": "3100",
+          "category": "EXP_SERVICES",
+          "amount": "300.00",
+          "taxes": [],
+          "text": "Reinzeichnung"
+        }
+      ],
+      "total": "300.00"
+    },
+    {
+      "id": "BK-2025-14",
+      "type": "bank",
+      "date": "2025-07-25",
+      "amount": "-300.00",
+      "partner": "mirabelle",
+      "matches": [
+        {
+          "event": "ER-2025-04",
+          "amount": "300.00"
+        }
+      ]
+    },
+    {
+      "id": "BK-2025-15",
+      "type": "bank",
+      "date": "2025-10-02",
+      "amount": "-95.00",
+      "lines": [
+        {
+          "account": "4805",
+          "amount": "95.00",
+          "category": "EXP_MAINTENANCE"
+        }
+      ],
+      "text": "Reparatur Kameragehäuse"
+    },
+    {
+      "id": "ER-2025-05",
+      "type": "invoice",
+      "move_type": "in_invoice",
+      "date": "2025-01-15",
+      "partner": "kiefer",
+      "lines": [
+        {
+          "account": "4360",
+          "category": "EXP_FEES_INSURANCE",
+          "amount": "120.00",
+          "taxes": [],
+          "text": "Betriebshaftpflicht 2025"
+        }
+      ],
+      "total": "120.00"
+    },
+    {
+      "id": "BK-2025-16",
+      "type": "bank",
+      "date": "2025-01-22",
+      "amount": "-120.00",
+      "partner": "kiefer",
+      "matches": [
+        {
+          "event": "ER-2025-05",
+          "amount": "120.00"
+        }
+      ]
+    },
+    {
+      "id": "BK-2025-17",
+      "type": "bank",
+      "date": "2025-05-20",
+      "amount": "-89.00",
+      "lines": [
+        {
+          "account": "4676",
+          "amount": "89.00",
+          "category": "EXP_TRAVEL"
+        }
+      ],
+      "text": "Hotel Kundentermin"
+    },
+    {
+      "id": "ER-2025-06",
+      "type": "invoice",
+      "move_type": "in_invoice",
+      "date": "2025-12-10",
+      "partner": "esche",
+      "lines": [
+        {
+          "account": "4930",
+          "category": "EXP_WORK_EQUIPMENT",
+          "amount": "60.00",
+          "taxes": [],
+          "text": "Druckerpapier"
+        }
+      ],
+      "total": "60.00"
+    },
+    {
+      "id": "ER-2025-07",
+      "type": "invoice",
+      "move_type": "in_invoice",
+      "date": "2025-03-12",
+      "partner": "hasel",
+      "lines": [
+        {
+          "account": "0490",
+          "category": "FIXED_ASSET",
+          "amount": "2100.00",
+          "taxes": [],
+          "text": "Kameragehäuse (brutto, Kleinunternehmerin)"
+        }
+      ],
+      "total": "2100.00"
+    },
+    {
+      "id": "BK-2025-18",
+      "type": "bank",
+      "date": "2025-03-14",
+      "amount": "-2100.00",
+      "partner": "hasel",
+      "matches": [
+        {
+          "event": "ER-2025-07",
+          "amount": "2100.00"
+        }
+      ]
+    },
+    {
+      "id": "AV-01",
+      "type": "asset",
+      "text": "Kameragehäuse: 2.100,00 € brutto (1.764,71 € netto + 335,29 € USt, nicht abziehbar), Lieferung 12.03.2025, 7 Jahre linear",
+      "lines": [
+        {
+          "event": "ER-2025-07",
+          "account": "0490"
+        }
+      ],
+      "values": {
+        "name": "Kameragehäuse",
+        "code": "PT01-01",
+        "asset_kind": "depreciable",
+        "aveuer_group": "other_movable",
+        "origin": "purchase",
+        "delivery_date": "2025-03-12",
+        "cost_net": 1764.71,
+        "input_tax": 335.29,
+        "method": "linear",
+        "useful_life_months": 84
+      }
+    },
+    {
+      "id": "ER-2025-08",
+      "type": "invoice",
+      "move_type": "in_invoice",
+      "date": "2025-09-03",
+      "partner": "hasel",
+      "lines": [
+        {
+          "account": "0490",
+          "category": "FIXED_ASSET",
+          "amount": "1800.00",
+          "taxes": [],
+          "text": "Studioleuchten-Set (brutto)"
+        }
+      ],
+      "total": "1800.00"
+    },
+    {
+      "id": "BK-2025-19",
+      "type": "bank",
+      "date": "2025-09-10",
+      "amount": "-1800.00",
+      "partner": "hasel",
+      "matches": [
+        {
+          "event": "ER-2025-08",
+          "amount": "1800.00"
+        }
+      ]
+    },
+    {
+      "id": "AV-02",
+      "type": "asset",
+      "text": "Studioleuchten-Set: 1.800,00 € brutto (1.512,61 € netto + 287,39 € USt), Lieferung 03.09.2025, 7 Jahre linear nach der AfA-Tabelle AV (Fundstelle 6.14.4, Foto-, Film-, Video- und Audiogeräte)",
+      "lines": [
+        {
+          "event": "ER-2025-08",
+          "account": "0490"
+        }
+      ],
+      "values": {
+        "name": "Studioleuchten-Set",
+        "code": "PT01-02",
+        "asset_kind": "depreciable",
+        "aveuer_group": "other_movable",
+        "origin": "purchase",
+        "delivery_date": "2025-09-03",
+        "cost_net": 1512.61,
+        "input_tax": 287.39,
+        "method": "linear",
+        "useful_life_months": 84,
+        "note": "Nutzungsdauer 7 Jahre nach AfA-Tabelle AV 6.14.4"
+      }
+    },
+    {
+      "id": "AV-03",
+      "type": "asset",
+      "text": "Altgut aus dem Vorsystem mit Erinnerungswert 1,00 € (R-49, C-63): Stativ- und Lichtformer-Set, Lieferung 15.04.2021, 1.190,00 € brutto, 5 Jahre linear; AfA bis 31.12.2024 892,50 € (178,50 + 3 × 238,00), Buchwert 297,50 €. Die Nutzungsdauer von 5 Jahren hat das Vorsystem seit der Anschaffung angesetzt; das übernommene Verzeichnis führt sie fort (R-49, offene Frage an die Steuerberatung)",
+      "values": {
+        "name": "Stativ- und Lichtformer-Set (Altbestand)",
+        "code": "PT01-03",
+        "asset_kind": "depreciable",
+        "aveuer_group": "other_movable",
+        "origin": "legacy_import",
+        "delivery_date": "2021-04-15",
+        "cost_net": 1000.0,
+        "input_tax": 190.0,
+        "method": "linear",
+        "useful_life_months": 60,
+        "note": "Nutzungsdauer 5 Jahre wie im Vorsystem seit der Anschaffung 2021",
+        "memo_value": 1.0,
+        "opening_date": "2024-12-31",
+        "opening_book_value": 297.5,
+        "opening_accumulated": 892.5
+      }
+    },
+    {
+      "id": "BK-2025-20",
+      "type": "bank",
+      "date": "2025-01-05",
+      "amount": "1000.00",
+      "lines": [
+        {
+          "account": "1890",
+          "amount": "-1000.00",
+          "category": "PRIVATE_CONTRIBUTION"
+        }
+      ],
+      "text": "Privateinlage"
+    },
+    {
+      "id": "BK-2025-21",
+      "type": "bank",
+      "date": "2025-04-30",
+      "amount": "-500.00",
+      "lines": [
+        {
+          "account": "1800",
+          "amount": "500.00",
+          "category": "PRIVATE_WITHDRAWAL"
+        }
+      ],
+      "text": "Privatentnahme"
+    },
+    {
+      "id": "BK-2025-22",
+      "type": "bank",
+      "date": "2025-11-28",
+      "amount": "-700.00",
+      "lines": [
+        {
+          "account": "1800",
+          "amount": "700.00",
+          "category": "PRIVATE_WITHDRAWAL"
+        }
+      ],
+      "text": "Privatentnahme"
+    },
+    {
+      "id": "ER-2025-09",
+      "type": "invoice",
+      "move_type": "in_invoice",
+      "date": "2025-06-10",
+      "partner": "nessel",
+      "lines": [
+        {
+          "account": "4940",
+          "category": "EXP_WORK_EQUIPMENT",
+          "amount": "34.90",
+          "taxes": [],
+          "text": "Fachbuch Satzspiegel"
+        }
+      ],
+      "total": "34.90"
+    },
+    {
+      "id": "PR-2025-01",
+      "type": "entry",
+      "date": "2025-06-10",
+      "text": "Fachbuch mit privater Karte bezahlt",
+      "partner": "nessel",
+      "lines": [
+        {
+          "account": "payable",
+          "amount": "34.90",
+          "reconcile": "ER-2025-09"
+        },
+        {
+          "account": "1890",
+          "amount": "-34.90",
+          "category": "PRIVATE_CONTRIBUTION"
+        }
+      ]
+    },
+    {
+      "id": "BK-2026-01",
+      "type": "bank",
+      "date": "2026-01-12",
+      "amount": "640.00",
+      "partner": "cedar",
+      "matches": [
+        {
+          "event": "AR-2025-03",
+          "amount": "640.00"
+        }
+      ]
+    },
+    {
+      "id": "BK-2026-02",
+      "type": "bank",
+      "date": "2026-01-20",
+      "amount": "300.00",
+      "partner": "ahorn",
+      "matches": [
+        {
+          "event": "AR-2025-04",
+          "amount": "300.00"
+        }
+      ]
+    },
+    {
+      "id": "AR-2026-01",
+      "type": "invoice",
+      "move_type": "out_invoice",
+      "date": "2026-03-01",
+      "partner": "cedar",
+      "lines": [
+        {
+          "account": "8195",
+          "category": "REV_KU",
+          "amount": "1500.00",
+          "taxes": [],
+          "text": "Ausstellungsgrafik"
+        }
+      ],
+      "total": "1500.00"
+    },
+    {
+      "id": "BK-2026-03",
+      "type": "bank",
+      "date": "2026-03-15",
+      "amount": "1500.00",
+      "partner": "cedar",
+      "matches": [
+        {
+          "event": "AR-2026-01",
+          "amount": "1500.00"
+        }
+      ]
+    },
+    {
+      "id": "AR-2026-02",
+      "type": "invoice",
+      "move_type": "out_invoice",
+      "date": "2026-09-10",
+      "partner": "ahorn",
+      "lines": [
+        {
+          "account": "8195",
+          "category": "REV_KU",
+          "amount": "980.00",
+          "taxes": [],
+          "text": "Jahreskalender"
+        }
+      ],
+      "total": "980.00"
+    },
+    {
+      "id": "GS-2026-01",
+      "type": "invoice",
+      "move_type": "out_refund",
+      "date": "2026-09-20",
+      "partner": "ahorn",
+      "lines": [
+        {
+          "account": "8195",
+          "category": "REV_KU",
+          "amount": "80.00",
+          "taxes": [],
+          "text": "Gutschrift Druckfehler"
+        }
+      ],
+      "total": "80.00"
+    },
+    {
+      "id": "AG-2026-01",
+      "type": "reconcile",
+      "events": ["AR-2026-02", "GS-2026-01"]
+    },
+    {
+      "id": "BK-2026-04",
+      "type": "bank",
+      "date": "2026-09-25",
+      "amount": "900.00",
+      "partner": "ahorn",
+      "matches": [
+        {
+          "event": "AR-2026-02",
+          "amount": "900.00"
+        }
+      ]
+    },
+    {
+      "id": "AR-2026-03",
+      "type": "invoice",
+      "move_type": "out_invoice",
+      "date": "2026-08-01",
+      "partner": "birke",
+      "lines": [
+        {
+          "account": "8195",
+          "category": "REV_KU",
+          "amount": "450.00",
+          "taxes": [],
+          "text": "Anzeigenmotiv"
+        }
+      ],
+      "total": "450.00"
+    },
+    {
+      "id": "PR-2026-01",
+      "type": "entry",
+      "date": "2026-08-15",
+      "text": "Kundin zahlt auf das private Girokonto",
+      "partner": "birke",
+      "lines": [
+        {
+          "account": "1800",
+          "amount": "450.00",
+          "category": "PRIVATE_WITHDRAWAL"
+        },
+        {
+          "account": "receivable",
+          "amount": "-450.00",
+          "reconcile": "AR-2026-03"
+        }
+      ]
+    },
+    {
+      "id": "AR-2026-04",
+      "type": "invoice",
+      "move_type": "out_invoice",
+      "date": "2026-12-10",
+      "partner": "dorn",
+      "lines": [
+        {
+          "account": "8195",
+          "category": "REV_KU",
+          "amount": "720.00",
+          "taxes": [],
+          "text": "Buchumschlag"
+        }
+      ],
+      "total": "720.00"
+    },
+    {
+      "id": "BK-2026-05",
+      "type": "bank",
+      "date": "2026-12-31",
+      "amount": "2.10",
+      "lines": [
+        {
+          "account": "2650",
+          "amount": "-2.10",
+          "category": "REV_INTEREST"
+        }
+      ],
+      "text": "Guthabenzinsen 2026"
+    },
+    {
+      "id": "BK-2026-06",
+      "type": "bank",
+      "date": "2026-01-14",
+      "amount": "-60.00",
+      "partner": "esche",
+      "matches": [
+        {
+          "event": "ER-2025-06",
+          "amount": "60.00"
+        }
+      ]
+    },
+    {
+      "id": "BK-2026-07",
+      "type": "bank",
+      "date": "2026-02-16",
+      "amount": "-39.90",
+      "lines": [
+        {
+          "account": "4920",
+          "amount": "39.90",
+          "category": "EXP_TELECOM"
+        }
+      ],
+      "text": "Mobilfunk Februar"
+    },
+    {
+      "id": "BK-2026-08",
+      "type": "bank",
+      "date": "2026-08-17",
+      "amount": "-39.90",
+      "lines": [
+        {
+          "account": "4920",
+          "amount": "39.90",
+          "category": "EXP_TELECOM"
+        }
+      ],
+      "text": "Mobilfunk August"
+    },
+    {
+      "id": "ER-2026-01",
+      "type": "invoice",
+      "move_type": "in_invoice",
+      "date": "2026-05-04",
+      "partner": "gingko",
+      "lines": [
+        {
+          "account": "4806",
+          "category": "EXP_IT",
+          "amount": "119.00",
+          "taxes": [],
+          "text": "Wartung Layoutprogramm"
+        }
+      ],
+      "total": "119.00"
+    },
+    {
+      "id": "BK-2026-09",
+      "type": "bank",
+      "date": "2026-05-08",
+      "amount": "-119.00",
+      "partner": "gingko",
+      "matches": [
+        {
+          "event": "ER-2026-01",
+          "amount": "119.00"
+        }
+      ]
+    },
+    {
+      "id": "ER-2026-02",
+      "type": "invoice",
+      "move_type": "in_invoice",
+      "date": "2026-04-20",
+      "partner": "ilex",
+      "lines": [
+        {
+          "account": "4955",
+          "category": "EXP_ADVICE",
+          "amount": "220.00",
+          "taxes": [],
+          "text": "Buchführung 2025"
+        }
+      ],
+      "total": "220.00"
+    },
+    {
+      "id": "BK-2026-10",
+      "type": "bank",
+      "date": "2026-04-27",
+      "amount": "-220.00",
+      "partner": "ilex",
+      "matches": [
+        {
+          "event": "ER-2026-02",
+          "amount": "220.00"
+        }
+      ]
+    },
+    {
+      "id": "ER-2026-03",
+      "type": "invoice",
+      "move_type": "in_invoice",
+      "date": "2026-03-20",
+      "partner": "jasmin",
+      "lines": [
+        {
+          "account": "4600",
+          "category": "EXP_ADVERTISING",
+          "amount": "75.00",
+          "taxes": [],
+          "text": "Postkarten"
+        }
+      ],
+      "total": "75.00"
+    },
+    {
+      "id": "BK-2026-11",
+      "type": "bank",
+      "date": "2026-03-25",
+      "amount": "-75.00",
+      "partner": "jasmin",
+      "matches": [
+        {
+          "event": "ER-2026-03",
+          "amount": "75.00"
+        }
+      ]
+    },
+    {
+      "id": "BK-2026-12",
+      "type": "bank",
+      "date": "2026-06-30",
+      "amount": "-29.40",
+      "lines": [
+        {
+          "account": "4970",
+          "amount": "29.40",
+          "category": "EXP_OTHER"
+        }
+      ],
+      "text": "Kontoführung 1. Halbjahr"
+    },
+    {
+      "id": "BK-2026-13",
+      "type": "bank",
+      "date": "2026-11-30",
+      "amount": "-29.40",
+      "lines": [
+        {
+          "account": "4970",
+          "amount": "29.40",
+          "category": "EXP_OTHER"
+        }
+      ],
+      "text": "Kontoführung 2. Halbjahr"
+    },
+    {
+      "id": "ER-2026-04",
+      "type": "invoice",
+      "move_type": "in_invoice",
+      "date": "2026-11-05",
+      "partner": "mirabelle",
+      "lines": [
+        {
+          "account": "3100",
+          "category": "EXP_SERVICES",
+          "amount": "250.00",
+          "taxes": [],
+          "text": "Bildbearbeitung"
+        }
+      ],
+      "total": "250.00"
+    },
+    {
+      "id": "BK-2026-14",
+      "type": "bank",
+      "date": "2026-11-16",
+      "amount": "-250.00",
+      "partner": "mirabelle",
+      "matches": [
+        {
+          "event": "ER-2026-04",
+          "amount": "250.00"
+        }
+      ]
+    },
+    {
+      "id": "ER-2026-05",
+      "type": "invoice",
+      "move_type": "in_invoice",
+      "date": "2026-01-15",
+      "partner": "kiefer",
+      "lines": [
+        {
+          "account": "4360",
+          "category": "EXP_FEES_INSURANCE",
+          "amount": "120.00",
+          "taxes": [],
+          "text": "Betriebshaftpflicht 2026"
+        }
+      ],
+      "total": "120.00"
+    },
+    {
+      "id": "BK-2026-15",
+      "type": "bank",
+      "date": "2026-01-22",
+      "amount": "-120.00",
+      "partner": "kiefer",
+      "matches": [
+        {
+          "event": "ER-2026-05",
+          "amount": "120.00"
+        }
+      ]
+    },
+    {
+      "id": "BK-2026-16",
+      "type": "bank",
+      "date": "2026-07-01",
+      "amount": "-18.50",
+      "lines": [
+        {
+          "account": "4910",
+          "amount": "18.50",
+          "category": "EXP_WORK_EQUIPMENT"
+        }
+      ],
+      "text": "Porto"
+    },
+    {
+      "id": "BK-2026-17",
+      "type": "bank",
+      "date": "2026-10-12",
+      "amount": "-112.00",
+      "lines": [
+        {
+          "account": "4676",
+          "amount": "112.00",
+          "category": "EXP_TRAVEL"
+        }
+      ],
+      "text": "Hotel Messe"
+    },
+    {
+      "id": "BK-2026-18",
+      "type": "bank",
+      "date": "2026-02-02",
+      "amount": "300.00",
+      "lines": [
+        {
+          "account": "1890",
+          "amount": "-300.00",
+          "category": "PRIVATE_CONTRIBUTION"
+        }
+      ],
+      "text": "Privateinlage"
+    },
+    {
+      "id": "BK-2026-19",
+      "type": "bank",
+      "date": "2026-05-29",
+      "amount": "-900.00",
+      "lines": [
+        {
+          "account": "1800",
+          "amount": "900.00",
+          "category": "PRIVATE_WITHDRAWAL"
+        }
+      ],
+      "text": "Privatentnahme"
+    }
+  ],
+  "expected": {
+    "2025": {
+      "EUER.20.111": {
+        "value": "3253.20",
+        "line": 12,
+        "basis": "§ 11 Abs. 1 S. 1 EStG (Zufluss); § 19 Abs. 1 UStG; Anleitung EÜR Zeile 12",
+        "terms": [
+          ["1200.00", "AR-2025-01 bezahlt 20.02.2025"],
+          ["1850.00", "AR-2025-02 bezahlt 30.06.2025"],
+          ["200.00", "AR-2025-04 Teilzahlung 22.12.2025"],
+          ["3.20", "Guthabenzinsen 31.12.2025"]
+        ]
+      },
+      "EUER.20.119": {
+        "value": "3.20",
+        "line": 13,
+        "basis": "§ 19 Abs. 2 S. 1 Nr. 2 i. V. m. § 4 Nr. 8 Buchst. a UStG (Zinsen als Hilfsumsatz); Anleitung EÜR Zeile 13",
+        "terms": [
+          ["3.20", "Guthabenzinsen 31.12.2025 (davon-Wert, nicht in der Summe)"]
+        ]
+      },
+      "EUER.20.159": {
+        "value": "3253.20",
+        "line": 23,
+        "basis": "Vordruck Zeile 23 (Summe der Betriebseinnahmen; Kz 119 ist davon-Wert)",
+        "terms": [["3253.20", "Kz 111"]]
+      },
+      "EUER.25.110": {
+        "value": "300.00",
+        "line": 29,
+        "basis": "§ 11 Abs. 2 S. 1 EStG (Abfluss); § 9b Abs. 1 EStG (Kleinunternehmer brutto)",
+        "terms": [["300.00", "ER-2025-04 Reinzeichnung, bezahlt 25.07.2025"]]
+      },
+      "EUER.25.130": {
+        "value": "573.71",
+        "line": 33,
+        "basis": "§ 7 Abs. 1 S. 1, 4 EStG (linear, Monatsregel); Rundung je Gut nach Spezifikation 6.3: Jahresbetrag gerundet, Rest im Endjahr",
+        "terms": [
+          ["250.00", "AV-01: 2.100,00 / 7 = 300,00 × 10/12 (März–Dezember)"],
+          ["85.71", "AV-02: 1.800,00 / 7 = 257,14 × 4/12 (September–Dezember)"],
+          ["238.00", "AV-03: 1.190,00 / 5 = 238,00 (volles Jahr)"]
+        ]
+      },
+      "EUER.25.194": {
+        "value": "180.00",
+        "line": 46,
+        "basis": "§ 11 Abs. 2 S. 1 EStG (Abfluss); § 9b Abs. 1 EStG (Kleinunternehmer brutto)",
+        "terms": [["180.00", "ER-2025-02 bezahlt 28.04.2025"]]
+      },
+      "EUER.25.221": {
+        "value": "89.00",
+        "line": 44,
+        "basis": "§ 11 Abs. 2 S. 1 EStG (Abfluss); § 9b Abs. 1 EStG (Kleinunternehmer brutto)",
+        "terms": [["89.00", "BK-2025-17 Hotel 20.05.2025"]]
+      },
+      "EUER.25.223": {
+        "value": "120.00",
+        "line": 49,
+        "basis": "§ 11 Abs. 2 S. 1 EStG (Abfluss); § 9b Abs. 1 EStG (Kleinunternehmer brutto)",
+        "terms": [["120.00", "ER-2025-05 Betriebshaftpflicht, bezahlt 22.01.2025"]]
+      },
+      "EUER.25.224": {
+        "value": "150.00",
+        "line": 54,
+        "basis": "§ 11 Abs. 2 S. 1 EStG (Abfluss); § 9b Abs. 1 EStG (Kleinunternehmer brutto)",
+        "terms": [["150.00", "ER-2025-03 Werbeflyer, bezahlt 11.08.2025"]]
+      },
+      "EUER.25.225": {
+        "value": "95.00",
+        "line": 48,
+        "basis": "§ 11 Abs. 2 S. 1 EStG (Abfluss); § 9b Abs. 1 EStG (Kleinunternehmer brutto)",
+        "terms": [["95.00", "BK-2025-15 Reparatur 02.10.2025"]]
+      },
+      "EUER.25.228": {
+        "value": "119.00",
+        "line": 50,
+        "basis": "§ 11 Abs. 2 S. 1 EStG (Abfluss); § 9b Abs. 1 EStG (Kleinunternehmer brutto)",
+        "terms": [["119.00", "ER-2025-01 Softwarewartung, bezahlt 06.05.2025"]]
+      },
+      "EUER.25.229": {
+        "value": "124.80",
+        "line": 51,
+        "basis": "§ 11 Abs. 2 S. 1 EStG (Abfluss); § 9b Abs. 1 EStG (Kleinunternehmer brutto); privat bezahlte BA: R-17",
+        "terms": [
+          ["89.90", "BK-2025-05 Bürobedarf 05.03.2025"],
+          ["34.90", "ER-2025-09 Fachbuch, privat bezahlt 10.06.2025"]
+        ]
+      },
+      "EUER.25.280": {
+        "value": "79.80",
+        "line": 43,
+        "basis": "§ 11 Abs. 2 S. 1 EStG (Abfluss); § 9b Abs. 1 EStG (Kleinunternehmer brutto)",
+        "terms": [
+          ["39.90", "BK-2025-06 Mobilfunk 15.04.2025"],
+          ["39.90", "BK-2025-07 Mobilfunk 15.10.2025"]
+        ]
+      },
+      "EUER.25.281": {
+        "value": "250.00",
+        "line": 45,
+        "basis": "§ 11 Abs. 2 S. 1 EStG (Abfluss); § 9b Abs. 1 EStG (Kleinunternehmer brutto)",
+        "terms": [["250.00", "BK-2025-09 Seminar 10.09.2025"]]
+      },
+      "EUER.25.183": {
+        "value": "58.80",
+        "line": 60,
+        "basis": "§ 11 Abs. 2 S. 1 EStG (Abfluss); § 9b Abs. 1 EStG (Kleinunternehmer brutto)",
+        "terms": [
+          ["29.40", "BK-2025-12 Kontoführung 30.06.2025"],
+          ["29.40", "BK-2025-13 Kontoführung 28.11.2025"]
+        ]
+      },
+      "EUER.25.UEB2": {
+        "value": "2140.11",
+        "line": 61,
+        "basis": "Vordruck Zeile 61 (Übertrag der Betriebsausgaben bis einschließlich Kz 183)",
+        "terms": [
+          ["300.00", "Kz 110"],
+          ["573.71", "Kz 130"],
+          ["180.00", "Kz 194"],
+          ["89.00", "Kz 221"],
+          ["120.00", "Kz 223"],
+          ["150.00", "Kz 224"],
+          ["95.00", "Kz 225"],
+          ["119.00", "Kz 228"],
+          ["124.80", "Kz 229"],
+          ["79.80", "Kz 280"],
+          ["250.00", "Kz 281"],
+          ["58.80", "Kz 183"]
+        ]
+      },
+      "EUER.25.199": {
+        "value": "2140.11",
+        "line": 75,
+        "basis": "Vordruck Zeile 75 (Summe der Betriebsausgaben; nach dem Übertrag keine weiteren Beträge)",
+        "terms": [["2140.11", "Übertrag EUER.25.UEB2"]]
+      },
+      "EUER.G.BE": {
+        "value": "3253.20",
+        "line": 76,
+        "basis": "Vordruck Zeile 76 (Summe der Betriebseinnahmen)",
+        "terms": [["3253.20", "Kz 159"]]
+      },
+      "EUER.G.BA": {
+        "value": "2140.11",
+        "line": 77,
+        "basis": "Vordruck Zeile 77 (abzüglich Summe der Betriebsausgaben)",
+        "terms": [["2140.11", "Kz 199"]]
+      },
+      "EUER.G.UEB": {
+        "value": "1113.09",
+        "line": 90,
+        "basis": "Vordruck Zeile 90 (Übertrag)",
+        "terms": [
+          ["3253.20", "Summe der Betriebseinnahmen (EUER.G.BE)"],
+          ["-2140.11", "Summe der Betriebsausgaben (EUER.G.BA)"]
+        ]
+      },
+      "EUER.G.290": {
+        "value": "1113.09",
+        "line": 92,
+        "basis": "Vordruck Zeile 92 (korrigierter Gewinn)",
+        "terms": [["1113.09", "Übertrag (EUER.G.UEB)"]]
+      },
+      "EUER.G.293": {
+        "value": "1113.09",
+        "line": 95,
+        "basis": "Vordruck Zeile 95 (Gewinn vor § 4 Abs. 4a EStG)",
+        "terms": [["1113.09", "Kz 290"]]
+      },
+      "EUER.G.219": {
+        "value": "1113.09",
+        "line": 97,
+        "basis": "Vordruck Zeile 97 (steuerpflichtiger Gewinn; keine Hinzurechnung nach § 4 Abs. 4a EStG)",
+        "terms": [["1113.09", "Kz 293"]]
+      },
+      "EUER.29.122": {
+        "value": "1200.00",
+        "line": 106,
+        "basis": "§ 4 Abs. 1 S. 2, 8 EStG; § 4 Abs. 4a S. 6 EStG; Anleitung EÜR Zeilen 106/107",
+        "terms": [
+          ["500.00", "BK-2025-21 Privatentnahme 30.04.2025"],
+          ["700.00", "BK-2025-22 Privatentnahme 28.11.2025"]
+        ]
+      },
+      "EUER.29.123": {
+        "value": "1034.90",
+        "line": 107,
+        "basis": "§ 4 Abs. 1 S. 2, 8 EStG; § 4 Abs. 4a S. 6 EStG; Anleitung EÜR Zeilen 106/107",
+        "terms": [
+          ["1000.00", "BK-2025-20 Privateinlage 05.01.2025"],
+          ["34.90", "PR-2025-01 Fachbuch privat bezahlt"]
+        ]
+      },
+      "AVEUER.40.420": {
+        "value": "1190.00",
+        "line": 55,
+        "basis": "Anleitung AVEÜR: AK der zu Beginn vorhandenen Güter",
+        "terms": [["1190.00", "AV-03"]]
+      },
+      "AVEUER.40.421": {
+        "value": "297.50",
+        "line": 56,
+        "basis": "Buchwert 31.12.2024 laut Vorsystem",
+        "terms": [["297.50", "AV-03: 1.190,00 − 892,50"]]
+      },
+      "AVEUER.40.422": {
+        "value": "3900.00",
+        "line": 57,
+        "basis": "Zugänge 2025",
+        "terms": [
+          ["2100.00", "AV-01"],
+          ["1800.00", "AV-02"]
+        ]
+      },
+      "AVEUER.40.424": {
+        "value": "573.71",
+        "line": 59,
+        "basis": "§ 7 Abs. 1 S. 1, 4 EStG (linear, Monatsregel); Rundung je Gut nach Spezifikation 6.3: Jahresbetrag gerundet, Rest im Endjahr",
+        "terms": [["573.71", "wie Kz 130"]]
+      },
+      "AVEUER.40.426": {
+        "value": "3623.79",
+        "line": 61,
+        "basis": "Buchwert Ende = Beginn + Zugänge − AfA",
+        "terms": [
+          ["297.50", "Buchwert Beginn"],
+          ["3900.00", "Zugänge"],
+          ["-573.71", "AfA"]
+        ]
+      },
+      "AVEUER.40.490": {
+        "value": "573.71",
+        "line": 63,
+        "basis": "Summe AfA bewegliche WG (Übertrag Kz 130)",
+        "terms": [["573.71", "Kz 424"]]
+      }
+    },
+    "2026": {
+      "EUER.20.111": {
+        "value": "3792.10",
+        "line": 12,
+        "basis": "§ 11 Abs. 1 S. 1 EStG (Zufluss); § 19 Abs. 1 UStG; Anleitung EÜR Zeile 12",
+        "terms": [
+          [
+            "640.00",
+            "AR-2025-03 bezahlt 12.01.2026 (keine regelmäßig wiederkehrende Einnahme)"
+          ],
+          ["300.00", "AR-2025-04 Restzahlung 20.01.2026"],
+          ["1500.00", "AR-2026-01 bezahlt 15.03.2026"],
+          ["900.00", "AR-2026-02 980,00 − Gutschrift 80,00, bezahlt 25.09.2026"],
+          ["450.00", "AR-2026-03 auf das Privatkonto gezahlt 15.08.2026"],
+          ["2.10", "Guthabenzinsen 31.12.2026"]
+        ]
+      },
+      "EUER.20.119": {
+        "value": "2.10",
+        "line": 13,
+        "basis": "§ 19 Abs. 2 S. 1 Nr. 2 UStG; Anleitung EÜR Zeile 13",
+        "terms": [["2.10", "Guthabenzinsen 31.12.2026"]]
+      },
+      "EUER.20.159": {
+        "value": "3792.10",
+        "line": 23,
+        "basis": "Vordruck Zeile 23 (Summe der Betriebseinnahmen)",
+        "terms": [["3792.10", "Kz 111"]]
+      },
+      "EUER.25.110": {
+        "value": "250.00",
+        "line": 30,
+        "basis": "§ 11 Abs. 2 S. 1 EStG (Abfluss); § 9b Abs. 1 EStG (Kleinunternehmer brutto)",
+        "terms": [["250.00", "ER-2026-04 bezahlt 16.11.2026"]]
+      },
+      "EUER.25.130": {
+        "value": "615.64",
+        "line": 34,
+        "basis": "§ 7 Abs. 1 S. 1, 4 EStG (linear, Monatsregel); Rundung je Gut nach Spezifikation 6.3: Jahresbetrag gerundet, Rest im Endjahr; Erinnerungswert nur beim Altgut (R 7.4 Abs. 3 EStR, R-49)",
+        "terms": [
+          ["300.00", "AV-01 volles Jahr"],
+          ["257.14", "AV-02 volles Jahr"],
+          [
+            "58.50",
+            "AV-03 Endjahr: Rest 1.190,00 − 892,50 − 238,00 = 59,50 − Erinnerungswert 1,00"
+          ]
+        ]
+      },
+      "EUER.25.194": {
+        "value": "220.00",
+        "line": 47,
+        "basis": "§ 11 Abs. 2 S. 1 EStG (Abfluss); § 9b Abs. 1 EStG (Kleinunternehmer brutto)",
+        "terms": [["220.00", "ER-2026-02 bezahlt 27.04.2026"]]
+      },
+      "EUER.25.221": {
+        "value": "112.00",
+        "line": 45,
+        "basis": "§ 11 Abs. 2 S. 1 EStG (Abfluss); § 9b Abs. 1 EStG (Kleinunternehmer brutto)",
+        "terms": [["112.00", "BK-2026-17 Hotel 12.10.2026"]]
+      },
+      "EUER.25.223": {
+        "value": "120.00",
+        "line": 50,
+        "basis": "§ 11 Abs. 2 S. 1 EStG (Abfluss); § 9b Abs. 1 EStG (Kleinunternehmer brutto)",
+        "terms": [["120.00", "ER-2026-05 bezahlt 22.01.2026"]]
+      },
+      "EUER.25.224": {
+        "value": "75.00",
+        "line": 55,
+        "basis": "§ 11 Abs. 2 S. 1 EStG (Abfluss); § 9b Abs. 1 EStG (Kleinunternehmer brutto)",
+        "terms": [["75.00", "ER-2026-03 bezahlt 25.03.2026"]]
+      },
+      "EUER.25.228": {
+        "value": "119.00",
+        "line": 51,
+        "basis": "§ 11 Abs. 2 S. 1 EStG (Abfluss); § 9b Abs. 1 EStG (Kleinunternehmer brutto)",
+        "terms": [["119.00", "ER-2026-01 bezahlt 08.05.2026"]]
+      },
+      "EUER.25.229": {
+        "value": "78.50",
+        "line": 52,
+        "basis": "§ 11 Abs. 2 S. 1 EStG (Abfluss); § 9b Abs. 1 EStG (Kleinunternehmer brutto)",
+        "terms": [
+          ["60.00", "ER-2025-06 Rechnung 10.12.2025, bezahlt 14.01.2026"],
+          ["18.50", "BK-2026-16 Porto 01.07.2026"]
+        ]
+      },
+      "EUER.25.280": {
+        "value": "79.80",
+        "line": 44,
+        "basis": "§ 11 Abs. 2 S. 1 EStG (Abfluss); § 9b Abs. 1 EStG (Kleinunternehmer brutto)",
+        "terms": [
+          ["39.90", "BK-2026-07 Mobilfunk 16.02.2026"],
+          ["39.90", "BK-2026-08 Mobilfunk 17.08.2026"]
+        ]
+      },
+      "EUER.25.183": {
+        "value": "58.80",
+        "line": 61,
+        "basis": "§ 11 Abs. 2 S. 1 EStG (Abfluss); § 9b Abs. 1 EStG (Kleinunternehmer brutto)",
+        "terms": [
+          ["29.40", "BK-2026-12 Kontoführung 30.06.2026"],
+          ["29.40", "BK-2026-13 Kontoführung 30.11.2026"]
+        ]
+      },
+      "EUER.25.UEB2": {
+        "value": "1728.74",
+        "line": 62,
+        "basis": "Vordruck Zeile 62 (Übertrag der Betriebsausgaben bis einschließlich Kz 183)",
+        "terms": [
+          ["250.00", "Kz 110"],
+          ["615.64", "Kz 130"],
+          ["220.00", "Kz 194"],
+          ["112.00", "Kz 221"],
+          ["120.00", "Kz 223"],
+          ["75.00", "Kz 224"],
+          ["119.00", "Kz 228"],
+          ["78.50", "Kz 229"],
+          ["79.80", "Kz 280"],
+          ["58.80", "Kz 183"]
+        ]
+      },
+      "EUER.25.199": {
+        "value": "1728.74",
+        "line": 76,
+        "basis": "Vordruck Zeile 76 (Summe der Betriebsausgaben)",
+        "terms": [["1728.74", "Übertrag EUER.25.UEB2"]]
+      },
+      "EUER.G.BE": {
+        "value": "3792.10",
+        "line": 77,
+        "basis": "Vordruck Zeile 77 (Summe der Betriebseinnahmen)",
+        "terms": [["3792.10", "Kz 159"]]
+      },
+      "EUER.G.BA": {
+        "value": "1728.74",
+        "line": 78,
+        "basis": "Vordruck Zeile 78 (abzüglich Summe der Betriebsausgaben)",
+        "terms": [["1728.74", "Kz 199"]]
+      },
+      "EUER.G.UEB": {
+        "value": "2063.36",
+        "line": 91,
+        "basis": "Vordruck Zeile 91 (Übertrag)",
+        "terms": [
+          ["3792.10", "Summe der Betriebseinnahmen (EUER.G.BE)"],
+          ["-1728.74", "Summe der Betriebsausgaben (EUER.G.BA)"]
+        ]
+      },
+      "EUER.G.290": {
+        "value": "2063.36",
+        "line": 93,
+        "basis": "Vordruck Zeile 93 (korrigierter Gewinn)",
+        "terms": [["2063.36", "Übertrag (EUER.G.UEB)"]]
+      },
+      "EUER.G.293": {
+        "value": "2063.36",
+        "line": 96,
+        "basis": "Vordruck Zeile 96 (Gewinn vor § 4 Abs. 4a EStG)",
+        "terms": [["2063.36", "Kz 290"]]
+      },
+      "EUER.G.219": {
+        "value": "2063.36",
+        "line": 98,
+        "basis": "Vordruck Zeile 98 (steuerpflichtiger Gewinn; keine Hinzurechnung nach § 4 Abs. 4a EStG)",
+        "terms": [["2063.36", "Kz 293"]]
+      },
+      "EUER.29.122": {
+        "value": "1350.00",
+        "line": 107,
+        "basis": "§ 4 Abs. 1 S. 2, 8 EStG; § 4 Abs. 4a S. 6 EStG; Anleitung EÜR Zeilen 107/108; Betriebseinnahme auf dem Privatkonto: R-17",
+        "terms": [
+          ["900.00", "BK-2026-19 Privatentnahme 29.05.2026"],
+          ["450.00", "PR-2026-01 Kundenzahlung auf das Privatkonto"]
+        ]
+      },
+      "EUER.29.123": {
+        "value": "300.00",
+        "line": 108,
+        "basis": "§ 4 Abs. 1 S. 2, 8 EStG; § 4 Abs. 4a S. 6 EStG; Anleitung EÜR Zeilen 107/108",
+        "terms": [["300.00", "BK-2026-18 Privateinlage 02.02.2026"]]
+      },
+      "AVEUER.40.420": {
+        "value": "5090.00",
+        "line": 55,
+        "basis": "AK der zu Beginn vorhandenen Güter",
+        "terms": [
+          ["1190.00", "AV-03"],
+          ["2100.00", "AV-01"],
+          ["1800.00", "AV-02"]
+        ]
+      },
+      "AVEUER.40.421": {
+        "value": "3623.79",
+        "line": 56,
+        "basis": "Buchwert Ende 2025",
+        "terms": [["3623.79", "AVEÜR 2025 Kz 426"]]
+      },
+      "AVEUER.40.424": {
+        "value": "615.64",
+        "line": 59,
+        "basis": "§ 7 Abs. 1 S. 1, 4 EStG (linear, Monatsregel); Rundung je Gut nach Spezifikation 6.3: Jahresbetrag gerundet, Rest im Endjahr",
+        "terms": [["615.64", "wie Kz 130"]]
+      },
+      "AVEUER.40.426": {
+        "value": "3008.15",
+        "line": 61,
+        "basis": "Buchwert Ende = Beginn − AfA",
+        "terms": [
+          ["3623.79", "Buchwert Beginn"],
+          ["-615.64", "AfA"]
+        ]
+      },
+      "AVEUER.40.490": {
+        "value": "615.64",
+        "line": 63,
+        "basis": "Summe AfA bewegliche WG",
+        "terms": [["615.64", "Kz 424"]]
+      }
+    }
+  },
+  "checks": {
+    "2025": {
+      "blockers": [],
+      "warnings": ["C-63"]
+    },
+    "2026": {
+      "blockers": [],
+      "warnings": ["C-63"]
+    }
+  },
+  "notes": [
+    "Rechnung AR-2026-04 ist am 31.12.2026 offen: keine Betriebseinnahme 2026.",
+    "Die Eröffnungsbuchung (Bankbestand 2.500,00 an 9000) ist kein Zufluss.",
+    "Kleinunternehmerin: Kz 140, 185, 186 bleiben leer; die Umsatzsteuer der Eingangsrechnungen gehört zu den Kosten bzw. Anschaffungskosten (§ 9b Abs. 1 EStG).",
+    "Grenze § 19 UStG: Gesamtumsatz 2025 = 3.253,20 − 3,20 = 3.250,00 €, 2026 = 3.790,00 €, weit unter 25.000 €/100.000 €.",
+    "Gesamtumsatz 2024 laut Vorsystem: 4.180,00 € (Fakt des Falls). Odoo hat keine Buchungen vor 2025; der Wert steht deshalb am Statuszeitraum für das Jahr 2025 (Vorjahresprüfung 2025: 4.180,00 ≤ 25.000 €). 2026 nimmt den Gesamtumsatz 2025 aus den Buchungen (3.250,00 ≤ 25.000 €). Ohne den Eintrag meldet das Modul für 2025 C-32 „Vorjahresumsatz unbekannt“."
+  ]
+}

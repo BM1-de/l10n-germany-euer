@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Baumgärtner Marketing GmbH
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.l10n_de_euer</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="account.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <block name="fiscal_localization_setting_container" position="after">
+                <block
+                    title="EÜR (Cash Basis Accounting)"
+                    name="l10n_de_euer_setting_container"
+                    invisible="country_code != 'DE'"
+                >
+                    <setting
+                        string="Cash Basis Accounting (EÜR)"
+                        company_dependent="1"
+                        help="Profit determination according to § 4 (3) EStG for the main company and its branches"
+                    >
+                        <field name="l10n_de_euer_enabled" />
+                    </setting>
+                    <setting
+                        string="Business Entertainment"
+                        company_dependent="1"
+                        help="How the deductible 70 % and the non-deductible 30 % are booked"
+                    >
+                        <field name="l10n_de_euer_entertainment_mode" />
+                    </setting>
+                    <setting
+                        string="Offsetting Is Payment"
+                        company_dependent="1"
+                        help="A set-off of receivable and payable counts as receipt and payment"
+                    >
+                        <field name="l10n_de_euer_offsetting_is_payment" />
+                    </setting>
+                    <setting
+                        string="Realised Exchange Differences"
+                        company_dependent="1"
+                        help="Own position or allocated to the categories of the document"
+                    >
+                        <field name="l10n_de_euer_fx_mode" />
+                    </setting>
+                    <setting
+                        string="Depreciation in the Month of Disposal"
+                        company_dependent="1"
+                        help="The month of disposal counts for the depreciation"
+                    >
+                        <field name="l10n_de_euer_disposal_month" />
+                    </setting>
+                </block>
+            </block>
+        </field>
+    </record>
+</odoo>

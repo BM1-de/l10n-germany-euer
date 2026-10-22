@@ -1,0 +1,747 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Baumgärtner Marketing GmbH
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="l10n_de_euer_asset_view_list" model="ir.ui.view">
+        <field name="name">l10n_de_euer.asset.list</field>
+        <field name="model">l10n_de_euer.asset</field>
+        <field name="arch" type="xml">
+            <list decoration-muted="state == 'disposed'">
+                <field name="company_id" groups="base.group_multi_company" />
+                <field name="code" optional="show" />
+                <field name="name" />
+                <field name="delivery_date" />
+                <field name="asset_kind" />
+                <field name="aveuer_group" />
+                <field name="method" optional="show" />
+                <field name="useful_life_months" optional="hide" />
+                <field name="acquisition_cost" sum="Total" />
+                <field name="book_value" sum="Total" />
+                <field name="disposal_date" optional="hide" />
+                <field name="currency_id" column_invisible="True" />
+                <field
+                    name="state"
+                    widget="badge"
+                    decoration-info="state == 'draft'"
+                    decoration-success="state == 'active'"
+                />
+            </list>
+        </field>
+    </record>
+
+    <record id="l10n_de_euer_asset_view_gwg_list" model="ir.ui.view">
+        <field name="name">l10n_de_euer.asset.list.gwg</field>
+        <field name="model">l10n_de_euer.asset</field>
+        <field name="priority">20</field>
+        <field name="arch" type="xml">
+            <list create="0">
+                <field name="company_id" groups="base.group_multi_company" />
+                <field name="code" />
+                <field name="name" />
+                <field name="delivery_date" string="Date of Acquisition" />
+                <field name="limit_value" string="Net Cost" sum="Total" />
+                <field name="acquisition_cost" string="Cost Deducted" sum="Total" />
+                <field name="move_line_ids" widget="many2many_tags" optional="show" />
+                <field name="currency_id" column_invisible="True" />
+                <field name="state" optional="hide" />
+            </list>
+        </field>
+    </record>
+
+    <record id="l10n_de_euer_asset_view_form" model="ir.ui.view">
+        <field name="name">l10n_de_euer.asset.form</field>
+        <field name="model">l10n_de_euer.asset</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button
+                        name="action_activate"
+                        type="object"
+                        string="Enter in Register"
+                        class="btn-primary"
+                        invisible="state != 'draft'"
+                    />
+                    <button
+                        name="action_dispose"
+                        type="object"
+                        string="Record Disposal"
+                        invisible="state != 'active' or not disposal_date or not disposal_kind"
+                    />
+                    <button
+                        name="action_compute_years"
+                        type="object"
+                        string="Recalculate"
+                        invisible="state == 'draft'"
+                        groups="account.group_account_user,account.group_account_manager"
+                    />
+                    <button
+                        name="action_set_draft"
+                        type="object"
+                        string="Reset to Draft"
+                        invisible="state == 'draft'"
+                    />
+                    <field name="state" widget="statusbar" />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button
+                            name="action_open_years"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-table"
+                            string="Yearly Values"
+                            invisible="state == 'draft'"
+                        />
+                        <button
+                            name="action_open_move_lines"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-list"
+                            string="Journal Items"
+                        />
+                    </div>
+                    <div class="oe_title">
+                        <label for="name" />
+                        <h1>
+                            <field name="name" placeholder="e.g. Camera" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group name="asset" string="Asset">
+                            <field name="code" />
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                                readonly="state != 'draft'"
+                            />
+                            <field name="asset_kind" />
+                            <field name="aveuer_group" />
+                            <field name="origin" />
+                            <field name="delivery_date" />
+                            <field name="independent_use" />
+                            <field name="business_share" widget="percentage" />
+                            <field
+                                name="is_electric_or_plugin_hybrid"
+                                invisible="aveuer_group != 'vehicle'"
+                            />
+                            <field
+                                name="is_battery_electric"
+                                invisible="aveuer_group != 'vehicle'"
+                            />
+                            <field
+                                name="is_trivial_program"
+                                invisible="aveuer_group != 'intangible'"
+                            />
+                            <field
+                                name="home_office_deductible"
+                                invisible="aveuer_group != 'office_building'"
+                            />
+                        </group>
+                        <group name="cost" string="Cost">
+                            <field name="currency_id" invisible="1" />
+                            <field
+                                name="cost_net"
+                                invisible="origin == 'contribution'"
+                            />
+                            <field
+                                name="input_tax"
+                                invisible="origin == 'contribution'"
+                            />
+                            <field
+                                name="vat_treatment"
+                                invisible="origin == 'contribution'"
+                            />
+                            <field
+                                name="cost_gross"
+                                invisible="origin == 'contribution'"
+                            />
+                            <field name="acquisition_cost" />
+                            <field name="limit_value" />
+                            <field name="book_value" invisible="state == 'draft'" />
+                            <field
+                                name="in_gwg_register"
+                                invisible="asset_kind != 'gwg'"
+                            />
+                            <field name="pool_id" invisible="asset_kind != 'pool'" />
+                        </group>
+                    </group>
+                    <group invisible="origin != 'contribution'">
+                        <group name="contribution" string="Contribution">
+                            <field name="contribution_fair_value" />
+                            <field name="private_acquisition_date" />
+                            <field name="private_acquisition_cost" />
+                            <field name="private_useful_life_months" />
+                            <field name="contribution_prior_income_use" />
+                            <field name="contribution_value" />
+                        </group>
+                    </group>
+                    <group>
+                        <group
+                            name="depreciation"
+                            string="Depreciation"
+                            invisible="asset_kind != 'depreciable'"
+                        >
+                            <field name="method" />
+                            <field
+                                name="useful_life_months"
+                                invisible="method in ('ev_7_2a', 'digital_1y')"
+                            />
+                            <field
+                                name="degressive_rate_max"
+                                invisible="method != 'degressive'"
+                            />
+                            <field
+                                name="degressive_rate"
+                                widget="percentage"
+                                invisible="method != 'degressive'"
+                                readonly="degressive_rate_max"
+                            />
+                            <field
+                                name="switch_to_linear_year"
+                                options="{'enable_formatting': false}"
+                                invisible="method != 'degressive'"
+                            />
+                        </group>
+                        <group
+                            name="takeover"
+                            string="Takeover"
+                            invisible="origin not in ('opening', 'legacy_import')"
+                        >
+                            <field name="opening_date" />
+                            <field name="opening_book_value" />
+                            <field name="opening_accumulated" />
+                            <field
+                                name="memo_value"
+                                invisible="origin != 'legacy_import'"
+                            />
+                        </group>
+                    </group>
+                    <group name="disposal_group" string="Disposal">
+                        <group>
+                            <field name="disposal_date" />
+                            <field name="disposal_kind" />
+                            <field name="disposal_value" />
+                            <field
+                                name="disposal_receipt_date"
+                                invisible="asset_kind not in ('non_depreciable', 'current_4_3_4')"
+                            />
+                        </group>
+                        <group>
+                            <field name="disposal_invoice_id" />
+                            <field name="disposal_vat_allowed" invisible="1" />
+                            <field
+                                name="disposal_vat_amount"
+                                invisible="disposal_kind != 'withdrawal'"
+                                readonly="not disposal_vat_allowed"
+                            />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Events" name="events">
+                            <field name="event_ids">
+                                <list editable="bottom">
+                                    <field name="date" />
+                                    <field name="type" />
+                                    <field name="amount" />
+                                    <field name="useful_life_months" optional="show" />
+                                    <field
+                                        name="business_share"
+                                        widget="percentage"
+                                        optional="show"
+                                    />
+                                    <field name="reason" />
+                                    <field
+                                        name="sec7g_profit_confirmed"
+                                        optional="show"
+                                    />
+                                    <field
+                                        name="attachment_ids"
+                                        widget="many2many_binary"
+                                        optional="hide"
+                                    />
+                                    <field name="currency_id" column_invisible="True" />
+                                </list>
+                            </field>
+                        </page>
+                        <page
+                            string="Yearly Values"
+                            name="years"
+                            invisible="state == 'draft'"
+                        >
+                            <field name="year_ids" readonly="1">
+                                <list>
+                                    <field
+                                        name="year"
+                                        options="{'enable_formatting': false}"
+                                    />
+                                    <field name="is_opening" optional="hide" />
+                                    <field name="cost_start" optional="hide" />
+                                    <field name="book_value_start" />
+                                    <field name="additions" />
+                                    <field name="special_depreciation" />
+                                    <field name="depreciation" />
+                                    <field name="disposal_book_value" />
+                                    <field name="book_value_end" />
+                                    <field name="months_in_year" optional="hide" />
+                                    <field name="private_use_amount" optional="show" />
+                                    <field name="locked" />
+                                    <field name="currency_id" column_invisible="True" />
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Journal Items" name="move_lines">
+                            <field
+                                name="move_line_ids"
+                                domain="[('parent_state', '=', 'posted')]"
+                            >
+                                <list>
+                                    <field name="date" />
+                                    <field name="move_id" />
+                                    <field name="account_id" />
+                                    <field name="name" />
+                                    <field name="balance" />
+                                </list>
+                            </field>
+                        </page>
+                        <page
+                            string="Running Costs"
+                            name="cost_lines"
+                            invisible="business_share == 1"
+                        >
+                            <field
+                                name="cost_line_ids"
+                                domain="[('parent_state', '=', 'posted')]"
+                            >
+                                <list>
+                                    <field name="date" />
+                                    <field name="move_id" />
+                                    <field name="account_id" />
+                                    <field name="name" />
+                                    <field name="balance" />
+                                </list>
+                            </field>
+                        </page>
+                        <page
+                            string="§ 15a UStG"
+                            name="sec15a"
+                            invisible="not sec15a_help"
+                        >
+                            <field name="sec15a_help" />
+                        </page>
+                        <page string="Notes" name="notes">
+                            <field name="note" />
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter />
+            </form>
+        </field>
+    </record>
+
+    <record id="l10n_de_euer_asset_view_search" model="ir.ui.view">
+        <field name="name">l10n_de_euer.asset.search</field>
+        <field name="model">l10n_de_euer.asset</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="code" />
+                <field name="aveuer_group" />
+                <filter
+                    name="in_register"
+                    string="In Register"
+                    domain="[('state', '=', 'active')]"
+                />
+                <filter
+                    name="draft"
+                    string="Draft"
+                    domain="[('state', '=', 'draft')]"
+                />
+                <filter
+                    name="disposed"
+                    string="Disposed"
+                    domain="[('state', '=', 'disposed')]"
+                />
+                <separator />
+                <filter
+                    name="depreciable"
+                    string="Depreciable"
+                    domain="[('asset_kind', '=', 'depreciable')]"
+                />
+                <filter
+                    name="gwg"
+                    string="Low-Value Assets"
+                    domain="[('asset_kind', 'in', ('gwg', 'instant_250'))]"
+                />
+                <filter
+                    name="pool"
+                    string="Asset Pools"
+                    domain="[('asset_kind', '=', 'pool')]"
+                />
+                <separator />
+                <filter
+                    name="private_use"
+                    string="Private Use"
+                    domain="[('business_share', '&lt;', 1)]"
+                />
+                <group>
+                    <filter
+                        name="group_by_group"
+                        string="AVEÜR Group"
+                        context="{'group_by': 'aveuer_group'}"
+                    />
+                    <filter
+                        name="group_by_kind"
+                        string="Kind"
+                        context="{'group_by': 'asset_kind'}"
+                    />
+                    <filter
+                        name="group_by_year"
+                        string="Year of Delivery"
+                        context="{'group_by': 'delivery_date:year'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="l10n_de_euer_asset_view_pivot" model="ir.ui.view">
+        <field name="name">l10n_de_euer.asset.pivot</field>
+        <field name="model">l10n_de_euer.asset</field>
+        <field name="arch" type="xml">
+            <pivot>
+                <field name="aveuer_group" type="row" />
+                <field name="delivery_date" interval="year" type="col" />
+                <field name="acquisition_cost" type="measure" />
+            </pivot>
+        </field>
+    </record>
+
+    <record id="action_l10n_de_euer_asset" model="ir.actions.act_window">
+        <field name="name">Assets</field>
+        <field name="res_model">l10n_de_euer.asset</field>
+        <field name="view_mode">list,form,pivot</field>
+        <field name="context">{'search_default_in_register': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Enter an asset</p>
+            <p>
+                The asset register is the only source of depreciation, low-value
+                assets, asset pools and Anlage AVEÜR. Create assets from the
+                journal items of a purchase or take over a register by CSV.
+            </p>
+        </field>
+    </record>
+
+    <record id="action_l10n_de_euer_asset_gwg" model="ir.actions.act_window">
+        <field name="name">Register of Low-Value Assets</field>
+        <field name="res_model">l10n_de_euer.asset</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="l10n_de_euer_asset_view_gwg_list" />
+        <field name="domain">[('in_gwg_register', '=', True)]</field>
+        <field name="context">{'search_default_group_by_year': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No low-value assets yet</p>
+            <p>
+                Low-value assets with a net cost above 250 € with date and cost
+                of acquisition (§ 6 (2) sentence 4 EStG).
+            </p>
+        </field>
+    </record>
+
+    <!-- yearly values -->
+    <record id="l10n_de_euer_asset_year_view_list" model="ir.ui.view">
+        <field name="name">l10n_de_euer.asset.year.list</field>
+        <field name="model">l10n_de_euer.asset.year</field>
+        <field name="arch" type="xml">
+            <list create="0" delete="0">
+                <field name="company_id" groups="base.group_multi_company" />
+                <field name="year" options="{'enable_formatting': false}" />
+                <field name="asset_id" />
+                <field name="aveuer_group" optional="show" />
+                <field name="asset_kind" optional="hide" />
+                <field name="cost_start" sum="Total" optional="show" />
+                <field name="book_value_start" sum="Total" />
+                <field name="additions" sum="Total" />
+                <field name="special_depreciation" sum="Total" optional="show" />
+                <field name="depreciation" sum="Total" />
+                <field name="disposal_book_value" sum="Total" />
+                <field name="book_value_end" sum="Total" />
+                <field name="private_use_amount" sum="Total" optional="show" />
+                <field name="private_use_decision" optional="show" />
+                <field name="locked" optional="show" />
+                <field name="currency_id" column_invisible="True" />
+                <button
+                    name="action_open_move_lines"
+                    type="object"
+                    icon="fa-list"
+                    title="Journal Items"
+                />
+            </list>
+        </field>
+    </record>
+
+    <record id="l10n_de_euer_asset_year_view_form" model="ir.ui.view">
+        <field name="name">l10n_de_euer.asset.year.form</field>
+        <field name="model">l10n_de_euer.asset.year</field>
+        <field name="arch" type="xml">
+            <form create="0" delete="0">
+                <header>
+                    <button
+                        name="action_confirm_private_use"
+                        type="object"
+                        string="Confirm Use Withdrawal"
+                        class="btn-primary"
+                        invisible="locked or not private_use_amount"
+                    />
+                    <button
+                        name="action_reject_private_use"
+                        type="object"
+                        string="Reject Use Withdrawal"
+                        invisible="locked or not private_use_amount or private_use_decision"
+                    />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button
+                            name="action_open_move_lines"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-list"
+                            string="Journal Items"
+                        />
+                    </div>
+                    <group>
+                        <group string="Values">
+                            <field name="asset_id" readonly="1" />
+                            <field
+                                name="year"
+                                readonly="1"
+                                options="{'enable_formatting': false}"
+                            />
+                            <field name="aveuer_group" />
+                            <field name="cost_start" readonly="1" />
+                            <field name="book_value_start" readonly="1" />
+                            <field name="additions" readonly="1" />
+                            <field name="special_depreciation" readonly="1" />
+                            <field name="depreciation" readonly="1" />
+                            <field name="disposal_book_value" readonly="1" />
+                            <field name="book_value_end" readonly="1" />
+                            <field name="months_in_year" readonly="1" />
+                            <field name="locked" />
+                            <field name="currency_id" invisible="1" />
+                        </group>
+                        <group string="Private Use" invisible="business_share == 1">
+                            <field name="business_share" widget="percentage" />
+                            <field name="private_cost" />
+                            <field name="private_use_amount" />
+                            <field name="private_use_vat" />
+                            <field name="private_use_vat_base" />
+                            <field name="private_use_decision" />
+                            <field name="private_use_confirmed_amount" />
+                            <field name="private_use_confirmed_vat" />
+                            <field name="private_use_confirmed_base" />
+                            <field
+                                name="private_use_reason"
+                                readonly="locked or private_use_decision"
+                            />
+                            <field name="private_use_decided_by_id" />
+                            <field name="private_use_decided_on" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="l10n_de_euer_asset_year_view_search" model="ir.ui.view">
+        <field name="name">l10n_de_euer.asset.year.search</field>
+        <field name="model">l10n_de_euer.asset.year</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="asset_id" />
+                <field name="year" />
+                <filter
+                    name="private_use_open"
+                    string="Use Withdrawal to Decide"
+                    domain="[('private_use_amount', '!=', 0), ('private_use_decision', '=', False)]"
+                />
+                <filter
+                    name="locked"
+                    string="Locked"
+                    domain="[('locked', '=', True)]"
+                />
+                <separator />
+                <filter
+                    name="aveuer"
+                    string="Anlage AVEÜR"
+                    domain="[('asset_kind', 'in', ('depreciable', 'non_depreciable', 'current_4_3_4'))]"
+                />
+                <group>
+                    <filter
+                        name="group_by_year"
+                        string="Year"
+                        context="{'group_by': 'year'}"
+                    />
+                    <filter
+                        name="group_by_group"
+                        string="AVEÜR Group"
+                        context="{'group_by': 'aveuer_group'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="l10n_de_euer_asset_year_view_pivot" model="ir.ui.view">
+        <field name="name">l10n_de_euer.asset.year.pivot</field>
+        <field name="model">l10n_de_euer.asset.year</field>
+        <field name="arch" type="xml">
+            <pivot>
+                <field name="aveuer_group" type="row" />
+                <field name="year" type="col" />
+                <field name="depreciation" type="measure" />
+            </pivot>
+        </field>
+    </record>
+
+    <record id="action_l10n_de_euer_asset_year" model="ir.actions.act_window">
+        <field name="name">Yearly Values</field>
+        <field name="res_model">l10n_de_euer.asset.year</field>
+        <field name="view_mode">list,pivot,form</field>
+        <field
+            name="context"
+        >{'search_default_group_by_year': 1, 'search_default_aveuer': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No yearly values yet</p>
+            <p>
+                Yearly values of each asset up to its full depreciation. Low-value
+                assets are not part of Anlage AVEÜR (filter Anlage AVEÜR); the form
+                lists fully depreciated assets with their cost until the disposal.
+                The values for the form come from the asset register as a whole.
+            </p>
+        </field>
+    </record>
+
+    <!-- filed AVEÜR of the takeover -->
+    <record id="l10n_de_euer_asset_opening_total_view_list" model="ir.ui.view">
+        <field name="name">l10n_de_euer.asset.opening.total.list</field>
+        <field name="model">l10n_de_euer.asset.opening.total</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="company_id" groups="base.group_multi_company" />
+                <field name="year" options="{'enable_formatting': false}" />
+                <field name="aveuer_group" />
+                <field name="book_value_end" sum="Total" />
+                <field name="currency_id" column_invisible="True" />
+            </list>
+        </field>
+    </record>
+
+    <record id="action_l10n_de_euer_asset_opening_total" model="ir.actions.act_window">
+        <field name="name">Filed AVEÜR of the Takeover</field>
+        <field name="res_model">l10n_de_euer.asset.opening.total</field>
+        <field name="view_mode">list</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No filed values yet</p>
+            <p>
+                Book values at the end of the takeover year per group, as filed
+                in Anlage AVEÜR with the previous system. The checks of the
+                following year compare the register with them (C-61).
+            </p>
+        </field>
+    </record>
+
+    <!-- asset pools -->
+    <record id="l10n_de_euer_asset_pool_view_list" model="ir.ui.view">
+        <field name="name">l10n_de_euer.asset.pool.list</field>
+        <field name="model">l10n_de_euer.asset.pool</field>
+        <field name="arch" type="xml">
+            <list create="0" delete="0">
+                <field name="company_id" groups="base.group_multi_company" />
+                <field name="year" options="{'enable_formatting': false}" />
+                <field name="amount" sum="Total" />
+                <field name="release_amount" />
+                <field name="last_release_amount" />
+                <field name="end_year" options="{'enable_formatting': false}" />
+                <field name="locked" optional="show" />
+                <field name="currency_id" column_invisible="True" />
+            </list>
+        </field>
+    </record>
+
+    <record id="l10n_de_euer_asset_pool_view_form" model="ir.ui.view">
+        <field name="name">l10n_de_euer.asset.pool.form</field>
+        <field name="model">l10n_de_euer.asset.pool</field>
+        <field name="arch" type="xml">
+            <form create="0" delete="0">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                            />
+                            <field
+                                name="year"
+                                readonly="1"
+                                options="{'enable_formatting': false}"
+                            />
+                            <field name="amount" />
+                            <field name="locked" />
+                            <field name="currency_id" invisible="1" />
+                        </group>
+                        <group>
+                            <field name="schedule_html" nolabel="1" colspan="2" />
+                        </group>
+                    </group>
+                    <field name="asset_ids">
+                        <list>
+                            <field name="name" />
+                            <field name="delivery_date" />
+                            <field name="limit_value" />
+                            <field name="acquisition_cost" />
+                            <field name="state" />
+                            <field name="currency_id" column_invisible="True" />
+                        </list>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_de_euer_asset_pool" model="ir.actions.act_window">
+        <field name="name">Asset Pools</field>
+        <field name="res_model">l10n_de_euer.asset.pool</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No asset pools yet</p>
+            <p>
+                Assets with a net cost above 250 € up to 1,000 € of the kind asset
+                pool are collected per year of delivery and released by one fifth
+                per year (§ 6 (2a) EStG).
+            </p>
+        </field>
+    </record>
+
+    <!-- settings: month of disposal -->
+    <record id="res_config_settings_view_form_asset" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.l10n_de_euer.asset</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <block name="l10n_de_euer_setting_container" position="inside">
+                <setting
+                    string="Month of Disposal Counts"
+                    company_dependent="1"
+                    help="Depreciation in the year of a disposal includes the month of the disposal"
+                >
+                    <field name="l10n_de_euer_disposal_month" />
+                </setting>
+            </block>
+        </field>
+    </record>
+</odoo>

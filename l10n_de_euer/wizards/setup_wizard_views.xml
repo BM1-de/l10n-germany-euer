@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Baumgärtner Marketing GmbH
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <!-- Setup of a business (spec 7.4) -->
+    <record id="l10n_de_euer_setup_wizard_view_form" model="ir.ui.view">
+        <field name="name">l10n_de_euer.setup.wizard.form</field>
+        <field name="model">l10n_de_euer.setup.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <p>
+                    Prepares a business for the cash-basis profit statement. Nothing
+                    is booked and no lock date is set; existing VAT status periods
+                    and account assignments are kept.
+                </p>
+                <group>
+                    <field name="company_id" options="{'no_create': True}" />
+                    <field name="chart_template" invisible="1" />
+                    <field name="chart_template_name" />
+                    <field name="currency_id" invisible="1" />
+                </group>
+                <notebook>
+                    <page string="Business" name="business">
+                        <group>
+                            <group string="Cash Basis Accounting">
+                                <field name="enable" />
+                                <field name="entertainment_mode" />
+                            </group>
+                            <group string="Header of the Anlage EÜR">
+                                <field name="business_type" />
+                                <field name="legal_form" />
+                                <field name="income_type" />
+                                <field name="owner" />
+                            </group>
+                        </group>
+                    </page>
+                    <page string="VAT Status" name="vat">
+                        <p invisible="not vat_period_count">
+                            The business has <field
+                            name="vat_period_count"
+                            class="oe_inline"
+                        /> VAT status periods; change them under Configuration ›
+                            EÜR › VAT Status Periods.
+                        </p>
+                        <group>
+                            <group>
+                                <field name="create_vat_period" />
+                                <field
+                                    name="regime"
+                                    required="create_vat_period or switch_accounts"
+                                />
+                                <field
+                                    name="date_from"
+                                    invisible="not create_vat_period"
+                                    required="create_vat_period"
+                                />
+                                <field
+                                    name="vat_return_period"
+                                    invisible="not create_vat_period"
+                                />
+                                <field
+                                    name="permanent_extension"
+                                    invisible="not create_vat_period"
+                                />
+                                <field
+                                    name="prev_year_turnover"
+                                    invisible="not create_vat_period"
+                                />
+                                <field
+                                    name="prev_year_turnover_year"
+                                    invisible="not create_vat_period or not prev_year_turnover"
+                                    options="{'enable_formatting': false}"
+                                />
+                            </group>
+                            <group string="Small Business Limit">
+                                <field name="activity_start" />
+                            </group>
+                        </group>
+                    </page>
+                    <page string="Accounts" name="accounts">
+                        <p invisible="regime != 'ku'">
+                            Small businesses book without VAT: the default accounts
+                            8400/3400 (SKR04 4400/5400) carry VAT. Switch them to the
+                            accounts without VAT, otherwise every such booking is
+                            reported (C-30).
+                        </p>
+                        <group>
+                            <group string="Small Business" invisible="regime != 'ku'">
+                                <field name="switch_accounts" />
+                                <field name="income_account_id" />
+                                <field
+                                    name="ku_income_account_id"
+                                    invisible="not switch_accounts"
+                                />
+                                <field name="expense_account_id" />
+                                <field
+                                    name="ku_expense_account_id"
+                                    invisible="not switch_accounts"
+                                />
+                                <field name="sale_tax_id" />
+                                <field name="purchase_tax_id" />
+                            </group>
+                            <group string="Private Share of Purchases">
+                                <field name="private_share_account_id" />
+                                <field
+                                    name="purchase_journal_ids"
+                                    widget="many2many_tags"
+                                />
+                                <field
+                                    name="private_account_ids"
+                                    widget="many2many_tags"
+                                />
+                            </group>
+                        </group>
+                        <button
+                            name="action_open_account_review"
+                            type="object"
+                            string="Check Account Assignment"
+                            class="btn-secondary"
+                        />
+                    </page>
+                    <page string="Journals" name="journals">
+                        <p>
+                            Mark the money journals of a private account without a
+                            separate business account (R-18): business income
+                            received there is a withdrawal, business expenses paid
+                            from it a contribution. Payment providers and credit
+                            cards are money journals of their own.
+                        </p>
+                        <group>
+                            <field name="money_journal_ids" widget="many2many_tags" />
+                            <field
+                                name="private_journal_ids"
+                                widget="many2many_tags"
+                                domain="[('id', 'in', money_journal_ids)]"
+                            />
+                        </group>
+                    </page>
+                    <page string="Lock Date" name="lock">
+                        <group>
+                            <field name="fiscalyear_lock_date" />
+                            <field name="hard_lock_date" />
+                        </group>
+                        <field name="lock_advice" nolabel="1" />
+                    </page>
+                </notebook>
+                <footer>
+                    <button
+                        name="action_apply"
+                        type="object"
+                        string="Apply"
+                        class="btn-primary"
+                    />
+                    <button
+                        name="action_open_takeover"
+                        type="object"
+                        string="Takeover from a Previous System"
+                        class="btn-secondary"
+                    />
+                    <button string="Cancel" special="cancel" class="btn-secondary" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_de_euer_setup_wizard" model="ir.actions.act_window">
+        <field name="name">EÜR Setup</field>
+        <field name="res_model">l10n_de_euer.setup.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- Takeover of open items from a previous system (spec 7.4, B-08) -->
+    <record id="l10n_de_euer_opening_wizard_view_form" model="ir.ui.view">
+        <field name="name">l10n_de_euer.opening.wizard.form</field>
+        <field name="model">l10n_de_euer.opening.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <p>
+                    Opening entries are no money. Their open receivables and
+                    payables are invoices of the previous system: enter the category,
+                    the VAT treatment and the VAT rate of each original invoice.
+                    Without them the payment of the item is blocked (C-35). Open
+                    items on money transit, VAT or suspense accounts need no
+                    takeover.
+                </p>
+                <group>
+                    <group>
+                        <field name="company_id" options="{'no_create': True}" />
+                        <field name="move_count" />
+                        <field name="missing_count" />
+                        <field name="currency_id" invisible="1" />
+                        <field name="root_company_id" invisible="1" />
+                    </group>
+                    <group string="Small Business Thresholds">
+                        <field name="vat_period_id" options="{'no_create': True}" />
+                        <field
+                            name="prev_year_turnover"
+                            invisible="not vat_period_id"
+                        />
+                        <field
+                            name="prev_year_turnover_zero"
+                            invisible="not vat_period_id or prev_year_turnover"
+                        />
+                        <field
+                            name="prev_year_turnover_year"
+                            invisible="not vat_period_id"
+                            options="{'enable_formatting': false}"
+                        />
+                    </group>
+                </group>
+                <button
+                    name="action_load"
+                    type="object"
+                    string="Read Opening Entries"
+                    class="btn-secondary"
+                />
+                <field name="line_ids">
+                    <list create="0" editable="bottom">
+                        <field name="move_id" />
+                        <field name="date" />
+                        <field name="partner_id" />
+                        <field name="account_id" />
+                        <field name="currency_id" column_invisible="True" />
+                        <field name="balance" />
+                        <field name="residual" optional="show" />
+                        <field name="category_id" options="{'no_create': True}" />
+                        <field name="vat_regime" />
+                        <field name="tax_rate" readonly="vat_regime != 'regular'" />
+                        <field name="origin_reference" optional="show" />
+                        <field name="reason" optional="hide" />
+                        <field name="item_id" column_invisible="True" />
+                        <field name="move_line_id" column_invisible="True" />
+                    </list>
+                </field>
+                <footer>
+                    <button
+                        name="action_apply"
+                        type="object"
+                        string="Take Over"
+                        class="btn-primary"
+                    />
+                    <button
+                        name="action_open_asset_import"
+                        type="object"
+                        string="Take Over Asset Register"
+                        class="btn-secondary"
+                    />
+                    <button string="Cancel" special="cancel" class="btn-secondary" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_de_euer_opening_wizard" model="ir.actions.act_window">
+        <field name="name">Takeover from a Previous System</field>
+        <field name="res_model">l10n_de_euer.opening.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem
+        id="menu_l10n_de_euer_setup_wizard"
+        action="action_l10n_de_euer_setup_wizard"
+        parent="menu_l10n_de_euer_config"
+        groups="account.group_account_manager"
+        sequence="1"
+    />
+    <menuitem
+        id="menu_l10n_de_euer_opening_wizard"
+        action="action_l10n_de_euer_opening_wizard"
+        parent="menu_l10n_de_euer_config"
+        groups="account.group_account_manager"
+        sequence="2"
+    />
+</odoo>

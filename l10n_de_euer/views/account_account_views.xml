@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Baumgärtner Marketing GmbH
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_account_form" model="ir.ui.view">
+        <field name="name">account.account.form.l10n_de_euer</field>
+        <field name="model">account.account</field>
+        <field name="inherit_id" ref="account.view_account_form" />
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button
+                    class="oe_stat_button"
+                    name="action_l10n_de_euer_assignments"
+                    type="object"
+                    icon="fa-link"
+                    string="EÜR"
+                    groups="account.group_account_manager"
+                />
+            </div>
+            <field name="tag_ids" position="after">
+                <field
+                    name="l10n_de_euer_category_id"
+                    readonly="1"
+                    groups="account.group_account_readonly,account.group_account_manager"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>

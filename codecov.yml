@@ -1,0 +1,17 @@
+# Coverage targets of the repository (spec O-06, 9.9): lines and branches of
+# the whole project at least 95 %, changed code 100 %.
+coverage:
+  precision: 2
+  status:
+    project:
+      default:
+        target: 95%
+        threshold: 0%
+    patch:
+      default:
+        target: 100%
+comment:
+  layout: "diff, flags, files"
+ignore:
+  - "_dev"
+  - "**/tests"

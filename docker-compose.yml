@@ -1,0 +1,32 @@
+# Local development and test environment (localhost only). Local additions
+# (e.g. a folder with private data) go into an untracked
+# docker-compose.override.yml, which docker compose adds automatically.
+services:
+  db:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: odoo
+      POSTGRES_PASSWORD: odoo
+      POSTGRES_DB: postgres
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+  odoo:
+    image: odoo:19.0
+    depends_on:
+      - db
+    ports:
+      - "127.0.0.1:8069:8069"
+    environment:
+      HOST: db
+      USER: odoo
+      PASSWORD: odoo
+    volumes:
+      - ./:/mnt/extra-addons
+      - ./.deps:/mnt/oca:ro
+      - ./_dev/odoo.conf:/etc/odoo/odoo.conf:ro
+      - odoo-data:/var/lib/odoo
+
+volumes:
+  db-data:
+  odoo-data:

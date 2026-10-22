@@ -1,0 +1,985 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Baumgärtner Marketing GmbH
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<!-- Reports of a statement (spec 7.5, 7.12, O-11): real tables with caption
+     above the table and header cells, numbers right aligned, the minus as part
+     of the text, no information by colour only. The official texts are German
+     (lang="de"). The HTML view is the accessible main output without the
+     layout tables of the company header. The PDF of the fill-in aid and of the
+     procedure documentation uses the external layout of the company; the DIN
+     5008 layout of l10n_din5008 hides the h1 and the h2 directly in .page and
+     shows its own title, so the title is passed as din5008_document_title and
+     the sections are wrapped in a div. The wide tables (evidence, check
+     protocol) use the internal layout in landscape, without the width of
+     the DIN 5008 letter. -->
+<odoo>
+    <record id="paperformat_l10n_de_euer_landscape" model="report.paperformat">
+        <field name="name">EÜR A4 Landscape</field>
+        <field name="format">A4</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">25</field>
+        <field name="margin_bottom">20</field>
+        <field name="margin_left">10</field>
+        <field name="margin_right">10</field>
+        <field name="header_spacing">20</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="action_report_fill_aid_html" model="ir.actions.report">
+        <field name="name">Fill-In Aid Mein ELSTER</field>
+        <field name="model">l10n_de_euer.statement</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">l10n_de_euer.report_fill_aid</field>
+        <field name="report_file">l10n_de_euer.report_fill_aid</field>
+        <field name="binding_model_id" ref="model_l10n_de_euer_statement" />
+        <field name="binding_type">report</field>
+    </record>
+    <record id="action_report_fill_aid" model="ir.actions.report">
+        <field name="name">Fill-In Aid Mein ELSTER (PDF)</field>
+        <field name="model">l10n_de_euer.statement</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">l10n_de_euer.report_fill_aid</field>
+        <field name="report_file">l10n_de_euer.report_fill_aid</field>
+        <field
+            name="print_report_name"
+        >'EUER_fill_in_aid_%s_v%s' % (object.year, object.version)</field>
+        <field name="binding_model_id" ref="model_l10n_de_euer_statement" />
+        <field name="binding_type">report</field>
+    </record>
+    <record id="action_report_evidence" model="ir.actions.report">
+        <field name="name">Evidence per Kennzahl (PDF)</field>
+        <field name="model">l10n_de_euer.statement</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">l10n_de_euer.report_evidence</field>
+        <field name="report_file">l10n_de_euer.report_evidence</field>
+        <field
+            name="print_report_name"
+        >'EUER_evidence_%s_v%s' % (object.year, object.version)</field>
+        <field name="paperformat_id" ref="paperformat_l10n_de_euer_landscape" />
+        <field name="binding_model_id" ref="model_l10n_de_euer_statement" />
+        <field name="binding_type">report</field>
+    </record>
+    <record id="action_report_check_protocol" model="ir.actions.report">
+        <field name="name">Check Protocol (PDF)</field>
+        <field name="model">l10n_de_euer.statement</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">l10n_de_euer.report_check_protocol</field>
+        <field name="report_file">l10n_de_euer.report_check_protocol</field>
+        <field
+            name="print_report_name"
+        >'EUER_check_protocol_%s_v%s' % (object.year, object.version)</field>
+        <field name="paperformat_id" ref="paperformat_l10n_de_euer_landscape" />
+        <field name="binding_model_id" ref="model_l10n_de_euer_statement" />
+        <field name="binding_type">report</field>
+    </record>
+    <record id="action_report_procedure_html" model="ir.actions.report">
+        <field name="name">Procedure Documentation (Template)</field>
+        <field name="model">l10n_de_euer.statement</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">l10n_de_euer.report_procedure</field>
+        <field name="report_file">l10n_de_euer.report_procedure</field>
+        <field name="binding_model_id" ref="model_l10n_de_euer_statement" />
+        <field name="binding_type">report</field>
+    </record>
+    <record id="action_report_procedure" model="ir.actions.report">
+        <field name="name">Procedure Documentation (Template, PDF)</field>
+        <field name="model">l10n_de_euer.statement</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">l10n_de_euer.report_procedure</field>
+        <field name="report_file">l10n_de_euer.report_procedure</field>
+        <field
+            name="print_report_name"
+        >'EUER_procedure_documentation_%s' % (object.year)</field>
+        <field name="binding_model_id" ref="model_l10n_de_euer_statement" />
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- state, version and hashes of the statement on every output -->
+    <template id="report_statement_status">
+        <table class="table table-sm caption-top o_l10n_de_euer_status">
+            <caption>State of the statement</caption>
+            <tbody>
+                <tr>
+                    <th scope="row">Business</th>
+                    <td t-out="o.company_id.name" />
+                </tr>
+                <tr>
+                    <th scope="row">Year</th>
+                    <td t-out="str(o.year)" />
+                </tr>
+                <tr>
+                    <th scope="row">State</th>
+                    <td>
+                        <t t-out="status['state_label']" />
+                        <t t-if="not status['final']">
+                            – not finalised: the values can still change.
+                        </t>
+                        <t t-if="status['provisional']">
+                            – provisional on the forms of an earlier year; it
+                            cannot be finalised.
+                        </t>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Version</th>
+                    <td t-out="status['version']" />
+                </tr>
+                <tr t-if="status['finalized_on']">
+                    <th scope="row">Finalised</th>
+                    <td>
+                        <t t-out="status['finalized_on']" />
+                        <t t-if="status['finalized_by']">
+                            by <t t-out="status['finalized_by']" />
+                        </t>
+                    </td>
+                </tr>
+                <tr t-if="status['payload_sha256']">
+                    <th scope="row">Payload SHA-256</th>
+                    <td class="text-break" t-out="status['payload_sha256']" />
+                </tr>
+                <tr t-if="status['chain_hash']">
+                    <th scope="row">Chain hash</th>
+                    <td class="text-break">
+                        <t t-out="status['chain_hash']" />
+                        (position <t t-out="status['chain_index']" />)
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Module version</th>
+                    <td t-out="status['module_version']" />
+                </tr>
+                <tr>
+                    <th scope="row">Rule set version</th>
+                    <td class="text-break" t-out="status['ruleset_version']" />
+                </tr>
+                <tr>
+                    <th scope="row">Forms</th>
+                    <td t-out="status['form_versions']" />
+                </tr>
+                <tr>
+                    <th scope="row">Created on</th>
+                    <td t-out="status['generated_on']" />
+                </tr>
+            </tbody>
+        </table>
+    </template>
+
+    <!-- information block of the DIN 5008 layout (PDF): the statement in
+         short next to the address field; a layout table, the status table
+         of the document has the same data with header cells -->
+    <template id="report_statement_information">
+        <t t-set="info" t-value="outputs[o.id]['status']" />
+        <div class="information_block">
+            <table role="presentation">
+                <tr>
+                    <td>Year</td>
+                    <td t-out="str(o.year)" />
+                </tr>
+                <tr>
+                    <td>Version</td>
+                    <td t-out="info['version']" />
+                </tr>
+                <tr>
+                    <td>State</td>
+                    <td t-out="info['state_label']" />
+                </tr>
+                <tr>
+                    <td>Created on</td>
+                    <td t-out="info['generated_on']" />
+                </tr>
+            </table>
+        </div>
+    </template>
+
+    <template id="report_statement_disclaimer">
+        <div class="border border-dark p-2 mb-3" role="note">
+            <p class="mb-1">
+                <strong>
+                    Fill-in aid for Mein ELSTER, no paper filing.
+                </strong>
+                The Anlage EÜR is transmitted electronically (§ 60 (4) EStDV).
+                Enter the values in Mein ELSTER yourself; this output is no
+                official form and is not sent to the tax office.
+            </p>
+            <p class="mb-0">
+                Important notice: this module is a tool for preparing the
+                cash-basis profit statement according to § 4 (3) EStG. It does
+                not replace tax advice. The taxpayer alone is responsible for the
+                correctness and completeness of the tax return and of the data
+                transmitted to the tax office. Check all values before the
+                transmission, in particular for new form years. The module does
+                not transmit any data and does not change any journal entries.
+            </p>
+            <p class="mb-0 mt-1">
+                The software is provided without any warranty; details in the
+                module description.
+            </p>
+        </div>
+    </template>
+
+    <!-- Fill-in aid for Mein ELSTER (spec 7.5, 8.1) -->
+    <template id="report_fill_aid_document">
+        <t t-set="data" t-value="outputs[o.id]" />
+        <t t-set="status" t-value="data['status']" />
+        <div class="page o_l10n_de_euer_report">
+            <h1>Fill-in aid for Mein ELSTER: <t t-out="o.name" /></h1>
+            <div class="o_l10n_de_euer_content">
+                <t t-call="l10n_de_euer.report_statement_disclaimer" />
+                <t t-call="l10n_de_euer.report_statement_status" />
+                <p>
+                Only fields with a value and the mandatory header fields are
+                listed, in the order of the official form. Sums are control
+                values: compare them with the values in Mein ELSTER and enter
+                them if Mein ELSTER does not compute them itself. Transfers
+                from another line or form are marked as such: compare them
+                with the value Mein ELSTER shows.
+            </p>
+                <t t-foreach="data['sections']" t-as="section">
+                    <div
+                        t-if="report_type == 'pdf'"
+                        class="o_l10n_de_euer_keep_next"
+                        aria-hidden="true"
+                    />
+                    <table
+                        class="table table-sm caption-top o_l10n_de_euer_fill_aid o_l10n_de_euer_fixed"
+                    >
+                        <caption>
+                            <t t-out="section['form'] or section['title']" />
+                        </caption>
+                        <thead>
+                            <tr>
+                                <!-- wide enough for the German heading "Zeile"
+                                     in the portrait PDF (E5 re-check) -->
+                                <th scope="col" style="width: 7%">Line</th>
+                                <th scope="col" style="width: 6%">Kz</th>
+                                <th scope="col" style="width: 35%">Official label</th>
+                                <th
+                                    scope="col"
+                                    class="text-end"
+                                    style="width: 14%"
+                                >Value</th>
+                                <th
+                                    scope="col"
+                                    class="text-end"
+                                    style="width: 12%"
+                                >Previous year (EUR)</th>
+                                <th scope="col" style="width: 26%">Note</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="section['rows']" t-as="row">
+                                <td t-out="row['line']" />
+                                <td t-out="row['kz']" />
+                                <th scope="row" lang="de">
+                                    <t t-out="row['label']" />
+                                    <span
+                                        t-if="row['short_name']"
+                                        class="o_l10n_de_euer_short_name"
+                                        t-att-lang="data['lang']"
+                                        t-out="row['short_name']"
+                                    />
+                                </th>
+                                <td t-if="row['numeric']" class="text-end text-nowrap">
+                                    <t t-out="row['value']" />
+                                </td>
+                                <!-- a text has no previous year: it takes the
+                                     width of both columns -->
+                                <td
+                                    t-elif="row['meaning_only']"
+                                    colspan="2"
+                                    t-out="row['meaning']"
+                                />
+                                <td t-else="" colspan="2">
+                                    <t t-out="row['value']" />
+                                    <t t-if="row['meaning']">
+                                    (<t t-out="row['meaning']" />)
+                                </t>
+                                </td>
+                                <td
+                                    t-if="row['numeric']"
+                                    class="text-end text-nowrap"
+                                    t-out="row['prev']"
+                                />
+                                <td>
+                                    <strong t-if="row['missing']">Missing.</strong>
+                                    <t t-out="row['note']" />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </t>
+                <t t-if="data['assets']">
+                    <div
+                        t-if="report_type == 'pdf'"
+                        class="o_l10n_de_euer_keep_next"
+                        aria-hidden="true"
+                    />
+                    <table
+                        class="table table-sm caption-top o_l10n_de_euer_assets o_l10n_de_euer_fixed"
+                    >
+                        <caption>
+                        Anlage AVEÜR: details per asset
+                    </caption>
+                        <thead>
+                            <tr>
+                                <th scope="col" style="width: 28%">Asset and group</th>
+                                <th scope="col" style="width: 12%">Delivery date</th>
+                                <th
+                                    scope="col"
+                                    class="text-end"
+                                    style="width: 10%"
+                                >Book value at start</th>
+                                <th
+                                    scope="col"
+                                    class="text-end"
+                                    style="width: 10%"
+                                >Additions</th>
+                                <th
+                                    scope="col"
+                                    class="text-end"
+                                    style="width: 10%"
+                                >Special depreciation</th>
+                                <th
+                                    scope="col"
+                                    class="text-end"
+                                    style="width: 10%"
+                                >Depreciation</th>
+                                <th
+                                    scope="col"
+                                    class="text-end"
+                                    style="width: 10%"
+                                >Disposals</th>
+                                <th
+                                    scope="col"
+                                    class="text-end"
+                                    style="width: 10%"
+                                >Book value at end</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="data['assets']" t-as="asset">
+                                <th scope="row">
+                                    <t t-if="asset['code']"><t
+                                        t-out="asset['code']"
+                                    /> –</t>
+                                    <t t-out="asset['name']" />
+                                    <span
+                                        t-if="asset['group']"
+                                        class="o_l10n_de_euer_short_name"
+                                        t-out="asset['group']"
+                                    />
+                                </th>
+                                <td
+                                    class="text-nowrap"
+                                    t-out="data['date'](asset['delivery_date'])"
+                                />
+                                <td
+                                    class="text-end text-nowrap"
+                                    t-out="data['money'](asset['book_value_start'])"
+                                />
+                                <td
+                                    class="text-end text-nowrap"
+                                    t-out="data['money'](asset['additions'])"
+                                />
+                                <td
+                                    class="text-end text-nowrap"
+                                    t-out="data['money'](asset['special_depreciation'])"
+                                />
+                                <td
+                                    class="text-end text-nowrap"
+                                    t-out="data['money'](asset['depreciation'])"
+                                />
+                                <td
+                                    class="text-end text-nowrap"
+                                    t-out="data['money'](asset['disposal_book_value'])"
+                                />
+                                <td
+                                    class="text-end text-nowrap"
+                                    t-out="data['money'](asset['book_value_end'])"
+                                />
+                            </tr>
+                        </tbody>
+                    </table>
+                </t>
+            </div>
+        </div>
+    </template>
+
+    <template id="report_fill_aid">
+        <t t-call="web.html_container">
+            <t t-set="title">Fill-in aid for Mein ELSTER: <t
+                t-out="', '.join(docs.mapped('name'))"
+            /></t>
+            <t t-foreach="docs" t-as="o">
+                <t t-if="report_type == 'pdf'" t-call="web.external_layout">
+                    <t t-set="din5008_document_title">
+                        Fill-in aid for Mein ELSTER: <t t-out="o.name" />
+                    </t>
+                    <t t-set="din5008_document_information">
+                        <t t-call="l10n_de_euer.report_statement_information" />
+                    </t>
+                    <t t-call="l10n_de_euer.report_fill_aid_document" />
+                </t>
+                <t t-else="" t-call="l10n_de_euer.report_fill_aid_document" />
+            </t>
+        </t>
+    </template>
+
+    <!-- Evidence per Kennzahl (spec 7.5, G-03) -->
+    <template id="report_evidence_document">
+        <t t-set="data" t-value="outputs[o.id]" />
+        <t t-set="status" t-value="data['status']" />
+        <div class="page o_l10n_de_euer_report">
+            <h1>Evidence per Kennzahl: <t t-out="o.name" /></h1>
+            <div class="o_l10n_de_euer_content">
+                <t t-call="l10n_de_euer.report_statement_status" />
+                <p>
+                Every value of the statement is the sum of its slices: the
+                amounts of the journal items at the date the money came in or
+                went out (§ 11 EStG), and the values of the asset register and
+                of the profit corrections.
+            </p>
+                <p t-if="not data['sections']">The statement has no slices.</p>
+                <t t-foreach="data['sections']" t-as="section">
+                    <div
+                        t-if="report_type == 'pdf'"
+                        class="o_l10n_de_euer_keep_next"
+                        aria-hidden="true"
+                    />
+                    <table
+                        class="table table-sm caption-top o_l10n_de_euer_evidence o_l10n_de_euer_fixed"
+                    >
+                        <caption>
+                        <t t-if="section['line']">
+                            Line <t t-out="section['line']" />,
+                        </t>
+                        <t t-if="section['kz']">
+                            Kz <t t-out="section['kz']" />:
+                        </t>
+                        <span lang="de" t-out="section['label']" />
+                        (<t t-out="section['code']" />)
+                    </caption>
+                        <thead>
+                            <tr>
+                                <th scope="col" style="width: 10%">Cash date</th>
+                                <th scope="col" style="width: 5%">Year</th>
+                                <th scope="col" style="width: 12%">Document</th>
+                                <th scope="col" style="width: 12%">Money entry</th>
+                                <th scope="col" style="width: 12%">Partner</th>
+                                <th scope="col" style="width: 17%">Account</th>
+                                <th scope="col" style="width: 6%">Tax</th>
+                                <th
+                                    scope="col"
+                                    class="text-end"
+                                    style="width: 7%"
+                                >Share</th>
+                                <th
+                                    scope="col"
+                                    class="text-end"
+                                    style="width: 9%"
+                                >Amount (EUR)</th>
+                                <th scope="col" style="width: 10%">Source</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="section['rows']" t-as="row">
+                                <td
+                                    class="text-nowrap"
+                                    t-out="data['date'](row['date'])"
+                                />
+                                <td t-out="row['year']" />
+                                <th scope="row" t-out="row['row_header']" />
+                                <td t-out="row['money']" />
+                                <td t-out="row['partner']" />
+                                <td t-out="row['account']" />
+                                <td t-out="row['tax']" />
+                                <td
+                                    class="text-end text-nowrap"
+                                    t-out="row['share_text']"
+                                />
+                                <td
+                                    class="text-end text-nowrap"
+                                    t-out="data['money'](row['amount'])"
+                                />
+                                <td t-out="row['source']" />
+                            </tr>
+                        </tbody>
+                        <!-- the sums once at the end, not repeated on every page -->
+                        <tfoot style="display: table-row-group">
+                            <tr>
+                                <th scope="row" colspan="8">Sum of the slices</th>
+                                <td
+                                    class="text-end text-nowrap"
+                                    t-out="data['money'](section['total'])"
+                                />
+                                <td />
+                            </tr>
+                            <tr t-if="section['override']">
+                                <th scope="row" colspan="8">
+                                Value of the statement (overridden)
+                            </th>
+                                <td
+                                    class="text-end text-nowrap"
+                                    t-out="data['money'](section['value'])"
+                                />
+                                <td />
+                            </tr>
+                        </tfoot>
+                    </table>
+                </t>
+            </div>
+        </div>
+    </template>
+
+    <template id="report_evidence">
+        <t t-call="web.html_container">
+            <t t-set="title">Evidence per Kennzahl: <t
+                t-out="', '.join(docs.mapped('name'))"
+            /></t>
+            <t t-foreach="docs" t-as="o">
+                <t t-if="report_type == 'pdf'" t-call="web.internal_layout">
+                    <t t-call="l10n_de_euer.report_evidence_document" />
+                </t>
+                <t t-else="" t-call="l10n_de_euer.report_evidence_document" />
+            </t>
+        </t>
+    </template>
+
+    <!-- Check protocol (spec 7.5, 7.8) -->
+    <template id="report_check_protocol_document">
+        <t t-set="data" t-value="outputs[o.id]" />
+        <t t-set="status" t-value="data['status']" />
+        <div class="page o_l10n_de_euer_report">
+            <h1>Check protocol: <t t-out="o.name" /></h1>
+            <div class="o_l10n_de_euer_content">
+                <t t-call="l10n_de_euer.report_statement_status" />
+                <table
+                    class="table table-sm caption-top w-auto o_l10n_de_euer_check_summary"
+                >
+                    <caption>Summary</caption>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Blockers</th>
+                            <td
+                                class="text-end"
+                                t-out="data['counts'].get('blocker', 0)"
+                            />
+                        </tr>
+                        <tr>
+                            <th scope="row">Warnings</th>
+                            <td
+                                class="text-end"
+                                t-out="data['counts'].get('warning', 0)"
+                            />
+                        </tr>
+                        <tr>
+                            <th scope="row">Warnings not acknowledged</th>
+                            <td class="text-end" t-out="data['open_warnings']" />
+                        </tr>
+                        <tr>
+                            <th scope="row">Hints</th>
+                            <td
+                                class="text-end"
+                                t-out="data['counts'].get('info', 0)"
+                            />
+                        </tr>
+                    </tbody>
+                </table>
+                <p t-if="not data['rows']">The checks found nothing.</p>
+                <div
+                    t-if="report_type == 'pdf' and data['rows']"
+                    class="o_l10n_de_euer_keep_next"
+                    aria-hidden="true"
+                />
+                <table
+                    t-if="data['rows']"
+                    class="table table-sm caption-top o_l10n_de_euer_checks o_l10n_de_euer_fixed"
+                >
+                    <caption>Check results</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col" style="width: 6%">Code</th>
+                            <th scope="col" style="width: 10%">Severity</th>
+                            <th scope="col" style="width: 11%">Status</th>
+                            <th scope="col" style="width: 35%">Message</th>
+                            <th
+                                scope="col"
+                                class="text-end"
+                                style="width: 8%"
+                            >Amount (EUR)</th>
+                            <th scope="col" style="width: 10%">Acknowledged by</th>
+                            <th scope="col" style="width: 8%">Acknowledged on</th>
+                            <th scope="col" style="width: 12%">Reason</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="data['rows']" t-as="row">
+                            <th scope="row" class="text-nowrap" t-out="row['code']" />
+                            <td t-out="row['severity']" />
+                            <td t-out="row['status']" />
+                            <td t-out="row['message']" />
+                            <td
+                                class="text-end text-nowrap"
+                                t-out="data['money'](row['amount'])"
+                            />
+                            <td t-out="row['acknowledged_by']" />
+                            <td class="text-nowrap" t-out="row['acknowledged_on']" />
+                            <td t-out="row['reason']" />
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </template>
+
+    <template id="report_check_protocol">
+        <t t-call="web.html_container">
+            <t t-set="title">Check protocol: <t
+                t-out="', '.join(docs.mapped('name'))"
+            /></t>
+            <t t-foreach="docs" t-as="o">
+                <t t-if="report_type == 'pdf'" t-call="web.internal_layout">
+                    <t t-call="l10n_de_euer.report_check_protocol_document" />
+                </t>
+                <t t-else="" t-call="l10n_de_euer.report_check_protocol_document" />
+            </t>
+        </t>
+    </template>
+
+    <!-- Procedure documentation, template (spec 7.5, G-11) -->
+    <template id="report_procedure_document">
+        <t t-set="data" t-value="outputs[o.id]" />
+        <t t-set="status" t-value="data['status']" />
+        <div class="page o_l10n_de_euer_report">
+            <h1>
+                Procedure documentation (template): EÜR <t t-out="o.year" /> of
+                <t t-out="data['business']" />
+            </h1>
+            <div class="o_l10n_de_euer_content">
+                <p>
+                This template is created from the data of the module. Complete
+                it with the organisation of your business (who books, when and
+                how receipts are kept, internal controls) and keep it with the
+                statement (GoBD Rz. 151–155).
+            </p>
+                <t t-call="l10n_de_euer.report_statement_status" />
+
+                <h2>1. Data flow</h2>
+                <ol>
+                    <li>
+                    Bookings are entered in Odoo (invoices, bills, bank and cash
+                    statements, payments, journal entries). The module only reads
+                    them; it never creates or changes a journal entry.
+                </li>
+                    <li>
+                    The calculation of a year reads the posted entries of the
+                    business (<t t-out="data['companies']" />) and follows every
+                    movement of money over the reconciliations to its document.
+                </li>
+                    <li>
+                    Every realised amount becomes a slice with its cash date,
+                    year of attribution and form field; the asset register and
+                    the profit corrections add their values.
+                </li>
+                    <li>
+                    The form calculation of the year adds the slices up to the
+                    fields of Anlage EÜR and AVEÜR; the checks report what is
+                    not clear or not supported.
+                </li>
+                    <li>
+                    The finalised statement is stored as data with its SHA-256,
+                    chained to the previous finalisation of the business.
+                </li>
+                    <li>
+                    The values are entered by hand in Mein ELSTER with the
+                    fill-in aid; the module transmits nothing.
+                </li>
+                </ol>
+
+                <h2>2. Calculation rules</h2>
+                <ul>
+                    <li>
+                    Income and expenses count in the year the money comes in or
+                    goes out (§ 4 (3), § 11 EStG); regularly recurring payments
+                    within ten days around the turn of the year follow the year
+                    they belong to (ten-day rule, only after review).
+                </li>
+                    <li>
+                    A payment is divided over the lines of its document in
+                    proportion (income, expenses, taxes); every division is
+                    rounded to the cent so that the money adds up exactly.
+                </li>
+                    <li>
+                    VAT: small businesses (§ 19 UStG) show the gross amounts;
+                    under standard taxation VAT and input tax are income and
+                    expenses when paid. The treatment follows the VAT status
+                    periods, never the taxes of a booking.
+                </li>
+                    <li>
+                    Fixed assets: depreciation, low-value assets and asset pools
+                    come from the asset register only (§§ 6, 7 EStG), never from
+                    depreciation booked in the ledger.
+                </li>
+                    <li>
+                    Values without bookings (private use, flat rates, home
+                    office) are profit corrections with a reason and an own
+                    receipt.
+                </li>
+                </ul>
+                <table class="table table-sm caption-top o_l10n_de_euer_parameters">
+                    <caption>Rule parameters of the year</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Parameter</th>
+                            <th scope="col">Value</th>
+                            <th scope="col">Valid from</th>
+                            <th scope="col">Valid to</th>
+                            <th scope="col">Legal source</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="data['parameters']" t-as="row">
+                            <th scope="row">
+                            <t t-out="row['name']" /> (<t t-out="row['code']" />)
+                        </th>
+                            <td class="text-end" t-out="row['value']" />
+                            <td t-out="data['date'](row['date_from'])" />
+                            <td t-out="data['date'](row['date_to'])" />
+                            <td t-out="row['source']" />
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h2>3. Account assignment</h2>
+                <table class="table table-sm caption-top o_l10n_de_euer_assignment">
+                    <caption>
+                    Account, EÜR category and form fields of the year: accounts
+                    with bookings in the year and assignments that deviate from
+                    the default; the data access package (Z3) holds all of them
+                </caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Account</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Role</th>
+                            <th scope="col">Form fields</th>
+                            <th scope="col">Valid from</th>
+                            <th scope="col">Valid to</th>
+                            <th scope="col">Confirmed</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="data['assignment']" t-as="row">
+                            <th scope="row">
+                                <t t-out="row['account_code']" />
+                                <t t-out="row['account_name']" />
+                            </th>
+                            <td>
+                            <t t-out="row['category_name']" />
+                            (<t t-out="row['category_code']" />)
+                        </td>
+                            <td t-out="row['role']" />
+                            <td t-out="row['fields']" />
+                            <td t-out="data['date'](row['date_from'])" />
+                            <td t-out="data['date'](row['date_to'])" />
+                            <td>
+                                <t t-if="row['confirmed']">Yes</t>
+                                <t t-else="">No</t>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h2>4. Settings</h2>
+                <table class="table table-sm caption-top o_l10n_de_euer_settings">
+                    <caption>Settings and choices of the business</caption>
+                    <tbody>
+                        <tr t-foreach="data['settings']" t-as="row">
+                            <th scope="row" t-out="row[0]" />
+                            <td t-out="row[1]" />
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-sm caption-top o_l10n_de_euer_vat_periods">
+                    <caption>VAT status periods</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Valid from</th>
+                            <th scope="col">Valid to</th>
+                            <th scope="col">VAT treatment</th>
+                            <th scope="col" class="text-end">
+                            Turnover of the previous year (EUR)
+                        </th>
+                            <th scope="col">For the year</th>
+                            <th scope="col">Reason</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="data['vat_periods']" t-as="row">
+                            <th scope="row" t-out="data['date'](row['date_from'])" />
+                            <td t-out="data['date'](row['date_to'])" />
+                            <td t-out="row['regime']" />
+                            <td
+                                class="text-end"
+                                t-out="data['money'](row['prev_year_turnover'])"
+                            />
+                            <td t-out="row['prev_year_turnover_year'] or ''" />
+                            <td t-out="row['reason']" />
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-sm caption-top o_l10n_de_euer_journals">
+                    <caption>Money and purchase journals</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Journal</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Account</th>
+                            <th scope="col">Private account (R-18)</th>
+                            <th scope="col">Private share account</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="data['journals']" t-as="row">
+                            <th scope="row">
+                                <t t-out="row['code']" />
+                                <t t-out="row['name']" />
+                            </th>
+                            <td t-out="row['type']" />
+                            <td t-out="row['account']" />
+                            <td>
+                                <t t-if="row['private']">Yes</t>
+                                <t t-else="">No</t>
+                            </td>
+                            <td t-out="row['private_share']" />
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h2>5. Roles</h2>
+                <table class="table table-sm caption-top o_l10n_de_euer_roles">
+                    <caption
+                    >Rights per group and users with access to the business</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Group</th>
+                            <th scope="col">Rights in the EÜR</th>
+                            <th scope="col">Users</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="data['roles']" t-as="row">
+                            <th scope="row" t-out="row['group']" />
+                            <td t-out="row['rights']" />
+                            <td t-out="row['users']" />
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h2>6. Lock concept</h2>
+                <ul>
+                    <li>
+                    Journal entries are protected by the lock date of the year
+                    (fiscal year lock date recommended; a finalisation needs a
+                    lock date on or after 31 December).
+                </li>
+                    <li>
+                    A finalised statement, its values, slices, profit
+                    corrections, answers, bank reconciliation, the asset years
+                    of the year and the form years it uses cannot be changed or
+                    deleted through the user interface and the programming
+                    interface of Odoo (ORM), also not by administrators. A
+                    correction is a new version with a reason.
+                </li>
+                    <li>
+                    The data of the finalisation is stored as canonical JSON
+                    with its SHA-256, chained to the previous finalisation of
+                    the business. Check Integrity computes the hashes again and
+                    compares the records and the receipts with the stored data.
+                </li>
+                    <li>
+                    <strong>Limit: database administrators</strong> can change
+                    the data directly in the database with SQL. Check Integrity
+                    finds a change of single records. A consistent change of the
+                    latest finalisation with its hashes, or its removal, is
+                    visible only by comparison with hashes kept outside the
+                    database: keep the payload SHA-256 and the chain hash of
+                    each finalisation separately, e.g. with the PDF of the
+                    fill-in aid, which shows both. Restrict access to the
+                    database server and keep backups.
+                </li>
+                    <li>
+                    Keep the statement with its receipts for at least 10 years
+                    (§ 147 (3) AO), longer while the assessment period is open.
+                </li>
+                </ul>
+
+                <h2>7. Versions</h2>
+                <table class="table table-sm caption-top o_l10n_de_euer_versions">
+                    <caption>Versions of module, rule set and forms</caption>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Module version</th>
+                            <td t-out="status['module_version']" />
+                        </tr>
+                        <tr>
+                            <th
+                                scope="row"
+                            >Rule set version (SHA-256 of the parameters)</th>
+                            <td class="text-break" t-out="status['ruleset_version']" />
+                        </tr>
+                        <tr>
+                            <th scope="row">Forms of the statement</th>
+                            <td t-out="status['form_versions']" />
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-sm caption-top o_l10n_de_euer_forms">
+                    <caption>Form years</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Form</th>
+                            <th scope="col">State</th>
+                            <th scope="col">Verified by</th>
+                            <th scope="col">BMF letter</th>
+                            <th scope="col">Form IDs</th>
+                            <th scope="col">SHA-256 of the source</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="data['forms']" t-as="row">
+                            <th scope="row" t-out="row['name']" />
+                            <td t-out="row['state']" />
+                            <td t-out="row['verified']" />
+                            <td t-out="row['bmf']" />
+                            <td t-out="row['vordruck']" />
+                            <td class="text-break" t-out="row['sha256']" />
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </template>
+
+    <template id="report_procedure">
+        <t t-call="web.html_container">
+            <t t-set="title">Procedure documentation (template): <t
+                t-out="', '.join(docs.mapped('name'))"
+            /></t>
+            <t t-foreach="docs" t-as="o">
+                <t t-if="report_type == 'pdf'" t-call="web.external_layout">
+                    <t t-set="din5008_document_title">
+                        Procedure documentation (template): EÜR <t
+                        t-out="o.year"
+                    /> of <t t-out="o.company_id.name" />
+                    </t>
+                    <t t-set="din5008_document_information">
+                        <t t-call="l10n_de_euer.report_statement_information" />
+                    </t>
+                    <t t-call="l10n_de_euer.report_procedure_document" />
+                </t>
+                <t t-else="" t-call="l10n_de_euer.report_procedure_document" />
+            </t>
+        </t>
+    </template>
+</odoo>

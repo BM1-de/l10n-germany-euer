@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Baumgärtner Marketing GmbH
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="l10n_de_euer_parameter_view_list" model="ir.ui.view">
+        <field name="name">l10n_de_euer.parameter.list</field>
+        <field name="model">l10n_de_euer.parameter</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="code" />
+                <field name="name" />
+                <field name="date_basis" optional="show" />
+                <field name="date_from" />
+                <field name="date_to" />
+                <field name="value_display" />
+                <field name="source" optional="show" />
+            </list>
+        </field>
+    </record>
+
+    <record id="l10n_de_euer_parameter_view_form" model="ir.ui.view">
+        <field name="name">l10n_de_euer.parameter.form</field>
+        <field name="model">l10n_de_euer.parameter</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group name="validity" string="Validity">
+                            <field name="code" />
+                            <field name="date_basis" />
+                            <field name="date_from" />
+                            <field name="date_to" />
+                        </group>
+                        <group name="value" string="Value">
+                            <field name="value" />
+                            <field name="value_display" />
+                            <field name="source" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="l10n_de_euer_parameter_view_search" model="ir.ui.view">
+        <field name="name">l10n_de_euer.parameter.search</field>
+        <field name="model">l10n_de_euer.parameter</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="code" />
+                <field name="name" />
+                <field name="source" />
+                <filter
+                    name="filter_acquisition"
+                    string="By Acquisition Date"
+                    domain="[('date_basis', '=', 'acquisition_date')]"
+                />
+                <filter
+                    name="filter_fiscal_year"
+                    string="By Fiscal Year"
+                    domain="[('date_basis', '=', 'fiscal_year')]"
+                />
+                <group>
+                    <filter
+                        name="group_code"
+                        string="Parameter"
+                        context="{'group_by': 'code'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_l10n_de_euer_parameter" model="ir.actions.act_window">
+        <field name="name">Rule Parameters</field>
+        <field name="res_model">l10n_de_euer.parameter</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_empty_folder">No rule parameters</p>
+            <p>
+                Amounts and rates of the tax rules with their period of validity
+                and legal source.
+            </p>
+        </field>
+    </record>
+</odoo>

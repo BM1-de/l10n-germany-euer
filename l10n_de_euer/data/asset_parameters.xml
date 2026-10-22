@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Baumgärtner Marketing GmbH
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<!-- Rule parameters of the asset register (spec 3.2, 6.3); validity by the
+     acquisition date. -->
+<odoo noupdate="1">
+    <record id="parameter_trivial_program_limit_open" model="l10n_de_euer.parameter">
+        <field name="code">trivial_program_limit</field>
+        <field
+            name="name"
+        >Limit of computer programs treated as trivial programs</field>
+        <field
+            name="name@de"
+        >Grenze für Computerprogramme, die wie Trivialprogramme behandelt werden</field>
+        <field name="date_basis">acquisition_date</field>
+        <field name="date_to">2017-12-31</field>
+        <field name="value">410</field>
+        <field name="source">R 5.5 Abs. 1 Satz 3 EStR</field>
+    </record>
+    <record
+        id="parameter_trivial_program_limit_20180101"
+        model="l10n_de_euer.parameter"
+    >
+        <field name="code">trivial_program_limit</field>
+        <field
+            name="name"
+        >Limit of computer programs treated as trivial programs</field>
+        <field
+            name="name@de"
+        >Grenze für Computerprogramme, die wie Trivialprogramme behandelt werden</field>
+        <field name="date_basis">acquisition_date</field>
+        <field name="date_from">2018-01-01</field>
+        <field name="value">800</field>
+        <field
+            name="source"
+        >R 5.5 Abs. 1 Satz 3 EStR mit Fußnote „bei Anschaffung ab dem 01.01.2018 800 €“ (EStH 2025)</field>
+    </record>
+    <record id="parameter_sec7b_special_rate_20180901" model="l10n_de_euer.parameter">
+        <field name="code">sec7b_special_rate</field>
+        <field name="name">Special depreciation (§ 7b EStG), maximum per year</field>
+        <field name="name@de">Sonderabschreibung § 7b EStG, Höchstsatz je Jahr</field>
+        <field name="date_basis">acquisition_date</field>
+        <field name="date_from">2018-09-01</field>
+        <field name="value">0.05</field>
+        <field
+            name="source"
+        >§ 7b Abs. 1 Satz 1, Abs. 2 Satz 1 Nr. 1 EStG (Bauantrag nach dem 31.08.2018)</field>
+    </record>
+</odoo>

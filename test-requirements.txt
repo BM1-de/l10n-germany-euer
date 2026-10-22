@@ -1,0 +1,5 @@
+# OCA modules of the reconciliation matrix (B-13, ST-B14); installed into the
+# test database only by the job "test with OCA reconciliation modules"
+odoo-addon-account_in_payment==19.0.*
+odoo-addon-account_payment_order==19.0.*
+odoo-addon-account_reconcile_oca==19.0.*

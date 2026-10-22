@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Baumgärtner Marketing GmbH
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="l10n_de_euer_form_view_list" model="ir.ui.view">
+        <field name="name">l10n_de_euer.form.list</field>
+        <field name="model">l10n_de_euer.form</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="year" options="{'enable_formatting': false}" />
+                <field name="form_type" />
+                <field name="version" />
+                <field name="vordruck_ids" />
+                <field name="bmf_date" />
+                <field name="instructions_version" optional="hide" />
+                <field name="field_count" />
+                <field
+                    name="state"
+                    widget="badge"
+                    decoration-info="state == 'draft'"
+                    decoration-success="state == 'verified'"
+                />
+            </list>
+        </field>
+    </record>
+
+    <record id="l10n_de_euer_form_view_form" model="ir.ui.view">
+        <field name="name">l10n_de_euer.form.form</field>
+        <field name="model">l10n_de_euer.form</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field
+                        name="state"
+                        widget="statusbar"
+                        options="{'clickable': '1'}"
+                    />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button
+                            name="action_open_fields"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-list"
+                        >
+                            <field
+                                name="field_count"
+                                widget="statinfo"
+                                string="Fields"
+                            />
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group name="form" string="Form">
+                            <field name="year" options="{'enable_formatting': false}" />
+                            <field name="form_type" />
+                            <field name="version" />
+                            <field name="superseded_by_id" />
+                            <field name="vordruck_ids" />
+                            <field
+                                name="fill_condition"
+                                invisible="not fill_condition"
+                            />
+                            <field name="locked" />
+                        </group>
+                        <group name="source" string="Source">
+                            <field name="bmf_date" />
+                            <field name="bmf_reference" />
+                            <field name="bmf_dok" />
+                            <field name="instructions_version" />
+                            <field name="source_url" widget="url" />
+                            <field name="source_sha256" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="fields" string="Fields">
+                            <field name="field_ids">
+                                <list>
+                                    <field name="sequence" column_invisible="1" />
+                                    <field name="line" />
+                                    <field name="box" />
+                                    <field name="kz" />
+                                    <field name="code" />
+                                    <field name="name" />
+                                    <field name="field_type" />
+                                    <field name="sign" />
+                                    <field name="formula" optional="show" />
+                                    <field name="scope_status" />
+                                </list>
+                            </field>
+                        </page>
+                        <page name="verification" string="Verification">
+                            <group>
+                                <field name="verified_by" />
+                                <field name="verified_role" />
+                                <field name="verified_on" />
+                                <field name="verification_note" />
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="l10n_de_euer_form_view_search" model="ir.ui.view">
+        <field name="name">l10n_de_euer.form.search</field>
+        <field name="model">l10n_de_euer.form</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="year" />
+                <field name="form_type" />
+                <filter
+                    name="filter_draft"
+                    string="Draft"
+                    domain="[('state', '=', 'draft')]"
+                />
+                <filter
+                    name="filter_verified"
+                    string="Verified"
+                    domain="[('state', '=', 'verified')]"
+                />
+                <group>
+                    <filter
+                        name="group_year"
+                        string="Year"
+                        context="{'group_by': 'year'}"
+                    />
+                    <filter
+                        name="group_form_type"
+                        string="Form"
+                        context="{'group_by': 'form_type'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_l10n_de_euer_form" model="ir.actions.act_window">
+        <field name="name">Form Years</field>
+        <field name="res_model">l10n_de_euer.form</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_empty_folder">No form years</p>
+            <p>
+                Each assessment year has its official forms (Anlage EÜR, AVEÜR
+                and SZ) with all lines, Kennzahlen and formulas.
+            </p>
+        </field>
+    </record>
+
+    <record id="action_l10n_de_euer_report" model="ir.actions.act_window">
+        <field name="name">EÜR</field>
+        <field name="res_model">l10n_de_euer.form</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_group_year': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_empty_folder">No form years</p>
+            <p>
+                The annual statement (Anlage EÜR and AVEÜR) will be computed here.
+                Until then this list shows the official form years the statement
+                is based on.
+            </p>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Baumgärtner Marketing GmbH
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="l10n_de_euer_check_view_list" model="ir.ui.view">
+        <field name="name">l10n_de_euer.check.list</field>
+        <field name="model">l10n_de_euer.check</field>
+        <field name="arch" type="xml">
+            <list create="0">
+                <field name="company_id" groups="base.group_multi_company" />
+                <field
+                    name="year"
+                    optional="show"
+                    options="{'enable_formatting': false}"
+                />
+                <field name="code" />
+                <field
+                    name="severity"
+                    widget="badge"
+                    decoration-danger="severity == 'blocker'"
+                    decoration-warning="severity == 'warning'"
+                    decoration-info="severity == 'info'"
+                />
+                <field name="message" />
+                <field
+                    name="amount"
+                    sum="Total"
+                    optional="show"
+                    invisible="not amount"
+                />
+                <field name="currency_id" column_invisible="True" />
+                <field name="record_count" string="Records" optional="show" />
+                <field name="acknowledged_on" optional="show" />
+                <field name="resolvable" column_invisible="True" />
+                <button
+                    name="action_resolve"
+                    type="object"
+                    icon="fa-wrench"
+                    title="Resolve"
+                    invisible="not resolvable"
+                    groups="account.group_account_user,account.group_account_manager"
+                />
+                <button
+                    name="action_open_records"
+                    type="object"
+                    icon="fa-external-link"
+                    title="Show records"
+                    invisible="record_count == 0"
+                />
+            </list>
+        </field>
+    </record>
+
+    <record id="l10n_de_euer_check_view_form" model="ir.ui.view">
+        <field name="name">l10n_de_euer.check.form</field>
+        <field name="model">l10n_de_euer.check</field>
+        <field name="arch" type="xml">
+            <form create="0">
+                <header>
+                    <field name="resolvable" invisible="1" />
+                    <button
+                        name="action_resolve"
+                        type="object"
+                        string="Resolve"
+                        class="btn-primary"
+                        invisible="not resolvable"
+                        groups="account.group_account_user,account.group_account_manager"
+                    />
+                    <button
+                        name="action_acknowledge"
+                        type="object"
+                        string="Acknowledge"
+                        class="btn-primary"
+                        invisible="severity == 'blocker' or acknowledged_on"
+                        groups="account.group_account_user,account.group_account_manager"
+                    />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button
+                            name="action_open_records"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-external-link"
+                            invisible="record_count == 0"
+                        >
+                            <field
+                                name="record_count"
+                                widget="statinfo"
+                                string="Records"
+                            />
+                        </button>
+                    </div>
+                    <group>
+                        <group name="check" string="Check">
+                            <field name="code" readonly="1" />
+                            <field name="severity" readonly="1" />
+                            <field name="origin" readonly="1" />
+                            <field
+                                name="year"
+                                readonly="1"
+                                options="{'enable_formatting': false}"
+                            />
+                            <field
+                                name="company_id"
+                                readonly="1"
+                                groups="base.group_multi_company"
+                            />
+                            <field name="amount" readonly="1" />
+                            <field name="currency_id" invisible="1" />
+                        </group>
+                        <group name="acknowledgement" string="Acknowledgement">
+                            <field
+                                name="acknowledge_reason"
+                                readonly="acknowledged_on"
+                            />
+                            <field name="acknowledged_by_id" />
+                            <field name="acknowledged_on" />
+                        </group>
+                    </group>
+                    <field name="message" readonly="1" />
+                </sheet>
+                <chatter />
+            </form>
+        </field>
+    </record>
+
+    <record id="l10n_de_euer_check_view_search" model="ir.ui.view">
+        <field name="name">l10n_de_euer.check.search</field>
+        <field name="model">l10n_de_euer.check</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="code" />
+                <field name="message" />
+                <field name="year" />
+                <filter
+                    name="filter_blocker"
+                    string="Blockers"
+                    domain="[('severity', '=', 'blocker')]"
+                />
+                <filter
+                    name="filter_warning"
+                    string="Warnings"
+                    domain="[('severity', '=', 'warning')]"
+                />
+                <filter
+                    name="filter_open"
+                    string="Not Acknowledged"
+                    domain="[('acknowledged_on', '=', False)]"
+                />
+                <separator />
+                <filter
+                    name="filter_assignment"
+                    string="Account Assignment"
+                    domain="[('origin', '=', 'assignment')]"
+                />
+                <filter
+                    name="filter_calculation"
+                    string="Calculation"
+                    domain="[('origin', '=', 'calculation')]"
+                />
+                <group>
+                    <filter
+                        name="group_code"
+                        string="Check"
+                        context="{'group_by': 'code'}"
+                    />
+                    <filter
+                        name="group_year"
+                        string="Year"
+                        context="{'group_by': 'year'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_l10n_de_euer_check" model="ir.actions.act_window">
+        <field name="name">EÜR Checks</field>
+        <field name="res_model">l10n_de_euer.check</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No check results</p>
+            <p>
+                Run the checks of the account assignment from "Check Account
+                Assignment" and the checks of the calculation from "Compute Year".
+                Blockers prevent the finalisation; warnings need an
+                acknowledgement with reason.
+            </p>
+        </field>
+    </record>
+</odoo>

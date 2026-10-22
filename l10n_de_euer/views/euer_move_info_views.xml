@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Baumgärtner Marketing GmbH
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="l10n_de_euer_move_info_view_list" model="ir.ui.view">
+        <field name="name">l10n_de_euer.move.info.list</field>
+        <field name="model">l10n_de_euer.move.info</field>
+        <field name="arch" type="xml">
+            <list create="0">
+                <field name="move_id" />
+                <field name="partner_id" optional="show" />
+                <field name="company_id" groups="base.group_multi_company" />
+                <field name="supply_date" optional="show" />
+                <field name="vat_regime" />
+                <field name="vat_regime_manual" optional="show" />
+                <field name="cash_date" optional="show" />
+                <field
+                    name="economic_year"
+                    optional="hide"
+                    options="{'enable_formatting': false}"
+                />
+                <field name="vat_period" optional="hide" />
+                <field name="regular_tax_rate" optional="hide" />
+            </list>
+        </field>
+    </record>
+
+    <record id="l10n_de_euer_move_info_view_form" model="ir.ui.view">
+        <field name="name">l10n_de_euer.move.info.form</field>
+        <field name="model">l10n_de_euer.move.info</field>
+        <field name="arch" type="xml">
+            <form create="0">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button
+                            name="action_open_move"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-file-text-o"
+                            string="Journal Entry"
+                        />
+                    </div>
+                    <group>
+                        <group name="entry" string="Journal Entry">
+                            <field name="move_id" readonly="1" />
+                            <field name="partner_id" />
+                            <field name="move_date" />
+                            <field name="supply_date" />
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                            />
+                        </group>
+                        <group name="vat" string="VAT Treatment">
+                            <field
+                                name="vat_regime"
+                                readonly="not vat_regime_manual"
+                                required="vat_regime_manual"
+                            />
+                            <field name="vat_regime_manual" />
+                            <field
+                                name="vat_regime_reason"
+                                invisible="not vat_regime_manual"
+                                required="vat_regime_manual"
+                            />
+                            <field name="regular_tax_rate" />
+                        </group>
+                        <group name="gift" string="Gifts">
+                            <field name="gift_recipient_id" />
+                            <field name="gift_date" />
+                            <field name="gift_bulk" />
+                        </group>
+                        <group name="cash" string="Cash Date">
+                            <field name="cash_date" />
+                            <field
+                                name="cash_date_reason"
+                                required="cash_date"
+                                invisible="not cash_date"
+                            />
+                            <field name="cash_date_note" invisible="not cash_date" />
+                        </group>
+                        <group name="ten_day" string="Ten-Day Rule">
+                            <field
+                                name="economic_year"
+                                options="{'enable_formatting': false}"
+                            />
+                            <field name="due_date" />
+                            <field name="vat_period" placeholder="e.g. 2026-12" />
+                        </group>
+                    </group>
+                    <separator
+                        name="gift_lines"
+                        string="Recipients of the Gifts per Line"
+                    />
+                    <field name="gift_line_ids">
+                        <list editable="bottom">
+                            <field
+                                name="move_line_id"
+                                domain="[('move_id', '=', parent.move_id), ('display_type', '=', 'product')]"
+                                options="{'no_create': True}"
+                            />
+                            <field name="recipient_id" />
+                            <field name="quantity" />
+                            <field name="gift_date" />
+                            <field name="company_id" column_invisible="True" />
+                        </list>
+                    </field>
+                </sheet>
+                <chatter />
+            </form>
+        </field>
+    </record>
+
+    <record id="l10n_de_euer_move_info_view_search" model="ir.ui.view">
+        <field name="name">l10n_de_euer.move.info.search</field>
+        <field name="model">l10n_de_euer.move.info</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="move_id" />
+                <field name="partner_id" />
+                <filter
+                    name="filter_manual"
+                    string="VAT Treatment Set by Hand"
+                    domain="[('vat_regime_manual', '=', True)]"
+                />
+                <filter
+                    name="filter_cash_date"
+                    string="Cash Date Overridden"
+                    domain="[('cash_date', '!=', False)]"
+                />
+            </search>
+        </field>
+    </record>
+
+    <record id="action_l10n_de_euer_move_info" model="ir.actions.act_window">
+        <field name="name">EÜR Information of Entries</field>
+        <field name="res_model">l10n_de_euer.move.info</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="view_move_form_l10n_de_euer" model="ir.ui.view">
+        <field name="name">account.move.form.l10n_de_euer</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form" />
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <field name="l10n_de_euer_enabled" invisible="1" />
+                <button
+                    name="action_l10n_de_euer_slices"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-calculator"
+                    invisible="not l10n_de_euer_enabled or not l10n_de_euer_slice_count"
+                    groups="account.group_account_readonly,account.group_account_user,account.group_account_manager"
+                >
+                    <div class="o_stat_info">
+                        <field name="l10n_de_euer_slice_count" class="o_stat_value" />
+                        <span class="o_stat_text">EÜR</span>
+                    </div>
+                </button>
+            </div>
+            <page id="aml_tab" position="after">
+                <page
+                    id="l10n_de_euer_tab"
+                    name="l10n_de_euer"
+                    string="EÜR"
+                    invisible="not l10n_de_euer_enabled or state != 'posted'"
+                    groups="account.group_account_readonly,account.group_account_user,account.group_account_manager"
+                >
+                    <group>
+                        <group name="l10n_de_euer_cash" string="Cash Date">
+                            <field name="l10n_de_euer_cash_date" />
+                            <field
+                                name="l10n_de_euer_cash_date_reason"
+                                invisible="not l10n_de_euer_cash_date"
+                                required="l10n_de_euer_cash_date"
+                            />
+                        </group>
+                        <group name="l10n_de_euer_vat" string="VAT">
+                            <field name="l10n_de_euer_vat_regime" readonly="1" />
+                            <field
+                                name="l10n_de_euer_regular_tax_rate"
+                                invisible="move_type not in ('out_invoice', 'out_refund')"
+                            />
+                        </group>
+                        <group
+                            name="l10n_de_euer_gift"
+                            string="Gifts"
+                            invisible="move_type not in ('entry', 'in_invoice', 'in_refund', 'in_receipt')"
+                        >
+                            <field name="l10n_de_euer_gift_recipient_id" />
+                            <field name="l10n_de_euer_gift_date" />
+                            <field name="l10n_de_euer_gift_bulk" />
+                        </group>
+                        <group name="l10n_de_euer_ten_day" string="Ten-Day Rule">
+                            <field
+                                name="l10n_de_euer_economic_year"
+                                options="{'enable_formatting': false}"
+                            />
+                            <field name="l10n_de_euer_due_date" />
+                            <field
+                                name="l10n_de_euer_vat_period"
+                                placeholder="e.g. 2026-12"
+                            />
+                        </group>
+                    </group>
+                    <button
+                        name="action_l10n_de_euer_info"
+                        type="object"
+                        string="All EÜR Information"
+                        class="btn-link"
+                        icon="fa-arrow-right"
+                    />
+                </page>
+            </page>
+        </field>
+    </record>
+</odoo>

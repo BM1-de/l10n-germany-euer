@@ -1,0 +1,54 @@
+// Copyright 2026 Baumgärtner Marketing GmbH
+// License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
+// Reports of the EÜR statement (spec 7.5, 7.12): the HTML view is the
+// accessible main output, the PDF is printed from the same template.
+.o_l10n_de_euer_report {
+    table {
+        th,
+        td {
+            vertical-align: top;
+        }
+    }
+    // tables with a fixed column layout: the same columns in every section
+    // and on every page, long words break instead of widening the table
+    table.o_l10n_de_euer_fixed {
+        table-layout: fixed;
+        width: 100%;
+        th,
+        td {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        // the header repeats on every page, a row is never split
+        thead {
+            display: table-header-group;
+        }
+        tr {
+            page-break-inside: avoid;
+            break-inside: avoid;
+        }
+    }
+    // keep with next (PDF only, E5 review): wkhtmltopdf ignores
+    // "page-break-after: avoid", so the caption and the header of a table
+    // could stand alone at the end of a page. This empty block before the
+    // table has the height of the caption, the header and a first row and is
+    // pulled back by its own height: when they do not fit on the page, the
+    // block moves to the next one and the table follows it.
+    .o_l10n_de_euer_keep_next {
+        height: 60mm;
+        margin-bottom: -60mm;
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+    // nine columns on a portrait page: a little smaller, so that long
+    // German words (Wirtschaftsgüter, Büroausstattung) keep together
+    table.o_l10n_de_euer_assets {
+        font-size: 0.9em;
+    }
+    .o_l10n_de_euer_short_name {
+        display: block;
+        font-weight: normal;
+        font-size: 0.9em;
+    }
+}

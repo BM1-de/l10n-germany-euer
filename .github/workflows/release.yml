@@ -1,0 +1,95 @@
+name: release
+
+# spec 9.9 and R-51 (§ 87c (3) AO): every release tag 19.0.x.y.z gets the
+# complete test protocol (JUnit XML and coverage of lines and branches) as an
+# asset of its GitHub release. Action artifacts alone are not enough (kept 90
+# days at most); the protocol is archived by BM1 for five years as well
+# (RELEASE.md). The summary is written by _dev/werkzeuge/protocol_summary.py,
+# the same as for the local protocol of _dev/werkzeuge/test_protocol.sh.
+
+on:
+  push:
+    tags:
+      - "19.0.*"
+
+permissions:
+  contents: write
+
+jobs:
+  test-protocol:
+    runs-on: ubuntu-22.04
+    container: ghcr.io/oca/oca-ci/py3.10-odoo19.0:latest
+    name: test protocol of the release
+    services:
+      postgres:
+        image: postgres:13
+        env:
+          POSTGRES_USER: odoo
+          POSTGRES_PASSWORD: odoo
+          POSTGRES_DB: odoo
+        ports:
+          - 5432:5432
+    env:
+      IMAGE: ghcr.io/oca/oca-ci/py3.10-odoo19.0:latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Install addons and dependencies
+        run: oca_install_addons
+      - name: Initialize test db
+        run: oca_init_test_database
+      - name: Run the tests with JUnit XML and coverage
+        shell: bash
+        run: |
+          set -o pipefail
+          git config --global --add safe.directory "$PWD"
+          # inside build/ (ignored by git), so the working tree stays clean
+          OUT="$PWD/build/protocol"
+          mkdir -p "$OUT"
+          MODULES="$(manifestoo -d . list --separator=,)"
+          TAGS="/${MODULES//,/,/}"
+          SOURCES="$PWD/${MODULES//,/,$PWD/}"
+          printf '%s\n' \
+            "[run]" "branch = True" "source = $SOURCES" \
+            "omit =" "    */tests/*" "    */__manifest__.py" "    */__init__.py" \
+            "data_file = $OUT/.coverage" \
+            "[report]" "precision = 2" "skip_empty = True" \
+            "[html]" "directory = $OUT/coverage-html" > "$OUT/coveragerc"
+          status=0
+          coverage run --rcfile="$OUT/coveragerc" \
+            _dev/werkzeuge/odoo_junit.py --junit-xml "$OUT/junit.xml" \
+            -d "${PGDATABASE}" -i "$MODULES" --test-tags "$TAGS" \
+            --http-interface=127.0.0.1 --stop-after-init \
+            2>&1 | tee "$OUT/test.log" || status=$?
+          echo "$status" > "$OUT/odoo_status"
+          coverage report --rcfile="$OUT/coveragerc" > "$OUT/coverage.txt" || true
+          coverage xml --rcfile="$OUT/coveragerc" -o "$OUT/coverage.xml" || true
+          coverage json --rcfile="$OUT/coveragerc" -o "$OUT/coverage.json" || true
+          coverage html --rcfile="$OUT/coveragerc" || true
+          rm -f "$OUT/.coverage"
+          python3 -c "import odoo.release as r; print(r.version)" \
+            > "$OUT/odoo_version" || true
+          SOURCE="$(python3 -c 'import odoo, os; print(os.path.dirname(odoo.__path__[0]))' || true)"
+          REVISION="$(git -C "$SOURCE" rev-parse HEAD 2> /dev/null || echo unknown)"
+          echo "$IMAGE, Odoo source $REVISION" > "$OUT/odoo_image"
+          psql -Atc "SHOW server_version" > "$OUT/postgres_version" || true
+          python3 _dev/werkzeuge/protocol_summary.py "$OUT" --repo . \
+            --modules "$MODULES" --database "${PGDATABASE}" \
+            --tag "${GITHUB_REF_NAME}" --commit "${GITHUB_SHA}" \
+            --run "${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+      - name: Pack the protocol
+        if: ${{ always() }}
+        run: tar -czf "test-protocol-${GITHUB_REF_NAME}.tar.gz" -C build protocol
+      - name: Keep the protocol of a failed run for the analysis
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-protocol-${{ github.ref_name }}
+          path: test-protocol-${{ github.ref_name }}.tar.gz
+          if-no-files-found: ignore
+      - name: Attach the protocol to the release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: test-protocol-${{ github.ref_name }}.tar.gz
+          fail_on_unmatched_files: true

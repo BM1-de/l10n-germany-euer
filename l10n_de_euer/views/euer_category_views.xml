@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Baumgärtner Marketing GmbH
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="l10n_de_euer_category_view_list" model="ir.ui.view">
+        <field name="name">l10n_de_euer.category.list</field>
+        <field name="model">l10n_de_euer.category</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sequence" widget="handle" />
+                <field name="code" />
+                <field name="name" />
+                <field name="role" />
+                <field name="be_art" optional="show" />
+                <field name="erfassung" optional="show" />
+                <field name="confidence" optional="show" />
+                <field name="restricted_column" optional="hide" />
+                <field name="vat_kind" optional="hide" />
+                <field name="warning" optional="hide" />
+                <field
+                    name="scope_status"
+                    optional="show"
+                    widget="badge"
+                    decoration-danger="scope_status == 'blocked'"
+                    decoration-warning="scope_status == 'manual'"
+                />
+                <field name="active" column_invisible="True" />
+            </list>
+        </field>
+    </record>
+
+    <record id="l10n_de_euer_category_view_form" model="ir.ui.view">
+        <field name="name">l10n_de_euer.category.form</field>
+        <field name="model">l10n_de_euer.category</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button
+                            name="action_open_assignments"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-link"
+                        >
+                            <field
+                                name="assignment_count"
+                                widget="statinfo"
+                                string="Accounts"
+                            />
+                        </button>
+                    </div>
+                    <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="text-bg-danger"
+                        invisible="active"
+                    />
+                    <div class="oe_title">
+                        <label for="name" />
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group name="kind" string="Kind">
+                            <field name="code" />
+                            <field name="role" />
+                            <field name="be_art" invisible="role != 'be'" />
+                            <field name="vat_kind" invisible="role != 'steuer'" />
+                            <field name="erfassung" />
+                            <field name="confidence" />
+                            <field name="active" invisible="1" />
+                        </group>
+                        <group name="flags" string="Properties">
+                            <field name="restricted_column" />
+                            <field name="separate_record" />
+                            <field name="gift_bulk_allowed" />
+                            <field name="recurring_candidate" />
+                            <field name="on_payment" />
+                            <field name="interim" />
+                            <field name="writeoff" />
+                            <field name="warning" />
+                            <field name="scope_status" />
+                            <field name="scope_reason" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="mappings" string="Form Fields">
+                            <field
+                                name="mapping_ids"
+                                context="{'default_category_id': id}"
+                            >
+                                <list editable="bottom">
+                                    <field name="sequence" widget="handle" />
+                                    <field name="form_id" />
+                                    <field name="field_id" />
+                                    <field name="share" />
+                                    <field name="condition" />
+                                    <field name="option" optional="show" />
+                                    <field name="davon_field_id" optional="show" />
+                                    <field name="additional_field_id" optional="show" />
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="l10n_de_euer_category_view_search" model="ir.ui.view">
+        <field name="name">l10n_de_euer.category.search</field>
+        <field name="model">l10n_de_euer.category</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="code" />
+                <filter
+                    name="filter_income"
+                    string="Business Income"
+                    domain="[('role', '=', 'be')]"
+                />
+                <filter
+                    name="filter_expense"
+                    string="Business Expenses"
+                    domain="[('role', '=', 'ba')]"
+                />
+                <filter
+                    name="filter_not_provided"
+                    string="Not Provided For"
+                    domain="['|', ('role', '=', 'warn'), ('warning', '!=', False)]"
+                />
+                <filter
+                    name="filter_blocked"
+                    string="Not Supported"
+                    domain="[('scope_status', '=', 'blocked')]"
+                />
+                <separator />
+                <filter
+                    name="filter_archived"
+                    string="Archived"
+                    domain="[('active', '=', False)]"
+                />
+                <group>
+                    <filter
+                        name="group_role"
+                        string="Role"
+                        context="{'group_by': 'role'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_l10n_de_euer_category" model="ir.actions.act_window">
+        <field name="name">EÜR Categories</field>
+        <field name="res_model">l10n_de_euer.category</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_empty_folder">No EÜR categories</p>
+            <p>
+                A category describes the kind of an account for the EÜR, e.g.
+                telecommunication or taxable revenue. It is independent of the
+                year; its form fields are defined per form year.
+            </p>
+        </field>
+    </record>
+
+    <record id="l10n_de_euer_category_mapping_view_list" model="ir.ui.view">
+        <field name="name">l10n_de_euer.category.mapping.list</field>
+        <field name="model">l10n_de_euer.category.mapping</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="year" options="{'enable_formatting': false}" />
+                <field name="category_id" />
+                <field name="role" optional="hide" />
+                <field name="field_id" />
+                <field name="share" />
+                <field name="condition" />
+                <field name="option" optional="show" />
+                <field name="davon_field_id" optional="show" />
+                <field name="additional_field_id" optional="show" />
+            </list>
+        </field>
+    </record>
+
+    <record id="l10n_de_euer_category_mapping_view_form" model="ir.ui.view">
+        <field name="name">l10n_de_euer.category.mapping.form</field>
+        <field name="model">l10n_de_euer.category.mapping</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group name="target" string="Field">
+                            <field name="category_id" />
+                            <field name="form_id" />
+                            <field name="field_id" />
+                            <field name="sequence" />
+                        </group>
+                        <group name="rule" string="Rule">
+                            <field name="share" />
+                            <field name="condition" />
+                            <field name="option" />
+                            <field
+                                name="davon_field_id"
+                                domain="[('year', '=', year)]"
+                            />
+                            <field
+                                name="additional_field_id"
+                                domain="[('year', '=', year)]"
+                            />
+                            <field name="year" invisible="1" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="l10n_de_euer_category_mapping_view_search" model="ir.ui.view">
+        <field name="name">l10n_de_euer.category.mapping.search</field>
+        <field name="model">l10n_de_euer.category.mapping</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="category_id" />
+                <field name="field_id" />
+                <field name="year" />
+                <filter
+                    name="filter_option"
+                    string="Company Option"
+                    domain="[('option', '!=', False)]"
+                />
+                <filter
+                    name="filter_condition"
+                    string="With Condition"
+                    domain="[('condition', '!=', 'always')]"
+                />
+                <group>
+                    <filter
+                        name="group_year"
+                        string="Year"
+                        context="{'group_by': 'year'}"
+                    />
+                    <filter
+                        name="group_category"
+                        string="Category"
+                        context="{'group_by': 'category_id'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_l10n_de_euer_category_mapping" model="ir.actions.act_window">
+        <field name="name">Category Mapping per Year</field>
+        <field name="res_model">l10n_de_euer.category.mapping</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_group_year': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_empty_folder">No category mapping</p>
+            <p>
+                Form fields of each category per form year, with share,
+                condition, "of which" field and additional field.
+            </p>
+        </field>
+    </record>
+</odoo>

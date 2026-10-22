@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Baumgärtner Marketing GmbH
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="l10n_de_euer_vat_period_view_list" model="ir.ui.view">
+        <field name="name">l10n_de_euer.vat.period.list</field>
+        <field name="model">l10n_de_euer.vat.period</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="company_id" groups="base.group_multi_company" />
+                <field name="date_from" />
+                <field name="date_to" />
+                <field name="regime" />
+                <field name="basis" optional="show" />
+                <field name="vat_return_period" optional="show" />
+                <field name="permanent_extension" optional="hide" />
+            </list>
+        </field>
+    </record>
+
+    <record id="l10n_de_euer_vat_period_view_form" model="ir.ui.view">
+        <field name="name">l10n_de_euer.vat.period.form</field>
+        <field name="model">l10n_de_euer.vat.period</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group name="period" string="Period">
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                            />
+                            <field name="date_from" />
+                            <field name="date_to" />
+                            <field name="regime" />
+                            <field name="basis" />
+                        </group>
+                        <group name="returns" string="VAT Returns">
+                            <field name="vat_return_period" />
+                            <field name="permanent_extension" />
+                            <field name="prev_year_turnover" />
+                            <field
+                                name="prev_year_turnover_year"
+                                options="{'enable_formatting': false}"
+                            />
+                            <field name="currency_id" invisible="1" />
+                        </group>
+                    </group>
+                    <field
+                        name="reason"
+                        placeholder="Reason, e.g. notification to the tax office"
+                    />
+                </sheet>
+                <chatter />
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_de_euer_vat_period" model="ir.actions.act_window">
+        <field name="name">VAT Status Periods</field>
+        <field name="res_model">l10n_de_euer.vat.period</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Define the VAT treatment</p>
+            <p>
+                Periods as small business (§ 19 UStG) or with standard taxation.
+                The treatment is never derived from the taxes of the bookings.
+            </p>
+        </field>
+    </record>
+</odoo>

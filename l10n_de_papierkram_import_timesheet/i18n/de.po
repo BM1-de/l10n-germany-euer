@@ -1,0 +1,224 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_de_papierkram_import_timesheet
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0-20261015\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-20 11:35+0000\n"
+"PO-Revision-Date: 2026-10-20 11:35+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_de_papierkram_import_timesheet
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import_timesheet/models/papierkram_import.py:0
+msgid "%s unbilled time entries are not in the exports; they are imported from the file."
+msgstr "%s nicht abgerechnete Zeiteinträge fehlen in den Exporten; sie werden aus der Datei übernommen."
+
+#. module: l10n_de_papierkram_import_timesheet
+#: model:ir.model.fields.selection,name:l10n_de_papierkram_import_timesheet.selection__papierkram_import__time_entries__all
+msgid "All Time Entries"
+msgstr "Alle Zeiteinträge"
+
+#. module: l10n_de_papierkram_import_timesheet
+#: model:ir.model,name:l10n_de_papierkram_import_timesheet.model_account_analytic_line
+msgid "Analytic Line"
+msgstr "Kostenstellenbuchung"
+
+#. module: l10n_de_papierkram_import_timesheet
+#: model:ir.model.fields,help:l10n_de_papierkram_import_timesheet.field_papierkram_import__import_products
+msgid "Creates the goods and services of Papierkram as products."
+msgstr "Legt die Waren und Dienstleistungen aus Papierkram als Produkte an."
+
+#. module: l10n_de_papierkram_import_timesheet
+#: model:ir.model.fields,help:l10n_de_papierkram_import_timesheet.field_project_project__papierkram_key
+msgid "Customer and project in Papierkram; a second import uses the project."
+msgstr "Kunde und Projekt in Papierkram; ein zweiter Import verwendet das Projekt weiter."
+
+#. module: l10n_de_papierkram_import_timesheet
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import_timesheet.field_account_analytic_line__display_name
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import_timesheet.field_papierkram_import__display_name
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import_timesheet.field_project_project__display_name
+msgid "Display Name"
+msgstr "Anzeigename"
+
+#. module: l10n_de_papierkram_import_timesheet
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import_timesheet/models/papierkram_import.py:0
+msgid "General"
+msgstr "Allgemein"
+
+#. module: l10n_de_papierkram_import_timesheet
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import_timesheet.field_account_analytic_line__id
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import_timesheet.field_papierkram_import__id
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import_timesheet.field_project_project__id
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_de_papierkram_import_timesheet
+#: model:ir.model.fields,help:l10n_de_papierkram_import_timesheet.field_account_analytic_line__papierkram_key
+msgid "Identity of the time entry in Papierkram; a second import skips it."
+msgstr "Kennung des Zeiteintrags in Papierkram; ein zweiter Import überspringt ihn."
+
+#. module: l10n_de_papierkram_import_timesheet
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import_timesheet.field_papierkram_import__import_products
+msgid "Import Products and Services"
+msgstr "Produkte und Dienstleistungen übernehmen"
+
+#. module: l10n_de_papierkram_import_timesheet
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import_timesheet/models/papierkram_import.py:0
+msgid "Importing time entries needs the right to create: %s."
+msgstr "Für die Übernahme der Zeiteinträge fehlt das Recht zum Anlegen von: %s."
+
+#. module: l10n_de_papierkram_import_timesheet
+#: model:ir.model.fields,help:l10n_de_papierkram_import_timesheet.field_papierkram_import__unbilled_file
+msgid "In Papierkram: Zeiterfassung → Einzelbuchungen, filter \"Noch nicht abgerechnet\" and \"Gesamter Zeitraum\", button CSV."
+msgstr "In Papierkram: Zeiterfassung → Einzelbuchungen, Filter „Noch nicht abgerechnet“ und „Gesamter Zeitraum“, Knopf CSV."
+
+#. module: l10n_de_papierkram_import_timesheet
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import_timesheet/models/papierkram_import.py:0
+msgid "No file with unbilled time entries: no time entries are imported."
+msgstr "Keine Datei mit nicht abgerechneten Zeiteinträgen: Es werden keine Zeiteinträge übernommen."
+
+#. module: l10n_de_papierkram_import_timesheet
+#: model:ir.model.fields.selection,name:l10n_de_papierkram_import_timesheet.selection__papierkram_import__time_entries__none
+msgid "None"
+msgstr "Keine"
+
+#. module: l10n_de_papierkram_import_timesheet
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import_timesheet.field_papierkram_import__sale_order_count
+msgid "Number of Sales Orders"
+msgstr "Anzahl Aufträge"
+
+#. module: l10n_de_papierkram_import_timesheet
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import_timesheet.field_papierkram_import__timesheet_count
+msgid "Number of Time Entries"
+msgstr "Anzahl Zeiteinträge"
+
+#. module: l10n_de_papierkram_import_timesheet
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import_timesheet/models/papierkram_import.py:0
+msgid "Papierkram"
+msgstr "Papierkram"
+
+#. module: l10n_de_papierkram_import_timesheet
+#: model:ir.model,name:l10n_de_papierkram_import_timesheet.model_papierkram_import
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import_timesheet.field_account_analytic_line__papierkram_import_id
+msgid "Papierkram Import"
+msgstr "Papierkram-Übernahme"
+
+#. module: l10n_de_papierkram_import_timesheet
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import_timesheet.field_project_project__papierkram_key
+msgid "Papierkram Project"
+msgstr "Papierkram-Projekt"
+
+#. module: l10n_de_papierkram_import_timesheet
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import_timesheet.field_account_analytic_line__papierkram_key
+msgid "Papierkram Time Entry"
+msgstr "Papierkram-Zeiteintrag"
+
+#. module: l10n_de_papierkram_import_timesheet
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import_timesheet/models/papierkram_import.py:0
+msgid "Products created"
+msgstr "Angelegte Produkte"
+
+#. module: l10n_de_papierkram_import_timesheet
+#: model:ir.model,name:l10n_de_papierkram_import_timesheet.model_project_project
+msgid "Project"
+msgstr "Projekt"
+
+#. module: l10n_de_papierkram_import_timesheet
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import_timesheet/models/papierkram_import.py:0
+msgid "Projects created"
+msgstr "Angelegte Projekte"
+
+#. module: l10n_de_papierkram_import_timesheet
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import_timesheet/models/papierkram_import.py:0
+msgid "Retainer (%s)"
+msgstr "Betreuung (%s)"
+
+#. module: l10n_de_papierkram_import_timesheet
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import_timesheet.field_papierkram_import__sale_order_ids
+#: model_terms:ir.ui.view,arch_db:l10n_de_papierkram_import_timesheet.papierkram_import_view_form
+msgid "Sales Orders"
+msgstr "Aufträge"
+
+#. module: l10n_de_papierkram_import_timesheet
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import_timesheet/models/papierkram_import.py:0
+msgid "Sales orders for unbilled time entries"
+msgstr "Aufträge für nicht abgerechnete Zeiteinträge"
+
+#. module: l10n_de_papierkram_import_timesheet
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import_timesheet/models/papierkram_import.py:0
+msgid "Services"
+msgstr "Leistungen"
+
+#. module: l10n_de_papierkram_import_timesheet
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import_timesheet/models/papierkram_import.py:0
+msgid "Tasks created"
+msgstr "Angelegte Aufgaben"
+
+#. module: l10n_de_papierkram_import_timesheet
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import_timesheet.field_papierkram_import__time_entries
+#: model_terms:ir.ui.view,arch_db:l10n_de_papierkram_import_timesheet.papierkram_import_view_form
+msgid "Time Entries"
+msgstr "Zeiteinträge"
+
+#. module: l10n_de_papierkram_import_timesheet
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import_timesheet/models/papierkram_import.py:0
+msgid "Time entries already present"
+msgstr "Bereits vorhandene Zeiteinträge"
+
+#. module: l10n_de_papierkram_import_timesheet
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import_timesheet/models/papierkram_import.py:0
+msgid "Time entries imported"
+msgstr "Übernommene Zeiteinträge"
+
+#. module: l10n_de_papierkram_import_timesheet
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import_timesheet.field_papierkram_import__unbilled_filename
+msgid "Unbilled Filename"
+msgstr "Dateiname offene Zeiten"
+
+#. module: l10n_de_papierkram_import_timesheet
+#: model:ir.model.fields.selection,name:l10n_de_papierkram_import_timesheet.selection__papierkram_import__time_entries__unbilled
+msgid "Unbilled Time Entries"
+msgstr "Nicht abgerechnete Zeiteinträge"
+
+#. module: l10n_de_papierkram_import_timesheet
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import_timesheet.field_papierkram_import__unbilled_file
+msgid "Unbilled Time Entries (CSV)"
+msgstr "Nicht abgerechnete Zeiteinträge (CSV)"
+
+#. module: l10n_de_papierkram_import_timesheet
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import_timesheet/models/papierkram_import.py:0
+msgid "Unbilled time entries (Papierkram)"
+msgstr "Nicht abgerechnete Zeiteinträge (Papierkram)"
+
+#. module: l10n_de_papierkram_import_timesheet
+#: model:ir.model.fields,help:l10n_de_papierkram_import_timesheet.field_papierkram_import__time_entries
+msgid "Unbilled: only the time entries of the file below, billable in Odoo through a sales order per customer. All: every time entry of the exports as history; those of the file below are billable."
+msgstr "Nicht abgerechnete: nur die Zeiteinträge der Datei unten, in Odoo über einen Auftrag je Kunde abrechenbar. Alle: jeder Zeiteintrag der Exporte als Historie; die der Datei unten sind abrechenbar."
+
+#. module: l10n_de_papierkram_import_timesheet
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import_timesheet/models/papierkram_import.py:0
+msgid "of which billable through a sales order"
+msgstr "davon über einen Auftrag abrechenbar"

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Baumgärtner Marketing GmbH
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<!-- Access concept (spec 7.10): the module uses the accounting groups of Odoo,
+     no group of its own.
+     - account.group_account_readonly and account.group_account_manager: read
+     - account.group_account_user: run checks and acknowledge warnings,
+       compute years, classify rests, decide the review of the turn of the
+       year, enter EÜR information of entries
+     - account.group_account_manager: everything account.group_account_user
+       may do (in Odoo 19 the manager group no longer implies the user group)
+     - account.group_account_manager: open items taken over
+     - account.group_account_manager: account assignment, VAT status periods
+     - base.group_system: change form years, fields, categories, mappings and
+       rule parameters
+     - account.group_account_user: statements, profit corrections, overrides
+       of statement values, bank reconciliation of 31 December
+     - account.group_account_manager: confirm the questionnaire
+     Multi-company (spec 7.9): account assignments and VAT status periods
+     belong to the main company and are visible from its branches, like the
+     check results of the account assignment. Runs, slices, check results of
+     the calculation, review items, classifications and open items taken over
+     belong to the business (the main company, or a branch that is a business
+     of its own) and are visible only with that company, never across another
+     business. The same holds for statements and their values, answers,
+     profit corrections and bank reconciliations. The asset register belongs
+     to the business, too: it is visible with any company of the business
+     (l10n_de_euer_member_ids), but not from a branch that is a business of
+     its own. Form years, fields,
+     categories, mappings and rule parameters are shared by all companies and
+     therefore have no company rule. -->
+<odoo>
+    <record id="l10n_de_euer_account_assignment_company_rule" model="ir.rule">
+        <field name="name">EÜR account assignment: multi-company</field>
+        <field name="model_id" ref="model_l10n_de_euer_account_assignment" />
+        <field name="domain_force">[('company_id', 'parent_of', company_ids)]</field>
+    </record>
+    <record id="l10n_de_euer_vat_period_company_rule" model="ir.rule">
+        <field name="name">EÜR VAT status period: multi-company</field>
+        <field name="model_id" ref="model_l10n_de_euer_vat_period" />
+        <field name="domain_force">[('company_id', 'parent_of', company_ids)]</field>
+    </record>
+    <record id="l10n_de_euer_check_company_rule" model="ir.rule">
+        <field name="name">EÜR check result: multi-company</field>
+        <field name="model_id" ref="model_l10n_de_euer_check" />
+        <field
+            name="domain_force"
+        >['|', ('company_id', 'in', company_ids), '&amp;', ('origin', '=', 'assignment'), ('company_id', 'parent_of', company_ids)]</field>
+    </record>
+    <record id="l10n_de_euer_move_info_company_rule" model="ir.rule">
+        <field name="name">EÜR entry information: multi-company</field>
+        <field name="model_id" ref="model_l10n_de_euer_move_info" />
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+    <record id="l10n_de_euer_gift_line_company_rule" model="ir.rule">
+        <field name="name">EÜR recipient of gifts per line: multi-company</field>
+        <field name="model_id" ref="model_l10n_de_euer_gift_line" />
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+    <record id="l10n_de_euer_run_company_rule" model="ir.rule">
+        <field name="name">EÜR calculation run: multi-company</field>
+        <field name="model_id" ref="model_l10n_de_euer_run" />
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+    <record id="l10n_de_euer_cash_slice_company_rule" model="ir.rule">
+        <field name="name">EÜR slice: multi-company</field>
+        <field name="model_id" ref="model_l10n_de_euer_cash_slice" />
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+    <record id="l10n_de_euer_residual_classification_company_rule" model="ir.rule">
+        <field name="name">EÜR classification of rests: multi-company</field>
+        <field name="model_id" ref="model_l10n_de_euer_residual_classification" />
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+    <record id="l10n_de_euer_opening_item_company_rule" model="ir.rule">
+        <field name="name">EÜR open item taken over: multi-company</field>
+        <field name="model_id" ref="model_l10n_de_euer_opening_item" />
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+    <record id="l10n_de_euer_ten_day_item_company_rule" model="ir.rule">
+        <field name="name">EÜR review of the turn of the year: multi-company</field>
+        <field name="model_id" ref="model_l10n_de_euer_ten_day_item" />
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+    <record id="l10n_de_euer_asset_company_rule" model="ir.rule">
+        <field name="name">EÜR asset: multi-company</field>
+        <field name="model_id" ref="model_l10n_de_euer_asset" />
+        <field
+            name="domain_force"
+        >['|', ('company_id', 'in', company_ids), ('company_id.l10n_de_euer_member_ids', 'in', company_ids)]</field>
+    </record>
+    <record id="l10n_de_euer_asset_event_company_rule" model="ir.rule">
+        <field name="name">EÜR asset event: multi-company</field>
+        <field name="model_id" ref="model_l10n_de_euer_asset_event" />
+        <field
+            name="domain_force"
+        >['|', ('company_id', 'in', company_ids), ('company_id.l10n_de_euer_member_ids', 'in', company_ids)]</field>
+    </record>
+    <record id="l10n_de_euer_asset_year_company_rule" model="ir.rule">
+        <field name="name">EÜR asset year: multi-company</field>
+        <field name="model_id" ref="model_l10n_de_euer_asset_year" />
+        <field
+            name="domain_force"
+        >['|', ('company_id', 'in', company_ids), ('company_id.l10n_de_euer_member_ids', 'in', company_ids)]</field>
+    </record>
+    <record id="l10n_de_euer_asset_opening_total_company_rule" model="ir.rule">
+        <field name="name">EÜR filed AVEÜR book value: multi-company</field>
+        <field name="model_id" ref="model_l10n_de_euer_asset_opening_total" />
+        <field
+            name="domain_force"
+        >['|', ('company_id', 'in', company_ids), ('company_id.l10n_de_euer_member_ids', 'in', company_ids)]</field>
+    </record>
+    <record id="l10n_de_euer_asset_pool_company_rule" model="ir.rule">
+        <field name="name">EÜR asset pool: multi-company</field>
+        <field name="model_id" ref="model_l10n_de_euer_asset_pool" />
+        <field
+            name="domain_force"
+        >['|', ('company_id', 'in', company_ids), ('company_id.l10n_de_euer_member_ids', 'in', company_ids)]</field>
+    </record>
+    <record id="l10n_de_euer_statement_company_rule" model="ir.rule">
+        <field name="name">EÜR statement: multi-company</field>
+        <field name="model_id" ref="model_l10n_de_euer_statement" />
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+    <record id="l10n_de_euer_statement_line_company_rule" model="ir.rule">
+        <field name="name">EÜR statement value: multi-company</field>
+        <field name="model_id" ref="model_l10n_de_euer_statement_line" />
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+    <record id="l10n_de_euer_scope_answer_company_rule" model="ir.rule">
+        <field name="name">EÜR questionnaire answer: multi-company</field>
+        <field name="model_id" ref="model_l10n_de_euer_scope_answer" />
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+    <record id="l10n_de_euer_cash_balance_company_rule" model="ir.rule">
+        <field name="name">EÜR bank reconciliation: multi-company</field>
+        <field name="model_id" ref="model_l10n_de_euer_cash_balance" />
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+    <record id="l10n_de_euer_adjustment_company_rule" model="ir.rule">
+        <field name="name">EÜR profit correction: multi-company</field>
+        <field name="model_id" ref="model_l10n_de_euer_adjustment" />
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+</odoo>

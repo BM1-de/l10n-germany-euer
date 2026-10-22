@@ -1,0 +1,721 @@
+jahr;formular;zeile;kennzahl;bezeichnung;abschnitt;typ;vorzeichen
+2024;Anlage EÜR;1;;Name des Steuerpflichtigen bzw. der Gesellschaft/Gemeinschaft/Körperschaft;00 Kopf (ohne Kasten);Text;
+2024;Anlage EÜR;2;;Vorname;00 Kopf (ohne Kasten);Text;
+2024;Anlage EÜR;3;;(Betriebs-)Steuernummer;00 Kopf (ohne Kasten);Text;
+2024;Anlage EÜR;4;131;davon abweichender Beginn;15 Allgemeine Angaben;Datum;
+2024;Anlage EÜR;4;132;davon abweichendes Ende;15 Allgemeine Angaben;Datum;
+2024;Anlage EÜR;5;101;Wirtschafts-Identifikationsnummer;15 Allgemeine Angaben;Text;
+2024;Anlage EÜR;6;100;Art des Betriebs;15 Allgemeine Angaben;Text;
+2024;Anlage EÜR;7;;Rechtsform des Betriebs;15 Allgemeine Angaben;Text;
+2024;Anlage EÜR;8;103;Einkunftsart;15 Allgemeine Angaben;Schlüssel;
+2024;Anlage EÜR;9;104;Betriebsinhaber;15 Allgemeine Angaben;Schlüssel;
+2024;Anlage EÜR;10;111;Wurde im Kalenderjahr/Wirtschaftsjahr der Betrieb beendet?;15 Allgemeine Angaben;Schlüssel;
+2024;Anlage EÜR;11;120;Grundstücke/grundstücksgleiche Rechte entnommen oder veräußert;15 Allgemeine Angaben;Schlüssel;
+2024;Anlage EÜR;12;111;Betriebseinnahmen als umsatzsteuerlicher Kleinunternehmer (nach § 19 Abs. 1 UStG);20 Betriebseinnahmen;Betrag;+
+2024;Anlage EÜR;13;119;davon nicht steuerbare Umsätze sowie Umsätze nach § 19 Abs. 3 Satz 1 Nr. 1 und 2 UStG;20 Betriebseinnahmen;Betrag-davon;0
+2024;Anlage EÜR;14;104;Betriebseinnahmen als Land- und Forstwirt, soweit die Durchschnittssatzbesteuerung nach § 24 UStG angewandt wird;20 Betriebseinnahmen;Betrag;+
+2024;Anlage EÜR;15;112;Umsatzsteuerpflichtige Betriebseinnahmen (ohne solche zum ermäßigten Steuersatz von 0 %);20 Betriebseinnahmen;Betrag;+
+2024;Anlage EÜR;16;103;Betriebseinnahmen, die umsatzsteuerfrei oder nicht umsatzsteuerbar sind oder nach § 12 Abs. 3 UStG dem ermäßigten Steuersatz von 0 % unterliegen oder für die der Leistungsempfänger die Umsatzsteuer nach § 13b UStG schuldet;20 Betriebseinnahmen;Betrag;+
+2024;Anlage EÜR;17;140;Vereinnahmte Umsatzsteuer sowie Umsatzsteuer auf unentgeltliche Wertabgaben;20 Betriebseinnahmen;Betrag;+
+2024;Anlage EÜR;18;141;Vom Finanzamt erstattete und ggf. verrechnete Umsatzsteuer (Die Regelung zum 10-Tageszeitraum - § 11 Abs. 1 Satz 2 EStG - ist zu beachten.);20 Betriebseinnahmen;Betrag;+
+2024;Anlage EÜR;19;102;Veräußerung oder Entnahme von Anlagevermögen;20 Betriebseinnahmen;Betrag;+
+2024;Anlage EÜR;20;106;Private Kfz-Nutzung;20 Betriebseinnahmen;Betrag;+
+2024;Anlage EÜR;21;108;Sonstige Sach-, Nutzungs- und Leistungsentnahmen;20 Betriebseinnahmen;Betrag;+
+2024;Anlage EÜR;22;;Auflösung von Rücklagen und/oder Ausgleichsposten (Übertrag aus Zeile 105);20 Betriebseinnahmen;Übernahme;+
+2024;Anlage EÜR;23;159;Summe Betriebseinnahmen (Übertrag in Zeile 76);20 Betriebseinnahmen;Summe;=
+2024;Anlage EÜR;24;195;Betriebsausgabenpauschale für bestimmte Berufsgruppen;25 Betriebsausgaben;Betrag;+
+2024;Anlage EÜR;25;;Sachlicher Bebauungskostenrichtbetrag und Ausbaukostenrichtbeträge für Weinbaubetriebe (Übertrag aus Zeile 13 der Anlage LuF);25 Betriebsausgaben;Übernahme;+
+2024;Anlage EÜR;26;;Betriebsausgabenpauschale für Forstwirte (Übertrag aus Zeile 17 der Anlage LuF);25 Betriebsausgaben;Übernahme;+
+2024;Anlage EÜR;27;100;Waren, Rohstoffe und Hilfsstoffe einschließlich der Nebenkosten;25 Betriebsausgaben;Betrag;+
+2024;Anlage EÜR;28;;Übertrag (Summe Zeilen 24 bis 27);25 Betriebsausgaben;Zwischensumme;=
+2024;Anlage EÜR;29;110;Bezogene Fremdleistungen;25 Betriebsausgaben;Betrag;+
+2024;Anlage EÜR;30;120;Ausgaben für eigenes Personal (z. B. Gehälter, Löhne und Versicherungsbeiträge);25 Betriebsausgaben;Betrag;+
+2024;Anlage EÜR;31;136;AfA auf Grundstücke/grundstücksgleiche Rechte (Übertrag aus Zeile 22 der Anlage AVEÜR);25 Betriebsausgaben;Übernahme;+
+2024;Anlage EÜR;32;131;AfA auf immaterielle Wirtschaftsgüter (Übertrag aus Zeile 37 der Anlage AVEÜR);25 Betriebsausgaben;Übernahme;+
+2024;Anlage EÜR;33;130;AfA auf bewegliche Wirtschaftsgüter (Übertrag aus Zeile 62 der Anlage AVEÜR);25 Betriebsausgaben;Übernahme;+
+2024;Anlage EÜR;34;134;Sonderabschreibungen nach § 7b EStG und § 7g Abs. 5 und 6 EStG (Übertrag der Summe der Zeilen 12 und 61 der Anlage AVEÜR);25 Betriebsausgaben;Übernahme;+
+2024;Anlage EÜR;35;138;Herabsetzungsbeträge nach § 7g Abs. 2 Satz 3 EStG (Erläuterungen auf gesondertem Blatt);25 Betriebsausgaben;Betrag;+
+2024;Anlage EÜR;36;132;Aufwendungen für geringwertige Wirtschaftsgüter nach § 6 Abs. 2 EStG;25 Betriebsausgaben;Betrag;+
+2024;Anlage EÜR;37;137;Auflösung Sammelposten nach § 6 Abs. 2a EStG (Übertrag aus Zeile 81 der Anlage AVEÜR);25 Betriebsausgaben;Übernahme;+
+2024;Anlage EÜR;38;135;Restbuchwerte der ausgeschiedenen Anlagegüter (Übertrag der Summe der Beträge aus Zeilen 7, 14, 20, 26, 32, 38, 45, 52, 59, 85, 90 der Anlage AVEÜR);25 Betriebsausgaben;Übernahme;+
+2024;Anlage EÜR;39;150;Miete/Pacht für Geschäftsräume und betrieblich genutzte Grundstücke;25 Betriebsausgaben;Betrag;+
+2024;Anlage EÜR;40;152;Aufwendungen für doppelte Haushaltsführung (z. B. Miete);25 Betriebsausgaben;Betrag;+
+2024;Anlage EÜR;41;151;Sonstige Aufwendungen für betrieblich genutzte Grundstücke (ohne Schuldzinsen und AfA);25 Betriebsausgaben;Betrag;+
+2024;Anlage EÜR;42;153;in Zeile 41 enthaltene Erhaltungsaufwendungen;25 Betriebsausgaben;Betrag-davon;0
+2024;Anlage EÜR;43;280;Aufwendungen für Telekommunikation (z. B. Telefon, Internet);25 Betriebsausgaben;Betrag;+
+2024;Anlage EÜR;44;221;Übernachtungs- und Reisenebenkosten bei Geschäftsreisen des Steuerpflichtigen;25 Betriebsausgaben;Betrag;+
+2024;Anlage EÜR;45;281;Fortbildungskosten (ohne Reisekosten);25 Betriebsausgaben;Betrag;+
+2024;Anlage EÜR;46;194;Kosten für Rechts- und Steuerberatung, Buchführung;25 Betriebsausgaben;Betrag;+
+2024;Anlage EÜR;47;222;Miete/Leasing für bewegliche Wirtschaftsgüter (ohne Kfz);25 Betriebsausgaben;Betrag;+
+2024;Anlage EÜR;48;225;"Erhaltungsaufwendungen (z. B. Instandhaltung, Wartung, Reparatur; ohne solche für Gebäude und Kfz)";25 Betriebsausgaben;Betrag;+
+2024;Anlage EÜR;49;223;Beiträge, Gebühren, Abgaben und Versicherungen (ohne solche für Gebäude und Kfz);25 Betriebsausgaben;Betrag;+
+2024;Anlage EÜR;50;228;Laufende EDV-Kosten (z. B. Beratung, Wartung, Reparatur);25 Betriebsausgaben;Betrag;+
+2024;Anlage EÜR;51;229;Arbeitsmittel (z. B. Bürobedarf, Porto, Fachliteratur);25 Betriebsausgaben;Betrag;+
+2024;Anlage EÜR;52;226;Kosten für Abfallbeseitigung und Entsorgung;25 Betriebsausgaben;Betrag;+
+2024;Anlage EÜR;53;227;Kosten für Verpackung und Transport;25 Betriebsausgaben;Betrag;+
+2024;Anlage EÜR;54;224;Werbekosten (z. B. Inserate, Werbespots, Plakate);25 Betriebsausgaben;Betrag;+
+2024;Anlage EÜR;55;232;Schuldzinsen zur Finanzierung von Anschaffungs- und Herstellungskosten von Wirtschaftsgütern des Anlagevermögens (ohne häusliches Arbeitszimmer);25 Betriebsausgaben;Betrag;+
+2024;Anlage EÜR;56;234;Übrige Schuldzinsen;25 Betriebsausgaben;Betrag;+
+2024;Anlage EÜR;57;185;Gezahlte und nach § 15 UStG abziehbare Vorsteuerbeträge;25 Betriebsausgaben;Betrag;+
+2024;Anlage EÜR;58;186;An das Finanzamt gezahlte und ggf. verrechnete Umsatzsteuer (Die Regelung zum 10-Tageszeitraum - § 11 Abs. 2 Satz 2 EStG - ist zu beachten.);25 Betriebsausgaben;Betrag;+
+2024;Anlage EÜR;59;;Rücklagen, stille Reserven und/oder Ausgleichsposten (Übertrag aus Zeile 102);25 Betriebsausgaben;Übernahme;+
+2024;Anlage EÜR;60;183;Übrige unbeschränkt abziehbare Betriebsausgaben (auch zurückgezahlte Hilfen/Zuschüsse aufgrund der Corona-Pandemie);25 Betriebsausgaben;Betrag;+
+2024;Anlage EÜR;61;;Übertrag (Summe Zeilen 24 bis 27 und Zeilen 29 bis 60);25 Betriebsausgaben;Zwischensumme;=
+2024;Anlage EÜR;62;164;Geschenke;25 Betriebsausgaben;Betrag-davon;0
+2024;Anlage EÜR;62;174;Geschenke;25 Betriebsausgaben;Betrag;+
+2024;Anlage EÜR;63;165;Bewirtungsaufwendungen;25 Betriebsausgaben;Betrag-davon;0
+2024;Anlage EÜR;63;175;Bewirtungsaufwendungen;25 Betriebsausgaben;Betrag;+
+2024;Anlage EÜR;64;171;Verpflegungsmehraufwendungen;25 Betriebsausgaben;Betrag;+
+2024;Anlage EÜR;65;162;Aufwendungen für ein häusliches Arbeitszimmer (siehe Anleitung);25 Betriebsausgaben;Betrag-davon;0
+2024;Anlage EÜR;65;172;Aufwendungen für ein häusliches Arbeitszimmer (siehe Anleitung);25 Betriebsausgaben;Betrag;+
+2024;Anlage EÜR;66;163;Tagespauschale für die Tätigkeit in der häuslichen Wohnung (siehe Anleitung);25 Betriebsausgaben;Betrag;+
+2024;Anlage EÜR;67;168;Sonstige beschränkt abziehbare Betriebsausgaben;25 Betriebsausgaben;Betrag-davon;0
+2024;Anlage EÜR;67;177;Sonstige beschränkt abziehbare Betriebsausgaben;25 Betriebsausgaben;Betrag;+
+2024;Anlage EÜR;68;144;Leasingkosten;25 Betriebsausgaben;Betrag;+
+2024;Anlage EÜR;69;145;Steuern, Versicherungen und Maut;25 Betriebsausgaben;Betrag;+
+2024;Anlage EÜR;70;146;Sonstige tatsächliche Fahrtkosten ohne AfA und Zinsen (z. B. Reparaturen, Wartungen, Treibstoff, Kosten für Flugstrecken, Kosten für öffentliche Verkehrsmittel);25 Betriebsausgaben;Betrag;+
+2024;Anlage EÜR;71;147;Fahrtkosten für nicht zum Betriebsvermögen gehörende Fahrzeuge (Nutzungseinlage);25 Betriebsausgaben;Betrag;+
+2024;Anlage EÜR;72;142;"Fahrtkosten für Wege zwischen Wohnung und erster Betriebsstätte; Familienheimfahrten (pauschaliert oder tatsächlich)";25 Betriebsausgaben;Betrag;−
+2024;Anlage EÜR;73;176;"Mindestens abziehbare Fahrtkosten für Wege zwischen Wohnung und erster Betriebsstätte (Entfernungspauschale); Familienheimfahrten";25 Betriebsausgaben;Betrag;+
+2024;Anlage EÜR;74;139;Nicht abziehbare Beträge (Beispiele siehe Anleitung);25 Betriebsausgaben;Betrag;−
+2024;Anlage EÜR;75;199;Summe Betriebsausgaben (Übertrag in Zeile 77);25 Betriebsausgaben;Summe;=
+2024;Anlage EÜR;76;;Summe der Betriebseinnahmen (Übertrag aus Zeile 23);25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Übernahme;+
+2024;Anlage EÜR;77;;abzüglich Summe der Betriebsausgaben (Übertrag aus Zeile 75);25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Übernahme;−
+2024;Anlage EÜR;78;240;abzüglich steuerfreier Einnahmen nach § 3 Nr. 26, 26a, 26b EStG;25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Betrag;−
+2024;Anlage EÜR;79;241;abzüglich steuerfreier Einnahmen nach § 3 EStG (ohne Nr. 26, 26a, 26b und Teileinkünfteverfahren);25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Betrag;−
+2024;Anlage EÜR;80;242;abzüglich steuerfreier Einnahmen nach § 3a EStG;25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Betrag;−
+2024;Anlage EÜR;81;243;zuzüglich nicht abziehbarer Betriebsausgaben nach § 3 Nr. 26, 26a, 26b EStG;25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Betrag;+
+2024;Anlage EÜR;82;244;zuzüglich nicht abziehbarer Betriebsausgaben nach § 3c Abs. 1 EStG;25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Betrag;+
+2024;Anlage EÜR;83;245;zuzüglich nicht abziehbarer Betriebsausgaben nach § 3c Abs. 4 EStG;25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Betrag;+
+2024;Anlage EÜR;84;180;zuzüglich Hinzurechnung der Investitionsabzugsbeträge nach § 7g Abs. 2 Satz 1 EStG aus 2021 (Erläuterungen auf gesondertem Blatt);25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Betrag;+
+2024;Anlage EÜR;85;181;zuzüglich Hinzurechnung der Investitionsabzugsbeträge nach § 7g Abs. 2 Satz 1 EStG aus 2022 (Erläuterungen auf gesondertem Blatt);25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Betrag;+
+2024;Anlage EÜR;86;182;zuzüglich Hinzurechnung der Investitionsabzugsbeträge nach § 7g Abs. 2 Satz 1 EStG aus 2023 (Erläuterungen auf gesondertem Blatt);25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Betrag;+
+2024;Anlage EÜR;87;123;zuzüglich Gewinnzuschlag nach § 6c i. V. m. § 6b Abs. 7 und 10 EStG;25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Betrag;+
+2024;Anlage EÜR;88;187;abzüglich Investitionsabzugsbeträge nach § 7g Abs. 1 EStG;25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Betrag;−
+2024;Anlage EÜR;89;250;Hinzurechnungen und Abrechnungen bei Wechsel der Gewinnermittlungsart (Erläuterungen auf gesondertem Blatt);25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Betrag;±
+2024;Anlage EÜR;90;;Übertrag (Summe/Differenz Zeilen 76 bis 89);25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Zwischensumme;=
+2024;Anlage EÜR;91;255;Ergebnisanteile aus Beteiligungen an Personengesellschaften (auch Kostenträgergemeinschaften);25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Betrag;±
+2024;Anlage EÜR;92;290;Korrigierter Gewinn/Verlust;25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Summe;=
+2024;Anlage EÜR;93;263;"Bereits berücksichtigte Beträge, für die Steuerbefreiungen nach InvStG gelten (ohne Beträge laut Zeile 94; Erläuterungen auf gesondertem Blatt)";25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Betrag-davon;0
+2024;Anlage EÜR;93;264;"Bereits berücksichtigte Beträge, für die Steuerbefreiungen nach InvStG gelten (ohne Beträge laut Zeile 94; Erläuterungen auf gesondertem Blatt)";25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Betrag;±
+2024;Anlage EÜR;94;261;Bereits berücksichtigte Beträge, für die das Teileinkünfteverfahren bzw. § 8b KStG gilt;25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Betrag-davon;0
+2024;Anlage EÜR;94;262;Bereits berücksichtigte Beträge, für die das Teileinkünfteverfahren bzw. § 8b KStG gilt;25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Betrag;±
+2024;Anlage EÜR;95;293;Steuerpflichtiger Gewinn/Verlust vor Anwendung des § 4 Abs. 4a EStG;25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Summe;=
+2024;Anlage EÜR;96;271;Hinzurechnungsbetrag nach § 4 Abs. 4a EStG;25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Übernahme;+
+2024;Anlage EÜR;97;219;Steuerpflichtiger Gewinn/Verlust;25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Summe;=
+2024;Anlage EÜR;98;;Anzusetzender steuerpflichtiger Gewinn/Verlust nach Anwendung des § 4 Abs. 4a EStG ohne Berücksichtigung des InvStG, des Teileinkünfteverfahrens bzw. § 8b KStG (Betrag laut Zeile 92 zuzüglich Betrag laut Zeile 96);25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Summe;=
+2024;Anlage EÜR;99;187;Rücklagen nach § 6c i. V. m. § 6b EStG, R 6.6 EStR;27 Ergänzende Angaben (Rücklagen, stille Reserven, Ausgleichsposten);Betrag;+
+2024;Anlage EÜR;100;170;Übertragung von stillen Reserven nach § 6c i. V. m. § 6b EStG, R 6.6 EStR;27 Ergänzende Angaben (Rücklagen, stille Reserven, Ausgleichsposten);Betrag;+
+2024;Anlage EÜR;101;191;Ausgleichsposten nach § 4g EStG;27 Ergänzende Angaben (Rücklagen, stille Reserven, Ausgleichsposten);Betrag;+
+2024;Anlage EÜR;102;190;Gesamtsumme (Übertrag in Zeile 59);27 Ergänzende Angaben (Rücklagen, stille Reserven, Ausgleichsposten);Summe;=
+2024;Anlage EÜR;103;120;Rücklagen nach § 6c i. V. m. § 6b EStG, R 6.6 EStR;27 Ergänzende Angaben (Rücklagen, stille Reserven, Ausgleichsposten);Betrag;+
+2024;Anlage EÜR;104;125;Ausgleichsposten nach § 4g EStG;27 Ergänzende Angaben (Rücklagen, stille Reserven, Ausgleichsposten);Betrag;+
+2024;Anlage EÜR;105;124;Gesamtsumme (Übertrag in Zeile 22);27 Ergänzende Angaben (Rücklagen, stille Reserven, Ausgleichsposten);Summe;=
+2024;Anlage EÜR;106;122;Entnahmen einschließlich Sach-, Leistungs- und Nutzungsentnahmen;29 Zusätzliche Angaben bei Einzelunternehmen;Betrag;0
+2024;Anlage EÜR;107;123;Einlagen einschließlich Sach-, Leistungs- und Nutzungseinlagen;29 Zusätzliche Angaben bei Einzelunternehmen;Betrag;0
+2024;Anlage AVEÜR;1;;Name des Steuerpflichtigen bzw. der Gesellschaft/Gemeinschaft/Körperschaft;00 Kopf (ohne Kasten);Text;
+2024;Anlage AVEÜR;2;;(Betriebs-)Steuernummer;00 Kopf (ohne Kasten);Text;
+2024;Anlage AVEÜR;3;;Wirtschafts-Identifikationsnummer;00 Kopf (ohne Kasten);Text;
+2024;Anlage AVEÜR;4;100;Summe Anschaffungs-/Herstellungskosten/Einlagewerte;40 Grundstücke – Grund und Boden;Betrag;0
+2024;Anlage AVEÜR;5;101;Summe Buchwerte zu Beginn des Gewinnermittlungszeitraums;40 Grundstücke – Grund und Boden;Übernahme;+
+2024;Anlage AVEÜR;6;102;Summe Zugänge;40 Grundstücke – Grund und Boden;Betrag;+
+2024;Anlage AVEÜR;7;105;Summe Abgänge (zu erfassen in Zeile 38 der Anlage EÜR);40 Grundstücke – Grund und Boden;Betrag;−
+2024;Anlage AVEÜR;8;106;Summe Buchwerte am Ende des Gewinnermittlungszeitraums;40 Grundstücke – Grund und Boden;Summe;=
+2024;Anlage AVEÜR;9;110;Summe Anschaffungs-/Herstellungskosten/Einlagewerte;40 Grundstücke – Gebäude;Betrag;0
+2024;Anlage AVEÜR;10;111;Summe Buchwerte zu Beginn des Gewinnermittlungszeitraums;40 Grundstücke – Gebäude;Übernahme;+
+2024;Anlage AVEÜR;11;112;Summe Zugänge;40 Grundstücke – Gebäude;Betrag;+
+2024;Anlage AVEÜR;12;113;Summe Sonderabschreibungen nach § 7b EStG (zu erfassen in Zeile 34 der Anlage EÜR);40 Grundstücke – Gebäude;Betrag;−
+2024;Anlage AVEÜR;13;114;Summe AfA;40 Grundstücke – Gebäude;Betrag;−
+2024;Anlage AVEÜR;14;115;Summe Abgänge (zu erfassen in Zeile 38 der Anlage EÜR);40 Grundstücke – Gebäude;Betrag;−
+2024;Anlage AVEÜR;15;116;Summe Buchwerte am Ende des Gewinnermittlungszeitraums;40 Grundstücke – Gebäude;Summe;=
+2024;Anlage AVEÜR;16;120;Summe Anschaffungs-/Herstellungskosten/Einlagewerte;40 Grundstücke – Andere (z. B. grundstücksgleiche Rechte);Betrag;0
+2024;Anlage AVEÜR;17;121;Summe Buchwerte zu Beginn des Gewinnermittlungszeitraums;40 Grundstücke – Andere (z. B. grundstücksgleiche Rechte);Übernahme;+
+2024;Anlage AVEÜR;18;122;Summe Zugänge;40 Grundstücke – Andere (z. B. grundstücksgleiche Rechte);Betrag;+
+2024;Anlage AVEÜR;19;124;Summe AfA;40 Grundstücke – Andere (z. B. grundstücksgleiche Rechte);Betrag;−
+2024;Anlage AVEÜR;20;125;Summe Abgänge (zu erfassen in Zeile 38 der Anlage EÜR);40 Grundstücke – Andere (z. B. grundstücksgleiche Rechte);Betrag;−
+2024;Anlage AVEÜR;21;126;Summe Buchwerte am Ende des Gewinnermittlungszeitraums;40 Grundstücke – Andere (z. B. grundstücksgleiche Rechte);Summe;=
+2024;Anlage AVEÜR;22;190;"Summe AfA aller Grundstücke/grundstücksgleichen Rechte (Summe der Zeilen 13 und 19; Übertrag in Zeile 31 der Anlage EÜR)";40 Grundstücke – Summe;Summe;=
+2024;Anlage AVEÜR;23;200;Summe Anschaffungs-/Herstellungskosten/Einlagewerte;40 Häusliches Arbeitszimmer – Anteil Grund und Boden;Betrag;0
+2024;Anlage AVEÜR;24;201;Summe Buchwerte zu Beginn des Gewinnermittlungszeitraums;40 Häusliches Arbeitszimmer – Anteil Grund und Boden;Übernahme;+
+2024;Anlage AVEÜR;25;202;Summe Zugänge;40 Häusliches Arbeitszimmer – Anteil Grund und Boden;Betrag;+
+2024;Anlage AVEÜR;26;205;Summe Abgänge (zu erfassen in Zeile 38 der Anlage EÜR);40 Häusliches Arbeitszimmer – Anteil Grund und Boden;Betrag;−
+2024;Anlage AVEÜR;27;206;Summe Buchwerte am Ende des Gewinnermittlungszeitraums;40 Häusliches Arbeitszimmer – Anteil Grund und Boden;Summe;=
+2024;Anlage AVEÜR;28;210;Summe Anschaffungs-/Herstellungskosten/Einlagewerte;40 Häusliches Arbeitszimmer – Gebäudeteil;Betrag;0
+2024;Anlage AVEÜR;29;211;Summe Buchwerte zu Beginn des Gewinnermittlungszeitraums;40 Häusliches Arbeitszimmer – Gebäudeteil;Übernahme;+
+2024;Anlage AVEÜR;30;212;Summe Zugänge;40 Häusliches Arbeitszimmer – Gebäudeteil;Betrag;+
+2024;Anlage AVEÜR;31;214;Summe AfA (zu erfassen in Zeile 65 der Anlage EÜR);40 Häusliches Arbeitszimmer – Gebäudeteil;Betrag;−
+2024;Anlage AVEÜR;32;215;Summe Abgänge (zu erfassen in Zeile 38 der Anlage EÜR);40 Häusliches Arbeitszimmer – Gebäudeteil;Betrag;−
+2024;Anlage AVEÜR;33;216;Summe Buchwerte am Ende des Gewinnermittlungszeitraums;40 Häusliches Arbeitszimmer – Gebäudeteil;Summe;=
+2024;Anlage AVEÜR;34;320;Summe Anschaffungs-/Herstellungskosten/Einlagewerte;40 Immaterielle Wirtschaftsgüter;Betrag;0
+2024;Anlage AVEÜR;35;321;Summe Buchwerte zu Beginn des Gewinnermittlungszeitraums;40 Immaterielle Wirtschaftsgüter;Übernahme;+
+2024;Anlage AVEÜR;36;322;Summe Zugänge;40 Immaterielle Wirtschaftsgüter;Betrag;+
+2024;Anlage AVEÜR;37;324;Summe AfA (Übertrag in Zeile 32 der Anlage EÜR);40 Immaterielle Wirtschaftsgüter;Betrag;−
+2024;Anlage AVEÜR;38;325;Summe Abgänge (zu erfassen in Zeile 38 der Anlage EÜR);40 Immaterielle Wirtschaftsgüter;Betrag;−
+2024;Anlage AVEÜR;39;326;Summe Buchwerte am Ende des Gewinnermittlungszeitraums;40 Immaterielle Wirtschaftsgüter;Summe;=
+2024;Anlage AVEÜR;40;400;Summe Anschaffungs-/Herstellungskosten/Einlagewerte;40 Bewegliche WG – Kfz;Betrag;0
+2024;Anlage AVEÜR;41;401;Summe Buchwerte zu Beginn des Gewinnermittlungszeitraums;40 Bewegliche WG – Kfz;Übernahme;+
+2024;Anlage AVEÜR;42;402;Summe Zugänge;40 Bewegliche WG – Kfz;Betrag;+
+2024;Anlage AVEÜR;43;403;Summe Sonderabschreibungen nach § 7g Abs. 5 und 6 EStG;40 Bewegliche WG – Kfz;Betrag;−
+2024;Anlage AVEÜR;44;404;Summe AfA;40 Bewegliche WG – Kfz;Betrag;−
+2024;Anlage AVEÜR;45;405;Summe Abgänge (zu erfassen in Zeile 38 der Anlage EÜR);40 Bewegliche WG – Kfz;Betrag;−
+2024;Anlage AVEÜR;46;406;Summe Buchwerte am Ende des Gewinnermittlungszeitraums;40 Bewegliche WG – Kfz;Summe;=
+2024;Anlage AVEÜR;47;410;Summe Anschaffungs-/Herstellungskosten/Einlagewerte;40 Bewegliche WG – Büroausstattung;Betrag;0
+2024;Anlage AVEÜR;48;411;Summe Buchwerte zu Beginn des Gewinnermittlungszeitraums;40 Bewegliche WG – Büroausstattung;Übernahme;+
+2024;Anlage AVEÜR;49;412;Summe Zugänge;40 Bewegliche WG – Büroausstattung;Betrag;+
+2024;Anlage AVEÜR;50;413;Summe Sonderabschreibungen nach § 7g Abs. 5 und 6 EStG;40 Bewegliche WG – Büroausstattung;Betrag;−
+2024;Anlage AVEÜR;51;414;Summe AfA;40 Bewegliche WG – Büroausstattung;Betrag;−
+2024;Anlage AVEÜR;52;415;Summe Abgänge (zu erfassen in Zeile 38 der Anlage EÜR);40 Bewegliche WG – Büroausstattung;Betrag;−
+2024;Anlage AVEÜR;53;416;Summe Buchwerte am Ende des Gewinnermittlungszeitraums;40 Bewegliche WG – Büroausstattung;Summe;=
+2024;Anlage AVEÜR;54;420;Summe Anschaffungs-/Herstellungskosten/Einlagewerte;40 Bewegliche WG – Andere;Betrag;0
+2024;Anlage AVEÜR;55;421;Summe Buchwerte zu Beginn des Gewinnermittlungszeitraums;40 Bewegliche WG – Andere;Übernahme;+
+2024;Anlage AVEÜR;56;422;Summe Zugänge;40 Bewegliche WG – Andere;Betrag;+
+2024;Anlage AVEÜR;57;423;Summe Sonderabschreibungen nach § 7g Abs. 5 und 6 EStG;40 Bewegliche WG – Andere;Betrag;−
+2024;Anlage AVEÜR;58;424;Summe AfA;40 Bewegliche WG – Andere;Betrag;−
+2024;Anlage AVEÜR;59;425;Summe Abgänge (zu erfassen in Zeile 38 der Anlage EÜR);40 Bewegliche WG – Andere;Betrag;−
+2024;Anlage AVEÜR;60;426;Summe Buchwerte am Ende des Gewinnermittlungszeitraums;40 Bewegliche WG – Andere;Summe;=
+2024;Anlage AVEÜR;61;480;"Summe Sonderabschreibungen nach § 7g Abs. 5 und 6 EStG aller beweglichen Wirtschaftsgüter (Summe der Zeilen 43, 50 und 57; zu erfassen in Zeile 34 der Anlage EÜR)";40 Bewegliche WG – Summe;Summe;=
+2024;Anlage AVEÜR;62;490;"Summe AfA aller beweglichen Wirtschaftsgüter (Summe der Zeilen 44, 51 und 58; Übertrag in Zeile 33 der Anlage EÜR)";40 Bewegliche WG – Summe;Summe;=
+2024;Anlage AVEÜR;63;432;Bildung;40 Sammelposten § 6 Abs. 2a EStG aus 2024;Betrag;+
+2024;Anlage AVEÜR;64;434;Auflösungsbetrag;40 Sammelposten § 6 Abs. 2a EStG aus 2024;Betrag;−
+2024;Anlage AVEÜR;65;436;Buchwert am Ende des Gewinnermittlungszeitraums;40 Sammelposten § 6 Abs. 2a EStG aus 2024;Summe;=
+2024;Anlage AVEÜR;66;440;Anschaffungs-/Herstellungskosten/Einlagewert;40 Sammelposten § 6 Abs. 2a EStG aus 2023;Betrag;0
+2024;Anlage AVEÜR;67;441;Buchwert zu Beginn des Gewinnermittlungszeitraums;40 Sammelposten § 6 Abs. 2a EStG aus 2023;Übernahme;+
+2024;Anlage AVEÜR;68;444;Auflösungsbetrag;40 Sammelposten § 6 Abs. 2a EStG aus 2023;Betrag;−
+2024;Anlage AVEÜR;69;446;Buchwert am Ende des Gewinnermittlungszeitraums;40 Sammelposten § 6 Abs. 2a EStG aus 2023;Summe;=
+2024;Anlage AVEÜR;70;450;Anschaffungs-/Herstellungskosten/Einlagewert;40 Sammelposten § 6 Abs. 2a EStG aus 2022;Betrag;0
+2024;Anlage AVEÜR;71;451;Buchwert zu Beginn des Gewinnermittlungszeitraums;40 Sammelposten § 6 Abs. 2a EStG aus 2022;Übernahme;+
+2024;Anlage AVEÜR;72;454;Auflösungsbetrag;40 Sammelposten § 6 Abs. 2a EStG aus 2022;Betrag;−
+2024;Anlage AVEÜR;73;456;Buchwert am Ende des Gewinnermittlungszeitraums;40 Sammelposten § 6 Abs. 2a EStG aus 2022;Summe;=
+2024;Anlage AVEÜR;74;460;Anschaffungs-/Herstellungskosten/Einlagewert;40 Sammelposten § 6 Abs. 2a EStG aus 2021;Betrag;0
+2024;Anlage AVEÜR;75;461;Buchwert zu Beginn des Gewinnermittlungszeitraums;40 Sammelposten § 6 Abs. 2a EStG aus 2021;Übernahme;+
+2024;Anlage AVEÜR;76;464;Auflösungsbetrag;40 Sammelposten § 6 Abs. 2a EStG aus 2021;Betrag;−
+2024;Anlage AVEÜR;77;466;Buchwert am Ende des Gewinnermittlungszeitraums;40 Sammelposten § 6 Abs. 2a EStG aus 2021;Summe;=
+2024;Anlage AVEÜR;78;470;Anschaffungs-/Herstellungskosten/Einlagewert;40 Sammelposten § 6 Abs. 2a EStG aus 2020;Betrag;0
+2024;Anlage AVEÜR;79;471;Buchwert zu Beginn des Gewinnermittlungszeitraums;40 Sammelposten § 6 Abs. 2a EStG aus 2020;Übernahme;+
+2024;Anlage AVEÜR;80;474;Auflösungsbetrag;40 Sammelposten § 6 Abs. 2a EStG aus 2020;Betrag;−
+2024;Anlage AVEÜR;81;499;"Summe Auflösungsbeträge (Summe der Zeilen 64, 68, 72, 76, 80; Übertrag in Zeile 37 der Anlage EÜR)";40 Sammelposten § 6 Abs. 2a EStG – Summe;Summe;=
+2024;Anlage AVEÜR;82;500;Summe Anschaffungs-/Herstellungskosten/Einlagewerte;40 Finanzanlagen – Anteile (Teileinkünfteverfahren/§ 8b KStG);Betrag;0
+2024;Anlage AVEÜR;83;501;Summe Buchwerte zu Beginn des Gewinnermittlungszeitraums;40 Finanzanlagen – Anteile (Teileinkünfteverfahren/§ 8b KStG);Übernahme;+
+2024;Anlage AVEÜR;84;502;Summe Zugänge;40 Finanzanlagen – Anteile (Teileinkünfteverfahren/§ 8b KStG);Betrag;+
+2024;Anlage AVEÜR;85;505;Summe Abgänge (zu erfassen in Zeile 38 der Anlage EÜR);40 Finanzanlagen – Anteile (Teileinkünfteverfahren/§ 8b KStG);Betrag;−
+2024;Anlage AVEÜR;86;506;Summe Buchwerte am Ende des Gewinnermittlungszeitraums;40 Finanzanlagen – Anteile (Teileinkünfteverfahren/§ 8b KStG);Summe;=
+2024;Anlage AVEÜR;87;510;Summe Anschaffungs-/Herstellungskosten/Einlagewerte;40 Finanzanlagen – Andere;Betrag;0
+2024;Anlage AVEÜR;88;511;Summe Buchwerte zu Beginn des Gewinnermittlungszeitraums;40 Finanzanlagen – Andere;Übernahme;+
+2024;Anlage AVEÜR;89;512;Summe Zugänge;40 Finanzanlagen – Andere;Betrag;+
+2024;Anlage AVEÜR;90;515;Summe Abgänge (zu erfassen in Zeile 38 der Anlage EÜR);40 Finanzanlagen – Andere;Betrag;−
+2024;Anlage AVEÜR;91;516;Summe Buchwerte am Ende des Gewinnermittlungszeitraums;40 Finanzanlagen – Andere;Summe;=
+2024;Anlage AVEÜR;92;600;Summe Anschaffungs-/Herstellungskosten/Einlagewerte;40 Umlaufvermögen i. S. d. § 4 Abs. 3 Satz 4 EStG bzw. § 32b Abs. 2 Satz 1 Nr. 2 Satz 2 Buchst. c EStG;Betrag;+
+2024;Anlage AVEÜR;93;602;Summe Zugänge;40 Umlaufvermögen i. S. d. § 4 Abs. 3 Satz 4 EStG bzw. § 32b Abs. 2 Satz 1 Nr. 2 Satz 2 Buchst. c EStG;Betrag;+
+2024;Anlage AVEÜR;94;605;Summe Abgänge (zu erfassen in Zeile 27 der Anlage EÜR);40 Umlaufvermögen i. S. d. § 4 Abs. 3 Satz 4 EStG bzw. § 32b Abs. 2 Satz 1 Nr. 2 Satz 2 Buchst. c EStG;Betrag;−
+2024;Anlage AVEÜR;95;606;Summe Buchwerte am Ende des Gewinnermittlungszeitraums;40 Umlaufvermögen i. S. d. § 4 Abs. 3 Satz 4 EStG bzw. § 32b Abs. 2 Satz 1 Nr. 2 Satz 2 Buchst. c EStG;Summe;=
+2024;Anlage SZ;1;;Name des Steuerpflichtigen;00 Kopf (ohne Kasten);Text;
+2024;Anlage SZ;2;;Vorname;00 Kopf (ohne Kasten);Text;
+2024;Anlage SZ;3;;(Betriebs-)Steuernummer;00 Kopf (ohne Kasten);Text;
+2024;Anlage SZ;4;;Wirtschafts-Identifikationsnummer;00 Kopf (ohne Kasten);Text;
+2024;Anlage SZ;5;;Betriebseinnahmen (Übertrag aus Zeile 23 der Anlage EÜR);43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 1. maßgeblicher Gewinn;Übernahme;+
+2024;Anlage SZ;6;;abzüglich Betriebsausgaben (Übertrag aus Zeile 75 der Anlage EÜR);43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 1. maßgeblicher Gewinn;Übernahme;−
+2024;Anlage SZ;7;151;zuzüglich steuerfreie Gewinne, die nicht in der Anlage EÜR enthalten sind;43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 1. maßgeblicher Gewinn;Betrag;+
+2024;Anlage SZ;8;152;abzüglich nicht abziehbare Betriebsausgaben;43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 1. maßgeblicher Gewinn;Betrag;−
+2024;Anlage SZ;9;153;zuzüglich Gewinne bzw. abzüglich Verluste aus Beteiligungen an vermögensverwaltenden Personengesellschaften und abzüglich Ergebnisanteile aus Kostenträgergemeinschaften (in Zeile 91 der Anlage EÜR enthalten);43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 1. maßgeblicher Gewinn;Betrag;±
+2024;Anlage SZ;10;154;zuzüglich Veräußerungs-/Aufgabegewinn bzw. abzüglich Veräußerungs-/Aufgabeverlust und zuzüglich Hinzu- bzw. abzüglich Abrechnungen beim Wechsel der Gewinnermittlungsart;43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 1. maßgeblicher Gewinn;Betrag;±
+2024;Anlage SZ;11;;Maßgeblicher Gewinn/Verlust für Zwecke des § 4 Abs. 4a EStG (in Zeile 13 eintragen);43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 1. maßgeblicher Gewinn;Summe;=
+2024;Anlage SZ;12;100;Entnahmen (Übertrag aus Zeile 106 der Anlage EÜR);43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 2. Über-/Unterentnahmen;Übernahme;+
+2024;Anlage SZ;13;;abzüglich Gewinn/zuzüglich Verlust (Betrag aus Zeile 11);43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 2. Über-/Unterentnahmen;Übernahme;−/+
+2024;Anlage SZ;14;210;Einlagen (Übertrag aus Zeile 107 der Anlage EÜR);43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 2. Über-/Unterentnahmen;Übernahme;−
+2024;Anlage SZ;15;;Über-/Unterentnahme des laufenden Wirtschaftsjahres;43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 2. Über-/Unterentnahmen;Summe;=
+2024;Anlage SZ;16;315;zuzüglich Über-/abzüglich Unterentnahmen der vorangegangenen Wirtschaftsjahre (Betrag aus Zeile 16 der Anlage SZ des Vorjahres);43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 2. Über-/Unterentnahmen;Übernahme;±
+2024;Anlage SZ;17;;Kumulierte Über-/Unterentnahmen;43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 2. Über-/Unterentnahmen;Summe;=
+2024;Anlage SZ;18;;Entnahmen des laufenden Wirtschaftsjahres (Betrag aus Zeile 12);43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 3. Entnahmenüberschuss;Übernahme;+
+2024;Anlage SZ;19;325;Entnahmen der vorangegangenen Wirtschaftsjahre (Betrag aus Zeile 19 der Anlage SZ des Vorjahres);43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 3. Entnahmenüberschuss;Übernahme;+
+2024;Anlage SZ;20;;Kumulierte Entnahmen;43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 3. Entnahmenüberschuss;Summe;=
+2024;Anlage SZ;21;;Einlagen des laufenden Wirtschaftsjahres (Betrag aus Zeile 14);43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 3. Entnahmenüberschuss;Übernahme;+
+2024;Anlage SZ;22;335;Einlagen der vorangegangenen Wirtschaftsjahre (Betrag aus Zeile 22 der Anlage SZ des Vorjahres);43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 3. Entnahmenüberschuss;Übernahme;+
+2024;Anlage SZ;23;;Kumulierte Einlagen;43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 3. Entnahmenüberschuss;Summe;=
+2024;Anlage SZ;24;;Kumulierter Entnahmenüberschuss;43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 3. Entnahmenüberschuss;Summe;=
+2024;Anlage SZ;25;;6 % des niedrigeren Betrags aus Zeile 17 oder 24 (Ergibt sich in Zeile 17 oder 24 ein negativer Betrag, ist hier der Wert „0“ einzutragen.);43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 4. Nicht abziehbare Schuldzinsen;Summe;=
+2024;Anlage SZ;26;;Übrige Schuldzinsen (Übertrag aus Zeile 56 der Anlage EÜR);43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 4. Nicht abziehbare Schuldzinsen;Übernahme;+
+2024;Anlage SZ;27;405;Korrekturbetrag zu den übrigen Schuldzinsen (siehe Anleitung zur Anlage EÜR);43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 4. Nicht abziehbare Schuldzinsen;Betrag;−
+2024;Anlage SZ;28;;Kürzungsbetrag gem. § 4 Abs. 4a Satz 4 EStG;43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 4. Nicht abziehbare Schuldzinsen;Konstante;−
+2024;Anlage SZ;29;;Höchstbetrag der nicht abziehbaren Schuldzinsen (Ergibt sich ein negativer Betrag, ist hier der Wert „0“ einzutragen.);43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 4. Nicht abziehbare Schuldzinsen;Summe;=
+2024;Anlage SZ;30;;Niedrigerer Betrag aus Zeile 25 oder 29 (Übertrag in Zeile 96 der Anlage EÜR);43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 5. Hinzurechnungsbetrag;Summe;=
+2025;Anlage EÜR;1;;Name des Steuerpflichtigen bzw. der Gesellschaft/Gemeinschaft/Körperschaft;00 Kopf (ohne Kasten);Text;
+2025;Anlage EÜR;2;;Vorname;00 Kopf (ohne Kasten);Text;
+2025;Anlage EÜR;3;;(Betriebs-)Steuernummer;00 Kopf (ohne Kasten);Text;
+2025;Anlage EÜR;4;131;davon abweichender Beginn;15 Allgemeine Angaben;Datum;
+2025;Anlage EÜR;4;132;davon abweichendes Ende;15 Allgemeine Angaben;Datum;
+2025;Anlage EÜR;5;101;Wirtschafts-Identifikationsnummer;15 Allgemeine Angaben;Text;
+2025;Anlage EÜR;6;100;Art des Betriebs;15 Allgemeine Angaben;Text;
+2025;Anlage EÜR;7;;Rechtsform des Betriebs;15 Allgemeine Angaben;Text;
+2025;Anlage EÜR;8;103;Einkunftsart;15 Allgemeine Angaben;Schlüssel;
+2025;Anlage EÜR;9;104;Betriebsinhaber;15 Allgemeine Angaben;Schlüssel;
+2025;Anlage EÜR;10;111;Wurde im Kalenderjahr/Wirtschaftsjahr der Betrieb beendet?;15 Allgemeine Angaben;Schlüssel;
+2025;Anlage EÜR;11;120;Grundstücke/grundstücksgleiche Rechte entnommen oder veräußert;15 Allgemeine Angaben;Schlüssel;
+2025;Anlage EÜR;12;111;Betriebseinnahmen als umsatzsteuerlicher Kleinunternehmer (nach § 19 Abs. 1 UStG) ohne Beträge laut Zeilen 18 bis 22;20 Betriebseinnahmen;Betrag;+
+2025;Anlage EÜR;13;119;davon nicht steuerbare Umsätze sowie Umsätze nach § 19 Abs. 2 Satz 1 Nr. 1 und 2 sowie Satz 2 UStG;20 Betriebseinnahmen;Betrag-davon;0
+2025;Anlage EÜR;14;104;Betriebseinnahmen als Land- und Forstwirt, soweit die Durchschnittssatzbesteuerung nach § 24 UStG angewandt wird;20 Betriebseinnahmen;Betrag;+
+2025;Anlage EÜR;15;112;Umsatzsteuerpflichtige Betriebseinnahmen (ohne solche zum ermäßigten Steuersatz von 0 %);20 Betriebseinnahmen;Betrag;+
+2025;Anlage EÜR;16;103;Betriebseinnahmen, die umsatzsteuerfrei (§ 4 UStG) oder nicht umsatzsteuerbar sind oder nach § 12 Abs. 3 UStG dem ermäßigten Steuersatz von 0 % unterliegen oder für die der Leistungsempfänger die Umsatzsteuer nach § 13b UStG schuldet;20 Betriebseinnahmen;Betrag;+
+2025;Anlage EÜR;17;140;Vereinnahmte Umsatzsteuer sowie Umsatzsteuer auf unentgeltliche Wertabgaben;20 Betriebseinnahmen;Betrag;+
+2025;Anlage EÜR;18;141;Vom Finanzamt erstattete und ggf. verrechnete Umsatzsteuer (Die Regelung zum 10-Tageszeitraum - § 11 Abs. 1 Satz 2 EStG - ist zu beachten.);20 Betriebseinnahmen;Betrag;+
+2025;Anlage EÜR;19;102;Veräußerung oder Entnahme von Anlagevermögen;20 Betriebseinnahmen;Betrag;+
+2025;Anlage EÜR;20;106;Private Kfz-Nutzung;20 Betriebseinnahmen;Betrag;+
+2025;Anlage EÜR;21;108;Sonstige Sach-, Nutzungs- und Leistungsentnahmen;20 Betriebseinnahmen;Betrag;+
+2025;Anlage EÜR;22;;Auflösung von Rücklagen und/oder Ausgleichsposten (Übertrag aus Zeile 105);20 Betriebseinnahmen;Übernahme;+
+2025;Anlage EÜR;23;159;Summe Betriebseinnahmen (Übertrag in Zeile 76);20 Betriebseinnahmen;Summe;=
+2025;Anlage EÜR;24;195;Betriebsausgabenpauschale für bestimmte Berufsgruppen;25 Betriebsausgaben;Betrag;+
+2025;Anlage EÜR;25;;Sachlicher Bebauungskostenrichtbetrag und Ausbaukostenrichtbeträge für Weinbaubetriebe (Übertrag aus Zeile 13 der Anlage LuF);25 Betriebsausgaben;Übernahme;+
+2025;Anlage EÜR;26;;Betriebsausgabenpauschale für Forstwirte (Übertrag aus Zeile 17 der Anlage LuF);25 Betriebsausgaben;Übernahme;+
+2025;Anlage EÜR;27;100;Waren, Rohstoffe und Hilfsstoffe einschließlich der Nebenkosten;25 Betriebsausgaben;Betrag;+
+2025;Anlage EÜR;28;;Übertrag (Summe Zeilen 24 bis 27);25 Betriebsausgaben;Zwischensumme;=
+2025;Anlage EÜR;29;110;Bezogene Fremdleistungen;25 Betriebsausgaben;Betrag;+
+2025;Anlage EÜR;30;120;Ausgaben für eigenes Personal (z. B. Gehälter, Löhne und Versicherungsbeiträge);25 Betriebsausgaben;Betrag;+
+2025;Anlage EÜR;31;136;AfA auf Grundstücke/grundstücksgleiche Rechte (Übertrag aus Zeile 22 der Anlage AVEÜR);25 Betriebsausgaben;Übernahme;+
+2025;Anlage EÜR;32;131;AfA auf immaterielle Wirtschaftsgüter (Übertrag aus Zeile 37 der Anlage AVEÜR);25 Betriebsausgaben;Übernahme;+
+2025;Anlage EÜR;33;130;AfA auf bewegliche Wirtschaftsgüter (Übertrag aus Zeile 63 der Anlage AVEÜR);25 Betriebsausgaben;Übernahme;+
+2025;Anlage EÜR;34;134;Sonderabschreibungen nach § 7b EStG und § 7g Abs. 5 und 6 EStG (Übertrag der Summe der Zeilen 12 und 62 der Anlage AVEÜR);25 Betriebsausgaben;Übernahme;+
+2025;Anlage EÜR;35;138;Herabsetzungsbeträge nach § 7g Abs. 2 Satz 3 EStG (Erläuterungen auf gesondertem Blatt);25 Betriebsausgaben;Betrag;+
+2025;Anlage EÜR;36;132;Aufwendungen für geringwertige Wirtschaftsgüter nach § 6 Abs. 2 EStG;25 Betriebsausgaben;Betrag;+
+2025;Anlage EÜR;37;137;Auflösung Sammelposten nach § 6 Abs. 2a EStG (Übertrag aus Zeile 82 der Anlage AVEÜR);25 Betriebsausgaben;Übernahme;+
+2025;Anlage EÜR;38;135;Restbuchwerte der ausgeschiedenen Anlagegüter (Übertrag der Summe der Beträge aus Zeilen 7, 14, 20, 26, 32, 38, 45, 53, 60, 86, 91 der Anlage AVEÜR);25 Betriebsausgaben;Übernahme;+
+2025;Anlage EÜR;39;150;Miete/Pacht für Geschäftsräume und betrieblich genutzte Grundstücke;25 Betriebsausgaben;Betrag;+
+2025;Anlage EÜR;40;152;Aufwendungen für doppelte Haushaltsführung (z. B. Miete);25 Betriebsausgaben;Betrag;+
+2025;Anlage EÜR;41;151;Sonstige Aufwendungen für betrieblich genutzte Grundstücke (ohne Schuldzinsen und AfA);25 Betriebsausgaben;Betrag;+
+2025;Anlage EÜR;42;153;in Zeile 41 enthaltene Erhaltungsaufwendungen;25 Betriebsausgaben;Betrag-davon;0
+2025;Anlage EÜR;43;280;Aufwendungen für Telekommunikation (z. B. Telefon, Internet);25 Betriebsausgaben;Betrag;+
+2025;Anlage EÜR;44;221;Übernachtungs- und Reisenebenkosten bei Geschäftsreisen des Steuerpflichtigen;25 Betriebsausgaben;Betrag;+
+2025;Anlage EÜR;45;281;Fortbildungskosten (ohne Reisekosten);25 Betriebsausgaben;Betrag;+
+2025;Anlage EÜR;46;194;Kosten für Rechts- und Steuerberatung, Buchführung;25 Betriebsausgaben;Betrag;+
+2025;Anlage EÜR;47;222;Miete/Leasing für bewegliche Wirtschaftsgüter (ohne Kfz);25 Betriebsausgaben;Betrag;+
+2025;Anlage EÜR;48;225;"Erhaltungsaufwendungen (z. B. Instandhaltung, Wartung, Reparatur; ohne solche für Gebäude und Kfz)";25 Betriebsausgaben;Betrag;+
+2025;Anlage EÜR;49;223;Beiträge, Gebühren, Abgaben und Versicherungen (ohne solche für Gebäude und Kfz);25 Betriebsausgaben;Betrag;+
+2025;Anlage EÜR;50;228;Laufende EDV-Kosten (z. B. Beratung, Wartung, Reparatur);25 Betriebsausgaben;Betrag;+
+2025;Anlage EÜR;51;229;Arbeitsmittel (z. B. Bürobedarf, Porto, Fachliteratur);25 Betriebsausgaben;Betrag;+
+2025;Anlage EÜR;52;226;Kosten für Abfallbeseitigung und Entsorgung;25 Betriebsausgaben;Betrag;+
+2025;Anlage EÜR;53;227;Kosten für Verpackung und Transport;25 Betriebsausgaben;Betrag;+
+2025;Anlage EÜR;54;224;Werbekosten (z. B. Inserate, Werbespots, Plakate);25 Betriebsausgaben;Betrag;+
+2025;Anlage EÜR;55;232;Schuldzinsen zur Finanzierung von Anschaffungs- und Herstellungskosten von Wirtschaftsgütern des Anlagevermögens (ohne häusliches Arbeitszimmer);25 Betriebsausgaben;Betrag;+
+2025;Anlage EÜR;56;234;Übrige Schuldzinsen;25 Betriebsausgaben;Betrag;+
+2025;Anlage EÜR;57;185;Gezahlte und nach § 15 UStG abziehbare Vorsteuerbeträge;25 Betriebsausgaben;Betrag;+
+2025;Anlage EÜR;58;186;An das Finanzamt gezahlte und ggf. verrechnete Umsatzsteuer (Die Regelung zum 10-Tageszeitraum - § 11 Abs. 2 Satz 2 EStG - ist zu beachten.);25 Betriebsausgaben;Betrag;+
+2025;Anlage EÜR;59;;Rücklagen, stille Reserven und/oder Ausgleichsposten (Übertrag aus Zeile 102);25 Betriebsausgaben;Übernahme;+
+2025;Anlage EÜR;60;183;Übrige unbeschränkt abziehbare Betriebsausgaben (auch zurückgezahlte Hilfen/Zuschüsse aufgrund der Corona-Pandemie);25 Betriebsausgaben;Betrag;+
+2025;Anlage EÜR;61;;Übertrag (Summe Zeilen 24 bis 27 und Zeilen 29 bis 60);25 Betriebsausgaben;Zwischensumme;=
+2025;Anlage EÜR;62;164;Geschenke;25 Betriebsausgaben;Betrag-davon;0
+2025;Anlage EÜR;62;174;Geschenke;25 Betriebsausgaben;Betrag;+
+2025;Anlage EÜR;63;165;Bewirtungsaufwendungen;25 Betriebsausgaben;Betrag-davon;0
+2025;Anlage EÜR;63;175;Bewirtungsaufwendungen;25 Betriebsausgaben;Betrag;+
+2025;Anlage EÜR;64;171;Verpflegungsmehraufwendungen;25 Betriebsausgaben;Betrag;+
+2025;Anlage EÜR;65;162;Aufwendungen für ein häusliches Arbeitszimmer (siehe Anleitung);25 Betriebsausgaben;Betrag-davon;0
+2025;Anlage EÜR;65;172;Aufwendungen für ein häusliches Arbeitszimmer (siehe Anleitung);25 Betriebsausgaben;Betrag;+
+2025;Anlage EÜR;66;163;Tagespauschale für die Tätigkeit in der häuslichen Wohnung (siehe Anleitung);25 Betriebsausgaben;Betrag;+
+2025;Anlage EÜR;67;168;Sonstige beschränkt abziehbare Betriebsausgaben;25 Betriebsausgaben;Betrag-davon;0
+2025;Anlage EÜR;67;177;Sonstige beschränkt abziehbare Betriebsausgaben;25 Betriebsausgaben;Betrag;+
+2025;Anlage EÜR;68;144;Leasingkosten;25 Betriebsausgaben;Betrag;+
+2025;Anlage EÜR;69;145;Steuern, Versicherungen und Maut;25 Betriebsausgaben;Betrag;+
+2025;Anlage EÜR;70;146;Sonstige tatsächliche Fahrtkosten ohne AfA und Zinsen (z. B. Reparaturen, Wartungen, Treibstoff, Kosten für Flugstrecken, Kosten für öffentliche Verkehrsmittel);25 Betriebsausgaben;Betrag;+
+2025;Anlage EÜR;71;147;Fahrtkosten für nicht zum Betriebsvermögen gehörende Fahrzeuge (Nutzungseinlage);25 Betriebsausgaben;Betrag;+
+2025;Anlage EÜR;72;142;"Fahrtkosten für Wege zwischen Wohnung und erster Betriebsstätte; Familienheimfahrten (pauschaliert oder tatsächlich)";25 Betriebsausgaben;Betrag;−
+2025;Anlage EÜR;73;176;"Mindestens abziehbare Fahrtkosten für Wege zwischen Wohnung und erster Betriebsstätte (Entfernungspauschale); Familienheimfahrten";25 Betriebsausgaben;Betrag;+
+2025;Anlage EÜR;74;139;Nicht abziehbare Beträge (Beispiele siehe Anleitung);25 Betriebsausgaben;Betrag;−
+2025;Anlage EÜR;75;199;Summe Betriebsausgaben (Übertrag in Zeile 77);25 Betriebsausgaben;Summe;=
+2025;Anlage EÜR;76;;Summe der Betriebseinnahmen (Übertrag aus Zeile 23);25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Übernahme;+
+2025;Anlage EÜR;77;;abzüglich Summe der Betriebsausgaben (Übertrag aus Zeile 75);25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Übernahme;−
+2025;Anlage EÜR;78;240;abzüglich steuerfreier Einnahmen nach § 3 Nr. 26, 26a, 26b EStG;25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Betrag;−
+2025;Anlage EÜR;79;241;abzüglich steuerfreier Einnahmen nach § 3 EStG (ohne Nr. 26, 26a, 26b und Teileinkünfteverfahren);25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Betrag;−
+2025;Anlage EÜR;80;242;abzüglich steuerfreier Einnahmen nach § 3a EStG;25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Betrag;−
+2025;Anlage EÜR;81;243;zuzüglich nicht abziehbarer Betriebsausgaben im Zusammenhang mit steuerfreien Einnahmen nach § 3 Nr. 26, 26a, 26b EStG;25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Betrag;+
+2025;Anlage EÜR;82;244;zuzüglich nicht abziehbarer Betriebsausgaben nach § 3c Abs. 1 EStG;25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Betrag;+
+2025;Anlage EÜR;83;245;zuzüglich nicht abziehbarer Betriebsausgaben nach § 3c Abs. 4 EStG;25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Betrag;+
+2025;Anlage EÜR;84;180;zuzüglich Hinzurechnung der Investitionsabzugsbeträge nach § 7g Abs. 2 Satz 1 EStG aus 2022 (Erläuterungen auf gesondertem Blatt);25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Betrag;+
+2025;Anlage EÜR;85;181;zuzüglich Hinzurechnung der Investitionsabzugsbeträge nach § 7g Abs. 2 Satz 1 EStG aus 2023 (Erläuterungen auf gesondertem Blatt);25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Betrag;+
+2025;Anlage EÜR;86;182;zuzüglich Hinzurechnung der Investitionsabzugsbeträge nach § 7g Abs. 2 Satz 1 EStG aus 2024 (Erläuterungen auf gesondertem Blatt);25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Betrag;+
+2025;Anlage EÜR;87;123;zuzüglich Gewinnzuschlag nach § 6c i. V. m. § 6b Abs. 7 und 10 EStG;25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Betrag;+
+2025;Anlage EÜR;88;187;abzüglich Investitionsabzugsbeträge nach § 7g Abs. 1 EStG;25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Betrag;−
+2025;Anlage EÜR;89;250;Hinzurechnungen und Abrechnungen bei Wechsel der Gewinnermittlungsart (Erläuterungen auf gesondertem Blatt);25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Betrag;±
+2025;Anlage EÜR;90;;Übertrag (Summe/Differenz Zeilen 76 bis 89);25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Zwischensumme;=
+2025;Anlage EÜR;91;255;Ergebnisanteile aus Beteiligungen an Personengesellschaften (auch Kostenträgergemeinschaften);25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Betrag;±
+2025;Anlage EÜR;92;290;Korrigierter Gewinn/Verlust;25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Summe;=
+2025;Anlage EÜR;93;263;"Bereits berücksichtigte Beträge, für die Steuerbefreiungen nach InvStG gelten (ohne Beträge lt. Zeile 94; Erläuterungen auf gesondertem Blatt)";25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Betrag-davon;0
+2025;Anlage EÜR;93;264;"Bereits berücksichtigte Beträge, für die Steuerbefreiungen nach InvStG gelten (ohne Beträge lt. Zeile 94; Erläuterungen auf gesondertem Blatt)";25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Betrag;±
+2025;Anlage EÜR;94;261;Bereits berücksichtigte Beträge, für die das Teileinkünfteverfahren bzw. § 8b KStG gilt;25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Betrag-davon;0
+2025;Anlage EÜR;94;262;Bereits berücksichtigte Beträge, für die das Teileinkünfteverfahren bzw. § 8b KStG gilt;25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Betrag;±
+2025;Anlage EÜR;95;293;Steuerpflichtiger Gewinn/Verlust vor Anwendung des § 4 Abs. 4a EStG;25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Summe;=
+2025;Anlage EÜR;96;271;Hinzurechnungsbetrag nach § 4 Abs. 4a EStG;25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Übernahme;+
+2025;Anlage EÜR;97;219;Steuerpflichtiger Gewinn/Verlust;25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Summe;=
+2025;Anlage EÜR;98;;Anzusetzender steuerpflichtiger Gewinn/Verlust nach Anwendung des § 4 Abs. 4a EStG ohne Berücksichtigung des InvStG, des Teileinkünfteverfahrens bzw. § 8b KStG (Betrag lt. Zeile 92 zuzüglich Betrag lt. Zeile 96);25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Summe;=
+2025;Anlage EÜR;99;187;Rücklagen nach § 6c i. V. m. § 6b EStG, R 6.6 EStR;27 Ergänzende Angaben (Rücklagen, stille Reserven, Ausgleichsposten);Betrag;+
+2025;Anlage EÜR;100;170;Übertragung von stillen Reserven nach § 6c i. V. m. § 6b EStG, R 6.6 EStR;27 Ergänzende Angaben (Rücklagen, stille Reserven, Ausgleichsposten);Betrag;+
+2025;Anlage EÜR;101;191;Ausgleichsposten nach § 4g EStG;27 Ergänzende Angaben (Rücklagen, stille Reserven, Ausgleichsposten);Betrag;+
+2025;Anlage EÜR;102;190;Gesamtsumme (Übertrag in Zeile 59);27 Ergänzende Angaben (Rücklagen, stille Reserven, Ausgleichsposten);Summe;=
+2025;Anlage EÜR;103;120;Rücklagen nach § 6c i. V. m. § 6b EStG, R 6.6 EStR;27 Ergänzende Angaben (Rücklagen, stille Reserven, Ausgleichsposten);Betrag;+
+2025;Anlage EÜR;104;125;Ausgleichsposten nach § 4g EStG;27 Ergänzende Angaben (Rücklagen, stille Reserven, Ausgleichsposten);Betrag;+
+2025;Anlage EÜR;105;124;Gesamtsumme (Übertrag in Zeile 22);27 Ergänzende Angaben (Rücklagen, stille Reserven, Ausgleichsposten);Summe;=
+2025;Anlage EÜR;106;122;Entnahmen einschließlich Sach-, Leistungs- und Nutzungsentnahmen;29 Zusätzliche Angaben bei Einzelunternehmen;Betrag;0
+2025;Anlage EÜR;107;123;Einlagen einschließlich Sach-, Leistungs- und Nutzungseinlagen;29 Zusätzliche Angaben bei Einzelunternehmen;Betrag;0
+2025;Anlage AVEÜR;1;;Name des Steuerpflichtigen bzw. der Gesellschaft/Gemeinschaft/Körperschaft;00 Kopf (ohne Kasten);Text;
+2025;Anlage AVEÜR;2;;(Betriebs-)Steuernummer;00 Kopf (ohne Kasten);Text;
+2025;Anlage AVEÜR;3;;Wirtschafts-Identifikationsnummer;00 Kopf (ohne Kasten);Text;
+2025;Anlage AVEÜR;4;100;Summe Anschaffungs-/Herstellungskosten/Einlagewerte;40 Grundstücke – Grund und Boden;Betrag;0
+2025;Anlage AVEÜR;5;101;Summe Buchwerte zu Beginn des Gewinnermittlungszeitraums;40 Grundstücke – Grund und Boden;Übernahme;+
+2025;Anlage AVEÜR;6;102;Summe Zugänge;40 Grundstücke – Grund und Boden;Betrag;+
+2025;Anlage AVEÜR;7;105;Summe Abgänge (zu erfassen in Zeile 38 der Anlage EÜR);40 Grundstücke – Grund und Boden;Betrag;−
+2025;Anlage AVEÜR;8;106;Summe Buchwerte am Ende des Gewinnermittlungszeitraums;40 Grundstücke – Grund und Boden;Summe;=
+2025;Anlage AVEÜR;9;110;Summe Anschaffungs-/Herstellungskosten/Einlagewerte;40 Grundstücke – Gebäude;Betrag;0
+2025;Anlage AVEÜR;10;111;Summe Buchwerte zu Beginn des Gewinnermittlungszeitraums;40 Grundstücke – Gebäude;Übernahme;+
+2025;Anlage AVEÜR;11;112;Summe Zugänge;40 Grundstücke – Gebäude;Betrag;+
+2025;Anlage AVEÜR;12;113;Summe Sonderabschreibungen nach § 7b EStG (zu erfassen in Zeile 34 der Anlage EÜR);40 Grundstücke – Gebäude;Betrag;−
+2025;Anlage AVEÜR;13;114;Summe AfA;40 Grundstücke – Gebäude;Betrag;−
+2025;Anlage AVEÜR;14;115;Summe Abgänge (zu erfassen in Zeile 38 der Anlage EÜR);40 Grundstücke – Gebäude;Betrag;−
+2025;Anlage AVEÜR;15;116;Summe Buchwerte am Ende des Gewinnermittlungszeitraums;40 Grundstücke – Gebäude;Summe;=
+2025;Anlage AVEÜR;16;120;Summe Anschaffungs-/Herstellungskosten/Einlagewerte;40 Grundstücke – Andere (z. B. grundstücksgleiche Rechte);Betrag;0
+2025;Anlage AVEÜR;17;121;Summe Buchwerte zu Beginn des Gewinnermittlungszeitraums;40 Grundstücke – Andere (z. B. grundstücksgleiche Rechte);Übernahme;+
+2025;Anlage AVEÜR;18;122;Summe Zugänge;40 Grundstücke – Andere (z. B. grundstücksgleiche Rechte);Betrag;+
+2025;Anlage AVEÜR;19;124;Summe AfA;40 Grundstücke – Andere (z. B. grundstücksgleiche Rechte);Betrag;−
+2025;Anlage AVEÜR;20;125;Summe Abgänge (zu erfassen in Zeile 38 der Anlage EÜR);40 Grundstücke – Andere (z. B. grundstücksgleiche Rechte);Betrag;−
+2025;Anlage AVEÜR;21;126;Summe Buchwerte am Ende des Gewinnermittlungszeitraums;40 Grundstücke – Andere (z. B. grundstücksgleiche Rechte);Summe;=
+2025;Anlage AVEÜR;22;190;"Summe AfA aller Grundstücke/grundstücksgleichen Rechte (Summe der Zeilen 13 und 19; Übertrag in Zeile 31 der Anlage EÜR)";40 Grundstücke – Summe;Summe;=
+2025;Anlage AVEÜR;23;200;Summe Anschaffungs-/Herstellungskosten/Einlagewerte;40 Häusliches Arbeitszimmer – Anteil Grund und Boden;Betrag;0
+2025;Anlage AVEÜR;24;201;Summe Buchwerte zu Beginn des Gewinnermittlungszeitraums;40 Häusliches Arbeitszimmer – Anteil Grund und Boden;Übernahme;+
+2025;Anlage AVEÜR;25;202;Summe Zugänge;40 Häusliches Arbeitszimmer – Anteil Grund und Boden;Betrag;+
+2025;Anlage AVEÜR;26;205;Summe Abgänge (zu erfassen in Zeile 38 der Anlage EÜR);40 Häusliches Arbeitszimmer – Anteil Grund und Boden;Betrag;−
+2025;Anlage AVEÜR;27;206;Summe Buchwerte am Ende des Gewinnermittlungszeitraums;40 Häusliches Arbeitszimmer – Anteil Grund und Boden;Summe;=
+2025;Anlage AVEÜR;28;210;Summe Anschaffungs-/Herstellungskosten/Einlagewerte;40 Häusliches Arbeitszimmer – Gebäudeteil;Betrag;0
+2025;Anlage AVEÜR;29;211;Summe Buchwerte zu Beginn des Gewinnermittlungszeitraums;40 Häusliches Arbeitszimmer – Gebäudeteil;Übernahme;+
+2025;Anlage AVEÜR;30;212;Summe Zugänge;40 Häusliches Arbeitszimmer – Gebäudeteil;Betrag;+
+2025;Anlage AVEÜR;31;214;Summe AfA (zu erfassen in Zeile 65 der Anlage EÜR);40 Häusliches Arbeitszimmer – Gebäudeteil;Betrag;−
+2025;Anlage AVEÜR;32;215;Summe Abgänge (zu erfassen in Zeile 38 der Anlage EÜR);40 Häusliches Arbeitszimmer – Gebäudeteil;Betrag;−
+2025;Anlage AVEÜR;33;216;Summe Buchwerte am Ende des Gewinnermittlungszeitraums;40 Häusliches Arbeitszimmer – Gebäudeteil;Summe;=
+2025;Anlage AVEÜR;34;320;Summe Anschaffungs-/Herstellungskosten/Einlagewerte;40 Immaterielle Wirtschaftsgüter;Betrag;0
+2025;Anlage AVEÜR;35;321;Summe Buchwerte zu Beginn des Gewinnermittlungszeitraums;40 Immaterielle Wirtschaftsgüter;Übernahme;+
+2025;Anlage AVEÜR;36;322;Summe Zugänge;40 Immaterielle Wirtschaftsgüter;Betrag;+
+2025;Anlage AVEÜR;37;324;Summe AfA (Übertrag in Zeile 32 der Anlage EÜR);40 Immaterielle Wirtschaftsgüter;Betrag;−
+2025;Anlage AVEÜR;38;325;Summe Abgänge (zu erfassen in Zeile 38 der Anlage EÜR);40 Immaterielle Wirtschaftsgüter;Betrag;−
+2025;Anlage AVEÜR;39;326;Summe Buchwerte am Ende des Gewinnermittlungszeitraums;40 Immaterielle Wirtschaftsgüter;Summe;=
+2025;Anlage AVEÜR;40;400;Summe Anschaffungs-/Herstellungskosten/Einlagewerte;40 Bewegliche WG – Kfz;Betrag;0
+2025;Anlage AVEÜR;41;401;Summe Buchwerte zu Beginn des Gewinnermittlungszeitraums;40 Bewegliche WG – Kfz;Übernahme;+
+2025;Anlage AVEÜR;42;402;Summe Zugänge;40 Bewegliche WG – Kfz;Betrag;+
+2025;Anlage AVEÜR;43;403;Summe Sonderabschreibungen nach § 7g Abs. 5 und 6 EStG;40 Bewegliche WG – Kfz;Betrag;−
+2025;Anlage AVEÜR;44;404;Summe AfA;40 Bewegliche WG – Kfz;Betrag;−
+2025;Anlage AVEÜR;45;405;Summe Abgänge (zu erfassen in Zeile 38 der Anlage EÜR);40 Bewegliche WG – Kfz;Betrag;−
+2025;Anlage AVEÜR;46;406;Summe Buchwerte am Ende des Gewinnermittlungszeitraums;40 Bewegliche WG – Kfz;Summe;=
+2025;Anlage AVEÜR;47;407;Es ist mindestens ein Elektro- oder extern aufladbares Hybridelektrofahrzeug vorhanden;40 Bewegliche WG – Kfz;Schlüssel;
+2025;Anlage AVEÜR;48;410;Summe Anschaffungs-/Herstellungskosten/Einlagewerte;40 Bewegliche WG – Büroausstattung;Betrag;0
+2025;Anlage AVEÜR;49;411;Summe Buchwerte zu Beginn des Gewinnermittlungszeitraums;40 Bewegliche WG – Büroausstattung;Übernahme;+
+2025;Anlage AVEÜR;50;412;Summe Zugänge;40 Bewegliche WG – Büroausstattung;Betrag;+
+2025;Anlage AVEÜR;51;413;Summe Sonderabschreibungen nach § 7g Abs. 5 und 6 EStG;40 Bewegliche WG – Büroausstattung;Betrag;−
+2025;Anlage AVEÜR;52;414;Summe AfA;40 Bewegliche WG – Büroausstattung;Betrag;−
+2025;Anlage AVEÜR;53;415;Summe Abgänge (zu erfassen in Zeile 38 der Anlage EÜR);40 Bewegliche WG – Büroausstattung;Betrag;−
+2025;Anlage AVEÜR;54;416;Summe Buchwerte am Ende des Gewinnermittlungszeitraums;40 Bewegliche WG – Büroausstattung;Summe;=
+2025;Anlage AVEÜR;55;420;Summe Anschaffungs-/Herstellungskosten/Einlagewerte;40 Bewegliche WG – Andere;Betrag;0
+2025;Anlage AVEÜR;56;421;Summe Buchwerte zu Beginn des Gewinnermittlungszeitraums;40 Bewegliche WG – Andere;Übernahme;+
+2025;Anlage AVEÜR;57;422;Summe Zugänge;40 Bewegliche WG – Andere;Betrag;+
+2025;Anlage AVEÜR;58;423;Summe Sonderabschreibungen nach § 7g Abs. 5 und 6 EStG;40 Bewegliche WG – Andere;Betrag;−
+2025;Anlage AVEÜR;59;424;Summe AfA;40 Bewegliche WG – Andere;Betrag;−
+2025;Anlage AVEÜR;60;425;Summe Abgänge (zu erfassen in Zeile 38 der Anlage EÜR);40 Bewegliche WG – Andere;Betrag;−
+2025;Anlage AVEÜR;61;426;Summe Buchwerte am Ende des Gewinnermittlungszeitraums;40 Bewegliche WG – Andere;Summe;=
+2025;Anlage AVEÜR;62;480;"Summe Sonderabschreibungen nach § 7g Abs. 5 und 6 EStG aller beweglichen Wirtschaftsgüter (Summe der Zeilen 43, 51 und 58; zu erfassen in Zeile 34 der Anlage EÜR)";40 Bewegliche WG – Summe;Summe;=
+2025;Anlage AVEÜR;63;490;"Summe AfA aller beweglichen Wirtschaftsgüter (Summe der Zeilen 44, 52 und 59; Übertrag in Zeile 33 der Anlage EÜR)";40 Bewegliche WG – Summe;Summe;=
+2025;Anlage AVEÜR;64;432;Bildung;40 Sammelposten § 6 Abs. 2a EStG aus 2025;Betrag;+
+2025;Anlage AVEÜR;65;434;Auflösungsbetrag;40 Sammelposten § 6 Abs. 2a EStG aus 2025;Betrag;−
+2025;Anlage AVEÜR;66;436;Buchwert am Ende des Gewinnermittlungszeitraums;40 Sammelposten § 6 Abs. 2a EStG aus 2025;Summe;=
+2025;Anlage AVEÜR;67;440;Anschaffungs-/Herstellungskosten/Einlagewert;40 Sammelposten § 6 Abs. 2a EStG aus 2024;Betrag;0
+2025;Anlage AVEÜR;68;441;Buchwert zu Beginn des Gewinnermittlungszeitraums;40 Sammelposten § 6 Abs. 2a EStG aus 2024;Übernahme;+
+2025;Anlage AVEÜR;69;444;Auflösungsbetrag;40 Sammelposten § 6 Abs. 2a EStG aus 2024;Betrag;−
+2025;Anlage AVEÜR;70;446;Buchwert am Ende des Gewinnermittlungszeitraums;40 Sammelposten § 6 Abs. 2a EStG aus 2024;Summe;=
+2025;Anlage AVEÜR;71;450;Anschaffungs-/Herstellungskosten/Einlagewert;40 Sammelposten § 6 Abs. 2a EStG aus 2023;Betrag;0
+2025;Anlage AVEÜR;72;451;Buchwert zu Beginn des Gewinnermittlungszeitraums;40 Sammelposten § 6 Abs. 2a EStG aus 2023;Übernahme;+
+2025;Anlage AVEÜR;73;454;Auflösungsbetrag;40 Sammelposten § 6 Abs. 2a EStG aus 2023;Betrag;−
+2025;Anlage AVEÜR;74;456;Buchwert am Ende des Gewinnermittlungszeitraums;40 Sammelposten § 6 Abs. 2a EStG aus 2023;Summe;=
+2025;Anlage AVEÜR;75;460;Anschaffungs-/Herstellungskosten/Einlagewert;40 Sammelposten § 6 Abs. 2a EStG aus 2022;Betrag;0
+2025;Anlage AVEÜR;76;461;Buchwert zu Beginn des Gewinnermittlungszeitraums;40 Sammelposten § 6 Abs. 2a EStG aus 2022;Übernahme;+
+2025;Anlage AVEÜR;77;464;Auflösungsbetrag;40 Sammelposten § 6 Abs. 2a EStG aus 2022;Betrag;−
+2025;Anlage AVEÜR;78;466;Buchwert am Ende des Gewinnermittlungszeitraums;40 Sammelposten § 6 Abs. 2a EStG aus 2022;Summe;=
+2025;Anlage AVEÜR;79;470;Anschaffungs-/Herstellungskosten/Einlagewert;40 Sammelposten § 6 Abs. 2a EStG aus 2021;Betrag;0
+2025;Anlage AVEÜR;80;471;Buchwert zu Beginn des Gewinnermittlungszeitraums;40 Sammelposten § 6 Abs. 2a EStG aus 2021;Übernahme;+
+2025;Anlage AVEÜR;81;474;Auflösungsbetrag;40 Sammelposten § 6 Abs. 2a EStG aus 2021;Betrag;−
+2025;Anlage AVEÜR;82;499;"Summe Auflösungsbeträge (Summe der Zeilen 65, 69, 73, 77, 81; Übertrag in Zeile 37 der Anlage EÜR)";40 Sammelposten § 6 Abs. 2a EStG – Summe;Summe;=
+2025;Anlage AVEÜR;83;500;Summe Anschaffungs-/Herstellungskosten/Einlagewerte;40 Finanzanlagen – Anteile (Teileinkünfteverfahren/§ 8b KStG);Betrag;0
+2025;Anlage AVEÜR;84;501;Summe Buchwerte zu Beginn des Gewinnermittlungszeitraums;40 Finanzanlagen – Anteile (Teileinkünfteverfahren/§ 8b KStG);Übernahme;+
+2025;Anlage AVEÜR;85;502;Summe Zugänge;40 Finanzanlagen – Anteile (Teileinkünfteverfahren/§ 8b KStG);Betrag;+
+2025;Anlage AVEÜR;86;505;Summe Abgänge (zu erfassen in Zeile 38 der Anlage EÜR);40 Finanzanlagen – Anteile (Teileinkünfteverfahren/§ 8b KStG);Betrag;−
+2025;Anlage AVEÜR;87;506;Summe Buchwerte am Ende des Gewinnermittlungszeitraums;40 Finanzanlagen – Anteile (Teileinkünfteverfahren/§ 8b KStG);Summe;=
+2025;Anlage AVEÜR;88;510;Summe Anschaffungs-/Herstellungskosten/Einlagewerte;40 Finanzanlagen – Andere;Betrag;0
+2025;Anlage AVEÜR;89;511;Summe Buchwerte zu Beginn des Gewinnermittlungszeitraums;40 Finanzanlagen – Andere;Übernahme;+
+2025;Anlage AVEÜR;90;512;Summe Zugänge;40 Finanzanlagen – Andere;Betrag;+
+2025;Anlage AVEÜR;91;515;Summe Abgänge (zu erfassen in Zeile 38 der Anlage EÜR);40 Finanzanlagen – Andere;Betrag;−
+2025;Anlage AVEÜR;92;516;Summe Buchwerte am Ende des Gewinnermittlungszeitraums;40 Finanzanlagen – Andere;Summe;=
+2025;Anlage AVEÜR;93;600;Summe Anschaffungs-/Herstellungskosten/Einlagewerte;40 Umlaufvermögen i. S. d. § 4 Abs. 3 Satz 4 EStG bzw. § 32b Abs. 2 Satz 1 Nr. 2 Satz 2 Buchst. c EStG;Betrag;+
+2025;Anlage AVEÜR;94;602;Summe Zugänge;40 Umlaufvermögen i. S. d. § 4 Abs. 3 Satz 4 EStG bzw. § 32b Abs. 2 Satz 1 Nr. 2 Satz 2 Buchst. c EStG;Betrag;+
+2025;Anlage AVEÜR;95;605;Summe Abgänge (zu erfassen in Zeile 27 der Anlage EÜR);40 Umlaufvermögen i. S. d. § 4 Abs. 3 Satz 4 EStG bzw. § 32b Abs. 2 Satz 1 Nr. 2 Satz 2 Buchst. c EStG;Betrag;−
+2025;Anlage AVEÜR;96;606;Summe Buchwerte am Ende des Gewinnermittlungszeitraums;40 Umlaufvermögen i. S. d. § 4 Abs. 3 Satz 4 EStG bzw. § 32b Abs. 2 Satz 1 Nr. 2 Satz 2 Buchst. c EStG;Summe;=
+2025;Anlage SZ;1;;Name des Steuerpflichtigen;00 Kopf (ohne Kasten);Text;
+2025;Anlage SZ;2;;Vorname;00 Kopf (ohne Kasten);Text;
+2025;Anlage SZ;3;;(Betriebs-)Steuernummer;00 Kopf (ohne Kasten);Text;
+2025;Anlage SZ;4;;Wirtschafts-Identifikationsnummer;00 Kopf (ohne Kasten);Text;
+2025;Anlage SZ;5;;Betriebseinnahmen (Übertrag aus Zeile 23 der Anlage EÜR);43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 1. maßgeblicher Gewinn;Übernahme;+
+2025;Anlage SZ;6;;abzüglich Betriebsausgaben (Übertrag aus Zeile 75 der Anlage EÜR);43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 1. maßgeblicher Gewinn;Übernahme;−
+2025;Anlage SZ;7;151;zuzüglich steuerfreie Gewinne, die nicht in der Anlage EÜR enthalten sind;43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 1. maßgeblicher Gewinn;Betrag;+
+2025;Anlage SZ;8;152;abzüglich nicht abziehbare Betriebsausgaben;43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 1. maßgeblicher Gewinn;Betrag;−
+2025;Anlage SZ;9;153;zuzüglich Gewinne bzw. abzüglich Verluste aus Beteiligungen an vermögensverwaltenden Personengesellschaften und abzüglich Ergebnisanteile aus Kostenträgergemeinschaften (in Zeile 91 der Anlage EÜR enthalten);43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 1. maßgeblicher Gewinn;Betrag;±
+2025;Anlage SZ;10;154;zuzüglich Veräußerungs-/Aufgabegewinn bzw. abzüglich Veräußerungs-/Aufgabeverlust und zuzüglich Hinzu- bzw. abzüglich Abrechnungen beim Wechsel der Gewinnermittlungsart;43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 1. maßgeblicher Gewinn;Betrag;±
+2025;Anlage SZ;11;;Maßgeblicher Gewinn/Verlust für Zwecke des § 4 Abs. 4a EStG (in Zeile 13 eintragen);43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 1. maßgeblicher Gewinn;Summe;=
+2025;Anlage SZ;12;100;Entnahmen (Übertrag aus Zeile 106 der Anlage EÜR);43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 2. Über-/Unterentnahmen;Übernahme;+
+2025;Anlage SZ;13;;abzüglich Gewinn/zuzüglich Verlust (Betrag aus Zeile 11);43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 2. Über-/Unterentnahmen;Übernahme;−/+
+2025;Anlage SZ;14;210;Einlagen (Übertrag aus Zeile 107 der Anlage EÜR);43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 2. Über-/Unterentnahmen;Übernahme;−
+2025;Anlage SZ;15;;Über-/Unterentnahme des laufenden Wirtschaftsjahres;43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 2. Über-/Unterentnahmen;Summe;=
+2025;Anlage SZ;16;315;zuzüglich Über-/abzüglich Unterentnahmen der vorangegangenen Wirtschaftsjahre (Betrag aus Zeile 17 der Anlage SZ des Vorjahres);43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 2. Über-/Unterentnahmen;Übernahme;±
+2025;Anlage SZ;17;;Kumulierte Über-/Unterentnahmen;43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 2. Über-/Unterentnahmen;Summe;=
+2025;Anlage SZ;18;;Entnahmen des laufenden Wirtschaftsjahres (Betrag aus Zeile 12);43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 3. Entnahmenüberschuss;Übernahme;+
+2025;Anlage SZ;19;325;Entnahmen der vorangegangenen Wirtschaftsjahre (Betrag aus Zeile 20 der Anlage SZ des Vorjahres);43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 3. Entnahmenüberschuss;Übernahme;+
+2025;Anlage SZ;20;;Kumulierte Entnahmen;43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 3. Entnahmenüberschuss;Summe;=
+2025;Anlage SZ;21;;Einlagen des laufenden Wirtschaftsjahres (Betrag aus Zeile 14);43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 3. Entnahmenüberschuss;Übernahme;+
+2025;Anlage SZ;22;335;Einlagen der vorangegangenen Wirtschaftsjahre (Betrag aus Zeile 23 der Anlage SZ des Vorjahres);43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 3. Entnahmenüberschuss;Übernahme;+
+2025;Anlage SZ;23;;Kumulierte Einlagen;43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 3. Entnahmenüberschuss;Summe;=
+2025;Anlage SZ;24;;Kumulierter Entnahmenüberschuss;43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 3. Entnahmenüberschuss;Summe;=
+2025;Anlage SZ;25;;6 % des niedrigeren Betrags aus Zeile 17 oder 24 (Ergibt sich in Zeile 17 oder 24 ein negativer Betrag, ist hier der Wert „0“ einzutragen.);43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 4. Nicht abziehbare Schuldzinsen;Summe;=
+2025;Anlage SZ;26;;Übrige Schuldzinsen (Übertrag aus Zeile 56 der Anlage EÜR);43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 4. Nicht abziehbare Schuldzinsen;Übernahme;+
+2025;Anlage SZ;27;405;Korrekturbetrag zu den übrigen Schuldzinsen (siehe Anleitung zur Anlage EÜR);43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 4. Nicht abziehbare Schuldzinsen;Betrag;−
+2025;Anlage SZ;28;;Kürzungsbetrag gem. § 4 Abs. 4a Satz 4 EStG;43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 4. Nicht abziehbare Schuldzinsen;Konstante;−
+2025;Anlage SZ;29;;Höchstbetrag der nicht abziehbaren Schuldzinsen (Ergibt sich ein negativer Betrag, ist hier der Wert „0“ einzutragen.);43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 4. Nicht abziehbare Schuldzinsen;Summe;=
+2025;Anlage SZ;30;;Niedrigerer Betrag aus Zeile 25 oder 29 (Übertrag in Zeile 96 der Anlage EÜR);43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 5. Hinzurechnungsbetrag;Summe;=
+2026;Anlage EÜR;1;;Name des Steuerpflichtigen bzw. der Gesellschaft/Gemeinschaft/Körperschaft;00 Kopf (ohne Kasten);Text;
+2026;Anlage EÜR;2;;Vorname;00 Kopf (ohne Kasten);Text;
+2026;Anlage EÜR;3;;(Betriebs-)Steuernummer;00 Kopf (ohne Kasten);Text;
+2026;Anlage EÜR;4;131;davon abweichender Beginn;15 Allgemeine Angaben;Datum;
+2026;Anlage EÜR;4;132;davon abweichendes Ende;15 Allgemeine Angaben;Datum;
+2026;Anlage EÜR;5;101;Wirtschafts-Identifikationsnummer;15 Allgemeine Angaben;Text;
+2026;Anlage EÜR;6;100;Art des Betriebs;15 Allgemeine Angaben;Text;
+2026;Anlage EÜR;7;;Rechtsform des Betriebs;15 Allgemeine Angaben;Text;
+2026;Anlage EÜR;8;103;Einkunftsart;15 Allgemeine Angaben;Schlüssel;
+2026;Anlage EÜR;9;104;Betriebsinhaber;15 Allgemeine Angaben;Schlüssel;
+2026;Anlage EÜR;10;111;Wurde im Kalenderjahr/Wirtschaftsjahr der Betrieb beendet?;15 Allgemeine Angaben;Schlüssel;
+2026;Anlage EÜR;11;120;Grundstücke/grundstücksgleiche Rechte entnommen oder veräußert;15 Allgemeine Angaben;Schlüssel;
+2026;Anlage EÜR;12;111;Betriebseinnahmen als umsatzsteuerlicher Kleinunternehmer (nach § 19 Abs. 1 UStG) ohne Beträge laut Zeilen 18 bis 22;20 Betriebseinnahmen;Betrag;+
+2026;Anlage EÜR;13;119;davon nicht steuerbare Umsätze sowie Umsätze nach § 19 Abs. 2 Satz 1 Nr. 1 und 2 sowie Satz 2 UStG;20 Betriebseinnahmen;Betrag-davon;0
+2026;Anlage EÜR;14;104;Betriebseinnahmen als Land- und Forstwirt, soweit die Durchschnittssatzbesteuerung nach § 24 UStG angewandt wird;20 Betriebseinnahmen;Betrag;+
+2026;Anlage EÜR;15;112;Umsatzsteuerpflichtige Betriebseinnahmen (ohne solche zum ermäßigten Steuersatz von 0 %);20 Betriebseinnahmen;Betrag;+
+2026;Anlage EÜR;16;103;Betriebseinnahmen, die umsatzsteuerfrei (§ 4 UStG) oder nicht umsatzsteuerbar sind oder nach § 12 Abs. 3 UStG dem ermäßigten Steuersatz von 0 % unterliegen oder für die der Leistungsempfänger die Umsatzsteuer nach § 13b UStG schuldet;20 Betriebseinnahmen;Betrag;+
+2026;Anlage EÜR;17;140;Vereinnahmte Umsatzsteuer sowie Umsatzsteuer auf unentgeltliche Wertabgaben;20 Betriebseinnahmen;Betrag;+
+2026;Anlage EÜR;18;141;Vom Finanzamt erstattete und ggf. verrechnete Umsatzsteuer (Die Regelung zum 10-Tageszeitraum - § 11 Abs. 1 Satz 2 EStG - ist zu beachten.);20 Betriebseinnahmen;Betrag;+
+2026;Anlage EÜR;19;102;Veräußerung oder Entnahme von Anlagevermögen;20 Betriebseinnahmen;Betrag;+
+2026;Anlage EÜR;20;106;Private Kfz-Nutzung;20 Betriebseinnahmen;Betrag;+
+2026;Anlage EÜR;21;108;Sonstige Sach-, Nutzungs- und Leistungsentnahmen;20 Betriebseinnahmen;Betrag;+
+2026;Anlage EÜR;22;;Auflösung von Rücklagen und/oder Ausgleichsposten (Übertrag aus Zeile 106);20 Betriebseinnahmen;Übernahme;+
+2026;Anlage EÜR;23;159;Summe Betriebseinnahmen (Übertrag in Zeile 77);20 Betriebseinnahmen;Summe;=
+2026;Anlage EÜR;24;195;Betriebsausgabenpauschale für bestimmte Berufsgruppen;25 Betriebsausgaben;Betrag;+
+2026;Anlage EÜR;25;;Sachlicher Bebauungskostenrichtbetrag und Ausbaukostenrichtbeträge für Weinbaubetriebe (Übertrag aus Zeile 13 der Anlage LuF);25 Betriebsausgaben;Übernahme;+
+2026;Anlage EÜR;26;;Betriebsausgabenpauschale für Forstwirte (Übertrag aus Zeile 17 der Anlage LuF);25 Betriebsausgaben;Übernahme;+
+2026;Anlage EÜR;27;;Bildung Rücklage Tierbewertung bei Land- und Forstwirten (Übertrag aus Zeile 18 der Anlage LuF);25 Betriebsausgaben;Übernahme;+
+2026;Anlage EÜR;28;;Übertrag (Summe Zeilen 24 bis 27);25 Betriebsausgaben;Zwischensumme;=
+2026;Anlage EÜR;29;100;Waren, Rohstoffe und Hilfsstoffe einschließlich der Nebenkosten;25 Betriebsausgaben;Betrag;+
+2026;Anlage EÜR;30;110;Bezogene Fremdleistungen;25 Betriebsausgaben;Betrag;+
+2026;Anlage EÜR;31;120;Ausgaben für eigenes Personal (z. B. Gehälter, Löhne und Versicherungsbeiträge);25 Betriebsausgaben;Betrag;+
+2026;Anlage EÜR;32;136;AfA auf Grundstücke/grundstücksgleiche Rechte (Übertrag aus Zeile 22 der Anlage AVEÜR);25 Betriebsausgaben;Übernahme;+
+2026;Anlage EÜR;33;131;AfA auf immaterielle Wirtschaftsgüter (Übertrag aus Zeile 37 der Anlage AVEÜR);25 Betriebsausgaben;Übernahme;+
+2026;Anlage EÜR;34;130;AfA auf bewegliche Wirtschaftsgüter (Übertrag aus Zeile 63 der Anlage AVEÜR);25 Betriebsausgaben;Übernahme;+
+2026;Anlage EÜR;35;134;Sonderabschreibungen nach § 7b EStG und § 7g Abs. 5 und 6 EStG (Übertrag der Summe der Zeilen 12 und 62 der Anlage AVEÜR);25 Betriebsausgaben;Übernahme;+
+2026;Anlage EÜR;36;138;Herabsetzungsbeträge nach § 7g Abs. 2 Satz 3 EStG (Erläuterungen auf gesondertem Blatt);25 Betriebsausgaben;Betrag;+
+2026;Anlage EÜR;37;132;Aufwendungen für geringwertige Wirtschaftsgüter nach § 6 Abs. 2 EStG;25 Betriebsausgaben;Betrag;+
+2026;Anlage EÜR;38;137;Auflösung Sammelposten nach § 6 Abs. 2a EStG (Übertrag aus Zeile 82 der Anlage AVEÜR);25 Betriebsausgaben;Übernahme;+
+2026;Anlage EÜR;39;135;Restbuchwerte der ausgeschiedenen Anlagegüter (Übertrag der Summe der Beträge aus Zeilen 7, 14, 20, 26, 32, 38, 45, 53, 60, 86, 91 der Anlage AVEÜR);25 Betriebsausgaben;Übernahme;+
+2026;Anlage EÜR;40;150;Miete/Pacht für Geschäftsräume und betrieblich genutzte Grundstücke;25 Betriebsausgaben;Betrag;+
+2026;Anlage EÜR;41;152;Aufwendungen für doppelte Haushaltsführung (z. B. Miete);25 Betriebsausgaben;Betrag;+
+2026;Anlage EÜR;42;151;Sonstige Aufwendungen für betrieblich genutzte Grundstücke (ohne Schuldzinsen und AfA);25 Betriebsausgaben;Betrag;+
+2026;Anlage EÜR;43;153;in Zeile 42 enthaltene Erhaltungsaufwendungen;25 Betriebsausgaben;Betrag-davon;0
+2026;Anlage EÜR;44;280;Aufwendungen für Telekommunikation (z. B. Telefon, Internet);25 Betriebsausgaben;Betrag;+
+2026;Anlage EÜR;45;221;Übernachtungs- und Reisenebenkosten bei Geschäftsreisen des Steuerpflichtigen;25 Betriebsausgaben;Betrag;+
+2026;Anlage EÜR;46;281;Fortbildungskosten (ohne Reisekosten);25 Betriebsausgaben;Betrag;+
+2026;Anlage EÜR;47;194;Kosten für Rechts- und Steuerberatung, Buchführung;25 Betriebsausgaben;Betrag;+
+2026;Anlage EÜR;48;222;Miete/Leasing für bewegliche Wirtschaftsgüter (ohne Kfz);25 Betriebsausgaben;Betrag;+
+2026;Anlage EÜR;49;225;"Erhaltungsaufwendungen (z. B. Instandhaltung, Wartung, Reparatur; ohne solche für Gebäude und Kfz)";25 Betriebsausgaben;Betrag;+
+2026;Anlage EÜR;50;223;Beiträge, Gebühren, Abgaben und Versicherungen (ohne solche für Gebäude und Kfz);25 Betriebsausgaben;Betrag;+
+2026;Anlage EÜR;51;228;Laufende EDV-Kosten (z. B. Beratung, Wartung, Reparatur);25 Betriebsausgaben;Betrag;+
+2026;Anlage EÜR;52;229;Arbeitsmittel (z. B. Bürobedarf, Porto, Fachliteratur);25 Betriebsausgaben;Betrag;+
+2026;Anlage EÜR;53;226;Kosten für Abfallbeseitigung und Entsorgung;25 Betriebsausgaben;Betrag;+
+2026;Anlage EÜR;54;227;Kosten für Verpackung und Transport;25 Betriebsausgaben;Betrag;+
+2026;Anlage EÜR;55;224;Werbekosten (z. B. Inserate, Werbespots, Plakate);25 Betriebsausgaben;Betrag;+
+2026;Anlage EÜR;56;232;Schuldzinsen zur Finanzierung von Anschaffungs- und Herstellungskosten von Wirtschaftsgütern des Anlagevermögens (ohne häusliches Arbeitszimmer);25 Betriebsausgaben;Betrag;+
+2026;Anlage EÜR;57;234;Übrige Schuldzinsen;25 Betriebsausgaben;Betrag;+
+2026;Anlage EÜR;58;185;Gezahlte und nach § 15 UStG abziehbare Vorsteuerbeträge;25 Betriebsausgaben;Betrag;+
+2026;Anlage EÜR;59;186;An das Finanzamt gezahlte und ggf. verrechnete Umsatzsteuer (Die Regelung zum 10-Tageszeitraum - § 11 Abs. 2 Satz 2 EStG - ist zu beachten.);25 Betriebsausgaben;Betrag;+
+2026;Anlage EÜR;60;;Rücklagen, stille Reserven und/oder Ausgleichsposten (Übertrag aus Zeile 103);25 Betriebsausgaben;Übernahme;+
+2026;Anlage EÜR;61;183;Übrige unbeschränkt abziehbare Betriebsausgaben (auch zurückgezahlte Hilfen/Zuschüsse aufgrund der Corona-Pandemie);25 Betriebsausgaben;Betrag;+
+2026;Anlage EÜR;62;;Übertrag (Summe Zeilen 24 bis 27 und Zeilen 29 bis 61);25 Betriebsausgaben;Zwischensumme;=
+2026;Anlage EÜR;63;164;Geschenke;25 Betriebsausgaben;Betrag-davon;0
+2026;Anlage EÜR;63;174;Geschenke;25 Betriebsausgaben;Betrag;+
+2026;Anlage EÜR;64;165;Bewirtungsaufwendungen;25 Betriebsausgaben;Betrag-davon;0
+2026;Anlage EÜR;64;175;Bewirtungsaufwendungen;25 Betriebsausgaben;Betrag;+
+2026;Anlage EÜR;65;171;Verpflegungsmehraufwendungen;25 Betriebsausgaben;Betrag;+
+2026;Anlage EÜR;66;162;Aufwendungen für ein häusliches Arbeitszimmer (siehe Anleitung);25 Betriebsausgaben;Betrag-davon;0
+2026;Anlage EÜR;66;172;Aufwendungen für ein häusliches Arbeitszimmer (siehe Anleitung);25 Betriebsausgaben;Betrag;+
+2026;Anlage EÜR;67;163;Tagespauschale für die Tätigkeit in der häuslichen Wohnung (siehe Anleitung);25 Betriebsausgaben;Betrag;+
+2026;Anlage EÜR;68;168;Sonstige beschränkt abziehbare Betriebsausgaben;25 Betriebsausgaben;Betrag-davon;0
+2026;Anlage EÜR;68;177;Sonstige beschränkt abziehbare Betriebsausgaben;25 Betriebsausgaben;Betrag;+
+2026;Anlage EÜR;69;144;Leasingkosten;25 Betriebsausgaben;Betrag;+
+2026;Anlage EÜR;70;145;Steuern, Versicherungen und Maut;25 Betriebsausgaben;Betrag;+
+2026;Anlage EÜR;71;146;Sonstige tatsächliche Fahrtkosten ohne AfA und Zinsen (z. B. Reparaturen, Wartungen, Treibstoff, Kosten für Flugstrecken, Kosten für öffentliche Verkehrsmittel);25 Betriebsausgaben;Betrag;+
+2026;Anlage EÜR;72;147;Fahrtkosten für nicht zum Betriebsvermögen gehörende Fahrzeuge (Nutzungseinlage);25 Betriebsausgaben;Betrag;+
+2026;Anlage EÜR;73;142;"Fahrtkosten für Wege zwischen Wohnung und erster Betriebsstätte; Familienheimfahrten (pauschaliert oder tatsächlich)";25 Betriebsausgaben;Betrag;−
+2026;Anlage EÜR;74;176;"Mindestens abziehbare Fahrtkosten für Wege zwischen Wohnung und erster Betriebsstätte (Entfernungspauschale); Familienheimfahrten";25 Betriebsausgaben;Betrag;+
+2026;Anlage EÜR;75;139;Nicht abziehbare Beträge (Beispiele siehe Anleitung);25 Betriebsausgaben;Betrag;−
+2026;Anlage EÜR;76;199;Summe Betriebsausgaben (Übertrag in Zeile 78);25 Betriebsausgaben;Summe;=
+2026;Anlage EÜR;77;;Summe der Betriebseinnahmen (Übertrag aus Zeile 23);25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Übernahme;+
+2026;Anlage EÜR;78;;abzüglich Summe der Betriebsausgaben (Übertrag aus Zeile 76);25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Übernahme;−
+2026;Anlage EÜR;79;240;abzüglich steuerfreier Einnahmen nach § 3 Nr. 26, 26a, 26b EStG;25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Betrag;−
+2026;Anlage EÜR;80;241;abzüglich steuerfreier Einnahmen nach § 3 EStG (ohne Nr. 26, 26a, 26b und Teileinkünfteverfahren);25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Betrag;−
+2026;Anlage EÜR;81;242;abzüglich steuerfreier Einnahmen nach § 3a EStG;25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Betrag;−
+2026;Anlage EÜR;82;243;zuzüglich nicht abziehbarer Betriebsausgaben im Zusammenhang mit steuerfreien Einnahmen nach § 3 Nr. 26, 26a, 26b EStG;25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Betrag;+
+2026;Anlage EÜR;83;244;zuzüglich nicht abziehbarer Betriebsausgaben nach § 3c Abs. 1 EStG;25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Betrag;+
+2026;Anlage EÜR;84;245;zuzüglich nicht abziehbarer Betriebsausgaben nach § 3c Abs. 4 EStG;25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Betrag;+
+2026;Anlage EÜR;85;180;zuzüglich Hinzurechnung der Investitionsabzugsbeträge nach § 7g Abs. 2 Satz 1 EStG aus 2023 (Erläuterungen auf gesondertem Blatt);25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Betrag;+
+2026;Anlage EÜR;86;181;zuzüglich Hinzurechnung der Investitionsabzugsbeträge nach § 7g Abs. 2 Satz 1 EStG aus 2024 (Erläuterungen auf gesondertem Blatt);25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Betrag;+
+2026;Anlage EÜR;87;182;zuzüglich Hinzurechnung der Investitionsabzugsbeträge nach § 7g Abs. 2 Satz 1 EStG aus 2025 (Erläuterungen auf gesondertem Blatt);25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Betrag;+
+2026;Anlage EÜR;88;123;zuzüglich Gewinnzuschlag nach § 6c i. V. m. § 6b Abs. 7 und 10 EStG;25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Betrag;+
+2026;Anlage EÜR;89;187;abzüglich Investitionsabzugsbeträge nach § 7g Abs. 1 EStG;25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Betrag;−
+2026;Anlage EÜR;90;250;Hinzurechnungen und Abrechnungen bei Wechsel der Gewinnermittlungsart (Erläuterungen auf gesondertem Blatt);25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Betrag;±
+2026;Anlage EÜR;91;;Übertrag (Summe/Differenz Zeilen 77 bis 90);25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Zwischensumme;=
+2026;Anlage EÜR;92;255;Ergebnisanteile aus Beteiligungen an Personengesellschaften (auch Kostenträgergemeinschaften);25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Betrag;±
+2026;Anlage EÜR;93;290;Korrigierter Gewinn/Verlust;25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Summe;=
+2026;Anlage EÜR;94;263;"Bereits berücksichtigte Beträge, für die Steuerbefreiungen nach InvStG gelten (ohne Beträge lt. Zeile 95; Erläuterungen auf gesondertem Blatt)";25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Betrag-davon;0
+2026;Anlage EÜR;94;264;"Bereits berücksichtigte Beträge, für die Steuerbefreiungen nach InvStG gelten (ohne Beträge lt. Zeile 95; Erläuterungen auf gesondertem Blatt)";25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Betrag;±
+2026;Anlage EÜR;95;261;Bereits berücksichtigte Beträge, für die das Teileinkünfteverfahren bzw. § 8b KStG gilt;25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Betrag-davon;0
+2026;Anlage EÜR;95;262;Bereits berücksichtigte Beträge, für die das Teileinkünfteverfahren bzw. § 8b KStG gilt;25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Betrag;±
+2026;Anlage EÜR;96;293;Steuerpflichtiger Gewinn/Verlust vor Anwendung des § 4 Abs. 4a EStG;25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Summe;=
+2026;Anlage EÜR;97;271;Hinzurechnungsbetrag nach § 4 Abs. 4a EStG;25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Übernahme;+
+2026;Anlage EÜR;98;219;Steuerpflichtiger Gewinn/Verlust;25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Summe;=
+2026;Anlage EÜR;99;;Anzusetzender steuerpflichtiger Gewinn/Verlust nach Anwendung des § 4 Abs. 4a EStG ohne Berücksichtigung des InvStG, des Teileinkünfteverfahrens bzw. § 8b KStG (Betrag lt. Zeile 93 zuzüglich Betrag lt. Zeile 97);25 Ermittlung des Gewinns (kein eigener Kasten, Kz eindeutig in Block 25);Summe;=
+2026;Anlage EÜR;100;187;Rücklagen nach § 6c i. V. m. § 6b EStG, R 6.6 EStR;27 Ergänzende Angaben (Rücklagen, stille Reserven, Ausgleichsposten);Betrag;+
+2026;Anlage EÜR;101;170;Übertragung von stillen Reserven nach § 6c i. V. m. § 6b EStG, R 6.6 EStR;27 Ergänzende Angaben (Rücklagen, stille Reserven, Ausgleichsposten);Betrag;+
+2026;Anlage EÜR;102;191;Ausgleichsposten nach § 4g EStG;27 Ergänzende Angaben (Rücklagen, stille Reserven, Ausgleichsposten);Betrag;+
+2026;Anlage EÜR;103;190;Gesamtsumme (Übertrag in Zeile 60);27 Ergänzende Angaben (Rücklagen, stille Reserven, Ausgleichsposten);Summe;=
+2026;Anlage EÜR;104;120;Rücklagen nach § 6c i. V. m. § 6b EStG, R 6.6 EStR;27 Ergänzende Angaben (Rücklagen, stille Reserven, Ausgleichsposten);Betrag;+
+2026;Anlage EÜR;105;125;Ausgleichsposten nach § 4g EStG;27 Ergänzende Angaben (Rücklagen, stille Reserven, Ausgleichsposten);Betrag;+
+2026;Anlage EÜR;106;124;Gesamtsumme (Übertrag in Zeile 22);27 Ergänzende Angaben (Rücklagen, stille Reserven, Ausgleichsposten);Summe;=
+2026;Anlage EÜR;107;122;Entnahmen einschließlich Sach-, Leistungs- und Nutzungsentnahmen;29 Zusätzliche Angaben bei Einzelunternehmen;Betrag;0
+2026;Anlage EÜR;108;123;Einlagen einschließlich Sach-, Leistungs- und Nutzungseinlagen;29 Zusätzliche Angaben bei Einzelunternehmen;Betrag;0
+2026;Anlage AVEÜR;1;;Name des Steuerpflichtigen bzw. der Gesellschaft/Gemeinschaft/Körperschaft;00 Kopf (ohne Kasten);Text;
+2026;Anlage AVEÜR;2;;(Betriebs-)Steuernummer;00 Kopf (ohne Kasten);Text;
+2026;Anlage AVEÜR;3;;Wirtschafts-Identifikationsnummer;00 Kopf (ohne Kasten);Text;
+2026;Anlage AVEÜR;4;100;Summe Anschaffungs-/Herstellungskosten/Einlagewerte;40 Grundstücke – Grund und Boden;Betrag;0
+2026;Anlage AVEÜR;5;101;Summe Buchwerte zu Beginn des Gewinnermittlungszeitraums;40 Grundstücke – Grund und Boden;Übernahme;+
+2026;Anlage AVEÜR;6;102;Summe Zugänge;40 Grundstücke – Grund und Boden;Betrag;+
+2026;Anlage AVEÜR;7;105;Summe Abgänge (zu erfassen in Zeile 39 der Anlage EÜR);40 Grundstücke – Grund und Boden;Betrag;−
+2026;Anlage AVEÜR;8;106;Summe Buchwerte am Ende des Gewinnermittlungszeitraums;40 Grundstücke – Grund und Boden;Summe;=
+2026;Anlage AVEÜR;9;110;Summe Anschaffungs-/Herstellungskosten/Einlagewerte;40 Grundstücke – Gebäude;Betrag;0
+2026;Anlage AVEÜR;10;111;Summe Buchwerte zu Beginn des Gewinnermittlungszeitraums;40 Grundstücke – Gebäude;Übernahme;+
+2026;Anlage AVEÜR;11;112;Summe Zugänge;40 Grundstücke – Gebäude;Betrag;+
+2026;Anlage AVEÜR;12;113;Summe Sonderabschreibungen nach § 7b EStG (zu erfassen in Zeile 35 der Anlage EÜR);40 Grundstücke – Gebäude;Betrag;−
+2026;Anlage AVEÜR;13;114;Summe AfA;40 Grundstücke – Gebäude;Betrag;−
+2026;Anlage AVEÜR;14;115;Summe Abgänge (zu erfassen in Zeile 39 der Anlage EÜR);40 Grundstücke – Gebäude;Betrag;−
+2026;Anlage AVEÜR;15;116;Summe Buchwerte am Ende des Gewinnermittlungszeitraums;40 Grundstücke – Gebäude;Summe;=
+2026;Anlage AVEÜR;16;120;Summe Anschaffungs-/Herstellungskosten/Einlagewerte;40 Grundstücke – Andere (z. B. grundstücksgleiche Rechte);Betrag;0
+2026;Anlage AVEÜR;17;121;Summe Buchwerte zu Beginn des Gewinnermittlungszeitraums;40 Grundstücke – Andere (z. B. grundstücksgleiche Rechte);Übernahme;+
+2026;Anlage AVEÜR;18;122;Summe Zugänge;40 Grundstücke – Andere (z. B. grundstücksgleiche Rechte);Betrag;+
+2026;Anlage AVEÜR;19;124;Summe AfA;40 Grundstücke – Andere (z. B. grundstücksgleiche Rechte);Betrag;−
+2026;Anlage AVEÜR;20;125;Summe Abgänge (zu erfassen in Zeile 39 der Anlage EÜR);40 Grundstücke – Andere (z. B. grundstücksgleiche Rechte);Betrag;−
+2026;Anlage AVEÜR;21;126;Summe Buchwerte am Ende des Gewinnermittlungszeitraums;40 Grundstücke – Andere (z. B. grundstücksgleiche Rechte);Summe;=
+2026;Anlage AVEÜR;22;190;"Summe AfA aller Grundstücke/grundstücksgleichen Rechte (Summe der Zeilen 13 und 19; Übertrag in Zeile 32 der Anlage EÜR)";40 Grundstücke – Summe;Summe;=
+2026;Anlage AVEÜR;23;200;Summe Anschaffungs-/Herstellungskosten/Einlagewerte;40 Häusliches Arbeitszimmer – Anteil Grund und Boden;Betrag;0
+2026;Anlage AVEÜR;24;201;Summe Buchwerte zu Beginn des Gewinnermittlungszeitraums;40 Häusliches Arbeitszimmer – Anteil Grund und Boden;Übernahme;+
+2026;Anlage AVEÜR;25;202;Summe Zugänge;40 Häusliches Arbeitszimmer – Anteil Grund und Boden;Betrag;+
+2026;Anlage AVEÜR;26;205;Summe Abgänge (zu erfassen in Zeile 39 der Anlage EÜR);40 Häusliches Arbeitszimmer – Anteil Grund und Boden;Betrag;−
+2026;Anlage AVEÜR;27;206;Summe Buchwerte am Ende des Gewinnermittlungszeitraums;40 Häusliches Arbeitszimmer – Anteil Grund und Boden;Summe;=
+2026;Anlage AVEÜR;28;210;Summe Anschaffungs-/Herstellungskosten/Einlagewerte;40 Häusliches Arbeitszimmer – Gebäudeteil;Betrag;0
+2026;Anlage AVEÜR;29;211;Summe Buchwerte zu Beginn des Gewinnermittlungszeitraums;40 Häusliches Arbeitszimmer – Gebäudeteil;Übernahme;+
+2026;Anlage AVEÜR;30;212;Summe Zugänge;40 Häusliches Arbeitszimmer – Gebäudeteil;Betrag;+
+2026;Anlage AVEÜR;31;214;Summe AfA (zu erfassen in Zeile 66 der Anlage EÜR);40 Häusliches Arbeitszimmer – Gebäudeteil;Betrag;−
+2026;Anlage AVEÜR;32;215;Summe Abgänge (zu erfassen in Zeile 39 der Anlage EÜR);40 Häusliches Arbeitszimmer – Gebäudeteil;Betrag;−
+2026;Anlage AVEÜR;33;216;Summe Buchwerte am Ende des Gewinnermittlungszeitraums;40 Häusliches Arbeitszimmer – Gebäudeteil;Summe;=
+2026;Anlage AVEÜR;34;320;Summe Anschaffungs-/Herstellungskosten/Einlagewerte;40 Immaterielle Wirtschaftsgüter;Betrag;0
+2026;Anlage AVEÜR;35;321;Summe Buchwerte zu Beginn des Gewinnermittlungszeitraums;40 Immaterielle Wirtschaftsgüter;Übernahme;+
+2026;Anlage AVEÜR;36;322;Summe Zugänge;40 Immaterielle Wirtschaftsgüter;Betrag;+
+2026;Anlage AVEÜR;37;324;Summe AfA (Übertrag in Zeile 33 der Anlage EÜR);40 Immaterielle Wirtschaftsgüter;Betrag;−
+2026;Anlage AVEÜR;38;325;Summe Abgänge (zu erfassen in Zeile 39 der Anlage EÜR);40 Immaterielle Wirtschaftsgüter;Betrag;−
+2026;Anlage AVEÜR;39;326;Summe Buchwerte am Ende des Gewinnermittlungszeitraums;40 Immaterielle Wirtschaftsgüter;Summe;=
+2026;Anlage AVEÜR;40;400;Summe Anschaffungs-/Herstellungskosten/Einlagewerte;40 Bewegliche WG – Kfz;Betrag;0
+2026;Anlage AVEÜR;41;401;Summe Buchwerte zu Beginn des Gewinnermittlungszeitraums;40 Bewegliche WG – Kfz;Übernahme;+
+2026;Anlage AVEÜR;42;402;Summe Zugänge;40 Bewegliche WG – Kfz;Betrag;+
+2026;Anlage AVEÜR;43;403;Summe Sonderabschreibungen nach § 7g Abs. 5 und 6 EStG;40 Bewegliche WG – Kfz;Betrag;−
+2026;Anlage AVEÜR;44;404;Summe AfA;40 Bewegliche WG – Kfz;Betrag;−
+2026;Anlage AVEÜR;45;405;Summe Abgänge (zu erfassen in Zeile 39 der Anlage EÜR);40 Bewegliche WG – Kfz;Betrag;−
+2026;Anlage AVEÜR;46;406;Summe Buchwerte am Ende des Gewinnermittlungszeitraums;40 Bewegliche WG – Kfz;Summe;=
+2026;Anlage AVEÜR;47;407;Es ist mindestens ein Elektro- oder extern aufladbares Hybridelektrofahrzeug vorhanden;40 Bewegliche WG – Kfz;Schlüssel;
+2026;Anlage AVEÜR;48;410;Summe Anschaffungs-/Herstellungskosten/Einlagewerte;40 Bewegliche WG – Büroausstattung;Betrag;0
+2026;Anlage AVEÜR;49;411;Summe Buchwerte zu Beginn des Gewinnermittlungszeitraums;40 Bewegliche WG – Büroausstattung;Übernahme;+
+2026;Anlage AVEÜR;50;412;Summe Zugänge;40 Bewegliche WG – Büroausstattung;Betrag;+
+2026;Anlage AVEÜR;51;413;Summe Sonderabschreibungen nach § 7g Abs. 5 und 6 EStG;40 Bewegliche WG – Büroausstattung;Betrag;−
+2026;Anlage AVEÜR;52;414;Summe AfA;40 Bewegliche WG – Büroausstattung;Betrag;−
+2026;Anlage AVEÜR;53;415;Summe Abgänge (zu erfassen in Zeile 39 der Anlage EÜR);40 Bewegliche WG – Büroausstattung;Betrag;−
+2026;Anlage AVEÜR;54;416;Summe Buchwerte am Ende des Gewinnermittlungszeitraums;40 Bewegliche WG – Büroausstattung;Summe;=
+2026;Anlage AVEÜR;55;420;Summe Anschaffungs-/Herstellungskosten/Einlagewerte;40 Bewegliche WG – Andere;Betrag;0
+2026;Anlage AVEÜR;56;421;Summe Buchwerte zu Beginn des Gewinnermittlungszeitraums;40 Bewegliche WG – Andere;Übernahme;+
+2026;Anlage AVEÜR;57;422;Summe Zugänge;40 Bewegliche WG – Andere;Betrag;+
+2026;Anlage AVEÜR;58;423;Summe Sonderabschreibungen nach § 7g Abs. 5 und 6 EStG;40 Bewegliche WG – Andere;Betrag;−
+2026;Anlage AVEÜR;59;424;Summe AfA;40 Bewegliche WG – Andere;Betrag;−
+2026;Anlage AVEÜR;60;425;Summe Abgänge (zu erfassen in Zeile 39 der Anlage EÜR);40 Bewegliche WG – Andere;Betrag;−
+2026;Anlage AVEÜR;61;426;Summe Buchwerte am Ende des Gewinnermittlungszeitraums;40 Bewegliche WG – Andere;Summe;=
+2026;Anlage AVEÜR;62;480;"Summe Sonderabschreibungen nach § 7g Abs. 5 und 6 EStG aller beweglichen Wirtschaftsgüter (Summe der Zeilen 43, 51 und 58; zu erfassen in Zeile 35 der Anlage EÜR)";40 Bewegliche WG – Summe;Summe;=
+2026;Anlage AVEÜR;63;490;"Summe AfA aller beweglichen Wirtschaftsgüter (Summe der Zeilen 44, 52 und 59; Übertrag in Zeile 34 der Anlage EÜR)";40 Bewegliche WG – Summe;Summe;=
+2026;Anlage AVEÜR;64;432;Bildung;40 Sammelposten § 6 Abs. 2a EStG aus 2026;Betrag;+
+2026;Anlage AVEÜR;65;434;Auflösungsbetrag;40 Sammelposten § 6 Abs. 2a EStG aus 2026;Betrag;−
+2026;Anlage AVEÜR;66;436;Buchwert am Ende des Gewinnermittlungszeitraums;40 Sammelposten § 6 Abs. 2a EStG aus 2026;Summe;=
+2026;Anlage AVEÜR;67;440;Anschaffungs-/Herstellungskosten/Einlagewert;40 Sammelposten § 6 Abs. 2a EStG aus 2025;Betrag;0
+2026;Anlage AVEÜR;68;441;Buchwert zu Beginn des Gewinnermittlungszeitraums;40 Sammelposten § 6 Abs. 2a EStG aus 2025;Übernahme;+
+2026;Anlage AVEÜR;69;444;Auflösungsbetrag;40 Sammelposten § 6 Abs. 2a EStG aus 2025;Betrag;−
+2026;Anlage AVEÜR;70;446;Buchwert am Ende des Gewinnermittlungszeitraums;40 Sammelposten § 6 Abs. 2a EStG aus 2025;Summe;=
+2026;Anlage AVEÜR;71;450;Anschaffungs-/Herstellungskosten/Einlagewert;40 Sammelposten § 6 Abs. 2a EStG aus 2024;Betrag;0
+2026;Anlage AVEÜR;72;451;Buchwert zu Beginn des Gewinnermittlungszeitraums;40 Sammelposten § 6 Abs. 2a EStG aus 2024;Übernahme;+
+2026;Anlage AVEÜR;73;454;Auflösungsbetrag;40 Sammelposten § 6 Abs. 2a EStG aus 2024;Betrag;−
+2026;Anlage AVEÜR;74;456;Buchwert am Ende des Gewinnermittlungszeitraums;40 Sammelposten § 6 Abs. 2a EStG aus 2024;Summe;=
+2026;Anlage AVEÜR;75;460;Anschaffungs-/Herstellungskosten/Einlagewert;40 Sammelposten § 6 Abs. 2a EStG aus 2023;Betrag;0
+2026;Anlage AVEÜR;76;461;Buchwert zu Beginn des Gewinnermittlungszeitraums;40 Sammelposten § 6 Abs. 2a EStG aus 2023;Übernahme;+
+2026;Anlage AVEÜR;77;464;Auflösungsbetrag;40 Sammelposten § 6 Abs. 2a EStG aus 2023;Betrag;−
+2026;Anlage AVEÜR;78;466;Buchwert am Ende des Gewinnermittlungszeitraums;40 Sammelposten § 6 Abs. 2a EStG aus 2023;Summe;=
+2026;Anlage AVEÜR;79;470;Anschaffungs-/Herstellungskosten/Einlagewert;40 Sammelposten § 6 Abs. 2a EStG aus 2022;Betrag;0
+2026;Anlage AVEÜR;80;471;Buchwert zu Beginn des Gewinnermittlungszeitraums;40 Sammelposten § 6 Abs. 2a EStG aus 2022;Übernahme;+
+2026;Anlage AVEÜR;81;474;Auflösungsbetrag;40 Sammelposten § 6 Abs. 2a EStG aus 2022;Betrag;−
+2026;Anlage AVEÜR;82;499;"Summe Auflösungsbeträge (Summe der Zeilen 65, 69, 73, 77, 81; Übertrag in Zeile 38 der Anlage EÜR)";40 Sammelposten § 6 Abs. 2a EStG – Summe;Summe;=
+2026;Anlage AVEÜR;83;500;Summe Anschaffungs-/Herstellungskosten/Einlagewerte;40 Finanzanlagen – Anteile (Teileinkünfteverfahren/§ 8b KStG);Betrag;0
+2026;Anlage AVEÜR;84;501;Summe Buchwerte zu Beginn des Gewinnermittlungszeitraums;40 Finanzanlagen – Anteile (Teileinkünfteverfahren/§ 8b KStG);Übernahme;+
+2026;Anlage AVEÜR;85;502;Summe Zugänge;40 Finanzanlagen – Anteile (Teileinkünfteverfahren/§ 8b KStG);Betrag;+
+2026;Anlage AVEÜR;86;505;Summe Abgänge (zu erfassen in Zeile 39 der Anlage EÜR);40 Finanzanlagen – Anteile (Teileinkünfteverfahren/§ 8b KStG);Betrag;−
+2026;Anlage AVEÜR;87;506;Summe Buchwerte am Ende des Gewinnermittlungszeitraums;40 Finanzanlagen – Anteile (Teileinkünfteverfahren/§ 8b KStG);Summe;=
+2026;Anlage AVEÜR;88;510;Summe Anschaffungs-/Herstellungskosten/Einlagewerte;40 Finanzanlagen – Andere;Betrag;0
+2026;Anlage AVEÜR;89;511;Summe Buchwerte zu Beginn des Gewinnermittlungszeitraums;40 Finanzanlagen – Andere;Übernahme;+
+2026;Anlage AVEÜR;90;512;Summe Zugänge;40 Finanzanlagen – Andere;Betrag;+
+2026;Anlage AVEÜR;91;515;Summe Abgänge (zu erfassen in Zeile 39 der Anlage EÜR);40 Finanzanlagen – Andere;Betrag;−
+2026;Anlage AVEÜR;92;516;Summe Buchwerte am Ende des Gewinnermittlungszeitraums;40 Finanzanlagen – Andere;Summe;=
+2026;Anlage AVEÜR;93;600;Summe Anschaffungs-/Herstellungskosten/Einlagewerte;40 Umlaufvermögen i. S. d. § 4 Abs. 3 Satz 4 EStG bzw. § 32b Abs. 2 Satz 1 Nr. 2 Satz 2 Buchst. c EStG;Betrag;+
+2026;Anlage AVEÜR;94;602;Summe Zugänge;40 Umlaufvermögen i. S. d. § 4 Abs. 3 Satz 4 EStG bzw. § 32b Abs. 2 Satz 1 Nr. 2 Satz 2 Buchst. c EStG;Betrag;+
+2026;Anlage AVEÜR;95;605;Summe Abgänge (zu erfassen in Zeile 29 der Anlage EÜR);40 Umlaufvermögen i. S. d. § 4 Abs. 3 Satz 4 EStG bzw. § 32b Abs. 2 Satz 1 Nr. 2 Satz 2 Buchst. c EStG;Betrag;−
+2026;Anlage AVEÜR;96;606;Summe Buchwerte am Ende des Gewinnermittlungszeitraums;40 Umlaufvermögen i. S. d. § 4 Abs. 3 Satz 4 EStG bzw. § 32b Abs. 2 Satz 1 Nr. 2 Satz 2 Buchst. c EStG;Summe;=
+2026;Anlage SZ;1;;Name des Steuerpflichtigen;00 Kopf (ohne Kasten);Text;
+2026;Anlage SZ;2;;Vorname;00 Kopf (ohne Kasten);Text;
+2026;Anlage SZ;3;;(Betriebs-)Steuernummer;00 Kopf (ohne Kasten);Text;
+2026;Anlage SZ;4;;Wirtschafts-Identifikationsnummer;00 Kopf (ohne Kasten);Text;
+2026;Anlage SZ;5;;Betriebseinnahmen (Übertrag aus Zeile 23 der Anlage EÜR);43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 1. maßgeblicher Gewinn;Übernahme;+
+2026;Anlage SZ;6;;abzüglich Betriebsausgaben (Übertrag aus Zeile 76 der Anlage EÜR);43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 1. maßgeblicher Gewinn;Übernahme;−
+2026;Anlage SZ;7;151;zuzüglich steuerfreie Gewinne, die nicht in der Anlage EÜR enthalten sind;43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 1. maßgeblicher Gewinn;Betrag;+
+2026;Anlage SZ;8;152;abzüglich nicht abziehbare Betriebsausgaben;43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 1. maßgeblicher Gewinn;Betrag;−
+2026;Anlage SZ;9;153;zuzüglich Gewinne bzw. abzüglich Verluste aus Beteiligungen an vermögensverwaltenden Personengesellschaften und abzüglich Ergebnisanteile aus Kostenträgergemeinschaften (in Zeile 92 der Anlage EÜR enthalten);43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 1. maßgeblicher Gewinn;Betrag;±
+2026;Anlage SZ;10;154;zuzüglich Veräußerungs-/Aufgabegewinn bzw. abzüglich Veräußerungs-/Aufgabeverlust und zuzüglich Hinzu- bzw. abzüglich Abrechnungen beim Wechsel der Gewinnermittlungsart;43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 1. maßgeblicher Gewinn;Betrag;±
+2026;Anlage SZ;11;;Maßgeblicher Gewinn/Verlust für Zwecke des § 4 Abs. 4a EStG (in Zeile 13 eintragen);43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 1. maßgeblicher Gewinn;Summe;=
+2026;Anlage SZ;12;100;Entnahmen (Übertrag aus Zeile 107 der Anlage EÜR);43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 2. Über-/Unterentnahmen;Übernahme;+
+2026;Anlage SZ;13;;abzüglich Gewinn/zuzüglich Verlust (Betrag aus Zeile 11);43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 2. Über-/Unterentnahmen;Übernahme;−/+
+2026;Anlage SZ;14;210;Einlagen (Übertrag aus Zeile 108 der Anlage EÜR);43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 2. Über-/Unterentnahmen;Übernahme;−
+2026;Anlage SZ;15;;Über-/Unterentnahme des laufenden Wirtschaftsjahres;43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 2. Über-/Unterentnahmen;Summe;=
+2026;Anlage SZ;16;315;zuzüglich Über-/abzüglich Unterentnahmen der vorangegangenen Wirtschaftsjahre (Betrag aus Zeile 17 der Anlage SZ des Vorjahres);43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 2. Über-/Unterentnahmen;Übernahme;±
+2026;Anlage SZ;17;;Kumulierte Über-/Unterentnahmen;43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 2. Über-/Unterentnahmen;Summe;=
+2026;Anlage SZ;18;;Entnahmen des laufenden Wirtschaftsjahres (Betrag aus Zeile 12);43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 3. Entnahmenüberschuss;Übernahme;+
+2026;Anlage SZ;19;325;Entnahmen der vorangegangenen Wirtschaftsjahre (Betrag aus Zeile 20 der Anlage SZ des Vorjahres);43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 3. Entnahmenüberschuss;Übernahme;+
+2026;Anlage SZ;20;;Kumulierte Entnahmen;43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 3. Entnahmenüberschuss;Summe;=
+2026;Anlage SZ;21;;Einlagen des laufenden Wirtschaftsjahres (Betrag aus Zeile 14);43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 3. Entnahmenüberschuss;Übernahme;+
+2026;Anlage SZ;22;335;Einlagen der vorangegangenen Wirtschaftsjahre (Betrag aus Zeile 23 der Anlage SZ des Vorjahres);43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 3. Entnahmenüberschuss;Übernahme;+
+2026;Anlage SZ;23;;Kumulierte Einlagen;43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 3. Entnahmenüberschuss;Summe;=
+2026;Anlage SZ;24;;Kumulierter Entnahmenüberschuss;43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 3. Entnahmenüberschuss;Summe;=
+2026;Anlage SZ;25;;6 % des niedrigeren Betrags aus Zeile 17 oder 24 (Ergibt sich in Zeile 17 oder 24 ein negativer Betrag, ist hier der Wert „0“ einzutragen.);43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 4. Nicht abziehbare Schuldzinsen;Summe;=
+2026;Anlage SZ;26;;Übrige Schuldzinsen (Übertrag aus Zeile 57 der Anlage EÜR);43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 4. Nicht abziehbare Schuldzinsen;Übernahme;+
+2026;Anlage SZ;27;405;Korrekturbetrag zu den übrigen Schuldzinsen (siehe Anleitung zur Anlage EÜR);43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 4. Nicht abziehbare Schuldzinsen;Betrag;−
+2026;Anlage SZ;28;;Kürzungsbetrag gem. § 4 Abs. 4a Satz 4 EStG;43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 4. Nicht abziehbare Schuldzinsen;Konstante;−
+2026;Anlage SZ;29;;Höchstbetrag der nicht abziehbaren Schuldzinsen (Ergibt sich ein negativer Betrag, ist hier der Wert „0“ einzutragen.);43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 4. Nicht abziehbare Schuldzinsen;Summe;=
+2026;Anlage SZ;30;;Niedrigerer Betrag aus Zeile 25 oder 29 (Übertrag in Zeile 97 der Anlage EÜR);43 Ermittlung der nicht abziehbaren Schuldzinsen (Einzelunternehmen) – 5. Hinzurechnungsbetrag;Summe;=

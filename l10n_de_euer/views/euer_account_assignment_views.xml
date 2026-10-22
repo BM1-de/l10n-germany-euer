@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Baumgärtner Marketing GmbH
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="l10n_de_euer_account_assignment_view_list" model="ir.ui.view">
+        <field name="name">l10n_de_euer.account.assignment.list</field>
+        <field name="model">l10n_de_euer.account.assignment</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="company_id" groups="base.group_multi_company" />
+                <field name="account_code" width="70px" />
+                <field name="account_id" />
+                <field name="category_id" />
+                <field name="role" optional="show" />
+                <field name="date_from" />
+                <field name="date_to" />
+                <field
+                    name="confidence"
+                    widget="badge"
+                    decoration-danger="needs_confirmation"
+                    decoration-warning="confidence == 'm'"
+                />
+                <field name="confirmed" optional="show" />
+                <field name="needs_confirmation" column_invisible="True" />
+                <field name="source" optional="show" />
+                <field name="ambiguity_case" optional="hide" />
+            </list>
+        </field>
+    </record>
+
+    <record id="l10n_de_euer_account_assignment_view_form" model="ir.ui.view">
+        <field name="name">l10n_de_euer.account.assignment.form</field>
+        <field name="model">l10n_de_euer.account.assignment</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button
+                        name="action_confirm"
+                        type="object"
+                        string="Confirm"
+                        class="btn-primary"
+                        invisible="confirmed"
+                        groups="account.group_account_manager"
+                    />
+                    <button
+                        name="action_new_period"
+                        type="object"
+                        string="New Period"
+                        invisible="not id"
+                        groups="account.group_account_manager"
+                        help="Change of use from a date: the current period ends the day before."
+                    />
+                </header>
+                <sheet>
+                    <group>
+                        <group name="assignment" string="Assignment">
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                            />
+                            <field name="account_id" />
+                            <field name="category_id" />
+                            <field name="role" />
+                            <field name="date_from" />
+                            <field name="date_to" />
+                        </group>
+                        <group name="confirmation" string="Confirmation">
+                            <field name="confidence" />
+                            <field name="ambiguity_case" />
+                            <field name="source" readonly="1" />
+                            <field name="confirmed" readonly="1" />
+                            <field name="confirmed_by_id" invisible="not confirmed" />
+                            <field name="confirmed_on" invisible="not confirmed" />
+                            <field name="needs_confirmation" invisible="1" />
+                        </group>
+                    </group>
+                    <field name="note" placeholder="Reason or note" />
+                </sheet>
+                <chatter />
+            </form>
+        </field>
+    </record>
+
+    <record id="l10n_de_euer_account_assignment_view_search" model="ir.ui.view">
+        <field name="name">l10n_de_euer.account.assignment.search</field>
+        <field name="model">l10n_de_euer.account.assignment</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="account_id" />
+                <field name="category_id" />
+                <field name="ambiguity_case" />
+                <filter
+                    name="filter_needs_confirmation"
+                    string="Low Confidence, Unconfirmed"
+                    domain="[('needs_confirmation', '=', True)]"
+                />
+                <filter
+                    name="filter_not_provided"
+                    string="Not Provided For"
+                    domain="['|', ('role', '=', 'warn'), ('category_id.warning', '!=', False)]"
+                />
+                <filter
+                    name="filter_manual"
+                    string="Changed by User"
+                    domain="[('source', 'in', ('manual', 'proposal'))]"
+                />
+                <separator />
+                <filter
+                    name="filter_current"
+                    string="Valid Today"
+                    domain="['|', ('date_from', '=', False), ('date_from', '&lt;=', context_today().strftime('%Y-%m-%d')), '|', ('date_to', '=', False), ('date_to', '&gt;=', context_today().strftime('%Y-%m-%d'))]"
+                />
+                <group>
+                    <filter
+                        name="group_category"
+                        string="Category"
+                        context="{'group_by': 'category_id'}"
+                    />
+                    <filter
+                        name="group_role"
+                        string="Role"
+                        context="{'group_by': 'role'}"
+                    />
+                    <filter
+                        name="group_source"
+                        string="Source"
+                        context="{'group_by': 'source'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_l10n_de_euer_account_assignment" model="ir.actions.act_window">
+        <field name="name">EÜR Account Assignment</field>
+        <field name="res_model">l10n_de_euer.account.assignment</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_filter_current': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Assign an EÜR category</p>
+            <p>
+                Each account gets an EÜR category per business and period. SKR03
+                and SKR04 accounts are assigned by default; accounts you create
+                yourself get a proposal you confirm.
+            </p>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,803 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_de_papierkram_import
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0-20261015\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-21 21:12+0000\n"
+"PO-Revision-Date: 2026-10-20 12:17+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "%(nr)s: payment of %(amount)s on %(date)s derived from '%(src)s'."
+msgstr "%(nr)s: Zahlung %(amount)s am %(date)s aus „%(src)s“ abgeleitet."
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "%(nr)s: total in Odoo %(odoo)s, in Papierkram %(pk)s."
+msgstr "%(nr)s: Summe in Odoo %(odoo)s, in Papierkram %(pk)s."
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "%s entries from Papierkram already exist; they are skipped."
+msgstr "%s Buchungen aus Papierkram sind bereits vorhanden; sie werden übersprungen."
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "%s: cash discount posted to 8730 without VAT split; please check."
+msgstr "%s: Skonto ohne Steueraufteilung auf 8730 gebucht; bitte prüfen."
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "A lock date (%s) is set. Odoo moves entries into a locked period behind the lock date, which would change payment dates."
+msgstr "Ein Sperrdatum (%s) ist gesetzt. Odoo verschiebt Buchungen in einem gesperrten Zeitraum hinter das Sperrdatum; dadurch würden sich Zahlungsdaten ändern."
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "Account %s (SKR03) does not exist in this company."
+msgstr "Konto %s (SKR03) gibt es in diesem Unternehmen nicht."
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "Account %s (SKR03) is missing in the company."
+msgstr "Konto %s (SKR03) fehlt im Unternehmen."
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import.field_papierkram_import__message_needaction
+msgid "Action Needed"
+msgstr "Aktion notwendig"
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import.field_papierkram_import__assets_filename
+msgid "Assets Filename"
+msgstr "Dateiname Anlagegüter"
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import.field_papierkram_import__message_attachment_count
+msgid "Attachment Count"
+msgstr "Anzahl Anhänge"
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "Blocked"
+msgstr "Blockiert"
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "Cancellation %(nr)s: original invoice %(orig)s is missing, skipped."
+msgstr "Storno %(nr)s: ursprüngliche Rechnung %(orig)s fehlt, übersprungen."
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "Cancellation %s is only a draft in Papierkram; posted because the invoice is cancelled."
+msgstr "Storno %s ist in Papierkram nur ein Entwurf; gebucht, weil die Rechnung storniert ist."
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "Cancellations and credit notes imported"
+msgstr "Stornos und Gutschriften übernommen"
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "Cash discount for %s"
+msgstr "Skonto zu %s"
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "Cash discount granted"
+msgstr "Gewährtes Skonto"
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import.field_papierkram_import__categories_filename
+msgid "Categories Filename"
+msgstr "Dateiname Kategorien"
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "Category '%(cat)s' is booked on account %(new)s instead of Papierkram's %(old)s, which means leasing in today's chart."
+msgstr "Kategorie „%(cat)s“ wird auf Konto %(new)s statt auf Papierkrams %(old)s gebucht; %(old)s bedeutet im heutigen Kontenrahmen Leasing."
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import.field_papierkram_import__categories_file
+msgid "Category List (CSV)"
+msgstr "Kategorienliste (CSV)"
+
+#. module: l10n_de_papierkram_import
+#: model_terms:ir.ui.view,arch_db:l10n_de_papierkram_import.papierkram_import_view_form
+msgid "Check"
+msgstr "Prüfen"
+
+#. module: l10n_de_papierkram_import
+#: model_terms:ir.ui.view,arch_db:l10n_de_papierkram_import.papierkram_import_view_form
+msgid "Check Again"
+msgstr "Erneut prüfen"
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields.selection,name:l10n_de_papierkram_import.selection__papierkram_import__state__checked
+msgid "Checked"
+msgstr "Geprüft"
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import.field_papierkram_import__company_id
+msgid "Company"
+msgstr "Unternehmen"
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields.selection,name:l10n_de_papierkram_import.selection__papierkram_import__scope__complete
+msgid "Complete History"
+msgstr "Komplette Historie"
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields,help:l10n_de_papierkram_import.field_papierkram_import__scope
+msgid "Complete history: every document of the exports with its payments and the depreciation. Open items only: unpaid invoices and vouchers with their partial payments, nothing else. A later complete import adds the rest; documents already imported are skipped."
+msgstr "Komplette Historie: alle Belege der Exporte mit ihren Zahlungen und der AfA. Nur offene Posten: unbezahlte Rechnungen und Belege mit ihren Teilzahlungen, sonst nichts. Ein späterer kompletter Import ergänzt den Rest; schon übernommene Belege werden übersprungen."
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model,name:l10n_de_papierkram_import.model_res_partner
+msgid "Contact"
+msgstr "Kontakt"
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "Contact %(nr)s: VAT number '%(vat)s' not imported."
+msgstr "Kontakt %(nr)s: USt-IdNr. „%(vat)s“ nicht übernommen."
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "Contacts created"
+msgstr "Kontakte angelegt"
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "Contacts in export"
+msgstr "Kontakte im Export"
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "Country '%s' not found."
+msgstr "Land „%s“ nicht gefunden."
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import.field_papierkram_import__create_uid
+msgid "Created by"
+msgstr "Erstellt von"
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import.field_papierkram_import__create_date
+msgid "Created on"
+msgstr "Erstellt am"
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields,help:l10n_de_papierkram_import.field_res_partner__papierkram_number
+#: model:ir.model.fields,help:l10n_de_papierkram_import.field_res_users__papierkram_number
+msgid "Customer or supplier number in Papierkram (K-… or L-…)."
+msgstr "Kunden- oder Lieferantennummer in Papierkram (K-… oder L-…)."
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import.field_papierkram_import__misc_journal_id
+msgid "Depreciation Journal"
+msgstr "Journal Abschreibungen"
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "Depreciation entries"
+msgstr "Abschreibungsbuchungen"
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields,help:l10n_de_papierkram_import.field_papierkram_import__depreciation_until
+msgid "Depreciation is posted up to and including this date. The current year is posted at year end."
+msgstr "Abschreibungen werden bis einschließlich dieses Datums gebucht. Das laufende Jahr bucht man am Jahresende."
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import.field_account_move__display_name
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import.field_papierkram_import__display_name
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import.field_res_partner__display_name
+msgid "Display Name"
+msgstr "Anzeigename"
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields.selection,name:l10n_de_papierkram_import.selection__papierkram_import__state__draft
+msgid "Draft"
+msgstr "Entwurf"
+
+#. module: l10n_de_papierkram_import
+#: model_terms:ir.ui.view,arch_db:l10n_de_papierkram_import.papierkram_import_view_form
+msgid "Entries"
+msgstr "Buchungen"
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "Existing contacts used"
+msgstr "Vorhandene Kontakte verwendet"
+
+#. module: l10n_de_papierkram_import
+#: model_terms:ir.ui.view,arch_db:l10n_de_papierkram_import.papierkram_import_view_form
+msgid "Files from Papierkram"
+msgstr "Dateien aus Papierkram"
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import.field_papierkram_import__assets_file
+msgid "Fixed Assets (CSV)"
+msgstr "Anlagegüter (CSV)"
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "Fixed asset %(name)s (%(nr)s): voucher or asset category is missing, no depreciation posted."
+msgstr "Anlagegut %(name)s (%(nr)s): Beleg oder Anlagekategorie fehlt, keine AfA gebucht."
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "Fixed assets"
+msgstr "Anlagegüter"
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import.field_papierkram_import__message_follower_ids
+msgid "Followers"
+msgstr "Follower"
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import.field_papierkram_import__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Follower (Partner)"
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import.field_papierkram_import__has_message
+msgid "Has Message"
+msgstr "Hat eine Nachricht"
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import.field_account_move__id
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import.field_papierkram_import__id
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import.field_res_partner__id
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields,help:l10n_de_papierkram_import.field_papierkram_import__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Falls markiert, erfordern neue Nachrichten Ihre Aufmerksamkeit."
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields,help:l10n_de_papierkram_import.field_papierkram_import__message_has_error
+#: model:ir.model.fields,help:l10n_de_papierkram_import.field_papierkram_import__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Falls markiert, weisen einige Nachrichten einen Zustellfehler auf."
+
+#. module: l10n_de_papierkram_import
+#: model_terms:ir.ui.view,arch_db:l10n_de_papierkram_import.papierkram_import_view_form
+msgid "Import"
+msgstr "Übernehmen"
+
+#. module: l10n_de_papierkram_import
+#: model_terms:ir.actions.act_window,help:l10n_de_papierkram_import.papierkram_import_action
+msgid "Import data from Papierkram"
+msgstr "Daten aus Papierkram übernehmen"
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields,help:l10n_de_papierkram_import.field_papierkram_import__small_business
+msgid "Import invoices and vouchers without VAT. Disable only if the business was subject to regular VAT in Papierkram."
+msgstr "Rechnungen und Belege ohne Umsatzsteuer übernehmen. Nur ausschalten, wenn das Unternehmen in Papierkram regelbesteuert war."
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields.selection,name:l10n_de_papierkram_import.selection__papierkram_import__state__done
+msgid "Imported"
+msgstr "Übernommen"
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "Imported Entries"
+msgstr "Übernommene Buchungen"
+
+#. module: l10n_de_papierkram_import
+#: model_terms:ir.actions.act_window,help:l10n_de_papierkram_import.papierkram_import_action
+msgid ""
+"In Papierkram, create one export \"Complete (CSV, PDF)\" per year under\n"
+"                Settings → Export and Import and upload all files here."
+msgstr ""
+"In Papierkram unter Einstellungen → Export und Import je Jahr einen Export\n"
+"                „Vollständig (CSV, PDF)“ erstellen und alle Dateien hier hochladen."
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "Invoice %(invoice)s: %(amount)s paid without payment date."
+msgstr "Rechnung %(invoice)s: %(amount)s bezahlt ohne Zahlungsdatum."
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "Invoice %s is cancelled but Papierkram contains no cancellation document; cancellation posted on the invoice date."
+msgstr "Rechnung %s ist storniert, Papierkram enthält aber keinen Stornobeleg; Storno zum Rechnungsdatum gebucht."
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import.field_papierkram_import__sale_journal_id
+msgid "Invoice Journal"
+msgstr "Journal Ausgangsrechnungen"
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "Invoices imported"
+msgstr "Rechnungen übernommen"
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "Invoices in export"
+msgstr "Rechnungen im Export"
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import.field_papierkram_import__message_is_follower
+msgid "Is Follower"
+msgstr "Ist Follower"
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model,name:l10n_de_papierkram_import.model_account_move
+msgid "Journal Entry"
+msgstr "Buchung"
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import.field_papierkram_import__write_uid
+msgid "Last Updated by"
+msgstr "Zuletzt aktualisiert von"
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import.field_papierkram_import__write_date
+msgid "Last Updated on"
+msgstr "Zuletzt aktualisiert am"
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import.field_papierkram_import__log
+msgid "Log"
+msgstr "Protokoll"
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import.field_papierkram_import__message_has_error
+msgid "Message Delivery error"
+msgstr "Nachricht mit Zustellungsfehler"
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import.field_papierkram_import__message_ids
+msgid "Messages"
+msgstr "Nachrichten"
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields,help:l10n_de_papierkram_import.field_papierkram_import__money_journal_id
+msgid "Money account that receives every payment from Papierkram with its payment date."
+msgstr "Geldkonto, auf das alle Zahlungen aus Papierkram mit ihrem Zahlungsdatum gebucht werden."
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import.field_papierkram_import__move_ids
+msgid "Move"
+msgstr "Buchungen"
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import.field_papierkram_import__move_count
+msgid "Move Count"
+msgstr "Anzahl Buchungen"
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import.field_papierkram_import__name
+msgid "Name"
+msgstr "Bezeichnung"
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "No tax rate of %s %% found."
+msgstr "Kein Steuersatz von %s %% gefunden."
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import.field_papierkram_import__warning_count
+msgid "Notes"
+msgstr "Hinweise"
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import.field_papierkram_import__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Anzahl der Aktionen"
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import.field_papierkram_import__message_has_error_counter
+msgid "Number of errors"
+msgstr "Anzahl der Fehler"
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields,help:l10n_de_papierkram_import.field_papierkram_import__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "Anzahl der Nachrichten, die eine Aktion erfordern"
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields,help:l10n_de_papierkram_import.field_papierkram_import__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Anzahl der Nachrichten mit Zustellungsfehler"
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields,help:l10n_de_papierkram_import.field_account_bank_statement_line__papierkram_number
+#: model:ir.model.fields,help:l10n_de_papierkram_import.field_account_move__papierkram_number
+msgid "Number of the Papierkram document this entry was imported from (for example R-00042 or B-00117)."
+msgstr "Nummer des Papierkram-Dokuments, aus dem diese Buchung übernommen wurde (zum Beispiel R-00042 oder B-00117)."
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields.selection,name:l10n_de_papierkram_import.selection__papierkram_import__scope__open
+msgid "Open Items Only"
+msgstr "Nur offene Posten"
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "PDF attachments"
+msgstr "PDF-Anhänge"
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "Papierkram Depreciation"
+msgstr "Papierkram Abschreibungen"
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import.field_papierkram_import__export_attachment_ids
+msgid "Papierkram Exports"
+msgstr "Papierkram-Exporte"
+
+#. module: l10n_de_papierkram_import
+#: model:ir.actions.act_window,name:l10n_de_papierkram_import.papierkram_import_action
+#: model:ir.model,name:l10n_de_papierkram_import.model_papierkram_import
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import.field_account_bank_statement_line__papierkram_import_id
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import.field_account_move__papierkram_import_id
+#: model:ir.ui.menu,name:l10n_de_papierkram_import.papierkram_import_menu
+msgid "Papierkram Import"
+msgstr "Papierkram-Übernahme"
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "Papierkram Invoices"
+msgstr "Papierkram Rechnungen"
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import.field_account_bank_statement_line__papierkram_number
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import.field_account_move__papierkram_number
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import.field_res_partner__papierkram_number
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import.field_res_users__papierkram_number
+msgid "Papierkram Number"
+msgstr "Papierkram-Nummer"
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "Papierkram Payments"
+msgstr "Papierkram Zahlungen"
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "Papierkram Vouchers"
+msgstr "Papierkram Belege"
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "Papierkram import %s"
+msgstr "Papierkram-Übernahme %s"
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import.field_papierkram_import__money_journal_id
+msgid "Payment Journal"
+msgstr "Journal Zahlungen"
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "Payment for %s without imported document skipped."
+msgstr "Zahlung zu %s ohne übernommenes Dokument übersprungen."
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "Payment for an unknown invoice: %s."
+msgstr "Zahlung zu unbekannter Rechnung: %s."
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "Payment for an unknown voucher: %s."
+msgstr "Zahlung zu unbekanntem Beleg: %s."
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "Payments in export"
+msgstr "Zahlungen im Export"
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "Payments posted"
+msgstr "Zahlungen gebucht"
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "Payments with derived date (Papierkram only knows them from a bank transaction or from the payment date of the voucher)"
+msgstr "Zahlungen mit abgeleitetem Datum (Papierkram kennt sie nur über einen Kontoumsatz oder das Zahlungsdatum des Belegs)"
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "Please upload at least one Papierkram export."
+msgstr "Bitte mindestens einen Papierkram-Export hochladen."
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import.field_papierkram_import__create_depreciation
+msgid "Post Depreciation"
+msgstr "Abschreibungen buchen"
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import.field_papierkram_import__depreciation_until
+msgid "Post Depreciation Until"
+msgstr "AfA buchen bis"
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields,help:l10n_de_papierkram_import.field_papierkram_import__create_depreciation
+msgid "Posts the yearly depreciation of fixed assets following Papierkram's schedule (including the memo value of 1 €)."
+msgstr "Bucht die jährliche AfA der Anlagegüter nach dem Plan aus Papierkram (einschließlich Erinnerungswert 1 €)."
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "Result"
+msgstr "Ergebnis"
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import.field_papierkram_import__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "SMS-Zustellungsfehler"
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import.field_papierkram_import__scope
+msgid "Scope"
+msgstr "Umfang"
+
+#. module: l10n_de_papierkram_import
+#: model_terms:ir.ui.view,arch_db:l10n_de_papierkram_import.papierkram_import_view_form
+msgid "Settings"
+msgstr "Einstellungen"
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "Skipped (draft, cancelled or deleted without payment, already present)"
+msgstr "Übersprungen (Entwurf, ohne Zahlung storniert oder gelöscht, schon vorhanden)"
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import.field_papierkram_import__small_business
+msgid "Small Business (§ 19 UStG)"
+msgstr "Kleinunternehmer (§ 19 UStG)"
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "Small business is ticked, but invoices show VAT (%s): untick it if the business was subject to regular VAT in Papierkram. Ticked, these invoices are imported without their VAT."
+msgstr "Kleinunternehmer ist eingeschaltet, aber Rechnungen weisen Umsatzsteuer aus (%s): Schalten Sie es aus, wenn das Unternehmen in Papierkram regelbesteuert war. Eingeschaltet werden diese Rechnungen ohne ihre Umsatzsteuer übernommen."
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import.field_papierkram_import__splits_file
+msgid "Split Vouchers (CSV)"
+msgstr "Aufteilung mehrteiliger Belege (CSV)"
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "Split given for unknown voucher %s."
+msgstr "Aufteilung für unbekannten Beleg %s angegeben."
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "Split of voucher %(voucher)s: total %(total)s differs from the voucher amount %(gross)s; split ignored."
+msgstr "Aufteilung von Beleg %(voucher)s: Summe %(total)s weicht vom Belegbetrag %(gross)s ab; Aufteilung ignoriert."
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import.field_papierkram_import__splits_filename
+msgid "Splits Filename"
+msgstr "Dateiname Aufteilungen"
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import.field_papierkram_import__state
+msgid "State"
+msgstr "Status"
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields,help:l10n_de_papierkram_import.field_papierkram_import__export_attachment_ids
+msgid "The ZIP files exported from Papierkram (Settings → Export and Import, export type 'Complete (CSV, PDF)'), one per year. Upload all years together: a payment is contained in the export of the year in which its document was created."
+msgstr "Die ZIP-Dateien aus Papierkram (Einstellungen → Export und Import, Export-Art „Vollständig (CSV, PDF)“), eine je Jahr. Alle Jahre gemeinsam hochladen: Eine Zahlung steht im Export des Jahres, in dem ihr Dokument angelegt wurde."
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "The company needs the chart of accounts SKR03 or SKR04 (is: %s)."
+msgstr "Das Unternehmen braucht den Kontenrahmen SKR03 oder SKR04 (ist: %s)."
+
+#. module: l10n_de_papierkram_import
+#: model_terms:ir.ui.view,arch_db:l10n_de_papierkram_import.papierkram_import_view_form
+msgid "The data will now be imported and posted. Continue?"
+msgstr "Die Daten werden jetzt übernommen und gebucht. Fortfahren?"
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid ""
+"The import is blocked:\n"
+"%s"
+msgstr ""
+"Die Übernahme ist blockiert:\n"
+"%s"
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.constraint,message:l10n_de_papierkram_import.constraint_account_move_papierkram_number_company_uniq
+msgid "This Papierkram document has already been imported."
+msgstr "Dieses Papierkram-Dokument wurde bereits übernommen."
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "This import has already been run."
+msgstr "Diese Übernahme wurde bereits ausgeführt."
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "Unknown (Papierkram)"
+msgstr "Unbekannt (Papierkram)"
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "Voucher %(nr)s is cancelled in Papierkram; the refund on %(d)s was posted as a credit note."
+msgstr "Beleg %(nr)s ist in Papierkram storniert; die Rückzahlung am %(d)s wurde als Gutschrift gebucht."
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "Voucher %(nr)s: category '%(cat)s' has no account."
+msgstr "Beleg %(nr)s: Kategorie „%(cat)s“ hat kein Konto."
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "Voucher %(nr)s: split into %(cats)s is missing, the whole amount was posted to '%(first)s'."
+msgstr "Beleg %(nr)s: Aufteilung auf %(cats)s fehlt, der gesamte Betrag wurde auf „%(first)s“ gebucht."
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "Voucher %(voucher)s has several categories (%(categories)s) but no amount per category."
+msgstr "Beleg %(voucher)s hat mehrere Kategorien (%(categories)s), aber keine Beträge je Kategorie."
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "Voucher %(voucher)s: unknown category %(categories)s."
+msgstr "Beleg %(voucher)s: unbekannte Kategorie %(categories)s."
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "Voucher %s has a private share; it is not split."
+msgstr "Beleg %s hat einen Privatanteil; er wird nicht aufgeteilt."
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "Voucher %s is paid but has no payment date."
+msgstr "Beleg %s ist bezahlt, hat aber kein Zahlungsdatum."
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "Voucher %s: please check input VAT on several lines."
+msgstr "Beleg %s: Vorsteuer bei mehreren Positionen bitte prüfen."
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import.field_papierkram_import__purchase_journal_id
+msgid "Voucher Journal"
+msgstr "Journal Belege"
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "Vouchers imported"
+msgstr "Belege übernommen"
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "Vouchers in export"
+msgstr "Belege im Export"
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields,field_description:l10n_de_papierkram_import.field_papierkram_import__website_message_ids
+msgid "Website Messages"
+msgstr "Website-Nachrichten"
+
+#. module: l10n_de_papierkram_import
+#: model:ir.model.fields,help:l10n_de_papierkram_import.field_papierkram_import__website_message_ids
+msgid "Website communication history"
+msgstr "Verlauf der Website-Kommunikation"
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "last payment date"
+msgstr "letztes Bezahldatum"
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "misc_journal_id"
+msgstr "misc_journal_id"
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "money_journal_id"
+msgstr "money_journal_id"
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "of which payments with derived date"
+msgstr "davon Zahlungen mit abgeleitetem Datum"
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "paid on"
+msgstr "Zahlung am"
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "papierkram_import_id"
+msgstr "papierkram_import_id"
+
+#. module: l10n_de_papierkram_import
+#. odoo-python
+#: code:addons/l10n_de_papierkram_import/models/papierkram_import.py:0
+msgid "purchase_journal_id"
+msgstr "purchase_journal_id"

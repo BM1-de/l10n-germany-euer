@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Baumgärtner Marketing GmbH
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <!-- Correction of a finalised statement (spec 7.7 step 6) -->
+    <record id="l10n_de_euer_statement_correction_view_form" model="ir.ui.view">
+        <field name="name">l10n_de_euer.statement.correction.form</field>
+        <field name="model">l10n_de_euer.statement.correction</field>
+        <field name="arch" type="xml">
+            <form>
+                <p>
+                    The correction is a new version of the statement. It starts
+                    with the values, overrides, profit corrections and the bank
+                    reconciliation of the finalised version; a manager confirms the
+                    questionnaire again. The finalised version stays unchanged and
+                    is superseded when the correction is finalised.
+                </p>
+                <group>
+                    <field name="statement_id" />
+                    <field
+                        name="reason"
+                        placeholder="Reason of the correction (required)"
+                    />
+                </group>
+                <footer>
+                    <button
+                        name="action_create"
+                        type="object"
+                        string="Create Correction"
+                        class="btn-primary"
+                    />
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

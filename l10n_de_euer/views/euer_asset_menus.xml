@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Baumgärtner Marketing GmbH
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <!-- Accounting › Asset Register (EÜR): auditors read, bookkeepers keep the
+         register (spec 7.4, 7.10) -->
+    <menuitem
+        id="menu_l10n_de_euer_asset_root"
+        name="Asset Register (EÜR)"
+        parent="account.menu_finance"
+        groups="account.group_account_readonly,account.group_account_user,account.group_account_manager"
+        sequence="15"
+    >
+        <menuitem
+            id="menu_l10n_de_euer_asset"
+            action="action_l10n_de_euer_asset"
+            sequence="10"
+        />
+        <menuitem
+            id="menu_l10n_de_euer_asset_year"
+            action="action_l10n_de_euer_asset_year"
+            sequence="20"
+        />
+        <menuitem
+            id="menu_l10n_de_euer_asset_pool"
+            action="action_l10n_de_euer_asset_pool"
+            sequence="30"
+        />
+        <menuitem
+            id="menu_l10n_de_euer_asset_gwg"
+            action="action_l10n_de_euer_asset_gwg"
+            sequence="40"
+        />
+        <menuitem
+            id="menu_l10n_de_euer_asset_check"
+            action="action_l10n_de_euer_asset_check_wizard"
+            groups="account.group_account_user,account.group_account_manager"
+            sequence="50"
+        />
+        <!-- taking over the old register is released by a manager (7.10) -->
+        <menuitem
+            id="menu_l10n_de_euer_asset_import"
+            action="action_l10n_de_euer_asset_import"
+            groups="account.group_account_manager"
+            sequence="60"
+        />
+        <menuitem
+            id="menu_l10n_de_euer_asset_opening_total"
+            action="action_l10n_de_euer_asset_opening_total"
+            groups="account.group_account_manager"
+            sequence="70"
+        />
+    </menuitem>
+</odoo>
