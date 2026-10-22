@@ -1,6 +1,6 @@
 
 
-# Deutsche EÜR für Odoo
+# Deutsche EÜR für Odoo mit Papierkram-Import
 <!-- /!\ Non OCA Context : Set here the badge of your runbot / runboat instance. -->
 [![Pre-commit Status](https://github.com/BM1-de/l10n-germany-euer/actions/workflows/pre-commit.yml/badge.svg?branch=19.0)](https://github.com/BM1-de/l10n-germany-euer/actions/workflows/pre-commit.yml?query=branch%3A19.0)
 [![Build Status](https://github.com/BM1-de/l10n-germany-euer/actions/workflows/test.yml/badge.svg?branch=19.0)](https://github.com/BM1-de/l10n-germany-euer/actions/workflows/test.yml?query=branch%3A19.0)
