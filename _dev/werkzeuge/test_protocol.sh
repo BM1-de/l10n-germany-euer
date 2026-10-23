@@ -18,16 +18,23 @@
 #                   a failed setUpClass counts for its module, results
 #                   outside the modules appear as "other")
 #
+# With modules for a second run (-x, default EXTRA below), the tests run a
+# second time in a database of its own in which these modules are installed
+# first; junit-2.xml and runs.json describe that run, and the coverage is the
+# combined one of both runs.
+#
 # The Odoo image stays unchanged: coverage is installed into the throw-away
 # container (pip --target /tmp) and the database is dropped at the end.
 #
 # Usage (from anywhere inside the repository):
 #   _dev/werkzeuge/test_protocol.sh [-d DATABASE] [-o OUTPUT_DIR]
-#                                   [-m MODULE,MODULE,...] [-k]
-#   -d  database to create (must not exist; default: protocol_<timestamp>)
+#                                   [-m MODULE,MODULE,...] [-x MODULE,...] [-k]
+#   -d  database to create (must not exist; default: protocol_<timestamp>);
+#       the second run uses DATABASE_2
 #   -o  output directory (default: build/test-protocol-<version>-<timestamp>)
 #   -m  modules to install and test (default: the module of the repo)
-#   -k  keep the database after the run
+#   -x  modules of the second run (default: EXTRA below; empty: one run)
+#   -k  keep the databases after the run
 #
 # Exit status: 0 if all tests passed, 1 if a test failed or Odoo stopped
 # with an error, 2 on wrong usage or a database that already exists.
@@ -40,15 +47,20 @@ DB="protocol_${STAMP//-/_}"
 MODULES="l10n_de_euer"
 OUT=""
 KEEP=0
-COVERAGE_VERSION="7.6.1"
+COVERAGE_VERSION="7.16.2"
+# second run with the OCA reconciliation modules (spec 9.9 "Matrix
+# OCA-Abgleich"), as in the job "test with OCA reconciliation modules"
+EXTRA="account_reconcile_oca,account_in_payment,account_payment_order"
+EXTRA_LABEL="with OCA reconciliation modules"
 
-while getopts "d:o:m:kh" option; do
+while getopts "d:o:m:x:kh" option; do
     case "$option" in
         d) DB="$OPTARG" ;;
         o) OUT="$OPTARG" ;;
         m) MODULES="$OPTARG" ;;
+        x) EXTRA="$OPTARG" ;;
         k) KEEP=1 ;;
-        *) sed -n '4,30p' "$0" | sed 's/^# \{0,1\}//'; exit 2 ;;
+        *) sed -n '4,/^$/p' "$0" | sed 's/^# \{0,1\}//'; exit 2 ;;
     esac
 done
 
@@ -63,12 +75,14 @@ db_exists() {
     docker compose exec -T db psql -U odoo -d postgres -Atc \
         "SELECT 1 FROM pg_database WHERE datname = '$1'" | grep -q 1
 }
-if db_exists "$DB"; then
-    echo "Database $DB exists already; choose another one with -d." >&2
-    exit 2
-fi
+for name in "$DB" ${EXTRA:+"${DB}_2"}; do
+    if db_exists "$name"; then
+        echo "Database $name exists already; choose another one with -d." >&2
+        exit 2
+    fi
+done
 
-echo "Test protocol $VERSION: database $DB, modules $MODULES"
+echo "Test protocol $VERSION: database $DB, modules $MODULES${EXTRA:+, second run in ${DB}_2 with $EXTRA}"
 echo "Output: $OUT (takes about 30 to 60 minutes)"
 
 # runs inside the container: tests with coverage, then the reports; the
@@ -98,11 +112,32 @@ pip install --quiet --target /tmp/cov "coverage==$COVERAGE_VERSION" > /dev/null 
 export PYTHONPATH=/tmp/cov
 status=0
 python3 -m coverage run --rcfile=/tmp/protocol/coveragerc \
+    --data-file=/tmp/protocol/.coverage.1 \
     /mnt/extra-addons/_dev/werkzeuge/odoo_junit.py \
     --junit-xml /tmp/protocol/junit.xml \
     -c /etc/odoo/odoo.conf -d "$DB" -i "$MODULES" --test-tags "$TAGS" \
     --stop-after-init --http-port=8099 || status=$?
+if [ -n "$EXTRA" ]; then
+    extra=0
+    # the modules of the second run first, then the tests as in the first run
+    odoo -c /etc/odoo/odoo.conf -d "${DB}_2" -i "$EXTRA" --stop-after-init \
+        --no-http || extra=$?
+    if [ "$extra" -eq 0 ]; then
+        python3 -m coverage run --rcfile=/tmp/protocol/coveragerc \
+            --data-file=/tmp/protocol/.coverage.2 \
+            /mnt/extra-addons/_dev/werkzeuge/odoo_junit.py \
+            --junit-xml /tmp/protocol/junit-2.xml \
+            -c /etc/odoo/odoo.conf -d "${DB}_2" -i "$MODULES" --test-tags "$TAGS" \
+            --stop-after-init --http-port=8099 || extra=$?
+    fi
+    printf '[{"label": "standard", "junit": "junit.xml", "database": "%s", "status": "%s"}, {"label": "%s (%s)", "junit": "junit-2.xml", "database": "%s_2", "status": "%s"}]\n' \
+        "$DB" "$status" "$EXTRA_LABEL" "$EXTRA" "$DB" "$extra" > /tmp/protocol/runs.json
+    if [ "$status" -eq 0 ]; then
+        status=$extra
+    fi
+fi
 cd /tmp/protocol
+python3 -m coverage combine --rcfile=coveragerc .coverage.* > /dev/null || true
 python3 -m coverage report --rcfile=coveragerc > coverage.txt || true
 python3 -m coverage xml --rcfile=coveragerc -o coverage.xml > /dev/null || true
 python3 -m coverage json --rcfile=coveragerc -o coverage.json > /dev/null || true
@@ -116,6 +151,7 @@ EOF
 docker compose run --rm --no-deps -T \
     -e DB="$DB" -e MODULES="$MODULES" -e TAGS="$TAGS" \
     -e COVERAGE_VERSION="$COVERAGE_VERSION" \
+    -e EXTRA="$EXTRA" -e EXTRA_LABEL="$EXTRA_LABEL" \
     --entrypoint bash odoo -c "$INNER" \
     2> "$OUT/test.log" | tar -C "$OUT" -xf -
 
@@ -129,7 +165,9 @@ docker image inspect "$IMAGE" \
     > "$OUT/odoo_image" 2> /dev/null || true
 
 if [ "$KEEP" -eq 0 ]; then
-    docker compose exec -T db dropdb -U odoo --force --if-exists "$DB" > /dev/null
+    for name in "$DB" ${EXTRA:+"${DB}_2"}; do
+        docker compose exec -T db dropdb -U odoo --force --if-exists "$name" > /dev/null
+    done
 fi
 
 python3 "$REPO/_dev/werkzeuge/protocol_summary.py" "$OUT" --repo "$REPO" \

@@ -6,11 +6,20 @@ name: release
 # days at most); the protocol is archived by BM1 for five years as well
 # (RELEASE.md). The summary is written by _dev/werkzeuge/protocol_summary.py,
 # the same as for the local protocol of _dev/werkzeuge/test_protocol.sh.
+#
+# Started by hand (workflow_dispatch) for an existing tag, the workflow creates
+# the protocol of that tag again with the tools of the branch it runs on and
+# replaces the asset of the release.
 
 on:
   push:
     tags:
       - "19.0.*"
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: existing release tag whose protocol is created again
+        required: true
 
 permissions:
   contents: write
@@ -31,19 +40,44 @@ jobs:
           - 5432:5432
     env:
       IMAGE: ghcr.io/oca/oca-ci/py3.10-odoo19.0:latest
+      TAG: ${{ inputs.tag || github.ref_name }}
+      # the same version as in _dev/werkzeuge/test_protocol.sh
+      COVERAGE_VERSION: "7.16.2"
+      # second run with the OCA reconciliation modules (spec 9.9 "Matrix
+      # OCA-Abgleich"), as in the job "test with OCA reconciliation modules"
+      EXTRA_MODULES: "account_reconcile_oca,account_in_payment,account_payment_order"
+      EXTRA_LABEL: "with OCA reconciliation modules"
     steps:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
+      - name: Keep the tools of this run
+        run: cp -r _dev/werkzeuge /tmp/werkzeuge
+      - name: Check out the tag
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: refs/tags/${{ inputs.tag }}
       - name: Install addons and dependencies
         run: oca_install_addons
       - name: Initialize test db
         run: oca_init_test_database
+      - name: Initialize the database of the second run
+        if: ${{ env.EXTRA_MODULES != '' }}
+        run: |
+          PGDATABASE="${PGDATABASE}_2" oca_init_test_database
+          odoo -d "${PGDATABASE}_2" --stop-after-init -i "$EXTRA_MODULES"
       - name: Run the tests with JUnit XML and coverage
         shell: bash
         run: |
           set -o pipefail
           git config --global --add safe.directory "$PWD"
+          # oca_install_addons appends to test-requirements.txt and writes
+          # test-constraints.txt; the protocol must show the tagged tree as is
+          git checkout -- test-requirements.txt 2> /dev/null || rm -f test-requirements.txt
+          rm -f test-constraints.txt
+          pip install --quiet "coverage==${COVERAGE_VERSION}"
           # inside build/ (ignored by git), so the working tree stays clean
           OUT="$PWD/build/protocol"
           mkdir -p "$OUT"
@@ -57,12 +91,28 @@ jobs:
             "[report]" "precision = 2" "skip_empty = True" \
             "[html]" "directory = $OUT/coverage-html" > "$OUT/coveragerc"
           status=0
-          coverage run --rcfile="$OUT/coveragerc" \
-            _dev/werkzeuge/odoo_junit.py --junit-xml "$OUT/junit.xml" \
+          coverage run --rcfile="$OUT/coveragerc" --data-file="$OUT/.coverage.1" \
+            /tmp/werkzeuge/odoo_junit.py --junit-xml "$OUT/junit.xml" \
             -d "${PGDATABASE}" -i "$MODULES" --test-tags "$TAGS" \
             --http-interface=127.0.0.1 --stop-after-init \
             2>&1 | tee "$OUT/test.log" || status=$?
+          if [ -n "$EXTRA_MODULES" ]; then
+            # second run: the modules of EXTRA_MODULES are installed already
+            extra=0
+            coverage run --rcfile="$OUT/coveragerc" --data-file="$OUT/.coverage.2" \
+              /tmp/werkzeuge/odoo_junit.py --junit-xml "$OUT/junit-2.xml" \
+              -d "${PGDATABASE}_2" -i "$MODULES" --test-tags "$TAGS" \
+              --http-interface=127.0.0.1 --stop-after-init \
+              2>&1 | tee -a "$OUT/test.log" || extra=$?
+            printf '[{"label": "standard", "junit": "junit.xml", "database": "%s", "status": "%s"}, {"label": "%s (%s)", "junit": "junit-2.xml", "database": "%s_2", "status": "%s"}]\n' \
+              "$PGDATABASE" "$status" "$EXTRA_LABEL" "$EXTRA_MODULES" "$PGDATABASE" "$extra" \
+              > "$OUT/runs.json"
+            if [ "$status" -eq 0 ]; then
+              status=$extra
+            fi
+          fi
           echo "$status" > "$OUT/odoo_status"
+          coverage combine --rcfile="$OUT/coveragerc" "$OUT"/.coverage.* || true
           coverage report --rcfile="$OUT/coveragerc" > "$OUT/coverage.txt" || true
           coverage xml --rcfile="$OUT/coveragerc" -o "$OUT/coverage.xml" || true
           coverage json --rcfile="$OUT/coveragerc" -o "$OUT/coverage.json" || true
@@ -74,22 +124,23 @@ jobs:
           REVISION="$(git -C "$SOURCE" rev-parse HEAD 2> /dev/null || echo unknown)"
           echo "$IMAGE, Odoo source $REVISION" > "$OUT/odoo_image"
           psql -Atc "SHOW server_version" > "$OUT/postgres_version" || true
-          python3 _dev/werkzeuge/protocol_summary.py "$OUT" --repo . \
+          python3 /tmp/werkzeuge/protocol_summary.py "$OUT" --repo . \
             --modules "$MODULES" --database "${PGDATABASE}" \
-            --tag "${GITHUB_REF_NAME}" --commit "${GITHUB_SHA}" \
+            --tag "$TAG" --commit "$(git rev-parse HEAD)" \
             --run "${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
       - name: Pack the protocol
         if: ${{ always() }}
-        run: tar -czf "test-protocol-${GITHUB_REF_NAME}.tar.gz" -C build protocol
+        run: tar -czf "test-protocol-${TAG}.tar.gz" -C build protocol
       - name: Keep the protocol of a failed run for the analysis
         if: ${{ failure() }}
         uses: actions/upload-artifact@v4
         with:
-          name: test-protocol-${{ github.ref_name }}
-          path: test-protocol-${{ github.ref_name }}.tar.gz
+          name: test-protocol-${{ env.TAG }}
+          path: test-protocol-${{ env.TAG }}.tar.gz
           if-no-files-found: ignore
       - name: Attach the protocol to the release
         uses: softprops/action-gh-release@v2
         with:
-          files: test-protocol-${{ github.ref_name }}.tar.gz
+          tag_name: ${{ env.TAG }}
+          files: test-protocol-${{ env.TAG }}.tar.gz
           fail_on_unmatched_files: true

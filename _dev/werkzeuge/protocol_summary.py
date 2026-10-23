@@ -11,6 +11,11 @@ next to them:
 * ``coverage.json`` (coverage.py): lines and branches per module
 * ``odoo_status``, ``odoo_version``, ``odoo_image``, ``postgres_version``:
   one line each, written by the runner (missing files show "unknown")
+* ``runs.json`` (only if the tests ran more than once, e.g. a second time with
+  the OCA modules installed): one entry per run with ``label``, ``junit``
+  (its JUnit file), ``database`` and ``status``. The coverage is then the
+  combined one of all runs; a test counts as failed or erroneous if it was in
+  any run and as skipped only if every run skipped it
 
 Tag, commit and the state of the working tree come from git; the release
 workflow, whose checkout may not allow git, passes them with ``--tag`` and
@@ -59,9 +64,25 @@ def read(out, name):
     return text.splitlines()[0] if text else "unknown"
 
 
-def suites_of(out):
-    """``{suite name: element}`` of ``junit.xml`` (empty without the file)."""
-    path = out / "junit.xml"
+def runs_of(out, database):
+    """Runs of the protocol: ``runs.json`` of the runner, else the one run."""
+    path = out / "runs.json"
+    if path.exists():
+        return json.loads(path.read_text(encoding="utf-8"))
+    return [{"label": "", "junit": "junit.xml", "database": database}]
+
+
+def coverage_version(out):
+    """Version of coverage.py that measured the run, from ``coverage.json``."""
+    path = out / "coverage.json"
+    if not path.exists():
+        return "unknown"
+    meta = json.loads(path.read_text(encoding="utf-8")).get("meta", {})
+    return meta.get("version", "unknown")
+
+
+def suites_of(path):
+    """``{suite name: element}`` of a JUnit file (empty without the file)."""
     if not path.exists():
         return {}
     return {
@@ -93,6 +114,32 @@ def counts_of(suite):
     return [int(suite.get(key, 0)) if suite is not None else 0 for key in COUNTS]
 
 
+def outcome(case):
+    """``failure``, ``error``, ``skipped`` or ``passed`` of a test case."""
+    for kind in ("failure", "error", "skipped"):
+        if case.find(kind) is not None:
+            return kind
+    return "passed"
+
+
+def merged_counts(suites):
+    """Counts of the tests of one module over several runs."""
+    results = {}
+    for suite in suites:
+        for case in suite.iter("testcase"):
+            key = (case.get("classname"), case.get("name"))
+            results.setdefault(key, []).append(outcome(case))
+    counts = [len(results), 0, 0, 0]
+    for outcomes in results.values():
+        if "failure" in outcomes:
+            counts[1] += 1
+        elif "error" in outcomes:
+            counts[2] += 1
+        elif all(kind == "skipped" for kind in outcomes):
+            counts[3] += 1
+    return counts
+
+
 def git_state(repo, tag, commit):
     """Tag, description, commit and working tree as shown in the summary."""
     exact = git(repo, "describe", "--tags", "--exact-match")
@@ -117,6 +164,13 @@ def summary(out, repo, modules, database, tag=None, commit=None, run=None):
     """Lines of ``summary.md`` and whether the run passed."""
     state = git_state(repo, tag, commit)
     status = read(out, "odoo_status")
+    runs = runs_of(out, database)
+    several = len(runs) > 1
+    if several:
+        databases = ", ".join(f"{one['database']} ({one['label']})" for one in runs)
+        database_line = f"- Databases: {databases}"
+    else:
+        database_line = f"- Database: {database}"
     lines = [
         "# Test protocol",
         "",
@@ -127,7 +181,8 @@ def summary(out, repo, modules, database, tag=None, commit=None, run=None):
         f"- Working tree: {state['tree']}",
         f"- Odoo: {read(out, 'odoo_version')}, image {read(out, 'odoo_image')}",
         f"- PostgreSQL: {read(out, 'postgres_version')}",
-        f"- Database: {database} (fresh, dropped after the run unless kept)",
+        f"- Coverage: coverage.py {coverage_version(out)}",
+        f"{database_line} (fresh, dropped after the run unless kept)",
         f"- Odoo exit status: {status}",
     ]
     if run:
@@ -137,14 +192,19 @@ def summary(out, repo, modules, database, tag=None, commit=None, run=None):
         "| Module | Version | Tests | Failures | Errors | Skipped | Lines | Branches |",
         "|---|---|---:|---:|---:|---:|---:|---:|",
     ]
-    suites = suites_of(out)
+    run_suites = [suites_of(out / one["junit"]) for one in runs]
     failed = 0
     totals = [0] * 8
     for module in modules:
         manifest = ast.literal_eval(
             (repo / module / "__manifest__.py").read_text(encoding="utf-8")
         )
-        counts = counts_of(suites.get(module))
+        if several:
+            counts = merged_counts(
+                [suites[module] for suites in run_suites if module in suites]
+            )
+        else:
+            counts = counts_of(run_suites[0].get(module))
         failed += counts[1] + counts[2]
         stats = coverage_of(out, module)
         totals = [a + b for a, b in zip(totals, counts + stats, strict=True)]
@@ -158,16 +218,39 @@ def summary(out, repo, modules, database, tag=None, commit=None, run=None):
         f"{rate(totals[4], totals[5])} | {rate(totals[6], totals[7])} |"
     )
     # results outside the modules (e.g. an error of Odoo without module)
-    for name, suite in suites.items():
-        if name in modules:
-            continue
-        counts = counts_of(suite)
-        failed += counts[1] + counts[2]
-        lines.append(
-            f"| other ({name}) | – | {counts[0]} | {counts[1]} | {counts[2]} | "
-            f"{counts[3]} | – | – |"
-        )
-    passed = not failed and status == "0" and bool(suites)
+    for one, suites in zip(runs, run_suites, strict=True):
+        label = f", {one['label']}" if several else ""
+        for name, suite in suites.items():
+            if name in modules:
+                continue
+            counts = counts_of(suite)
+            failed += counts[1] + counts[2]
+            lines.append(
+                f"| other ({name}{label}) | – | {counts[0]} | {counts[1]} | "
+                f"{counts[2]} | {counts[3]} | – | – |"
+            )
+    passed = not failed and status == "0" and all(run_suites)
+    if several:
+        lines += [
+            "",
+            "The tests ran more than once; the coverage above combines the runs, "
+            "and a test counts as skipped above only if every run skipped it.",
+            "",
+            "| Run | Database | Tests | Failures | Errors | Skipped "
+            "| Odoo exit status |",
+            "|---|---|---:|---:|---:|---:|---:|",
+        ]
+        for one, suites in zip(runs, run_suites, strict=True):
+            counts = [0] * 4
+            for module in modules:
+                counts = [
+                    a + b
+                    for a, b in zip(counts, counts_of(suites.get(module)), strict=True)
+                ]
+            lines.append(
+                f"| {one['label']} | {one['database']} | {counts[0]} | {counts[1]} | "
+                f"{counts[2]} | {counts[3]} | {one.get('status', 'unknown')} |"
+            )
     covered, total = totals[4] + totals[6], totals[5] + totals[7]
     lines += [
         "",

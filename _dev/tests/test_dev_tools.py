@@ -184,6 +184,84 @@ class TestSummary(unittest.TestCase):
         text = (self.out / "summary.md").read_text(encoding="utf-8")
         self.assertIn("Result: **passed**", text)
 
+    def write_runs(self, runs):
+        """``runs.json`` and a JUnit file with test cases for every run."""
+        entries = []
+        kinds = {"failure": "failures", "error": "errors", "skipped": "skipped"}
+        for index, (label, cases, status) in enumerate(runs, start=1):
+            junit = "junit.xml" if index == 1 else f"junit-{index}.xml"
+            root = ET.Element("testsuites")
+            suite = ET.SubElement(root, "testsuite", name="l10n_de_example")
+            counts = {"tests": len(cases), "failures": 0, "errors": 0, "skipped": 0}
+            for name, outcome in cases.items():
+                case = ET.SubElement(
+                    suite, "testcase", classname="tests.TestExample", name=name
+                )
+                if outcome != "passed":
+                    ET.SubElement(case, outcome, message="example")
+                    counts[kinds[outcome]] += 1
+            for key, value in counts.items():
+                suite.set(key, str(value))
+            ET.ElementTree(root).write(self.out / junit)
+            entries.append(
+                {
+                    "label": label,
+                    "junit": junit,
+                    "database": f"db_{index}",
+                    "status": status,
+                }
+            )
+        (self.out / "runs.json").write_text(json.dumps(entries), encoding="utf-8")
+
+    def test_two_runs_are_merged(self):
+        """A test counts as skipped only if every run skipped it."""
+        (self.out / "odoo_status").write_text("0\n", encoding="utf-8")
+        self.write_runs(
+            [
+                ("standard", {"a": "passed", "b": "skipped", "c": "skipped"}, "0"),
+                ("with OCA", {"a": "passed", "b": "passed", "c": "skipped"}, "0"),
+            ]
+        )
+        lines, passed = self.summary()
+        self.assertTrue(passed)
+        self.assertIn(
+            "| l10n_de_example | 19.0.1.0.0 | 3 | 0 | 0 | 1 | 95.00 % | 75.00 % |",
+            lines,
+        )
+        self.assertIn("| standard | db_1 | 3 | 0 | 0 | 2 | 0 |", lines)
+        self.assertIn("| with OCA | db_2 | 3 | 0 | 0 | 1 | 0 |", lines)
+        self.assertIn(
+            "- Databases: db_1 (standard), db_2 (with OCA) "
+            "(fresh, dropped after the run unless kept)",
+            lines,
+        )
+
+    def test_a_failure_in_one_run_fails(self):
+        (self.out / "odoo_status").write_text("1\n", encoding="utf-8")
+        self.write_runs(
+            [
+                ("standard", {"a": "passed", "b": "error"}, "0"),
+                ("with OCA", {"a": "failure", "b": "error"}, "1"),
+            ]
+        )
+        lines, passed = self.summary()
+        self.assertFalse(passed)
+        self.assertIn(
+            "| l10n_de_example | 19.0.1.0.0 | 2 | 1 | 1 | 0 | 95.00 % | 75.00 % |",
+            lines,
+        )
+        self.assertIn("| with OCA | db_2 | 2 | 1 | 1 | 0 | 1 |", lines)
+
+    def test_coverage_version(self):
+        path = self.out / "coverage.json"
+        data = json.loads(path.read_text(encoding="utf-8"))
+        path.write_text(
+            json.dumps({**data, "meta": {"version": "7.16.2"}}), encoding="utf-8"
+        )
+        self.assertIn("- Coverage: coverage.py 7.16.2", self.summary()[0])
+        path.unlink()
+        self.assertIn("- Coverage: coverage.py unknown", self.summary()[0])
+
 
 class TestPoFill(unittest.TestCase):
     """``de.po`` from the template and the translation table."""

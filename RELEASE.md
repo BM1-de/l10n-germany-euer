@@ -16,7 +16,13 @@ documented). The protocol names results, never amounts or other data of a real b
      `test.log` and `summary.md` (tag, commit, Odoo version and image, PostgreSQL
      version, counts and coverage per module and in total; a failed `setUpClass` counts
      for its module). The summary is written by `_dev/werkzeuge/protocol_summary.py`,
-     the same as in the workflow `release`.
+     the same as in the workflow `release`, and so is the version of coverage.py
+     (7.16.2).
+   - The tests run twice, each time in a database of its own: without and with the OCA
+     reconciliation modules `account_reconcile_oca`, `account_in_payment` and
+     `account_payment_order` (spec 9.9 "Matrix OCA-Abgleich"). The coverage is the
+     combined one of both runs; a test counts as skipped only if both runs skipped it.
+     The workflow `release` does the same.
    - `pytest` runs the tests without Odoo and without a database (spec 9.9, fast
      feedback): the calculation engine and the tools of the test protocol
      (`pytest.ini`); the engine tests also run inside the protocol above.
@@ -51,7 +57,9 @@ documented). The protocol names results, never amounts or other data of a real b
    tree. The workflow `release` runs the tests once more and attaches the test protocol
    (JUnit XML and coverage) to the GitHub release. Run `test_protocol.sh` again on the
    tagged commit: its `summary.md` must show the tag and a clean working tree, otherwise
-   it is no release protocol.
+   it is no release protocol. Started by hand for an existing tag (_Actions → release →
+   Run workflow_, input `tag`), the workflow creates the protocol of that tag again with
+   the tools of `19.0` and replaces the asset of the release.
 8. **Archive:** both test protocols (GitHub release asset and local run) and the private
    results are kept by BM1 for five years.
 
