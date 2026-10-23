@@ -71,7 +71,7 @@ jobs:
         run: oca_run_tests
       # spec O-06 and 9.9: coverage of lines and branches, targets in
       # codecov.yml (project 95 %, patch 100 %)
-      - uses: codecov/codecov-action@v4
+      - uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
       - name: Upload screenshots from JS tests
@@ -114,6 +114,11 @@ jobs:
           -i account_reconcile_oca,account_in_payment,account_payment_order
       - name: Run tests
         run: oca_run_tests
+      # Codecov combines this upload with the ones of the jobs above, as the
+      # test protocol of a release combines both runs (RELEASE.md)
+      - uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
   test-engine:
     # spec 9.9: the unit tests of the calculation engine also run with pytest
     # without Odoo and without a database (fast feedback). The engine is pure
