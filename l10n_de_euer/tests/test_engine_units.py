@@ -401,6 +401,18 @@ class TestTenDayWindow(BaseCase):
                 self.assertEqual(vat.vat_due_date(period, extension), due)
         self.assertFalse(self.window.applies(d(2027, 1, 8), 2026, d(2027, 2, 10)))
 
+    def test_regular_rhythm_needs_enough_payments(self):
+        """A rhythm of 1, 3, 6 or 12 months needs two dates, or two earlier
+        dates and the day of the payment; one earlier payment is none."""
+        self.assertFalse(ten_day._regular_dates([d(2026, 12, 10)]))
+        self.assertFalse(ten_day._regular_dates([d(2026, 12, 10)], d(2027, 1, 10)))
+        self.assertTrue(
+            ten_day._regular_dates([d(2026, 11, 10), d(2026, 12, 10)], d(2027, 1, 10))
+        )
+        self.assertFalse(
+            ten_day._regular_dates([d(2026, 10, 10), d(2026, 12, 10)], d(2027, 1, 10))
+        )
+
 
 class TestTenDayScenarios(EngineCase):
     """UT-10T-8…10: refund, prepayment, non-recurring, rent without flag."""
@@ -594,6 +606,75 @@ class TestTenDayScenarios(EngineCase):
         self.assertEqual(fields(self.run_year(book, 2026)), {VAT_PAID: D("300.00")})
         self.assertEqual(fields(self.run_year(book, 2027)), {})
 
+    def test_direct_debit_tax_office_on_the_bank_line(self):
+        """R-06: the tax office as partner of the bank line (statement
+        import) makes the debit a tax payment; the entry has no partner."""
+        book = Book(regime="regular")
+        book.partner("Finanzamt", tax_office=True)
+        book.move(
+            "Lastschrift",
+            d(2027, 1, 12),
+            ln("1200", -300, partner="Finanzamt"),
+            ln("1780", 300),
+            info={"vat_period": "2026-12"},
+        )
+        result = self.run_year(book, 2027)
+        self.assertIn("C-26", codes(result, m.BLOCKER))
+        item = result.ten_day_items[0]
+        self.assertEqual(
+            (item.kind, item.proposed_cash_date), ("direct_debit_tax", d(2027, 1, 10))
+        )
+
+    def test_direct_debit_on_the_settlement_account(self):
+        """R-06: the VAT settlement account makes the debit a tax payment,
+        whatever the partner of the bank line."""
+        book = Book(regime="regular")
+        book.move(
+            "Lastschrift",
+            d(2027, 1, 12),
+            ln("1200", -300, partner="Hausbank"),
+            ln("1780", 300),
+            info={"vat_period": "2026-12"},
+        )
+        result = self.run_year(book, 2027)
+        self.assertIn("C-26", codes(result, m.BLOCKER))
+        self.assertEqual(result.ten_day_items[0].kind, "direct_debit_tax")
+
+    def test_direct_debit_of_a_supplier_is_no_tax_payment(self):
+        """R-06 concerns the tax office only: a debit in January with a VAT
+        period, but neither the tax office nor the settlement account, gets
+        no proposal."""
+        book = Book(regime="regular")
+        book.move(
+            "Lastschrift",
+            d(2027, 1, 12),
+            ln("1200", -300, partner="Versorger"),
+            ln("2150", 300, partner="Versorger"),
+            info={"vat_period": "2026-12"},
+        )
+        result = self.run_year(book, 2027)
+        self.assertEqual(result.ten_day_items, [])
+        self.assertNotIn("C-26", codes(result))
+
+    def test_direct_debit_without_due_date_in_january(self):
+        """R-06 only for returns due on 10 January: the annual return has no
+        fixed due date, October is due on 10 November; debited in January
+        both are paid in the year of payment, without a proposal."""
+        for period in ("2026", "2026-10"):
+            with self.subTest(period=period):
+                book = Book(regime="regular")
+                book.move(
+                    "Lastschrift FA",
+                    d(2027, 1, 12),
+                    ("1780", 300),
+                    ("1200", -300),
+                    partner="Finanzamt",
+                    info={"vat_period": period},
+                )
+                result = self.run_year(book, 2027)
+                self.assertEqual(result.ten_day_items, [])
+                self.assertEqual(fields(result), {VAT_PAID: D("300.00")})
+
 
 class TestSmallBusinessLimit(EngineCase):
     """UT-KU-1…7: limits, total turnover, exceeding payment (R-25, R-27)."""
@@ -745,6 +826,18 @@ class TestSmallBusinessLimit(EngineCase):
                 "EUER.20.108": D("50.00"),
                 WITHDRAWAL: D("50.00"),
             },
+        )
+
+    def test_turnover_amount_without_value_is_left_out(self):
+        """R-27: a correction without a VAT base (a free supply that is not
+        taxable) adds no entry to the total turnover."""
+        book = self.book(2026, [1000])
+        book.turnover_amounts.append(m.TurnoverAmount(year=2026, amount=0))
+        result = self.run_year(book, 2026)
+        self.assertEqual(result.turnover.amount, 100000)
+        self.assertEqual(
+            [day for (day, _source), _amount in result.turnover.entries],
+            [d(2026, 3, 1)],
         )
 
     def test_ut_ku_use_withdrawal_without_input_tax(self):
@@ -1035,6 +1128,26 @@ class TestVatHelpers(BaseCase):
         )
         self.assertEqual(vat.parse_vat_period("2026-Q2")[2], d(2026, 6, 30))
         self.assertIsNone(vat.parse_vat_period(None))
+
+    def test_overlapping_periods_latest_start_wins(self):
+        """Overlapping status periods: on a day the one that starts last
+        applies, whatever the order of the list."""
+        later = m.VatPeriod(date_from=d(2026, 7, 1), regime="regular")
+        earlier = m.VatPeriod(date_from=d(2024, 1, 1), regime="ku")
+        self.assertIs(vat.period_at([later, earlier], d(2026, 8, 1)), later)
+        self.assertIs(vat.period_at([later, earlier], d(2026, 3, 1)), earlier)
+
+    def test_permanent_extension_of_a_return_period(self):
+        """DFV: the period of the return decides; a text that is no period
+        has no extension."""
+        periods = [
+            m.VatPeriod(
+                date_from=d(2024, 1, 1), regime="regular", permanent_extension=True
+            )
+        ]
+        self.assertTrue(vat.permanent_extension_for("2026-12", periods))
+        self.assertFalse(vat.permanent_extension_for("2026-13", periods))
+        self.assertFalse(vat.permanent_extension_for("2026-12", []))
 
     def test_regime_from_periods(self):
         periods = (

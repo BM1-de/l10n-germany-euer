@@ -884,6 +884,30 @@ class TestOpening(EngineCase):
         )
         self.assertIn("C-46", codes(self.run_year(book, 2027), m.WARNING))
 
+    def test_c46_several_openings(self):
+        """C-46: two opening entries of the same year on money accounts; one
+        of them may be a duplicate."""
+        book = Book()
+        book.move(
+            "Eröffnung Bank",
+            d(2027, 1, 1),
+            ("1200", 1000),
+            ("9000", -1000),
+            opening=True,
+        )
+        book.move(
+            "Eröffnung Kasse",
+            d(2027, 1, 1),
+            ("1000", 200),
+            ("9000", -200),
+            opening=True,
+        )
+        result = self.run_year(book, 2027)
+        self.assertEqual(
+            [(f.key, f.severity) for f in result.findings if f.code == "C-46"],
+            [("several_openings", m.WARNING)],
+        )
+
 
 class TestCurrencyAndChecks(EngineCase):
     def test_f01_missing_exchange_difference(self):

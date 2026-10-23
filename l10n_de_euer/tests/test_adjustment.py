@@ -14,6 +14,7 @@ from odoo.tests import tagged
 
 from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 
+from ..models.engine import adjustment as adj
 from .scenario_common import (
     SKR03_ACCOUNTS,
     SKR03_TAXES,
@@ -255,6 +256,35 @@ class AdjustmentScenarios(StatementCommon):
                 lambda check: check.res_model == "l10n_de_euer.asset"
             )
         )
+
+    def test_error_messages_of_the_calculation(self):
+        """Every input error of the calculation has its own message for the
+        user; a case without one still names its key."""
+        Adjustment = self.Adjustment.with_context(lang="en_US")
+        messages = {
+            "unknown_field": "Choose the field of the tax-free income or expense.",
+            "invalid_months": "Enter between 0 and 12 months.",
+            "reduction_too_high": "The reduction is higher than the meal allowances.",
+            "vat_on_exempt": "Tax-free income in kind (Kz 103) has no VAT.",
+            "unknown_kind": "The profit correction cannot be computed: unknown_kind",
+        }
+        for key, message in messages.items():
+            with self.subTest(key=key):
+                self.assertEqual(
+                    Adjustment._error_message(adj.AdjustmentError(key)), message
+                )
+        self.assertIn(
+            "§ 10 (4) UStG",
+            Adjustment._error_message(adj.AdjustmentError("vat_base_missing")),
+        )
+
+    def test_asset_only_for_a_withdrawal_of_use(self):
+        """Only the use withdrawal (Kz 108) refers to an asset of the register;
+        a meal allowance with an asset is refused."""
+        asset = self.register_asset()
+        statement = self.statement()
+        with self.assertRaises(ValidationError):
+            self.correction(statement, "meals", days_8h=1, asset_id=asset.id)
 
     def test_finalised_statement_is_protected(self):
         """Corrections of a statement that is no longer open cannot change."""

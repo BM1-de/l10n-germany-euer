@@ -88,6 +88,19 @@ class TestStatementRights(StatementCommon, AccountTestInvoicingCommon):
         statement.action_check()
         return statement
 
+    def test_questions_belong_to_the_statement(self):
+        """The questionnaire comes with the statement (R-52): no question is
+        added or deleted by hand."""
+        statement = self.Statement.create({"company_id": self.company.id, "year": 2026})
+        answer = statement.scope_answer_ids[:1]
+        self.assertTrue(answer)
+        with self.assertRaises(UserError):
+            self.env["l10n_de_euer.scope.answer"].create(
+                {"statement_id": statement.id, "question_code": answer.question_code}
+            )
+        with self.assertRaises(UserError):
+            answer.unlink()
+
     # ------------------------------------------------------------ GT-13
     def test_gt13_bookkeeper(self):
         """GT-13: the bookkeeper does the yearly work, but cannot confirm the

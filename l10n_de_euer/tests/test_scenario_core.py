@@ -8,6 +8,7 @@ each chart). Amounts are synthetic (D6). The business is a small business
 """
 
 from odoo import Command
+from odoo.exceptions import ValidationError
 from odoo.tests import tagged
 
 from odoo.addons.account.tests.common import AccountTestInvoicingCommon
@@ -435,6 +436,31 @@ class CoreScenarios(ScenarioCommon):
         # the opening bank balance is no receipt
         self.assertFields(2027, {KU: 120})
         self.assertNotIn("C-35", self.codes(2027))
+
+    def test_t22_opening_item_rate_is_a_percentage(self):
+        """The VAT rate of an opening item is a percentage below 100."""
+        self.set_regime("regular")
+        opening = self.entry(
+            "2027-01-01",
+            [
+                ("receivable", 119, {"partner_id": self.customer.id}),
+                ("opening_debtors", -119),
+            ],
+        )
+        receivable = opening.line_ids.filtered(lambda line: line.balance == 119)
+        category = self.env["l10n_de_euer.category"].search(
+            [("code", "=", "REV_TAXABLE")]
+        )
+        with self.assertRaises(ValidationError):
+            self.env["l10n_de_euer.opening.item"].create(
+                {
+                    "company_id": self.company.id,
+                    "move_line_id": receivable.id,
+                    "category_id": category.id,
+                    "vat_regime": "regular",
+                    "tax_rate": 100,
+                }
+            )
 
     def test_t22c_opening_items_regular(self):
         self.set_regime("regular")

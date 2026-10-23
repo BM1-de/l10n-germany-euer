@@ -353,3 +353,20 @@ class TestRevenueRules(EngineCase):
     def test_category_without_form_data(self):
         """Without any form year there is no mapping line (F-13)."""
         self.assertEqual(assignment.mapping_lines({}, "EXP_OTHER", 2026), [])
+
+
+@tagged("post_install", "-at_install")
+class TestGraphEdges(EngineCase):
+    def test_reconciliation_within_one_entry_moves_no_money(self):
+        """A partial between two lines of the same entry is no edge of the
+        graph: the regrouping on the receivable account neither realises nor
+        moves money; the receipt of the invoice stays its only payment."""
+        book = Book()
+        invoice = self.sale(book, "RE", d(2026, 3, 1), 100)
+        self.receipt(book, "Bank", d(2026, 3, 10), 100, invoice)
+        regroup = book.move(
+            "Umbuchung", d(2026, 3, 15), ln("1410", 50), ln("1410", -50)
+        )
+        book.rec(regroup("1410", 0), regroup("1410", 1))
+        result = self.run_year(book, 2026)
+        self.assertEqual(fields(result), {"EUER.20.111": D("100.00")})

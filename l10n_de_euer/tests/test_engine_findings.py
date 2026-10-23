@@ -144,6 +144,28 @@ class TestGiftRecipients(EngineCase):
             {GIFT: D("45.00"), INPUT_VAT: D("8.55")},
         )
 
+    def test_refund_of_a_gift_counts_for_its_recipient(self):
+        """A credit note reversing a gift belongs to the recipient of the
+        reversed document: 60 € less 20 € back are 40 €, within the limit of
+        50 € (§ 4 (5) sentence 1 no. 1 EStG) and so deductible (Kz 174)."""
+        book = Book()
+        bill = self.bill(book, d(2026, 3, 1), 60, "Shop", "Kunde")
+        self.pay(book, bill, d(2026, 3, 2))
+        refund = book.move(
+            "Gutschrift",
+            d(2026, 3, 10),
+            ln("1610", 20),
+            ln("4630", -20),
+            partner="Shop",
+            move_type="in_refund",
+            reversed_entry_id=bill.move.id,
+        )
+        back = book.move("Bank", d(2026, 3, 12), ("1200", 20), ("1610", -20))
+        book.rec(refund("1610"), back("1610"))
+        result = self.run_year(book, 2026)
+        self.assertEqual(fields(result), {GIFT: D("40.00")})
+        self.assertNotIn("C-51", codes(result))
+
     def test_journal_entry_with_entered_recipient(self):
         """I5: bank entry on the gift account: the recipient is entered (the
         partner of a bank entry is the shop that was paid)."""

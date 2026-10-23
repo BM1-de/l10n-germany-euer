@@ -191,6 +191,34 @@ class TestDegressive(BaseCase):
             },
         )
 
+    def test_at_deg_5_rest_in_last_year_without_switch(self):
+        """AT-DEG-1 without a switch to linear (chosen year after the useful
+        life): 20 % of the book value each year, and the last year (01–03/2030)
+        takes the rest, so the asset is written off at the end of its life:
+        9,000 / 10,200 / 8,160 / 6,528 / 5,222.40 / 4,177.92 / 16,711.68."""
+        rows = dep.schedule(
+            asset(
+                method="degressive",
+                delivery_date=date(2024, 4, 10),
+                cost=D("60000.00"),
+                useful_life_months=72,
+                degressive_rate=D("0.2"),
+                switch_to_linear_year=2031,
+            )
+        )
+        self.assertEqual(
+            depreciation(rows),
+            {
+                2024: D("9000.00"),
+                2025: D("10200.00"),
+                2026: D("8160.00"),
+                2027: D("6528.00"),
+                2028: D("5222.40"),
+                2029: D("4177.92"),
+                2030: D("16711.68"),
+            },
+        )
+
     def test_no_extraordinary_with_degressive(self):
         """§ 7 (2) sentence 4 EStG."""
         with self.assertRaises(dep.DepreciationError):
@@ -228,6 +256,24 @@ class TestSpecialMethods(BaseCase):
                 2030: D("960.00"),
             },
         )
+
+    def test_at_ekfz_nothing_after_the_scale(self):
+        """§ 7 (2a) EStG: after the six years of the scale nothing is left;
+        a schedule continued beyond it (until 2031) depreciates 0."""
+        rows = dep.schedule(
+            asset(
+                method="ev_7_2a",
+                delivery_date=date(2025, 8, 20),
+                cost=D("47999.99"),
+                useful_life_months=0,
+                ev_rates=EV_RATES,
+                group="vehicle",
+            ),
+            until=2031,
+        )
+        self.assertEqual(depreciation(rows)[2030], D("960.00"))
+        self.assertEqual(depreciation(rows)[2031], D("0"))
+        self.assertEqual(rows[-1].book_value_end, D("0"))
 
     def test_at_ekfz_no_special_depreciation(self):
         with self.assertRaises(dep.DepreciationError):

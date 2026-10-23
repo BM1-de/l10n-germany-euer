@@ -695,6 +695,27 @@ class TestScenarios(EngineCase):
         self.assertEqual({s.date for s in result.slices}, {d(2027, 3, 10)})
         self.assertNotIn("C-10", codes(result))
 
+    def test_t29_keep_mode_not_matched_yet(self):
+        """Keep mode before the matching: the money waits on the suspense
+        account, so it is unclear (C-10) and realises nothing yet."""
+        book = Book()
+        book.move("Bank", d(2027, 3, 10), ("1200", 250), ("SUSPR", -250))
+        result = self.run_year(book, 2027)
+        self.assertEqual(fields(result), {})
+        self.assertIn("C-10", codes(result, m.BLOCKER))
+
+    def test_classified_revenue_under_standard_taxation(self):
+        """Money without a document, classified as taxable revenue at 19 %
+        under standard taxation: split into the net revenue (Kz 112) and the
+        output VAT (Kz 140)."""
+        book = Book(regime="regular")
+        bank = book.move(
+            "Bank", d(2027, 3, 1), ("1200", 119), ("1410", -119), partner="Kunde"
+        )
+        book.classify(bank("1410"), "revenue", "REV_TAXABLE", rate=19, regime="regular")
+        result = self.run_year(book, 2027)
+        self.assertEqual(fields(result), {TAXABLE: D("100.00"), OUTPUT_VAT: D("19.00")})
+
     def test_t30_cash_date_override(self):
         book = Book()
         bill = book.move(

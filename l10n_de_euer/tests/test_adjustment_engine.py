@@ -497,6 +497,26 @@ class TestAdjustmentReview(BaseCase):
         )
         self.assertEqual(result.turnover, D("1000.00"))
 
+    def test_income_in_kind_small_business_field_only_for_small_business(self):
+        """Kz 111 is the field of a small business: under standard taxation
+        income in kind goes to Kz 112 or Kz 103, any other field is refused."""
+        with self.assertRaises(adj.AdjustmentError) as error:
+            run(adj.INCOME_IN_KIND, amount=D("250"), revenue_field="EUER.20.111")
+        self.assertEqual(error.exception.key, "unknown_field")
+
+    def test_limits_used_only_by_corrections_with_a_maximum(self):
+        """Corrections without a yearly maximum (income in kind) use no part
+        of one; the daily allowance uses its 600 € of the 1,260 €."""
+        inputs = [
+            adj.AdjustmentInput(
+                kind=adj.INCOME_IN_KIND, year=2026, amount=D("250"), small_business=True
+            ),
+            adj.AdjustmentInput(kind=adj.HOME_OFFICE_DAYS, year=2026, days=100),
+        ]
+        self.assertEqual(
+            adj.limits_used(inputs, PARAMS), {(adj.HOME_OFFICE_DAYS,): D("600.00")}
+        )
+
     def test_c55_only_so_far_as_the_home_office_is_deducted(self):
         """§ 4 (5) sentence 1 no. 6c sentence 3 EStG ("soweit"): a home
         office for 6 months and the daily allowance for the other days is a
